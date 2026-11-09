@@ -1,6 +1,6 @@
 {
   "phaseId": "P01",
-  "status": "IN_PROGRESS",
+  "status": "PASS",
   "tests": [
     {
       "testId": "P01-T01",
@@ -19,9 +19,10 @@
     },
     {
       "testId": "P01-T03",
-      "status": "IN_PROGRESS",
+      "status": "PASS",
       "evidence": [
-        "Lint-negative CI run failed for commit 9b5ad38cc95bde6ddc1550ba8ebb91fead4395c0: https://github.com/Anserk0710/surat-digital/actions/runs/42586833750"
+        "Lint-negative CI run failed for commit 9b5ad38cc95bde6ddc1550ba8ebb91fead4395c0: https://github.com/Anserk0710/surat-digital/actions/runs/42586833750",
+        "Test-negative CI run failed for commit 1248165c4712d7452acbc95221d4152af5ade0d1: https://github.com/Anserk0710/surat-digital/actions/runs/42587284435"
       ]
     }
   ]
