@@ -19,8 +19,10 @@
     },
     {
       "testId": "P01-T03",
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "IN_PROGRESS",
+      "evidence": [
+        "Lint-negative CI run failed for commit 9b5ad38cc95bde6ddc1550ba8ebb91fead4395c0: https://github.com/Anserk0710/surat-digital/actions/runs/42586833750"
+      ]
     }
   ]
 }
