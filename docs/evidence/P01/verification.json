@@ -12,8 +12,10 @@
     },
     {
       "testId": "P01-T02",
-      "status": "NOT_RUN",
-      "evidence": []
+      "status": "PASS",
+      "evidence": [
+        "CI passed for commit b18b0e2a219422b576705bb5aa68886f435be157: https://github.com/Anserk0710/surat-digital/actions/runs/42585306342"
+      ]
     },
     {
       "testId": "P01-T03",
