@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { recordFreshInstall } from './p01-evidence.mjs';
 
 const root = process.cwd();
 const lockfileName = 'package-lock.json';
@@ -69,6 +70,7 @@ try {
   if (beforeHash !== afterHash) {
     throw new Error('npm ci changed package-lock.json. ' + 'Repository is not reproducible.');
   }
+  recordFreshInstall(root, afterHash);
   console.log('P01-T01 local verification PASS: ' + 'npm ci succeeded and lockfile was unchanged.');
 } catch (error) {
   console.error(`P01-T01 local verification FAIL: ${error.message}`);

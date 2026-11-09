@@ -5,7 +5,10 @@
     {
       "testId": "P01-T01",
       "status": "PASS",
-      "evidence": "npm run p01:verify:fresh-install"
+      "evidence": [
+        "npm run p01:verify:fresh-install: sandbox npm ci succeeded",
+        "package-lock.json SHA-256 unchanged: eb61b5a5f127e22574ef0962ee6bfa347c55e77a2e70ee74df3677f385de2d2c"
+      ]
     },
     {
       "testId": "P01-T02",
