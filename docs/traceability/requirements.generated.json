@@ -1,0 +1,3361 @@
+[
+  {
+    "id": "FR-AUTH-001",
+    "description": "Sistem menyediakan login dengan Email, Username, atau NIP dan Password",
+    "priority": "Must",
+    "domain": "AUTH",
+    "owner": "Backend/Auth",
+    "phases": [
+      "P03",
+      "P04"
+    ],
+    "tests": [
+      "AUTH-LOGIN-001"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": []
+  },
+  {
+    "id": "FR-AUTH-002",
+    "description": "Sistem menghubungkan akun login ke satu record employee",
+    "priority": "Must",
+    "domain": "AUTH",
+    "owner": "Backend/Auth",
+    "phases": [
+      "P03"
+    ],
+    "tests": [
+      "AUTH-MAPPING-001"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": []
+  },
+  {
+    "id": "FR-AUTH-003",
+    "description": "Password dikelola Supabase Auth dan tidak disimpan pada tabel employees",
+    "priority": "Must",
+    "domain": "AUTH",
+    "owner": "Backend/Auth",
+    "phases": [
+      "P02",
+      "P03"
+    ],
+    "tests": [
+      "AUTH-STORAGE-001"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": []
+  },
+  {
+    "id": "FR-USER-001",
+    "description": "Administrator dapat mengimpor data karyawan melalui Excel",
+    "priority": "Must",
+    "domain": "USER",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "USER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-USER-002",
+    "description": "Karyawan dapat melakukan registrasi mandiri",
+    "priority": "Must",
+    "domain": "USER",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "USER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-USER-003",
+    "description": "Registrasi mandiri berstatus Pending sampai diverifikasi/diaktifkan Administrator",
+    "priority": "Must",
+    "domain": "USER",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "USER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-USER-004",
+    "description": "Sistem mencegah NIP, username, atau email duplikat dalam perusahaan",
+    "priority": "Must",
+    "domain": "USER",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "USER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-USER-005",
+    "description": "Administrator dapat mengaktifkan, menonaktifkan, atau menangguhkan akun",
+    "priority": "Must",
+    "domain": "USER",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "USER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-USER-006",
+    "description": "Pengguna memiliki jabatan, divisi, dan kantor sebagai data organisasi",
+    "priority": "Must",
+    "domain": "USER",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "USER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ORG-001",
+    "description": "Sistem mendukung satu perusahaan",
+    "priority": "Must",
+    "domain": "ORG",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "ORG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ORG-002",
+    "description": "Sistem mendukung kantor pusat dan kantor cabang",
+    "priority": "Must",
+    "domain": "ORG",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "ORG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ORG-003",
+    "description": "Sistem mendukung 10 divisi pada konfigurasi awal",
+    "priority": "Must",
+    "domain": "ORG",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "ORG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ORG-004",
+    "description": "Satu divisi dapat terhubung ke beberapa kantor",
+    "priority": "Must",
+    "domain": "ORG",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "ORG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ORG-005",
+    "description": "Pengguna dapat memiliki penempatan organisasi yang lebih dari satu jika diperlukan",
+    "priority": "Should",
+    "domain": "ORG",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "ORG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ORG-006",
+    "description": "Jabatan tidak otomatis memberikan permission",
+    "priority": "Must",
+    "domain": "ORG",
+    "owner": "Backend/Organization",
+    "phases": [
+      "P05"
+    ],
+    "tests": [
+      "ORG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-IAM-001",
+    "description": "Satu pengguna dapat menjadi anggota beberapa Group Policy",
+    "priority": "Must",
+    "domain": "IAM",
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
+    ],
+    "tests": [
+      "P06-T01",
+      "P06-T02",
+      "P06-T03",
+      "P06-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-IAM-002",
+    "description": "Permission dapat diberikan dengan efek ALLOW atau DENY",
+    "priority": "Must",
+    "domain": "IAM",
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
+    ],
+    "tests": [
+      "P06-T01",
+      "P06-T02",
+      "P06-T03",
+      "P06-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-IAM-003",
+    "description": "DENY mengalahkan ALLOW",
+    "priority": "Must",
+    "domain": "IAM",
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
+    ],
+    "tests": [
+      "P06-T01",
+      "P06-T02",
+      "P06-T03",
+      "P06-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-IAM-004",
+    "description": "Permission yang tidak diberikan dianggap tidak diizinkan (Default Deny)",
+    "priority": "Must",
+    "domain": "IAM",
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
+    ],
+    "tests": [
+      "P06-T01",
+      "P06-T02",
+      "P06-T03",
+      "P06-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-IAM-005",
+    "description": "Perubahan membership dan permission dicatat di Audit Log",
+    "priority": "Must",
+    "domain": "IAM",
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
+    ],
+    "tests": [
+      "P06-T01",
+      "P06-T02",
+      "P06-T03",
+      "P06-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-IAM-006",
+    "description": "Hak melihat, mengunduh, dan mengekspor dokumen dipisahkan",
+    "priority": "Must",
+    "domain": "IAM",
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
+    ],
+    "tests": [
+      "P06-T01",
+      "P06-T02",
+      "P06-T03",
+      "P06-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-001",
+    "description": "Sistem mendukung Surat Internal, SK, dan Dokumen Pengajuan",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-002",
+    "description": "Sistem menyediakan metode Template, Editor, dan Upload",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-003",
+    "description": "Sistem mendukung PDF, DOCX, DOC, XLSX, dan XLS",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-004",
+    "description": "Upload dilakukan satu per satu dengan preview/review sebelum konfirmasi",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-005",
+    "description": "Satu versi dokumen hanya memiliki satu file utama",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-006",
+    "description": "Satu versi dokumen dapat memiliki banyak lampiran",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-007",
+    "description": "Excel dapat menjadi file utama atau lampiran",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-008",
+    "description": "File Office dikonversi ke PDF representasi untuk review dan tanda tangan",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-009",
+    "description": "File asli tetap disimpan sebagai arsip",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-010",
+    "description": "Isi dan file yang diajukan dikunci setelah submit",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-011",
+    "description": "Sistem mendukung editor internal dengan fungsi dasar seperti Word",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-012",
+    "description": "Sistem memvalidasi ekstensi, MIME type, signature file, ukuran, dan hash",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-013",
+    "description": "Sistem memproses file secara asynchronous dan menampilkan status job",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-014",
+    "description": "Sistem mengekstrak teks/paragraf/tabel dari PDF, DOCX, dan DOC yang didukung",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-015",
+    "description": "Sistem mengekstrak workbook, sheet, dan data sel XLSX/XLS",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-016",
+    "description": "Sistem mendeteksi PDF scan dan menyediakan OCR fallback",
+    "priority": "Should",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-017",
+    "description": "Sistem menyediakan PDF preview untuk Office file sebelum review",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-018",
+    "description": "Pengguna wajib memeriksa dan mengonfirmasi preview sebelum submit",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-019",
+    "description": "Sistem menyimpan metadata ekstraksi, parser version, dan status job",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-020",
+    "description": "Sistem mendukung retry idempotent untuk job processing yang gagal",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-DOC-021",
+    "description": "Sistem tidak mengeksekusi macro atau active content dari file upload",
+    "priority": "Must",
+    "domain": "DOC",
+    "owner": "Backend/Document",
+    "phases": [
+      "P08",
+      "P13"
+    ],
+    "tests": [
+      "DOC-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FORM-001",
+    "description": "Pengguna berizin dapat membuat definisi form",
+    "priority": "Must",
+    "domain": "FORM",
+    "owner": "Backend/Form Builder",
+    "phases": [
+      "P39"
+    ],
+    "tests": [
+      "P39-T01",
+      "P39-T02",
+      "P39-T03",
+      "P39-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FORM-002",
+    "description": "Form mendukung Text, Textarea, Number, Date, Dropdown, Checkbox, Radio, File Upload, dan Repeating Table",
+    "priority": "Must",
+    "domain": "FORM",
+    "owner": "Backend/Form Builder",
+    "phases": [
+      "P39"
+    ],
+    "tests": [
+      "P39-T01",
+      "P39-T02",
+      "P39-T03",
+      "P39-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FORM-003",
+    "description": "Field dapat ditandai wajib atau opsional",
+    "priority": "Must",
+    "domain": "FORM",
+    "owner": "Backend/Form Builder",
+    "phases": [
+      "P39"
+    ],
+    "tests": [
+      "P39-T01",
+      "P39-T02",
+      "P39-T03",
+      "P39-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FORM-004",
+    "description": "Perubahan form menghasilkan versi baru",
+    "priority": "Must",
+    "domain": "FORM",
+    "owner": "Backend/Form Builder",
+    "phases": [
+      "P39"
+    ],
+    "tests": [
+      "P39-T01",
+      "P39-T02",
+      "P39-T03",
+      "P39-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FORM-005",
+    "description": "Submission lama tetap mengacu pada versi form yang digunakan saat pengajuan",
+    "priority": "Must",
+    "domain": "FORM",
+    "owner": "Backend/Form Builder",
+    "phases": [
+      "P39"
+    ],
+    "tests": [
+      "P39-T01",
+      "P39-T02",
+      "P39-T03",
+      "P39-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-001",
+    "description": "Creator Sign + Lock + Submit dijalankan sebagai satu transaksi bisnis atomik",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P16"
+    ],
+    "tests": [
+      "INT-001"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Atomic Creator Sign+Lock+Submit",
+        "api": "`POST /documents/:id/submit`",
+        "database": "`document_versions`, `document_signatures`, `document_actions`, `outbox_events`",
+        "test": "INT-001",
+        "backlogPhase": "E16 / P16"
+      }
+    ],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": []
+  },
+  {
+    "id": "FR-WF-002",
+    "description": "Creator memilih divisi dan kantor penerbit",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-003",
+    "description": "Creator memilih pihak Knowing dan Approver",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-004",
+    "description": "Pemilihan participant divalidasi berdasarkan permission dan aturan bisnis",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-004A",
+    "description": "Permission dan status aktif participant diperiksa ulang ketika action dilakukan",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Runtime permission re-check + recovery",
+        "api": "action endpoints + `/workflow/recover`",
+        "database": "participants, `workflow_recovery_actions`, audit",
+        "test": "WF-REC-001/002, PERM-001",
+        "backlogPhase": "E18 / P20,P21"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-005",
+    "description": "Creator tidak boleh menjadi Knowing atau Approver pada dokumen yang dibuatnya",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-006",
+    "description": "Satu orang tidak boleh menjadi Knowing sekaligus Approver pada dokumen yang sama",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-007",
+    "description": "Semua Knowing wajib membaca, konfirmasi, dan menandatangani sebelum Approver pertama aktif",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Semua Knowing selesai sebelum approval",
+        "api": "`/knowing/confirm`",
+        "database": "`document_participants`",
+        "test": "workflow acknowledgment gate",
+        "backlogPhase": "E09 / P17"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-008",
+    "description": "Knowing tidak melakukan approval",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-009",
+    "description": "Approver memeriksa, menyetujui, dan menandatangani dalam satu tahap",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Sequential approve+sign",
+        "api": "`/approvals/approve`",
+        "database": "participants/signatures/actions",
+        "test": "concurrency + active approver",
+        "backlogPhase": "E09/E10 / P18"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-010",
+    "description": "Approval berjalan berurutan dan hanya satu approver aktif",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-011",
+    "description": "Approver tidak memiliki batas waktu global",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-012",
+    "description": "Tidak ada delegasi approver pada MVP",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-013",
+    "description": "Approver dapat menolak permanen dengan alasan wajib",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-014",
+    "description": "Creator dapat withdraw sebelum persetujuan pertama dengan alasan wajib",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Withdraw hanya sebelum approval pertama",
+        "api": "`/withdraw`",
+        "database": "documents/actions",
+        "test": "UAT withdraw",
+        "backlogPhase": "E09 / P19"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-015",
+    "description": "Setelah approval pertama selesai, Creator tidak dapat withdraw",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-016",
+    "description": "Workflow dan isi dokumen dikunci sebagai bagian dari transaksi Sign+Submit",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-017",
+    "description": "Participant nonaktif/kehilangan permission menyebabkan task blocked, bukan bypass",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-WF-018",
+    "description": "Admin berizin dapat melakukan Workflow Recovery untuk mengganti participant blocked dengan reason wajib dan audit penuh",
+    "priority": "Must",
+    "domain": "WF",
+    "owner": "Backend/Workflow",
+    "phases": [
+      "P14",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "tests": [
+      "WF-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-001",
+    "description": "Sistem menyediakan tanda tangan visual",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-002",
+    "description": "Tanda tangan visual dibuat saat proses tanda tangan, bukan reusable profile",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-003",
+    "description": "Sistem menyediakan tanda tangan elektronik internal",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-004",
+    "description": "TTE internal memerlukan profil lengkap dan registrasi aktif",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-005",
+    "description": "TTE internal menggunakan PIN khusus tanda tangan",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-006",
+    "description": "PIN disimpan dalam bentuk hash",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-007",
+    "description": "Setiap penandatangan memilih metodenya sendiri",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-008",
+    "description": "Signature mengikat identitas, waktu, metode, versi, dan `document_manifest_hash` canonical",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P24"
+    ],
+    "tests": [
+      "INT-002"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Canonical Document Manifest",
+        "api": "submit + verification",
+        "database": "`document_versions.document_manifest_hash`, file hashes",
+        "test": "INT-002, signature verification",
+        "backlogPhase": "E16 / P15,P24"
+      }
+    ],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": []
+  },
+  {
+    "id": "FR-SIG-009",
+    "description": "Tanda tangan Creator, Knowing, dan Approver ditampilkan pada PDF final",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-010",
+    "description": "Sistem menyediakan QR/halaman verifikasi dokumen",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-SIG-011",
+    "description": "Integrasi PSrE tersertifikasi tidak termasuk MVP",
+    "priority": "Must",
+    "domain": "SIG",
+    "owner": "Backend/Signature",
+    "phases": [
+      "P15",
+      "P22",
+      "P23",
+      "P24"
+    ],
+    "tests": [
+      "SIG-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-001",
+    "description": "Nomor resmi mengikuti format `NNN/JENIS/DIVISI/KANTOR/BULAN_ROMAWI/TAHUN`",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-002",
+    "description": "Nomor resmi di-reserve setelah seluruh approval selesai dan sebelum komposisi PDF final",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Reserve number before render; retry same/VOID",
+        "api": "internal finalization",
+        "database": "counters/numberings/outbox",
+        "test": "numbering concurrency + INT-004/005",
+        "backlogPhase": "E21 / P25–P27"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-003",
+    "description": "Counter dipisah berdasarkan jenis, divisi, kantor, bulan, dan tahun",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-004",
+    "description": "Counter dimulai dari 001 setiap bulan",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-005",
+    "description": "Nomor resmi unik dan tidak boleh digunakan kembali",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-006",
+    "description": "Rejected dan Cancelled tidak menerima nomor resmi",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-007",
+    "description": "Nomor dibuat secara transaksional dan aman dari race condition",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NUM-008",
+    "description": "Retry finalisasi memakai reservation yang sama; kegagalan permanen mengubah reservation menjadi VOID tanpa reuse",
+    "priority": "Must",
+    "domain": "NUM",
+    "owner": "Backend/Numbering",
+    "phases": [
+      "P25",
+      "P26",
+      "P27"
+    ],
+    "tests": [
+      "NUM-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NOT-001",
+    "description": "Sistem menyediakan notifikasi in-app",
+    "priority": "Must",
+    "domain": "NOT",
+    "owner": "Backend/Notification",
+    "phases": [
+      "P29",
+      "P30"
+    ],
+    "tests": [
+      "P29-T01",
+      "P29-T02",
+      "P29-T03",
+      "P29-T04",
+      "P30-T01",
+      "P30-T02",
+      "P30-T03",
+      "P30-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NOT-002",
+    "description": "Sistem mengirim notifikasi email",
+    "priority": "Must",
+    "domain": "NOT",
+    "owner": "Backend/Notification",
+    "phases": [
+      "P29",
+      "P30"
+    ],
+    "tests": [
+      "P29-T01",
+      "P29-T02",
+      "P29-T03",
+      "P29-T04",
+      "P30-T01",
+      "P30-T02",
+      "P30-T03",
+      "P30-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-NOT-003",
+    "description": "Knowing menerima notifikasi saat awal submit dan setelah dokumen terbit",
+    "priority": "Must",
+    "domain": "NOT",
+    "owner": "Backend/Notification",
+    "phases": [
+      "P29",
+      "P30"
+    ],
+    "tests": [
+      "P29-T01",
+      "P29-T02",
+      "P29-T03",
+      "P29-T04",
+      "P30-T01",
+      "P30-T02",
+      "P30-T03",
+      "P30-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ARC-001",
+    "description": "Sistem menyediakan pencarian berdasarkan nomor, ID, judul, tipe, pembuat, divisi, kantor, tanggal, dan status",
+    "priority": "Must",
+    "domain": "ARC",
+    "owner": "Backend/Archive",
+    "phases": [
+      "P31",
+      "P36"
+    ],
+    "tests": [
+      "P31-T01",
+      "P31-T02",
+      "P31-T03",
+      "P31-T04",
+      "P36-T01",
+      "P36-T02",
+      "P36-T03",
+      "P36-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ARC-002",
+    "description": "Sistem menyediakan pencarian isi dokumen yang dapat diekstrak teksnya",
+    "priority": "Should",
+    "domain": "ARC",
+    "owner": "Backend/Archive",
+    "phases": [
+      "P31",
+      "P36"
+    ],
+    "tests": [
+      "P31-T01",
+      "P31-T02",
+      "P31-T03",
+      "P31-T04",
+      "P36-T01",
+      "P36-T02",
+      "P36-T03",
+      "P36-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-ARC-003",
+    "description": "Dokumen resmi tidak dapat dihapus melalui fungsi biasa",
+    "priority": "Must",
+    "domain": "ARC",
+    "owner": "Backend/Archive",
+    "phases": [
+      "P31",
+      "P36"
+    ],
+    "tests": [
+      "P31-T01",
+      "P31-T02",
+      "P31-T03",
+      "P31-T04",
+      "P36-T01",
+      "P36-T02",
+      "P36-T03",
+      "P36-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-AUD-001",
+    "description": "Sistem mencatat user, aktivitas, waktu, IP, lokasi perkiraan, device, dan hasil tindakan",
+    "priority": "Must",
+    "domain": "AUD",
+    "owner": "Backend/Audit",
+    "phases": [
+      "P32"
+    ],
+    "tests": [
+      "AUD-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Application-immutable audit",
+        "api": "audit endpoints",
+        "database": "`audit_logs`",
+        "test": "audit redaction/permission",
+        "backlogPhase": "E13 / P32"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-AUD-002",
+    "description": "Audit Log bersifat append-only dari aplikasi",
+    "priority": "Must",
+    "domain": "AUD",
+    "owner": "Backend/Audit",
+    "phases": [
+      "P32"
+    ],
+    "tests": [
+      "AUD-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-AUD-003",
+    "description": "Audit Log dapat dilihat/diekspor hanya oleh pengguna berizin",
+    "priority": "Must",
+    "domain": "AUD",
+    "owner": "Backend/Audit",
+    "phases": [
+      "P32"
+    ],
+    "tests": [
+      "AUD-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-REL-001",
+    "description": "Dispatch job/event kritis menggunakan transactional outbox yang ditulis dalam transaksi yang sama dengan state bisnis",
+    "priority": "Must",
+    "domain": "REL",
+    "owner": "Backend/Infrastructure",
+    "phases": [
+      "P11"
+    ],
+    "tests": [
+      "REL-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Transactional outbox",
+        "api": "internal dispatcher",
+        "database": "`outbox_events`",
+        "test": "INT-003",
+        "backlogPhase": "E17 / P11"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-REL-002",
+    "description": "Outbox dispatcher/reconciliation dapat melakukan retry idempotent tanpa menggandakan side effect",
+    "priority": "Must",
+    "domain": "REL",
+    "owner": "Backend/Infrastructure",
+    "phases": [
+      "P11"
+    ],
+    "tests": [
+      "REL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FILE-001",
+    "description": "Semua file upload menjalani malware scan/quarantine sebelum parser, OCR, atau converter",
+    "priority": "Must",
+    "domain": "FILE",
+    "owner": "Backend/Document Processing",
+    "phases": [
+      "P09",
+      "P10",
+      "P12"
+    ],
+    "tests": [
+      "FILE-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Mandatory malware scan fail-closed",
+        "api": "upload/processing status",
+        "database": "file/job scan status",
+        "test": "FILE-SEC-001/002",
+        "backlogPhase": "E19 / P10"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-FILE-002",
+    "description": "File yang gagal scan atau scan timeout sesuai fail-closed policy tidak boleh diproses lebih lanjut",
+    "priority": "Must",
+    "domain": "FILE",
+    "owner": "Backend/Document Processing",
+    "phases": [
+      "P09",
+      "P10",
+      "P12"
+    ],
+    "tests": [
+      "FILE-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-API-001",
+    "description": "OpenAPI menjadi source of truth untuk DTO, response, error, pagination, dan generated TypeScript client/types",
+    "priority": "Must",
+    "domain": "API",
+    "owner": "Backend/API",
+    "phases": [
+      "P03",
+      "P40"
+    ],
+    "tests": [
+      "API-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "OpenAPI source of truth",
+        "api": "all",
+        "database": "n/a",
+        "test": "API-001/CI",
+        "backlogPhase": "E20 / P03+"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-API-002",
+    "description": "Browser melakukan autentikasi melalui endpoint NestJS; Supabase Auth tidak dipanggil langsung dari frontend",
+    "priority": "Must",
+    "domain": "API",
+    "owner": "Backend/API",
+    "phases": [
+      "P03",
+      "P40"
+    ],
+    "tests": [
+      "API-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "NestJS auth gateway",
+        "api": "`/auth/*`",
+        "database": "employee↔auth mapping",
+        "test": "auth negative/session tests",
+        "backlogPhase": "E02/E20 / P03,P04"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-API-003",
+    "description": "Endpoint PIN generik tidak boleh menjadi PIN-validation oracle; PIN diverifikasi di operation yang membutuhkan signature atau melalui proof yang purpose-bound dan short-lived",
+    "priority": "Must",
+    "domain": "API",
+    "owner": "Backend/API",
+    "phases": [
+      "P03",
+      "P40"
+    ],
+    "tests": [
+      "API-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "No reusable PIN oracle",
+        "api": "signature action endpoints",
+        "database": "signature profile",
+        "test": "PIN-001",
+        "backlogPhase": "E10/E19 / P23"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-001",
+    "description": "Responsif",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-002",
+    "description": "Keamanan transport",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-003",
+    "description": "Password/session",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-004",
+    "description": "Authorization",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-005",
+    "description": "File privacy",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-006",
+    "description": "Integritas dokumen",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-007",
+    "description": "Auditability",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-008",
+    "description": "Availability",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-009",
+    "description": "Backup",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-010",
+    "description": "Maintainability",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-011",
+    "description": "Capacity",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [
+      {
+        "businessRule": "p95 common API/search target",
+        "api": "list/search endpoints",
+        "database": "indexes",
+        "test": "performance suite",
+        "backlogPhase": "E15 / P41"
+      }
+    ],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-012",
+    "description": "Accessibility",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [
+      {
+        "businessRule": "WCAG 2.2 AA core flow",
+        "api": "UI",
+        "database": "n/a",
+        "test": "accessibility checks",
+        "backlogPhase": "E15 / P40,P45"
+      }
+    ],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-013",
+    "description": "Data retention",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-014",
+    "description": "Recovery",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [
+      {
+        "businessRule": "RPO/RTO baseline",
+        "api": "ops",
+        "database": "backup data",
+        "test": "restore drill",
+        "backlogPhase": "E14/E15 / P42"
+      }
+    ],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-015",
+    "description": "Worker processing",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-016",
+    "description": "Observability",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [
+      {
+        "businessRule": "Observability",
+        "api": "internal metrics",
+        "database": "operational state",
+        "test": "alert tests",
+        "backlogPhase": "E14 / P43"
+      }
+    ],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-001",
+    "description": "Internal user berizin dapat membuat invitation External Signing untuk versi dokumen terkunci",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Purpose-bound External Signing",
+        "api": "`/external-signing-requests`, `/public/external-sign/*`",
+        "database": "`external_signing_requests`, signatures",
+        "test": "EXT-001–009",
+        "backlogPhase": "E22/E23 / P49–P51"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-002",
+    "description": "External signer tidak memerlukan internal account atau paid seat",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-003",
+    "description": "Invitation memakai high-entropy purpose-bound token yang disimpan dalam bentuk hash, memiliki expiry, status, dan revocation",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-004",
+    "description": "Identity challenge/OTP bila diaktifkan harus rate-limited dan tidak membocorkan keberadaan recipient kepada pihak tidak berwenang",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-005",
+    "description": "External signer hanya dapat mengakses dokumen/action yang ditunjuk invitation; tidak memiliki akses archive/internal API",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-006",
+    "description": "Successful external signature mengikat signer evidence, timestamp, document version, dan `document_manifest_hash`",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-007",
+    "description": "Revoke/expire sebelum signature berhasil tidak menghasilkan consumed credit",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-EXT-008",
+    "description": "Duplicate/retry external sign operation harus idempotent",
+    "priority": "Must",
+    "domain": "EXT",
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P49",
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "EXT-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-VER-001",
+    "description": "Dokumen `ISSUED` memiliki public verification token/QR sesuai policy",
+    "priority": "Must",
+    "domain": "VER",
+    "owner": "Backend/Verification",
+    "phases": [
+      "P28",
+      "P58"
+    ],
+    "tests": [
+      "VER-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "QR verification zero-credit + status validity",
+        "api": "`GET /verify/:token`",
+        "database": "verification tokens + document status",
+        "test": "VER-001–005",
+        "backlogPhase": "E22/E29 / P49,P58"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-VER-002",
+    "description": "Scan QR/public verification tidak mengonsumsi Document Credit",
+    "priority": "Must",
+    "domain": "VER",
+    "owner": "Backend/Verification",
+    "phases": [
+      "P28",
+      "P58"
+    ],
+    "tests": [
+      "VER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-VER-003",
+    "description": "Public verification menampilkan allowlisted metadata/status dan tidak mengekspos file privat secara default",
+    "priority": "Must",
+    "domain": "VER",
+    "owner": "Backend/Verification",
+    "phases": [
+      "P28",
+      "P58"
+    ],
+    "tests": [
+      "VER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-VER-004",
+    "description": "Subscription berakhir tidak otomatis mengubah dokumen resmi menjadi invalid; document validity dan account status dipisahkan",
+    "priority": "Must",
+    "domain": "VER",
+    "owner": "Backend/Verification",
+    "phases": [
+      "P28",
+      "P58"
+    ],
+    "tests": [
+      "VER-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-001",
+    "description": "Billing baseline menggunakan Document Credits per company/workspace, bukan per internal user",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Credit-based company subscription",
+        "api": "`/billing/*`",
+        "database": "plans/subscriptions/wallet/lots/ledger",
+        "test": "BILL-007–014",
+        "backlogPhase": "E24/E26 / P52–P56"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-002",
+    "description": "Internal account tidak memotong credit hanya karena dibuat/login",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-003",
+    "description": "Sistem mendukung credit source `SUBSCRIPTION_ALLOCATION`, `TOP_UP`, `TRIAL`, `ADMIN_GRANT`, dan `REVERSAL`",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-004",
+    "description": "Credit mutation disimpan pada application-append-only ledger; koreksi menggunakan entry baru",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-005",
+    "description": "External signing menggunakan `RESERVE → CONSUME` saat berhasil atau `RESERVE → RELEASE` bila gagal/cancel/expired",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Reserve→consume/release, no technical double charge",
+        "api": "external sign/issue transaction",
+        "database": "reservations/ledger/lots",
+        "test": "BILL-001–006, BILL-014–015",
+        "backlogPhase": "E25/E29 / P54,P58"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-006",
+    "description": "QR-only issued document mengonsumsi 1 credit; dokumen dengan external signer mengonsumsi total `max(1, completed_external_signers)`",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-007",
+    "description": "Scan QR, preview, resend, OTP gagal, dan retry teknis tidak menghasilkan debit tambahan",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-008",
+    "description": "Subscription credit rollover dibatasi maksimum 2× monthly allocation dan setiap monthly allocation berlaku maksimal dua billing cycle",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [
+      {
+        "businessRule": "Rollover/top-up/trial/history/admin correction",
+        "api": "`/billing/*`",
+        "database": "lots/ledger/subscription",
+        "test": "BILL-008–013",
+        "backlogPhase": "E26–E30 / P55–P59"
+      }
+    ],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-009",
+    "description": "Top-up credit memiliki expiry baseline 12 bulan dan hanya diberikan setelah pembayaran/konfirmasi valid",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-010",
+    "description": "Trial baseline 50 credit atau 30 hari, mana yang lebih dahulu",
+    "priority": "Should",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-011",
+    "description": "Saldo baseline tidak boleh negatif; operation baru yang membutuhkan credit gagal dengan `CREDIT_INSUFFICIENT` tanpa membatalkan reservation existing",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-012",
+    "description": "Consumption memakai lot yang paling cepat expired terlebih dahulu",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-013",
+    "description": "Setiap debit memiliki reference business event dan idempotency key unik",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-014",
+    "description": "Sistem menyediakan credit summary, ledger/history, allocation, expiry, dan low-balance visibility",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "FR-BILL-015",
+    "description": "Admin grant/reversal memerlukan permission, actor, reason, dan audit",
+    "priority": "Must",
+    "domain": "BILL",
+    "owner": "Backend/Billing",
+    "phases": [
+      "P52",
+      "P53",
+      "P54",
+      "P55",
+      "P56",
+      "P57",
+      "P58",
+      "P59"
+    ],
+    "tests": [
+      "BILL-PLANNED"
+    ],
+    "originalTrace": [],
+    "mappingSource": "DOMAIN_FALLBACK",
+    "status": "Planned",
+    "gaps": [
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-017",
+    "description": "Credit consistency",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [
+      {
+        "businessRule": "Credit concurrency + reconciliation",
+        "api": "billing internal",
+        "database": "wallet/lots/ledger/reservations",
+        "test": "BILL-004/012",
+        "backlogPhase": "E25/E29 / P54,P58"
+      }
+    ],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-018",
+    "description": "Billing reconciliation",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-019",
+    "description": "External token security",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [
+      {
+        "businessRule": "Public token & verification abuse resistance",
+        "api": "public endpoints",
+        "database": "token/request state",
+        "test": "EXT-002/008/009, VER-003/004",
+        "backlogPhase": "E22/E23/E29 / P49–P50,P58"
+      }
+    ],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Requirement-level mapping pending"
+    ]
+  },
+  {
+    "id": "NFR-020",
+    "description": "Public verification abuse resistance",
+    "priority": "UNSPECIFIED",
+    "domain": "NFR",
+    "owner": null,
+    "phases": [],
+    "tests": [],
+    "originalTrace": [],
+    "mappingSource": "UNMAPPED",
+    "status": "Planned",
+    "gaps": [
+      "Missing technical owner",
+      "Missing phase/backlog trace",
+      "Missing test reference",
+      "Requirement-level mapping pending"
+    ]
+  }
+]

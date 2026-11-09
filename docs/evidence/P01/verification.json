@@ -1,0 +1,21 @@
+{
+  "phaseId": "P01",
+  "status": "IN_PROGRESS",
+  "tests": [
+    {
+      "testId": "P01-T01",
+      "status": "PASS",
+      "evidence": "npm run p01:verify:fresh-install"
+    },
+    {
+      "testId": "P01-T02",
+      "status": "NOT_RUN",
+      "evidence": []
+    },
+    {
+      "testId": "P01-T03",
+      "status": "NOT_RUN",
+      "evidence": []
+    }
+  ]
+}

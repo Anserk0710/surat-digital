@@ -1,0 +1,150 @@
+{
+  "version": "1.0",
+  "domainMappings": {
+    "AUTH": {
+      "owner": "Backend/Auth",
+      "phases": ["P03", "P04"],
+      "tests": ["AUTH-PLANNED"]
+    },
+    "USER": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["USER-PLANNED"]
+    },
+    "ORG": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["ORG-PLANNED"]
+    },
+    "IAM": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"]
+    },
+    "FORM": {
+      "owner": "Backend/Form Builder",
+      "phases": ["P39"],
+      "tests": ["P39-T01", "P39-T02", "P39-T03", "P39-T04"]
+    },
+    "NOT": {
+      "owner": "Backend/Notification",
+      "phases": ["P29", "P30"],
+      "tests": [
+        "P29-T01",
+        "P29-T02",
+        "P29-T03",
+        "P29-T04",
+        "P30-T01",
+        "P30-T02",
+        "P30-T03",
+        "P30-T04"
+      ]
+    },
+    "ARC": {
+      "owner": "Backend/Archive",
+      "phases": ["P31", "P36"],
+      "tests": [
+        "P31-T01",
+        "P31-T02",
+        "P31-T03",
+        "P31-T04",
+        "P36-T01",
+        "P36-T02",
+        "P36-T03",
+        "P36-T04"
+      ]
+    },
+    "DOC": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["DOC-PLANNED"]
+    },
+    "FILE": {
+      "owner": "Backend/Document Processing",
+      "phases": ["P09", "P10", "P12"],
+      "tests": ["FILE-PLANNED"]
+    },
+    "WF": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["WF-PLANNED"]
+    },
+    "SIG": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["SIG-PLANNED"]
+    },
+    "NUM": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["NUM-PLANNED"]
+    },
+    "VER": {
+      "owner": "Backend/Verification",
+      "phases": ["P28", "P58"],
+      "tests": ["VER-PLANNED"]
+    },
+    "REL": {
+      "owner": "Backend/Infrastructure",
+      "phases": ["P11"],
+      "tests": ["REL-PLANNED"]
+    },
+    "API": {
+      "owner": "Backend/API",
+      "phases": ["P03", "P40"],
+      "tests": ["API-PLANNED"]
+    },
+    "AUD": {
+      "owner": "Backend/Audit",
+      "phases": ["P32"],
+      "tests": ["AUD-PLANNED"]
+    },
+    "EXT": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["EXT-PLANNED"]
+    },
+    "BILL": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["BILL-PLANNED"]
+    }
+  },
+  "requirements": {
+    "FR-AUTH-001": {
+      "owner": "Backend/Auth",
+      "phases": ["P03", "P04"],
+      "tests": ["AUTH-LOGIN-001"],
+      "reviewed": true,
+      "notes": "Login Email, Username, atau NIP melalui NestJS auth gateway"
+    },
+    "FR-AUTH-002": {
+      "owner": "Backend/Auth",
+      "phases": ["P03"],
+      "tests": ["AUTH-MAPPING-001"],
+      "reviewed": true,
+      "notes": "Mapping identity Supabase Auth ke employee"
+    },
+    "FR-AUTH-003": {
+      "owner": "Backend/Auth",
+      "phases": ["P02", "P03"],
+      "tests": ["AUTH-STORAGE-001"],
+      "reviewed": true,
+      "notes": "Password hanya dikelola Supabase Auth"
+    },
+    "FR-WF-001": {
+      "owner": "Backend/Workflow",
+      "phases": ["P16"],
+      "tests": ["INT-001"],
+      "reviewed": true,
+      "notes": "Atomic Creator Sign, Lock, Submit"
+    },
+    "FR-SIG-008": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P24"],
+      "tests": ["INT-002"],
+      "reviewed": true,
+      "notes": "Canonical Document Manifest dan signature integrity"
+    }
+  }
+}

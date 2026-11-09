@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "severity": {
+    "CRITICAL": {
+      "releaseBlocker": true,
+      "description": "Kebocoran data, bypass authorization, kehilangan data atau integritas kritis, atau billing correctness failure"
+    },
+    "HIGH": {
+      "releaseBlocker": true,
+      "description": "Fungsi utama atau kontrol keamanan gagal dan belum ada mitigasi yang diterima"
+    },
+    "MEDIUM": {
+      "releaseBlocker": false,
+      "description": "Defect terbatas yang memiliki mitigasi dan tidak merusak invariant kritis"
+    },
+    "LOW": {
+      "releaseBlocker": false,
+      "description": "Defect minor tanpa dampak material terhadap keamanan atau integritas"
+    }
+  },
+  "phaseExit": {
+    "dependenciesComplete": true,
+    "deliverablesReviewed": true,
+    "allRequiredTestsPassed": true,
+    "evidenceRecorded": true,
+    "criticalHighBlockers": 0,
+    "documentationUpdated": true
+  },
+  "releaseGate": {
+    "criticalHighBlockers": 0,
+    "requiredRegressionTestsPassed": true,
+    "securityReviewPassed": true,
+    "dataIntegrityVerified": true,
+    "operationalReadinessReviewed": true,
+    "formalGoNoGoRequired": true
+  },
+  "evidenceRequiredFields": [
+    "phaseId",
+    "testId",
+    "status",
+    "executedAt",
+    "command",
+    "result",
+    "artifactPath"
+  ],
+  "allowedTestStatuses": ["PASS", "FAIL", "BLOCKED", "NOT_RUN"]
+}

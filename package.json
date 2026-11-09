@@ -1,0 +1,42 @@
+{
+  "name": "surat-digital",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preinstall": "node scripts/check-toolchain.mjs",
+    "p00:validate": "node scripts/p00-validate.mjs",
+    "p00:check": "npm run p00:validate",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc6 --noEmit -p tsconfig.test.json",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ci": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build",
+    "p01:verify:fresh-install": "node scripts/p01-verify-fresh-install.mjs"
+  },
+  "packageManager": "npm@12.2.2",
+  "workspaces": [
+    "apps/web",
+    "apps/api",
+    "apps/document-worker",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22",
+    "npm": "12.2.x"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.6",
+    "eslint": "10.14.0",
+    "globals": "17.14.0",
+    "prettier": "3.9.10",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.6",
+    "vitest": "5.1.0"
+  }
+}
