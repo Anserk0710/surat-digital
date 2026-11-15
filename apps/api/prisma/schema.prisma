@@ -1,0 +1,263 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EmployeeStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+}
+
+enum PermissionEffect {
+  ALLOW
+  DENY
+}
+
+model Company {
+  id        String   @id @default(uuid()) @db.Uuid
+  code      String   @unique(map: "companies_code_key") @db.VarChar(50)
+  name      String   @db.VarChar(200)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  offices   Office[]
+  divisions Division[]
+  jobTitles JobTitle[]
+  employees Employee[]
+  groups    Group[]
+
+  @@map("companies")
+}
+
+model Office {
+  id        String   @id @default(uuid()) @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  code      String   @db.VarChar(50)
+  name      String   @db.VarChar(200)
+  timezone  String   @db.VarChar(100)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "offices_company_id_fkey")
+
+  officeDivisions OfficeDivision[]
+
+  @@unique([companyId, code], map: "offices_company_id_code_key")
+  @@index([companyId], map: "offices_company_id_idx")
+  @@map("offices")
+}
+
+model Division {
+  id        String   @id @default(uuid()) @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  code      String   @db.VarChar(50)
+  name      String   @db.VarChar(200)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "divisions_company_id_fkey")
+
+  officeDivisions OfficeDivision[]
+
+  @@unique([companyId, code], map: "divisions_company_id_code_key")
+  @@index([companyId], map: "divisions_company_id_idx")
+  @@map("divisions")
+}
+
+model OfficeDivision {
+  id         String   @id @default(uuid()) @db.Uuid
+  officeId   String   @map("office_id") @db.Uuid
+  divisionId String   @map("division_id") @db.Uuid
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  office   Office   @relation(fields: [officeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "office_divisions_office_id_fkey")
+  division Division @relation(fields: [divisionId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "office_divisions_division_id_fkey")
+
+  employeeAssignments EmployeeAssignment[]
+
+  @@unique([officeId, divisionId], map: "office_divisions_office_id_division_id_key")
+  @@index([divisionId], map: "office_divisions_division_id_idx")
+  @@map("office_divisions")
+}
+
+model JobTitle {
+  id        String   @id @default(uuid()) @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  code      String   @db.VarChar(50)
+  name      String   @db.VarChar(200)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "job_titles_company_id_fkey")
+
+  employeeAssignments EmployeeAssignment[]
+
+  @@unique([companyId, code], map: "job_titles_company_id_code_key")
+  @@index([companyId], map: "job_titles_company_id_idx")
+  @@map("job_titles")
+}
+
+model Employee {
+  id                 String         @id @default(uuid()) @db.Uuid
+  companyId          String         @map("company_id") @db.Uuid
+  authUserId         String?        @unique(map: "employees_auth_user_id_key") @map("auth_user_id") @db.Uuid
+  employeeNumber     String         @map("employee_number") @db.VarChar(100)
+  username           String         @db.VarChar(100)
+  usernameNormalized String         @map("username_normalized") @db.VarChar(100)
+  email              String         @db.VarChar(320)
+  emailNormalized    String         @map("email_normalized") @db.VarChar(320)
+  fullName           String         @map("full_name") @db.VarChar(200)
+  status             EmployeeStatus @default(PENDING)
+  createdAt          DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime       @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "employees_company_id_fkey")
+
+  assignments    EmployeeAssignment[]
+  employeeGroups EmployeeGroup[]
+  authSessions   AuthSession[]
+
+  @@unique([companyId, employeeNumber], map: "employees_company_id_employee_number_key")
+  @@unique([companyId, usernameNormalized], map: "employees_company_id_username_normalized_key")
+  @@unique([companyId, emailNormalized], map: "employees_company_id_email_normalized_key")
+  @@index([companyId], map: "employees_company_id_idx")
+  @@index([companyId, status], map: "employees_company_id_status_idx")
+  @@map("employees")
+}
+
+model EmployeeAssignment {
+  id               String    @id @default(uuid()) @db.Uuid
+  employeeId       String    @map("employee_id") @db.Uuid
+  officeDivisionId String    @map("office_division_id") @db.Uuid
+  jobTitleId       String?   @map("job_title_id") @db.Uuid
+  isPrimary        Boolean   @default(false) @map("is_primary")
+  validFrom        DateTime? @map("valid_from") @db.Date
+  validUntil       DateTime? @map("valid_until") @db.Date
+  active           Boolean   @default(true)
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  employee       Employee       @relation(fields: [employeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "employee_assignments_employee_id_fkey")
+  officeDivision OfficeDivision @relation(fields: [officeDivisionId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "employee_assignments_office_division_id_fkey")
+  jobTitle       JobTitle?      @relation(fields: [jobTitleId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "employee_assignments_job_title_id_fkey")
+
+  @@index([employeeId], map: "employee_assignments_employee_id_idx")
+  @@index([officeDivisionId], map: "employee_assignments_office_division_id_idx")
+  @@index([jobTitleId], map: "employee_assignments_job_title_id_idx")
+  @@map("employee_assignments")
+}
+
+model Group {
+  id          String   @id @default(uuid()) @db.Uuid
+  companyId   String   @map("company_id") @db.Uuid
+  code        String   @db.VarChar(100)
+  name        String   @db.VarChar(200)
+  description String?  @db.Text
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "groups_company_id_fkey")
+
+  employeeGroups   EmployeeGroup[]
+  groupPermissions GroupPermission[]
+
+  @@unique([companyId, code], map: "groups_company_id_code_key")
+  @@index([companyId], map: "groups_company_id_idx")
+  @@map("groups")
+}
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique(map: "permissions_code_key") @db.VarChar(150)
+  name        String   @db.VarChar(200)
+  description String?  @db.Text
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  groupPermissions GroupPermission[]
+
+  @@map("permissions")
+}
+
+model EmployeeGroup {
+  id         String   @id @default(uuid()) @db.Uuid
+  employeeId String   @map("employee_id") @db.Uuid
+  groupId    String   @map("group_id") @db.Uuid
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "employee_groups_employee_id_fkey")
+  group    Group    @relation(fields: [groupId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "employee_groups_group_id_fkey")
+
+  @@unique([employeeId, groupId], map: "employee_groups_employee_id_group_id_key")
+  @@index([groupId], map: "employee_groups_group_id_idx")
+  @@map("employee_groups")
+}
+
+model GroupPermission {
+  id           String           @id @default(uuid()) @db.Uuid
+  groupId      String           @map("group_id") @db.Uuid
+  permissionId String           @map("permission_id") @db.Uuid
+  effect       PermissionEffect
+  active       Boolean          @default(true)
+  createdAt    DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  group      Group      @relation(fields: [groupId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "group_permissions_group_id_fkey")
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "group_permissions_permission_id_fkey")
+
+  @@unique([groupId, permissionId], map: "group_permissions_group_id_permission_id_key")
+  @@index([permissionId], map: "group_permissions_permission_id_idx")
+  @@map("group_permissions")
+}
+
+model AuthSession {
+  id String @id @default(uuid()) @db.Uuid
+
+  employeeId String @map("employee_id") @db.Uuid
+
+  supabaseUserId String @map("supabase_user_id") @db.Uuid
+
+  supabaseSessionId String @unique(map: "auth_sessions_supabase_session_id_key") @map("supabase_session_id") @db.Uuid
+
+  sessionTokenHash String @unique(map: "auth_sessions_session_token_hash_key") @map("session_token_hash") @db.Char(64)
+
+  accessTokenCiphertext String @map("access_token_ciphertext") @db.Text
+
+  refreshTokenCiphertext String @map("refresh_token_ciphertext") @db.Text
+
+  accessTokenExpiresAt DateTime @map("access_token_expires_at") @db.Timestamptz(6)
+
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(6)
+
+  lastRefreshedAt DateTime? @map("last_refreshed_at") @db.Timestamptz(6)
+
+  revokedAt DateTime? @map("revoked_at") @db.Timestamptz(6)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "auth_sessions_employee_id_fkey")
+
+  @@index([employeeId], map: "auth_sessions_employee_id_idx")
+  @@index([supabaseUserId], map: "auth_sessions_supabase_user_id_idx")
+  @@index([revokedAt, expiresAt], map: "auth_sessions_revoked_at_expires_at_idx")
+  @@map("auth_sessions")
+}

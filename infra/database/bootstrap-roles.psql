@@ -1,0 +1,91 @@
+\set ON_ERROR_STOP on
+
+\if :{?migration_password}
+\else
+  \echo 'ERROR: migration_password is required.'
+  \quit 1
+\endif
+
+\if :{?runtime_password}
+\else
+  \echo 'ERROR: runtime_password is required.'
+  \quit 1
+\endif
+
+-- ============================================================
+-- Migration role
+-- ============================================================
+
+SELECT format(
+  'CREATE ROLE %I LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS PASSWORD %L',
+  'surat_migrator',
+  :'migration_password'
+)
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM pg_roles
+  WHERE rolname = 'surat_migrator'
+)
+\gexec
+
+ALTER ROLE "surat_migrator"
+  WITH
+  LOGIN
+  NOCREATEDB
+  NOCREATEROLE
+  NOINHERIT
+  NOREPLICATION
+  NOBYPASSRLS
+  PASSWORD :'migration_password';
+
+ALTER ROLE "surat_migrator"
+  SET search_path TO public;
+
+-- ============================================================
+-- Runtime role
+-- ============================================================
+
+SELECT format(
+  'CREATE ROLE %I LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS PASSWORD %L',
+  'surat_runtime',
+  :'runtime_password'
+)
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM pg_roles
+  WHERE rolname = 'surat_runtime'
+)
+\gexec
+
+ALTER ROLE "surat_runtime"
+  WITH
+  LOGIN
+  NOCREATEDB
+  NOCREATEROLE
+  NOINHERIT
+  NOREPLICATION
+  NOBYPASSRLS
+  PASSWORD :'runtime_password';
+
+ALTER ROLE "surat_runtime"
+  SET search_path TO public;
+
+-- ============================================================
+-- Database connect privileges
+-- ============================================================
+
+SELECT format(
+  'GRANT CONNECT ON DATABASE %I TO %I',
+  current_database(),
+  'surat_migrator'
+)
+\gexec
+
+SELECT format(
+  'GRANT CONNECT ON DATABASE %I TO %I',
+  current_database(),
+  'surat_runtime'
+)
+\gexec
+
+\ir handoff-migration-ownership.sql

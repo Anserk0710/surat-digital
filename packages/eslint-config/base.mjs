@@ -73,6 +73,18 @@ export function createBaseConfig() {
     },
 
     {
+      files: ['apps/api/src/**/*.{ts,tsx}'],
+
+      languageOptions: {
+        // Nest uses runtime constructor types for dependency injection.
+        parserOptions: {
+          experimentalDecorators: true,
+          emitDecoratorMetadata: true,
+        },
+      },
+    },
+
+    {
       files: ['apps/web/**/*.{js,ts,tsx}'],
 
       languageOptions: {
