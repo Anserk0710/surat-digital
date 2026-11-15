@@ -15,7 +15,10 @@
     "originalTrace": [],
     "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": []
+    "gaps": [],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-AUTH-002",
@@ -32,7 +35,10 @@
     "originalTrace": [],
     "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": []
+    "gaps": [],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-AUTH-003",
@@ -50,7 +56,10 @@
     "originalTrace": [],
     "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": []
+    "gaps": [],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-USER-001",
@@ -69,7 +78,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-USER-002",
@@ -88,7 +100,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-USER-003",
@@ -107,7 +122,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-USER-004",
@@ -126,7 +144,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-USER-005",
@@ -145,7 +166,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-USER-006",
@@ -164,7 +188,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ORG-001",
@@ -183,7 +210,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ORG-002",
@@ -202,7 +232,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ORG-003",
@@ -221,7 +254,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ORG-004",
@@ -240,7 +276,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ORG-005",
@@ -259,7 +298,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ORG-006",
@@ -278,7 +320,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-IAM-001",
@@ -301,7 +346,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-IAM-002",
@@ -324,7 +372,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-IAM-003",
@@ -347,7 +398,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-IAM-004",
@@ -370,7 +424,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-IAM-005",
@@ -393,7 +450,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-IAM-006",
@@ -416,7 +476,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-001",
@@ -436,7 +499,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-002",
@@ -456,7 +522,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-003",
@@ -476,7 +545,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-004",
@@ -496,7 +568,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-005",
@@ -516,7 +591,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-006",
@@ -536,7 +614,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-007",
@@ -556,7 +637,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-008",
@@ -576,7 +660,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-009",
@@ -596,7 +683,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-010",
@@ -616,7 +706,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-011",
@@ -636,7 +729,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-012",
@@ -656,7 +752,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-013",
@@ -676,7 +775,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-014",
@@ -696,7 +798,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-015",
@@ -716,7 +821,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-016",
@@ -736,7 +844,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-017",
@@ -756,7 +867,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-018",
@@ -776,7 +890,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-019",
@@ -796,7 +913,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-020",
@@ -816,7 +936,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-DOC-021",
@@ -836,7 +959,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FORM-001",
@@ -858,7 +984,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FORM-002",
@@ -880,7 +1009,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FORM-003",
@@ -902,7 +1034,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FORM-004",
@@ -924,7 +1059,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FORM-005",
@@ -946,7 +1084,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-001",
@@ -971,7 +1112,10 @@
     ],
     "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": []
+    "gaps": [],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-002",
@@ -996,7 +1140,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-003",
@@ -1021,7 +1168,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-004",
@@ -1046,7 +1196,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-004A",
@@ -1079,7 +1232,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-005",
@@ -1104,7 +1260,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-006",
@@ -1129,7 +1288,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-007",
@@ -1162,7 +1324,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-008",
@@ -1187,7 +1352,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-009",
@@ -1220,7 +1388,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-010",
@@ -1245,7 +1416,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-011",
@@ -1270,7 +1444,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-012",
@@ -1295,7 +1472,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-013",
@@ -1320,7 +1500,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-014",
@@ -1353,7 +1536,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-015",
@@ -1378,7 +1564,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-016",
@@ -1403,7 +1592,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-017",
@@ -1428,7 +1620,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-WF-018",
@@ -1453,7 +1648,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-001",
@@ -1475,7 +1673,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-002",
@@ -1497,7 +1698,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-003",
@@ -1519,7 +1723,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-004",
@@ -1541,7 +1748,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-005",
@@ -1563,7 +1773,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-006",
@@ -1585,7 +1798,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-007",
@@ -1607,7 +1823,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-008",
@@ -1633,7 +1852,10 @@
     ],
     "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": []
+    "gaps": [],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-009",
@@ -1655,7 +1877,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-010",
@@ -1677,7 +1902,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-SIG-011",
@@ -1699,7 +1927,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-001",
@@ -1720,7 +1951,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-002",
@@ -1749,7 +1983,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-003",
@@ -1770,7 +2007,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-004",
@@ -1791,7 +2031,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-005",
@@ -1812,7 +2055,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-006",
@@ -1833,7 +2079,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-007",
@@ -1854,7 +2103,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NUM-008",
@@ -1875,7 +2127,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NOT-001",
@@ -1902,7 +2157,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NOT-002",
@@ -1929,7 +2187,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-NOT-003",
@@ -1956,7 +2217,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ARC-001",
@@ -1983,7 +2247,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ARC-002",
@@ -2010,7 +2277,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-ARC-003",
@@ -2037,7 +2307,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-AUD-001",
@@ -2064,7 +2337,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-AUD-002",
@@ -2083,7 +2359,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-AUD-003",
@@ -2102,7 +2381,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-REL-001",
@@ -2129,7 +2411,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-REL-002",
@@ -2148,7 +2433,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FILE-001",
@@ -2177,7 +2465,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-FILE-002",
@@ -2198,7 +2489,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-API-001",
@@ -2226,7 +2520,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-API-002",
@@ -2254,7 +2551,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-API-003",
@@ -2282,7 +2582,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-001",
@@ -2300,7 +2603,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-002",
@@ -2318,7 +2624,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-003",
@@ -2336,7 +2645,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-004",
@@ -2354,7 +2666,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-005",
@@ -2372,7 +2687,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-006",
@@ -2390,7 +2708,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-007",
@@ -2408,7 +2729,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-008",
@@ -2426,7 +2750,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-009",
@@ -2444,7 +2771,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-010",
@@ -2462,7 +2792,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-011",
@@ -2486,7 +2819,10 @@
     "gaps": [
       "Missing technical owner",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-012",
@@ -2510,7 +2846,10 @@
     "gaps": [
       "Missing technical owner",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-013",
@@ -2528,7 +2867,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-014",
@@ -2552,7 +2894,10 @@
     "gaps": [
       "Missing technical owner",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-015",
@@ -2570,7 +2915,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-016",
@@ -2594,7 +2942,10 @@
     "gaps": [
       "Missing technical owner",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-001",
@@ -2623,7 +2974,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-002",
@@ -2644,7 +2998,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-003",
@@ -2665,7 +3022,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-004",
@@ -2686,7 +3046,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-005",
@@ -2707,7 +3070,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-006",
@@ -2728,7 +3094,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-007",
@@ -2749,7 +3118,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-EXT-008",
@@ -2770,7 +3142,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-VER-001",
@@ -2798,7 +3173,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-VER-002",
@@ -2818,7 +3196,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-VER-003",
@@ -2838,7 +3219,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-VER-004",
@@ -2858,7 +3242,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-001",
@@ -2892,7 +3279,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-002",
@@ -2918,7 +3308,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-003",
@@ -2944,7 +3337,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-004",
@@ -2970,7 +3366,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-005",
@@ -3004,7 +3403,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-006",
@@ -3030,7 +3432,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-007",
@@ -3056,7 +3461,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-008",
@@ -3090,7 +3498,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-009",
@@ -3116,7 +3527,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-010",
@@ -3142,7 +3556,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-011",
@@ -3168,7 +3585,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-012",
@@ -3194,7 +3614,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-013",
@@ -3220,7 +3643,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-014",
@@ -3246,7 +3672,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "FR-BILL-015",
@@ -3272,7 +3701,10 @@
     "status": "Planned",
     "gaps": [
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-017",
@@ -3296,7 +3728,10 @@
     "gaps": [
       "Missing technical owner",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-018",
@@ -3314,7 +3749,10 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-019",
@@ -3338,7 +3776,10 @@
     "gaps": [
       "Missing technical owner",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": true,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   },
   {
     "id": "NFR-020",
@@ -3356,6 +3797,9 @@
       "Missing phase/backlog trace",
       "Missing test reference",
       "Requirement-level mapping pending"
-    ]
+    ],
+    "hasTrace": false,
+    "hasDocumentedTraceGap": false,
+    "traceGap": null
   }
 ]

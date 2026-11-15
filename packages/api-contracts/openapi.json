@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "authLogin",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthLoginResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials."
+          },
+          "403": {
+            "description": "Origin not allowed."
+          }
+        },
+        "summary": "",
+        "tags": ["Auth"]
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "operationId": "authRefresh",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthRefreshResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required."
+          },
+          "403": {
+            "description": "Origin not allowed."
+          },
+          "409": {
+            "description": "Session refresh in progress."
+          }
+        },
+        "summary": "",
+        "tags": ["Auth"]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "authLogout",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "403": {
+            "description": "Origin not allowed."
+          }
+        },
+        "summary": "",
+        "tags": ["Auth"]
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "operationId": "authMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthMeResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required."
+          }
+        },
+        "summary": "",
+        "tags": ["Auth"]
+      }
+    }
+  },
+  "info": {
+    "title": "Surat Digital API",
+    "description": "Versioned backend API contract",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "LoginRequestDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Email, Username, or NIP",
+            "maxLength": 320
+          },
+          "password": {
+            "type": "string",
+            "writeOnly": true,
+            "minLength": 1,
+            "maxLength": 1024
+          }
+        },
+        "required": ["identifier", "password"]
+      },
+      "AuthCompanyDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "code", "name"]
+      },
+      "AuthUserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeNumber": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE"]
+          },
+          "company": {
+            "$ref": "#/components/schemas/AuthCompanyDto"
+          }
+        },
+        "required": ["id", "employeeNumber", "username", "email", "fullName", "status", "company"]
+      },
+      "AuthLoginResponseDto": {
+        "type": "object",
+        "properties": {
+          "authenticated": {
+            "type": "boolean",
+            "example": true
+          },
+          "sessionExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/AuthUserDto"
+          }
+        },
+        "required": ["authenticated", "sessionExpiresAt", "user"]
+      },
+      "AuthRefreshResponseDto": {
+        "type": "object",
+        "properties": {
+          "refreshed": {
+            "type": "boolean",
+            "example": true
+          },
+          "sessionExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["refreshed", "sessionExpiresAt"]
+      },
+      "AuthMeResponseDto": {
+        "type": "object",
+        "properties": {
+          "authenticated": {
+            "type": "boolean",
+            "example": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/AuthUserDto"
+          }
+        },
+        "required": ["authenticated", "user"]
+      }
+    }
+  }
+}

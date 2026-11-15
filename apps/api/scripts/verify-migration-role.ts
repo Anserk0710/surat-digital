@@ -29,8 +29,7 @@ function requiredEnvironmentVariable(name: string): string {
 }
 
 const connectionString = requiredEnvironmentVariable('DIRECT_URL');
-const expectedMigrationRole =
-  process.env.P02_MIGRATION_ROLE_NAME?.trim() || 'surat_migrator';
+const expectedMigrationRole = process.env.P02_MIGRATION_ROLE_NAME?.trim() || 'surat_migrator';
 const connectionUrl = new URL(connectionString);
 const configuredRole = decodeURIComponent(connectionUrl.username).split('.')[0];
 

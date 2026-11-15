@@ -242,6 +242,8 @@ export const AuthSessionScalarFieldEnum = {
   accessTokenExpiresAt: 'accessTokenExpiresAt',
   expiresAt: 'expiresAt',
   lastRefreshedAt: 'lastRefreshedAt',
+  refreshLeaseId: 'refreshLeaseId',
+  refreshLeaseUntil: 'refreshLeaseUntil',
   revokedAt: 'revokedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

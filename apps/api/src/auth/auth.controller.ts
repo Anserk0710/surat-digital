@@ -9,10 +9,24 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
+import {
+  ApiBody,
+  ApiForbiddenResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import type { Request, Response } from 'express';
 import { AuthCookieService } from './auth-cookie.service.js';
 import { AuthService } from './auth.service.js';
 import { LoginRequestDto } from './dto/login-request.dto.js';
+import {
+  AuthLoginResponseDto,
+  AuthMeResponseDto,
+  AuthRefreshResponseDto,
+} from './dto/auth-response.dto.js';
 
 @Controller('auth')
 export class AuthController {
@@ -26,6 +40,11 @@ export class AuthController {
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ operationId: 'authLogin' })
+  @ApiBody({ type: LoginRequestDto })
+  @ApiOkResponse({ type: AuthLoginResponseDto })
+  @ApiUnauthorizedResponse({ description: 'Invalid credentials.' })
+  @ApiForbiddenResponse({ description: 'Origin not allowed.' })
   async login(
     @Body()
     input: LoginRequestDto,
@@ -44,6 +63,14 @@ export class AuthController {
 
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ operationId: 'authRefresh' })
+  @ApiOkResponse({ type: AuthRefreshResponseDto })
+  @ApiUnauthorizedResponse({ description: 'Authentication required.' })
+  @ApiResponse({
+    status: 409,
+    description: 'Session refresh in progress.',
+  })
+  @ApiForbiddenResponse({ description: 'Origin not allowed.' })
   async refresh(
     @Req()
     request: Request,
@@ -62,6 +89,9 @@ export class AuthController {
 
   @Post('logout')
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ operationId: 'authLogout' })
+  @ApiNoContentResponse()
+  @ApiForbiddenResponse({ description: 'Origin not allowed.' })
   async logout(
     @Req()
     request: Request,
@@ -77,6 +107,9 @@ export class AuthController {
   }
 
   @Get('me')
+  @ApiOperation({ operationId: 'authMe' })
+  @ApiOkResponse({ type: AuthMeResponseDto })
+  @ApiUnauthorizedResponse({ description: 'Authentication required.' })
   async me(
     @Req()
     request: Request,

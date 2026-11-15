@@ -87,6 +87,24 @@ ON ALL SEQUENCES
 IN SCHEMA public
 TO "surat_runtime";
 
+-- Browser-facing Supabase Data API roles must never bypass the NestJS API for
+-- application data. Keep this explicit so unrelated objects in public are not
+-- affected by the ownership handoff.
+REVOKE ALL ON TABLE
+  public."companies",
+  public."offices",
+  public."divisions",
+  public."office_divisions",
+  public."job_titles",
+  public."employees",
+  public."employee_assignments",
+  public."groups",
+  public."permissions",
+  public."employee_groups",
+  public."group_permissions",
+  public."auth_sessions"
+FROM anon, authenticated;
+
 -- Every relation created by surat_migrator automatically receives
 -- the minimum DML privileges required by the runtime application.
 ALTER DEFAULT PRIVILEGES
@@ -108,3 +126,10 @@ GRANT
   SELECT
 ON SEQUENCES
 TO "surat_runtime";
+
+ALTER DEFAULT PRIVILEGES
+FOR ROLE "surat_migrator"
+IN SCHEMA public
+REVOKE ALL
+ON TABLES
+FROM anon, authenticated;

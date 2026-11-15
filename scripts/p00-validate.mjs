@@ -205,6 +205,15 @@ function main() {
 
     const hasTrace = validPhases.length > 0 || originalTrace.length > 0;
 
+    const traceGap = explicitMapping?.traceGap ?? null;
+
+    // Pengecualian harus memiliki alasan serta referensi Decision Log.
+    const hasDocumentedTraceGap =
+      typeof traceGap?.reason === 'string' &&
+      traceGap.reason.trim().length >= 20 &&
+      typeof traceGap?.decisionId === 'string' &&
+      decisionIds.includes(traceGap.decisionId);
+
     const gapReasons = [];
 
     if (!owner) {
@@ -233,6 +242,10 @@ function main() {
       mappingSource: explicitMapping ? 'EXPLICIT' : domainMapping ? 'DOMAIN_FALLBACK' : 'UNMAPPED',
       status: 'Planned',
       gaps: gapReasons,
+
+      hasTrace,
+      hasDocumentedTraceGap,
+      traceGap: hasDocumentedTraceGap ? traceGap : null,
     };
   });
 
@@ -240,16 +253,16 @@ function main() {
 
   const mustWithoutOwner = mustRequirements.filter((item) => !item.owner);
 
-  const mustWithoutTrace = mustRequirements.filter(
-    (item) => item.phases.length === 0 && item.originalTrace.length === 0,
-  );
+  const mustWithoutTrace = mustRequirements.filter((item) => !item.hasTrace);
 
-  const mustWithoutExplanation = mustRequirements.filter(
-    (item) => item.gaps.length > 0 && !item.gaps.every((gap) => gap.length > 0),
+  const mustWithoutTraceOrExplanation = mustRequirements.filter(
+    (item) => !item.hasTrace && !item.hasDocumentedTraceGap,
   );
 
   const test01 =
-    requirements.length > 0 && mustWithoutOwner.length === 0 && mustWithoutExplanation.length === 0;
+    requirements.length > 0 &&
+    mustWithoutOwner.length === 0 &&
+    mustWithoutTraceOrExplanation.length === 0;
 
   const test02 =
     duplicateRequirements.length === 0 && duplicateDecisions.length === 0 && decisionIds.length > 0;
@@ -261,6 +274,7 @@ function main() {
       totalMust: mustRequirements.length,
       missingOwner: mustWithoutOwner.map((item) => item.id),
       missingTrace: mustWithoutTrace.map((item) => item.id),
+      missingTraceWithoutExplanation: mustWithoutTraceOrExplanation.map((item) => item.id),
       mappingPending: mustRequirements
         .filter((item) => item.mappingSource !== 'EXPLICIT')
         .map((item) => item.id),
@@ -289,6 +303,7 @@ function main() {
     totalShould: mapped.filter((item) => item.priority === 'Should').length,
     missingOwner: mustWithoutOwner.map((item) => item.id),
     missingTrace: mustWithoutTrace.map((item) => item.id),
+    missingTraceWithoutExplanation: mustWithoutTraceOrExplanation.map((item) => item.id),
     unmapped: mapped.filter((item) => item.mappingSource === 'UNMAPPED').map((item) => item.id),
     pendingExplicitMapping: mapped
       .filter((item) => item.mappingSource !== 'EXPLICIT')

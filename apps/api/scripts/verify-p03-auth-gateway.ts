@@ -14,6 +14,48 @@ import { createApplication } from '../src/bootstrap.js';
 
 import { createPrismaClient } from '../src/database/prisma-client.js';
 
+interface DataApiPrivilegeGrant {
+  grantee: string;
+  tableName: string;
+}
+
+async function verifyDataApiPrivileges(
+  prisma: ReturnType<typeof createPrismaClient>,
+): Promise<void> {
+  const grants = await prisma.$queryRaw<DataApiPrivilegeGrant[]>`
+    WITH data_api_roles("grantee") AS (
+      VALUES ('anon'), ('authenticated')
+    ),
+    application_tables("tableName") AS (
+      VALUES
+        ('companies'),
+        ('offices'),
+        ('divisions'),
+        ('office_divisions'),
+        ('job_titles'),
+        ('employees'),
+        ('employee_assignments'),
+        ('groups'),
+        ('permissions'),
+        ('employee_groups'),
+        ('group_permissions'),
+        ('auth_sessions')
+    )
+    SELECT "grantee", "tableName"
+    FROM data_api_roles
+    CROSS JOIN application_tables
+    WHERE has_table_privilege("grantee", format('public.%I', "tableName"), 'SELECT')
+      OR has_table_privilege("grantee", format('public.%I', "tableName"), 'INSERT')
+      OR has_table_privilege("grantee", format('public.%I', "tableName"), 'UPDATE')
+      OR has_table_privilege("grantee", format('public.%I', "tableName"), 'DELETE')
+      OR has_table_privilege("grantee", format('public.%I', "tableName"), 'TRUNCATE')
+      OR has_table_privilege("grantee", format('public.%I', "tableName"), 'REFERENCES')
+      OR has_table_privilege("grantee", format('public.%I', "tableName"), 'TRIGGER')
+  `;
+
+  assert.deepEqual(grants, [], `Unexpected Supabase Data API grants: ${JSON.stringify(grants)}`);
+}
+
 function requiredEnv(name: string): string {
   const value = process.env[name];
 
@@ -51,6 +93,8 @@ async function main(): Promise<void> {
 
   const serviceRoleKey = requiredEnv('SUPABASE_SERVICE_ROLE_KEY');
 
+  const browserOrigin = requiredEnv('FRONTEND_ORIGIN');
+
   const cookieName = process.env.AUTH_SESSION_COOKIE_NAME ?? 'sd_session';
 
   const suffix = randomBytes(6).toString('hex');
@@ -84,6 +128,8 @@ async function main(): Promise<void> {
   const app = await createApplication();
 
   try {
+    await verifyDataApiPrivileges(prisma);
+
     const { data: createUserData, error: createUserError } = await admin.auth.admin.createUser({
       email,
       password,
@@ -146,7 +192,8 @@ async function main(): Promise<void> {
      */
 
     const existingWrong = await request(server)
-      .post('/api/auth/login')
+      .post('/api/v1/auth/login')
+      .set('Origin', browserOrigin)
       .send({
         identifier: username,
 
@@ -154,7 +201,8 @@ async function main(): Promise<void> {
       });
 
     const missingUsername = await request(server)
-      .post('/api/auth/login')
+      .post('/api/v1/auth/login')
+      .set('Origin', browserOrigin)
       .send({
         identifier: `missing-${suffix}`,
 
@@ -162,7 +210,8 @@ async function main(): Promise<void> {
       });
 
     const missingNip = await request(server)
-      .post('/api/auth/login')
+      .post('/api/v1/auth/login')
+      .set('Origin', browserOrigin)
       .send({
         identifier: `999999-${suffix}`,
 
@@ -187,7 +236,7 @@ async function main(): Promise<void> {
 
     const agent = request.agent(server);
 
-    const loginResponse = await agent.post('/api/auth/login').send({
+    const loginResponse = await agent.post('/api/v1/auth/login').set('Origin', browserOrigin).send({
       identifier: username,
 
       password,
@@ -199,7 +248,7 @@ async function main(): Promise<void> {
 
     const firstCookie = extractCookie(loginResponse, cookieName);
 
-    const meAfterLogin = await agent.get('/api/auth/me');
+    const meAfterLogin = await agent.get('/api/v1/auth/me');
 
     assert.equal(meAfterLogin.status, 200);
 
@@ -209,7 +258,7 @@ async function main(): Promise<void> {
      * Refresh must rotate opaque session.
      */
 
-    const refreshResponse = await agent.post('/api/auth/refresh');
+    const refreshResponse = await agent.post('/api/v1/auth/refresh').set('Origin', browserOrigin);
 
     assert.equal(refreshResponse.status, 200);
 
@@ -224,12 +273,12 @@ async function main(): Promise<void> {
      */
 
     const oldCookieAfterRefresh = await request(server)
-      .get('/api/auth/me')
+      .get('/api/v1/auth/me')
       .set('Cookie', firstCookie);
 
     assert.equal(oldCookieAfterRefresh.status, 401);
 
-    const meAfterRefresh = await agent.get('/api/auth/me');
+    const meAfterRefresh = await agent.get('/api/v1/auth/me');
 
     assert.equal(meAfterRefresh.status, 200);
 
@@ -237,7 +286,7 @@ async function main(): Promise<void> {
      * Logout.
      */
 
-    const logoutResponse = await agent.post('/api/auth/logout');
+    const logoutResponse = await agent.post('/api/v1/auth/logout').set('Origin', browserOrigin);
 
     assert.equal(logoutResponse.status, 204);
 
@@ -247,7 +296,7 @@ async function main(): Promise<void> {
      */
 
     const replayAfterLogout = await request(server)
-      .get('/api/auth/me')
+      .get('/api/v1/auth/me')
       .set('Cookie', refreshedCookie);
 
     assert.equal(replayAfterLogout.status, 401);
@@ -260,7 +309,7 @@ async function main(): Promise<void> {
 
     const nipAgent = request.agent(server);
 
-    const nipLogin = await nipAgent.post('/api/auth/login').send({
+    const nipLogin = await nipAgent.post('/api/v1/auth/login').set('Origin', browserOrigin).send({
       identifier: employeeNumber,
 
       password,
@@ -268,9 +317,9 @@ async function main(): Promise<void> {
 
     assert.equal(nipLogin.status, 200);
 
-    assert.equal((await nipAgent.get('/api/auth/me')).status, 200);
+    assert.equal((await nipAgent.get('/api/v1/auth/me')).status, 200);
 
-    await nipAgent.post('/api/auth/logout');
+    await nipAgent.post('/api/v1/auth/logout').set('Origin', browserOrigin);
 
     /*
      * --------------------------------------------------------
@@ -280,17 +329,20 @@ async function main(): Promise<void> {
 
     const emailAgent = request.agent(server);
 
-    const emailLogin = await emailAgent.post('/api/auth/login').send({
-      identifier: email,
+    const emailLogin = await emailAgent
+      .post('/api/v1/auth/login')
+      .set('Origin', browserOrigin)
+      .send({
+        identifier: email,
 
-      password,
-    });
+        password,
+      });
 
     assert.equal(emailLogin.status, 200);
 
-    assert.equal((await emailAgent.get('/api/auth/me')).status, 200);
+    assert.equal((await emailAgent.get('/api/v1/auth/me')).status, 200);
 
-    await emailAgent.post('/api/auth/logout');
+    await emailAgent.post('/api/v1/auth/logout').set('Origin', browserOrigin);
 
     /*
      * --------------------------------------------------------
@@ -326,6 +378,8 @@ async function main(): Promise<void> {
     console.log('P03-T03: PASS');
 
     console.log('P03-T04: PASS');
+
+    console.log('C05 Data API privileges: PASS');
   } finally {
     await app.close();
 

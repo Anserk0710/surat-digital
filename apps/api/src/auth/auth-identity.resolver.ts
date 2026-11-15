@@ -15,7 +15,10 @@ function normalizeIdentifier(identifier: string): string {
 export class AuthIdentityResolver {
   constructor(@Inject(PrismaService) private readonly prisma: PrismaService) {}
 
-  async resolve(identifier: string): Promise<ResolvedEmployeeIdentity | null> {
+  async resolve(
+    identifier: string,
+    trustedCompanyId?: string,
+  ): Promise<ResolvedEmployeeIdentity | null> {
     const raw = identifier.normalize('NFKC').trim();
 
     const normalized = normalizeIdentifier(identifier);
@@ -23,6 +26,7 @@ export class AuthIdentityResolver {
     const candidates = await this.prisma.employee.findMany({
       where: {
         status: 'ACTIVE',
+        ...(trustedCompanyId === undefined ? {} : { companyId: trustedCompanyId }),
         authUserId: {
           not: null,
         },

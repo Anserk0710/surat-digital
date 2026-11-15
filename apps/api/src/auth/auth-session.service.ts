@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { Session } from '@supabase/supabase-js';
@@ -8,6 +9,8 @@ import {
   getSupabaseSessionId,
   hashSessionToken,
 } from './auth-session-token.js';
+
+const REFRESH_LEASE_DURATION_MS = 90_000;
 
 export interface ActiveAuthSession {
   id: string;
@@ -137,12 +140,50 @@ export class AuthSessionService {
     };
   }
 
+  async acquireRefreshLease(sessionId: string, cookieToken: string): Promise<string | null> {
+    const now = new Date();
+    const leaseId = randomUUID();
+
+    const result = await this.prisma.authSession.updateMany({
+      where: {
+        id: sessionId,
+        sessionTokenHash: hashSessionToken(cookieToken),
+        revokedAt: null,
+        expiresAt: { gt: now },
+
+        OR: [{ refreshLeaseUntil: null }, { refreshLeaseUntil: { lte: now } }],
+      },
+
+      data: {
+        refreshLeaseId: leaseId,
+        refreshLeaseUntil: new Date(now.getTime() + REFRESH_LEASE_DURATION_MS),
+      },
+    });
+
+    return result.count === 1 ? leaseId : null;
+  }
+
+  async releaseRefreshLease(sessionId: string, leaseId: string): Promise<void> {
+    await this.prisma.authSession.updateMany({
+      where: {
+        id: sessionId,
+        refreshLeaseId: leaseId,
+      },
+      data: {
+        refreshLeaseId: null,
+        refreshLeaseUntil: null,
+      },
+    });
+  }
+
   async rotate(
     current: ActiveAuthSession,
 
     currentCookieToken: string,
 
     newSession: Session,
+
+    leaseId: string,
   ): Promise<CreateApplicationSessionResult | null> {
     if (!newSession.refresh_token || !newSession.expires_at) {
       return null;
@@ -164,6 +205,8 @@ export class AuthSessionService {
 
         sessionTokenHash: hashSessionToken(currentCookieToken),
 
+        refreshLeaseId: leaseId,
+
         revokedAt: null,
 
         expiresAt: {
@@ -181,6 +224,9 @@ export class AuthSessionService {
         accessTokenExpiresAt: new Date(newSession.expires_at * 1000),
 
         lastRefreshedAt: now,
+
+        refreshLeaseId: null,
+        refreshLeaseUntil: null,
       },
     });
 
@@ -199,6 +245,20 @@ export class AuthSessionService {
     await this.prisma.authSession.updateMany({
       where: {
         id: sessionId,
+        revokedAt: null,
+      },
+
+      data: {
+        revokedAt: new Date(),
+      },
+    });
+  }
+
+  async revokeIfCurrent(sessionId: string, cookieToken: string): Promise<void> {
+    await this.prisma.authSession.updateMany({
+      where: {
+        id: sessionId,
+        sessionTokenHash: hashSessionToken(cookieToken),
         revokedAt: null,
       },
 

@@ -58,11 +58,31 @@ export function validateEnvironment(config: Record<string, unknown>): Record<str
 
   const frontendOrigin = requiredString(config, 'FRONTEND_ORIGIN');
 
+  let parsedOrigin: URL;
+
   try {
-    new URL(frontendOrigin);
+    parsedOrigin = new URL(frontendOrigin);
   } catch {
     throw new Error('FRONTEND_ORIGIN must be a valid URL.');
   }
+
+  if (
+    !['http:', 'https:'].includes(parsedOrigin.protocol) ||
+    parsedOrigin.username ||
+    parsedOrigin.password ||
+    parsedOrigin.pathname !== '/' ||
+    parsedOrigin.search ||
+    parsedOrigin.hash ||
+    parsedOrigin.origin !== frontendOrigin.replace(/\/$/, '')
+  ) {
+    throw new Error('FRONTEND_ORIGIN must contain only an HTTP(S) origin.');
+  }
+
+  if (config.NODE_ENV === 'production' && parsedOrigin.protocol !== 'https:') {
+    throw new Error('Production FRONTEND_ORIGIN must use HTTPS.');
+  }
+
+  validated.FRONTEND_ORIGIN = parsedOrigin.origin;
 
   const encryptionKey = Buffer.from(
     requiredString(config, 'AUTH_TOKEN_ENCRYPTION_KEY_BASE64'),
@@ -105,6 +125,21 @@ export function validateEnvironment(config: Record<string, unknown>): Record<str
     typeof config.AUTH_SESSION_COOKIE_NAME === 'string' && config.AUTH_SESSION_COOKIE_NAME.trim()
       ? config.AUTH_SESSION_COOKIE_NAME.trim()
       : 'sd_session';
+
+  const configuredCompanyId = config.AUTH_DEFAULT_COMPANY_ID;
+
+  if (typeof configuredCompanyId === 'string' && configuredCompanyId.trim()) {
+    const companyId = configuredCompanyId.trim();
+
+    const uuidPattern =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+    if (!uuidPattern.test(companyId)) {
+      throw new Error('AUTH_DEFAULT_COMPANY_ID must be a valid UUID.');
+    }
+
+    validated.AUTH_DEFAULT_COMPANY_ID = companyId;
+  }
 
   return validated;
 }

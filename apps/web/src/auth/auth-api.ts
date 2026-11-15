@@ -1,37 +1,28 @@
-export interface LoginInput {
-  identifier: string;
-  password: string;
-}
+import type { components } from '@surat-digital/api-client';
 
-export interface AuthUser {
-  id: string;
-  employeeNumber: string;
-  username: string;
-  email: string;
-  fullName: string;
-  status: string;
+export type LoginInput = components['schemas']['LoginRequestDto'];
 
-  company: {
-    id: string;
-    code: string;
-    name: string;
-  };
-}
+export type AuthUser = components['schemas']['AuthUserDto'];
 
-export interface LoginResponse {
-  authenticated: true;
-  sessionExpiresAt: string;
-  user: AuthUser;
-}
+export type LoginResponse = components['schemas']['AuthLoginResponseDto'];
 
-export interface RefreshResponse {
-  refreshed: true;
-  sessionExpiresAt: string;
-}
+export type RefreshResponse = components['schemas']['AuthRefreshResponseDto'];
 
-export interface MeResponse {
-  authenticated: true;
-  user: AuthUser;
+export type MeResponse = components['schemas']['AuthMeResponseDto'];
+
+const AUTH_BASE_PATH = '/api/v1/auth';
+
+const pendingRefreshes = new Map<string, Promise<RefreshResponse>>();
+
+export class ApiHttpError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly code?: string,
+  ) {
+    super(`API request failed with status ${status}.`);
+
+    this.name = 'ApiHttpError';
+  }
 }
 
 async function apiRequest<T>(baseUrl: string, path: string, init: RequestInit): Promise<T> {
@@ -48,14 +39,14 @@ async function apiRequest<T>(baseUrl: string, path: string, init: RequestInit): 
   });
 
   if (!response.ok) {
-    throw new Error(`API request failed with status ${response.status}.`);
+    throw new ApiHttpError(response.status);
   }
 
   return response.json() as Promise<T>;
 }
 
 export function login(baseUrl: string, input: LoginInput): Promise<LoginResponse> {
-  return apiRequest(baseUrl, '/api/auth/login', {
+  return apiRequest(baseUrl, `${AUTH_BASE_PATH}/login`, {
     method: 'POST',
 
     body: JSON.stringify(input),
@@ -63,13 +54,31 @@ export function login(baseUrl: string, input: LoginInput): Promise<LoginResponse
 }
 
 export function refresh(baseUrl: string): Promise<RefreshResponse> {
-  return apiRequest(baseUrl, '/api/auth/refresh', {
+  return apiRequest(baseUrl, `${AUTH_BASE_PATH}/refresh`, {
     method: 'POST',
   });
 }
 
+export function refreshOnce(baseUrl: string): Promise<RefreshResponse> {
+  const pendingRefresh = pendingRefreshes.get(baseUrl);
+
+  if (pendingRefresh) {
+    return pendingRefresh;
+  }
+
+  const refreshRequest = refresh(baseUrl).finally(() => {
+    if (pendingRefreshes.get(baseUrl) === refreshRequest) {
+      pendingRefreshes.delete(baseUrl);
+    }
+  });
+
+  pendingRefreshes.set(baseUrl, refreshRequest);
+
+  return refreshRequest;
+}
+
 export async function logout(baseUrl: string): Promise<void> {
-  const response = await fetch(`${baseUrl}/api/auth/logout`, {
+  const response = await fetch(`${baseUrl}${AUTH_BASE_PATH}/logout`, {
     method: 'POST',
 
     credentials: 'include',
@@ -81,7 +90,23 @@ export async function logout(baseUrl: string): Promise<void> {
 }
 
 export function me(baseUrl: string): Promise<MeResponse> {
-  return apiRequest(baseUrl, '/api/auth/me', {
+  return apiRequest(baseUrl, `${AUTH_BASE_PATH}/me`, {
     method: 'GET',
   });
+}
+
+export async function meWithRefresh(baseUrl: string): Promise<MeResponse> {
+  try {
+    return await me(baseUrl);
+  } catch (error) {
+    if (!(error instanceof ApiHttpError) || error.status !== 401) {
+      throw error;
+    }
+
+    // Maksimum satu refresh attempt.
+    await refreshOnce(baseUrl);
+
+    // Maksimum satu retry /me.
+    return me(baseUrl);
+  }
 }

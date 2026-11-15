@@ -12,8 +12,7 @@ function requiredEnvironmentVariable(name: string): string {
 }
 
 const directUrl = requiredEnvironmentVariable('DIRECT_URL');
-const expectedMigrationRole =
-  process.env.P02_MIGRATION_ROLE_NAME?.trim() || 'surat_migrator';
+const expectedMigrationRole = process.env.P02_MIGRATION_ROLE_NAME?.trim() || 'surat_migrator';
 const configuredRole = decodeURIComponent(new URL(directUrl).username).split('.')[0];
 
 if (configuredRole !== expectedMigrationRole) {

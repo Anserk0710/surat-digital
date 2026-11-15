@@ -30,12 +30,14 @@ const TEST_USER = {
 
 function requiredEnv(name: string): string {
   const val = process.env[name];
-  if (!val?.trim()) throw new Error(`ENV ${name} wajib diisi.`);
+  if (!val?.trim()) {
+    throw new Error(`ENV ${name} wajib diisi.`);
+  }
   return val.trim();
 }
 
-const directUrl      = requiredEnv('DIRECT_URL');
-const supabaseUrl    = requiredEnv('SUPABASE_URL');
+const directUrl = requiredEnv('DIRECT_URL');
+const supabaseUrl = requiredEnv('SUPABASE_URL');
 const serviceRoleKey = requiredEnv('SUPABASE_SERVICE_ROLE_KEY');
 
 const prisma = createPrismaClient(directUrl);
@@ -69,7 +71,9 @@ async function main() {
       email_confirm: true,
     });
 
-    if (error) throw new Error(`Gagal update Supabase user: ${error.message}`);
+    if (error) {
+      throw new Error(`Gagal update Supabase user: ${error.message}`);
+    }
 
     authUserId = existing.id;
   } else {
@@ -79,7 +83,9 @@ async function main() {
       email_confirm: true,
     });
 
-    if (error || !data.user) throw new Error(`Gagal buat Supabase user: ${error?.message}`);
+    if (error || !data.user) {
+      throw new Error(`Gagal buat Supabase user: ${error?.message}`);
+    }
 
     authUserId = data.user.id;
     console.log(`      ✔ Supabase Auth user dibuat (id: ${authUserId})`);
@@ -100,7 +106,7 @@ async function main() {
   console.log(`\n[3/4] Menyiapkan Employee: ${TEST_USER.username}`);
 
   const usernameNormalized = TEST_USER.username.normalize('NFKC').trim().toLowerCase();
-  const emailNormalized    = TEST_USER.email.normalize('NFKC').trim().toLowerCase();
+  const emailNormalized = TEST_USER.email.normalize('NFKC').trim().toLowerCase();
 
   // Cek apakah employee sudah ada
   const existingEmployee = await prisma.employee.findFirst({
@@ -113,7 +119,9 @@ async function main() {
   let employeeId: string;
 
   if (existingEmployee) {
-    console.log(`      ✔ Employee sudah ada (id: ${existingEmployee.id}). Memastikan ACTIVE & authUserId...`);
+    console.log(
+      `      ✔ Employee sudah ada (id: ${existingEmployee.id}). Memastikan ACTIVE & authUserId...`,
+    );
 
     const updated = await prisma.employee.update({
       where: { id: existingEmployee.id },

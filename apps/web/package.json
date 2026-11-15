@@ -6,5 +6,8 @@
   "scripts": {
     "build": "tsc6 -p tsconfig.build.json",
     "typecheck": "tsc6 --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@surat-digital/api-client": "0.0.0"
   }
 }

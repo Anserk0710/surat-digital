@@ -1,4 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../database/prisma.service.js';
 import { authenticationRequiredException, invalidCredentialsException } from './auth-errors.js';
 import { AuthIdentityResolver } from './auth-identity.resolver.js';
@@ -11,6 +12,8 @@ const DUMMY_LOGIN_EMAIL = 'invalid-login@invalid.example';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     @Inject(PrismaService)
     private readonly prisma: PrismaService,
@@ -23,10 +26,15 @@ export class AuthService {
 
     @Inject(SupabaseAuthGateway)
     private readonly supabase: SupabaseAuthGateway,
+
+    @Inject(ConfigService)
+    private readonly config: ConfigService,
   ) {}
 
   async login(input: LoginRequestDto) {
-    const identity = await this.identityResolver.resolve(input.identifier);
+    const trustedCompanyId = this.config.get<string>('AUTH_DEFAULT_COMPANY_ID');
+
+    const identity = await this.identityResolver.resolve(input.identifier, trustedCompanyId);
 
     /*
      * Penting:
@@ -56,23 +64,27 @@ export class AuthService {
 
     let applicationSession;
 
+    let user;
+
     try {
+      user = await this.loadActiveEmployee(identity.id, authentication.user.id);
+
       applicationSession = await this.sessions.create(
         identity.id,
         authentication.user.id,
         authentication.session,
       );
     } catch (error) {
-      await this.supabase.revokeSession(
+      await this.revokeProviderSessionBestEffort(
         authentication.session.access_token,
 
         authentication.session.refresh_token,
+
+        'login_rollback',
       );
 
       throw error;
     }
-
-    const user = await this.loadActiveEmployee(identity.id, authentication.user.id);
 
     return {
       cookieToken: applicationSession.cookieToken,
@@ -100,37 +112,59 @@ export class AuthService {
       throw authenticationRequiredException();
     }
 
-    const { refreshToken } = this.sessions.decryptSecrets(current);
+    const leaseId = await this.sessions.acquireRefreshLease(current.id, cookieToken);
 
-    const authentication = await this.supabase.refreshSession(refreshToken);
-
-    if (!authentication || authentication.user.id !== current.supabaseUserId) {
-      await this.sessions.revoke(current.id);
-
-      throw authenticationRequiredException();
+    if (!leaseId) {
+      throw new ConflictException({
+        code: 'REFRESH_IN_PROGRESS',
+        message: 'Session refresh in progress.',
+      });
     }
 
-    await this.loadActiveEmployee(current.employeeId, authentication.user.id);
+    try {
+      const { refreshToken } = this.sessions.decryptSecrets(current);
 
-    const rotated = await this.sessions.rotate(current, cookieToken, authentication.session);
+      const authentication = await this.supabase.refreshSession(refreshToken);
 
-    if (!rotated) {
-      await this.sessions.revoke(current.id);
+      if (
+        !authentication ||
+        authentication.user.id !== current.supabaseUserId ||
+        getSupabaseSessionId(authentication.session.access_token) !== current.supabaseSessionId
+      ) {
+        await this.sessions.revokeIfCurrent(current.id, cookieToken);
 
-      throw authenticationRequiredException();
+        throw authenticationRequiredException();
+      }
+
+      await this.loadActiveEmployee(current.employeeId, authentication.user.id);
+
+      const rotated = await this.sessions.rotate(
+        current,
+        cookieToken,
+        authentication.session,
+        leaseId,
+      );
+
+      if (!rotated) {
+        throw authenticationRequiredException();
+      }
+
+      return {
+        cookieToken: rotated.cookieToken,
+
+        cookieExpiresAt: rotated.expiresAt,
+
+        body: {
+          refreshed: true,
+
+          sessionExpiresAt: rotated.expiresAt.toISOString(),
+        },
+      };
+    } finally {
+      // Conditional release: tidak bisa melepaskan lease milik
+      // refresh request lain yang sudah mengambil alih.
+      await this.sessions.releaseRefreshLease(current.id, leaseId);
     }
-
-    return {
-      cookieToken: rotated.cookieToken,
-
-      cookieExpiresAt: rotated.expiresAt,
-
-      body: {
-        refreshed: true,
-
-        sessionExpiresAt: rotated.expiresAt.toISOString(),
-      },
-    };
   }
 
   async me(cookieToken: string | null) {
@@ -189,7 +223,31 @@ export class AuthService {
      * Bahkan bila network Supabase sedang bermasalah,
      * opaque app-session sudah invalid.
      */
-    await this.supabase.revokeSession(secrets.accessToken, secrets.refreshToken);
+    await this.revokeProviderSessionBestEffort(secrets.accessToken, secrets.refreshToken, 'logout');
+  }
+
+  private async revokeProviderSessionBestEffort(
+    accessToken: string,
+    refreshToken: string,
+    operation: 'login_rollback' | 'logout',
+  ): Promise<void> {
+    try {
+      const revoked = await this.supabase.revokeSession(accessToken, refreshToken);
+
+      if (!revoked) {
+        this.logger.warn({
+          event: 'auth.provider_revoke_failed',
+          operation,
+          reason: 'provider_rejected_request',
+        });
+      }
+    } catch {
+      this.logger.warn({
+        event: 'auth.provider_revoke_failed',
+        operation,
+        reason: 'provider_unavailable',
+      });
+    }
   }
 
   private async loadActiveEmployee(employeeId: string, authUserId: string) {

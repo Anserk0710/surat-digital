@@ -6,12 +6,13 @@
       "phaseId": "P00",
       "testId": "P00-T01",
       "status": "PASS",
-      "executedAt": "2026-11-11T06:02:05.476Z",
+      "executedAt": "2026-11-15T12:33:24.406Z",
       "command": "npm run p00:validate",
       "result": {
         "totalMust": 124,
         "missingOwner": [],
         "missingTrace": [],
+        "missingTraceWithoutExplanation": [],
         "mappingPending": [
           "FR-USER-001",
           "FR-USER-002",
@@ -140,7 +141,7 @@
       "phaseId": "P00",
       "testId": "P00-T02",
       "status": "PASS",
-      "executedAt": "2026-11-11T06:02:05.478Z",
+      "executedAt": "2026-11-15T12:33:24.407Z",
       "command": "npm run p00:validate",
       "result": {
         "duplicateRequirements": [],
@@ -153,7 +154,7 @@
       "phaseId": "P00",
       "testId": "P00-T03",
       "status": "PASS",
-      "executedAt": "2026-11-11T06:02:05.478Z",
+      "executedAt": "2026-11-15T12:33:24.407Z",
       "command": "npm run p00:validate",
       "result": {
         "gatesDefined": true,

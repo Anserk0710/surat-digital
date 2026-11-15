@@ -11,6 +11,7 @@
   "totalShould": 4,
   "missingOwner": [],
   "missingTrace": [],
+  "missingTraceWithoutExplanation": [],
   "unmapped": [
     "NFR-001",
     "NFR-002",

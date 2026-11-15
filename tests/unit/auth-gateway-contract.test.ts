@@ -34,13 +34,9 @@ describe('P03 browser auth gateway contract', () => {
   it('uses the NestJS auth gateway from browser code', () => {
     const source = readText('apps/web/src/auth/auth-api.ts');
 
-    expect(source).toContain('/api/auth/login');
+    expect(source).toContain('/api/v1/auth');
 
-    expect(source).toContain('/api/auth/refresh');
-
-    expect(source).toContain('/api/auth/logout');
-
-    expect(source).toContain('/api/auth/me');
+    expect(source).not.toContain("'/api/auth/");
 
     expect(source).not.toContain('@supabase/supabase-js');
   });
