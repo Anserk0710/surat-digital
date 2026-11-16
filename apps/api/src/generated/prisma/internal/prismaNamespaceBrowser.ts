@@ -62,7 +62,8 @@ export const ModelName = {
   Permission: 'Permission',
   EmployeeGroup: 'EmployeeGroup',
   GroupPermission: 'GroupPermission',
-  AuthSession: 'AuthSession'
+  AuthSession: 'AuthSession',
+  AuthRateLimitBucket: 'AuthRateLimitBucket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -250,6 +251,15 @@ export const AuthSessionScalarFieldEnum = {
 } as const
 
 export type AuthSessionScalarFieldEnum = (typeof AuthSessionScalarFieldEnum)[keyof typeof AuthSessionScalarFieldEnum]
+
+
+export const AuthRateLimitBucketScalarFieldEnum = {
+  id: 'id',
+  requestCount: 'requestCount',
+  expiresAt: 'expiresAt'
+} as const
+
+export type AuthRateLimitBucketScalarFieldEnum = (typeof AuthRateLimitBucketScalarFieldEnum)[keyof typeof AuthRateLimitBucketScalarFieldEnum]
 
 
 export const SortOrder = {

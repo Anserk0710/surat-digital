@@ -65,6 +65,101 @@ Untuk login Username/NIP, backend melakukan lookup aman ke akun yang
 terkait. Jangan mengembalikan informasi apakah NIP/email tertentu
 terdaftar.
 
+### P04 — Authentication Hardening Contract
+
+**Version:** P04
+
+#### CSRF Bootstrap
+
+`GET /api/v1/auth/csrf`
+
+Response `200 OK`:
+
+```json
+{
+  "csrfToken": "<opaque-csrf-token>"
+}
+```
+
+Server juga menerbitkan signed CSRF cookie melalui `Set-Cookie`. Cookie bersifat `HttpOnly` dan tidak boleh dibaca secara langsung oleh JavaScript.
+
+Semua mutation endpoint `/api/v1/*` wajib menyertakan header:
+
+```http
+X-CSRF-Token: <opaque-csrf-token>
+```
+
+Cookie harus dikirim dengan `credentials: include`.
+
+#### Authentication Rate Limiting
+
+Rate limiting menggunakan fixed-window PostgreSQL counters dengan identifier yang di-HMAC.
+
+- Login: 30 request per IP dan 5 request per pasangan IP + identifier dalam 15 menit.
+- Refresh: 60 request per IP dan 20 request per session cookie dalam 15 menit.
+- Logout: 60 request per IP dalam 15 menit.
+- `/me`: 120 request per IP dalam 15 menit.
+- `/csrf`: 60 request per IP dalam 15 menit.
+
+Response ketika limit terlampaui: `429 Too Many Requests`.
+
+```json
+{
+  "code": "AUTH_RATE_LIMITED",
+  "message": "Too many requests."
+}
+```
+
+Header `Retry-After` wajib tersedia.
+
+#### Authentication Errors
+
+Invalid login credentials (`401 Unauthorized`):
+
+```json
+{
+  "code": "INVALID_CREDENTIALS",
+  "message": "Invalid credentials."
+}
+```
+
+Invalid application session (`401 Unauthorized`):
+
+```json
+{
+  "code": "AUTHENTICATION_REQUIRED",
+  "message": "Authentication required."
+}
+```
+
+Concurrent refresh (`409 Conflict`):
+
+```json
+{
+  "code": "REFRESH_IN_PROGRESS",
+  "message": "Session refresh in progress."
+}
+```
+
+Untrusted Origin: `403 Forbidden`, code `ORIGIN_NOT_ALLOWED`.
+
+Invalid CSRF token: `403 Forbidden`, code `CSRF_INVALID`.
+
+#### Session Revocation and Employee Suspension
+
+- Session validity is determined by the NestJS backend and PostgreSQL.
+- Only employees with status `ACTIVE` and an active company may use an application session.
+- Suspension and revoke-all invalidate application sessions immediately.
+- Access tokens and refresh tokens belonging to Supabase Auth are never included in browser API responses.
+- Application session refresh preserves the original absolute expiration time.
+- Suspension/revoke-all are internal application services until an authorized administration endpoint is introduced.
+
+#### Security Logging
+
+Authentication logs contain an allowlisted event name, outcome, HTTP status, and timestamp.
+
+Raw credentials, access tokens, refresh tokens, session cookies, PIN values, and request bodies must never be recorded.
+
 ## 3. User dan organisasi
 
 | Method | Endpoint                         | Fungsi                            |

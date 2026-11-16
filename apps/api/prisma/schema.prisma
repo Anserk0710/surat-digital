@@ -264,3 +264,12 @@ model AuthSession {
   @@index([revokedAt, expiresAt], map: "auth_sessions_revoked_at_expires_at_idx")
   @@map("auth_sessions")
 }
+
+model AuthRateLimitBucket {
+  id    String  @id @db.VarChar(64)
+  requestCount  Int @default(0) @map("request_count")
+  expiresAt  DateTime  @map("expires_at")  @db.Timestamptz(6)
+
+  @@index([expiresAt], map: "auth_rate_limit_buckets_expires_at_idx")
+  @@map("auth_rate_limit_buckets")
+}

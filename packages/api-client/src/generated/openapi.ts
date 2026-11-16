@@ -4,6 +4,22 @@
  */
 
 export interface paths {
+  '/api/v1/auth/csrf': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['authCsrf'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/auth/login': {
     parameters: {
       query?: never;
@@ -72,6 +88,10 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    AuthCsrfResponseDto: {
+      /** @description CSRF token for X-CSRF-Token header. */
+      csrfToken: string;
+    };
     LoginRequestDto: {
       /** @description Email, Username, or NIP */
       identifier: string;
@@ -122,10 +142,39 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  authLogin: {
+  authCsrf: {
     parameters: {
       query?: never;
       header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['AuthCsrfResponseDto'];
+        };
+      };
+      /** @description Request rate limited. */
+      429: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  authLogin: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Token obtained from GET /api/v1/auth/csrf. */
+        'X-CSRF-Token': string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -150,8 +199,15 @@ export interface operations {
         };
         content?: never;
       };
-      /** @description Origin not allowed. */
+      /** @description Invalid CSRF token or untrusted Origin. */
       403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Authentication request rate limited. */
+      429: {
         headers: {
           [name: string]: unknown;
         };
@@ -162,7 +218,10 @@ export interface operations {
   authRefresh: {
     parameters: {
       query?: never;
-      header?: never;
+      header: {
+        /** @description Token obtained from GET /api/v1/auth/csrf. */
+        'X-CSRF-Token': string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -183,7 +242,7 @@ export interface operations {
         };
         content?: never;
       };
-      /** @description Origin not allowed. */
+      /** @description Invalid CSRF token or untrusted Origin. */
       403: {
         headers: {
           [name: string]: unknown;
@@ -197,12 +256,22 @@ export interface operations {
         };
         content?: never;
       };
+      /** @description Authentication request rate limited. */
+      429: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
     };
   };
   authLogout: {
     parameters: {
       query?: never;
-      header?: never;
+      header: {
+        /** @description Token obtained from GET /api/v1/auth/csrf. */
+        'X-CSRF-Token': string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -214,8 +283,15 @@ export interface operations {
         };
         content?: never;
       };
-      /** @description Origin not allowed. */
+      /** @description Invalid CSRF token or untrusted Origin. */
       403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Authentication request rate limited. */
+      429: {
         headers: {
           [name: string]: unknown;
         };
@@ -242,6 +318,13 @@ export interface operations {
       };
       /** @description Authentication required. */
       401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Request rate limited. */
+      429: {
         headers: {
           [name: string]: unknown;
         };

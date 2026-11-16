@@ -1,0 +1,44 @@
+{
+  "phaseId": "P04",
+  "executedAt": "2026-11-16T08:13:45.224Z",
+  "integrationRequested": true,
+  "overallStatus": "FAIL",
+  "verification": [
+    {
+      "phaseId": "P04",
+      "testId": "P04-T01",
+      "status": "PASS",
+      "executedAt": "2026-11-16T08:13:34.270Z",
+      "command": "npm exec -- vitest run apps/api/src/security/auth-rate-limit.service.test.ts",
+      "result": "Verification passed.",
+      "artifactPath": "docs/evidence/P04/verification.json"
+    },
+    {
+      "phaseId": "P04",
+      "testId": "P04-T02",
+      "status": "PASS",
+      "executedAt": "2026-11-16T08:13:37.997Z",
+      "command": "npm exec -- vitest run apps/api/src/auth/employee-session-policy.service.test.ts",
+      "result": "Verification passed.",
+      "artifactPath": "docs/evidence/P04/verification.json"
+    },
+    {
+      "phaseId": "P04",
+      "testId": "P04-T03",
+      "status": "PASS",
+      "executedAt": "2026-11-16T08:13:42.052Z",
+      "command": "npm exec -- vitest run apps/api/src/security/csrf.middleware.test.ts apps/api/src/security/trusted-origin.middleware.test.ts",
+      "result": "Verification passed.",
+      "artifactPath": "docs/evidence/P04/verification.json"
+    },
+    {
+      "phaseId": "P04",
+      "testId": "P04-T04",
+      "status": "PASS",
+      "executedAt": "2026-11-16T08:13:45.222Z",
+      "command": "npm exec -- vitest run apps/api/src/security/auth-audit.service.test.ts",
+      "result": "Verification passed.",
+      "artifactPath": "docs/evidence/P04/verification.json"
+    }
+  ]
+}

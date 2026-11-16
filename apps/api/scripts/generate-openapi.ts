@@ -3,9 +3,16 @@ import 'reflect-metadata';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { createApplication } from '../src/bootstrap.js';
+
+import { prepareOpenApiGenerationEnvironment } from './openapi-generation-environment.js';
 
 async function main(): Promise<void> {
+  // Contract generation never handles authentication traffic. These isolated
+  // placeholders let Nest construct security providers without requiring
+  // runtime secrets on developer and CI machines.
+  prepareOpenApiGenerationEnvironment();
+
+  const { createApplication } = await import('../src/bootstrap.js');
   const app = await createApplication();
 
   try {

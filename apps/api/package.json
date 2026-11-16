@@ -13,6 +13,8 @@
     "prisma:validate": "prisma validate --config prisma.config.ts",
     "prisma:format": "prisma format --schema prisma/schema.prisma",
     "db:verify:migration-role": "tsx scripts/verify-migration-role.ts",
+    "db:verify:runtime-role": "tsx scripts/verify-runtime-role.ts",
+    "db:verify:seed": "tsx scripts/verify-seed.ts",
     "db:migrate:create": "npm run db:verify:migration-role && node scripts/migrate-create.mjs",
     "db:migrate:dev": "npm run db:verify:migration-role && prisma migrate dev --config prisma.config.ts",
     "db:migrate:deploy": "npm run db:verify:migration-role && prisma migrate deploy --config prisma.config.ts",
@@ -25,6 +27,9 @@
     "db:reset": "node scripts/assert-local-database.mjs && npm run db:verify:migration-role && prisma migrate reset --force --config prisma.config.ts",
     "db:smoke": "node scripts/require-db-env.mjs DATABASE_URL DIRECT_URL && tsx scripts/verify-seed.ts && tsx scripts/verify-runtime-role.ts",
     "p03:verify": "tsx scripts/verify-p03-auth-gateway.ts",
+    "p04:prune-rate-limits": "tsx scripts/prune-auth-rate-limits.ts",
+    "p04:verify:http": "tsx scripts/verify-p04-http.ts",
+    "p04:verify:integration": "tsx scripts/verify-p04-integration.ts",
     "seed:test-user": "tsx scripts/seed-test-user.ts"
   },
   "dependencies": {

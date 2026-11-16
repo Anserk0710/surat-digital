@@ -8,10 +8,11 @@ import {
   Post,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBody,
-  ApiForbiddenResponse,
+  ApiHeader,
   ApiNoContentResponse,
   ApiOkResponse,
   ApiOperation,
@@ -19,15 +20,22 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
+import { AuthCsrfService } from '../security/auth-csrf.service.js';
+import { AuthRateLimitGuard } from '../security/auth-rate-limit.guard.js';
 import { AuthCookieService } from './auth-cookie.service.js';
 import { AuthService } from './auth.service.js';
 import { LoginRequestDto } from './dto/login-request.dto.js';
+import { UseInterceptors } from '@nestjs/common';
+import { AuthAuditInterceptor } from '../security/auth-audit.interceptor.js';
 import {
+  AuthCsrfResponseDto,
   AuthLoginResponseDto,
   AuthMeResponseDto,
   AuthRefreshResponseDto,
 } from './dto/auth-response.dto.js';
 
+@UseInterceptors(AuthAuditInterceptor)
+@UseGuards(AuthRateLimitGuard)
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -36,7 +44,27 @@ export class AuthController {
 
     @Inject(AuthCookieService)
     private readonly cookies: AuthCookieService,
+
+    @Inject(AuthCsrfService)
+    private readonly csrf: AuthCsrfService,
   ) {}
+
+  @Get('csrf')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ operationId: 'authCsrf' })
+  @ApiOkResponse({ type: AuthCsrfResponseDto })
+  @ApiResponse({
+    status: 429,
+    description: 'Request rate limited.',
+  })
+  csrfToken(
+    @Res({ passthrough: true })
+    response: Response,
+  ) {
+    return {
+      csrfToken: this.csrf.issue(response),
+    };
+  }
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
@@ -44,7 +72,19 @@ export class AuthController {
   @ApiBody({ type: LoginRequestDto })
   @ApiOkResponse({ type: AuthLoginResponseDto })
   @ApiUnauthorizedResponse({ description: 'Invalid credentials.' })
-  @ApiForbiddenResponse({ description: 'Origin not allowed.' })
+  @ApiHeader({
+    name: 'X-CSRF-Token',
+    required: true,
+    description: 'Token obtained from GET /api/v1/auth/csrf.',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Invalid CSRF token or untrusted Origin.',
+  })
+  @ApiResponse({
+    status: 429,
+    description: 'Authentication request rate limited.',
+  })
   async login(
     @Body()
     input: LoginRequestDto,
@@ -70,7 +110,19 @@ export class AuthController {
     status: 409,
     description: 'Session refresh in progress.',
   })
-  @ApiForbiddenResponse({ description: 'Origin not allowed.' })
+  @ApiHeader({
+    name: 'X-CSRF-Token',
+    required: true,
+    description: 'Token obtained from GET /api/v1/auth/csrf.',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Invalid CSRF token or untrusted Origin.',
+  })
+  @ApiResponse({
+    status: 429,
+    description: 'Authentication request rate limited.',
+  })
   async refresh(
     @Req()
     request: Request,
@@ -91,7 +143,19 @@ export class AuthController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ operationId: 'authLogout' })
   @ApiNoContentResponse()
-  @ApiForbiddenResponse({ description: 'Origin not allowed.' })
+  @ApiHeader({
+    name: 'X-CSRF-Token',
+    required: true,
+    description: 'Token obtained from GET /api/v1/auth/csrf.',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Invalid CSRF token or untrusted Origin.',
+  })
+  @ApiResponse({
+    status: 429,
+    description: 'Authentication request rate limited.',
+  })
   async logout(
     @Req()
     request: Request,
@@ -110,6 +174,10 @@ export class AuthController {
   @ApiOperation({ operationId: 'authMe' })
   @ApiOkResponse({ type: AuthMeResponseDto })
   @ApiUnauthorizedResponse({ description: 'Authentication required.' })
+  @ApiResponse({
+    status: 429,
+    description: 'Request rate limited.',
+  })
   async me(
     @Req()
     request: Request,

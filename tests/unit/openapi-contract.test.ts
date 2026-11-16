@@ -55,4 +55,20 @@ describe('I01 OpenAPI generated contract', () => {
 
     expect(document.components.schemas).toHaveProperty(schema);
   });
+
+  it('documents CSRF bootstrap endpoint', () => {
+    const document = readSpecification();
+
+    expect(document.paths['/api/v1/auth/csrf']?.get).toBeDefined();
+
+    expect(document.components.schemas).toHaveProperty('AuthCsrfResponseDto');
+  });
+
+  it('documents authentication rate limiting', () => {
+    const document = readSpecification();
+
+    expect(document.paths['/api/v1/auth/login']?.post?.responses).toHaveProperty('429');
+
+    expect(document.paths['/api/v1/auth/refresh']?.post?.responses).toHaveProperty('429');
+  });
 });

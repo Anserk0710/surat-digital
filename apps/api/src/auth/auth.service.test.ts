@@ -298,6 +298,8 @@ describe('AuthSessionService.revokeIfCurrent', () => {
       },
       data: {
         revokedAt: expect.any(Date),
+        refreshLeaseId: null,
+        refreshLeaseUntil: null,
       },
     });
   });

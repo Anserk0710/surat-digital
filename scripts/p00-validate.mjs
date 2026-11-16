@@ -114,6 +114,41 @@ function parseExistingTrace(markdown) {
   return traces;
 }
 
+function hasMeaningfulReference(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const trimmed = value.trim();
+
+  if (trimmed.length === 0) {
+    return false;
+  }
+
+  // Abaikan placeholder umum seperti "-", "N/A", "TBD", dll.
+  if (/^[-–—]+$/.test(trimmed)) {
+    return false;
+  }
+
+  if (/^(n\/a|tbd|todo|pending|-)$/i.test(trimmed)) {
+    return false;
+  }
+
+  return true;
+}
+
+function hasValidTrace(originalTrace, tests) {
+  const hasMappedTest =
+    Array.isArray(tests) &&
+    tests.some((test) => typeof test === 'string' && hasMeaningfulReference(test));
+
+  const hasRtmTrace = originalTrace.some(
+    (row) => hasMeaningfulReference(row.test) || hasMeaningfulReference(row.backlogPhase),
+  );
+
+  return hasMappedTest || hasRtmTrace;
+}
+
 function getDomain(id) {
   if (id.startsWith('NFR-')) {
     return 'NFR';
@@ -203,7 +238,7 @@ function main() {
 
     const validPhases = phasesForRequirement.filter((phase) => phases.includes(phase));
 
-    const hasTrace = validPhases.length > 0 || originalTrace.length > 0;
+    const hasTrace = hasValidTrace(originalTrace, tests);
 
     const traceGap = explicitMapping?.traceGap ?? null;
 
@@ -224,7 +259,10 @@ function main() {
       gapReasons.push('Missing phase/backlog trace');
     }
 
-    if (tests.length === 0 && originalTrace.length === 0) {
+    if (
+      !tests.some(hasMeaningfulReference) &&
+      !originalTrace.some((row) => hasMeaningfulReference(row.test))
+    ) {
       gapReasons.push('Missing test reference');
     }
 

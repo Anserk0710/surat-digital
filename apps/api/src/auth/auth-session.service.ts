@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { Session } from '@supabase/supabase-js';
 import { PrismaService } from '../database/prisma.service.js';
+import { authenticationRequiredException } from './auth-errors.js';
 import { AuthTokenCryptoService } from './auth-token-crypto.service.js';
 import {
   createOpaqueSessionToken,
@@ -70,24 +71,42 @@ export class AuthSessionService {
 
     const expiresAt = new Date(Date.now() + this.sessionMaxAgeSeconds * 1000);
 
-    await this.prisma.authSession.create({
-      data: {
-        employeeId,
+    await this.prisma.$transaction(async (tx) => {
+      const activeEmployee = await tx.$queryRaw<Array<{ id: string }>>`
+        SELECT e."id"
+        FROM public."employees" e
+        JOIN public."companies" c
+          ON c."id" = e."company_id"
+        WHERE e."id" = ${employeeId}::uuid
+          AND e."auth_user_id" = ${supabaseUserId}::uuid
+          AND e."status" = 'ACTIVE'
+          AND c."active" = true
+        FOR UPDATE OF e
+      `;
 
-        supabaseUserId,
+      if (activeEmployee.length !== 1) {
+        throw authenticationRequiredException();
+      }
 
-        supabaseSessionId: getSupabaseSessionId(session.access_token),
+      await tx.authSession.create({
+        data: {
+          employeeId,
 
-        sessionTokenHash: hashSessionToken(cookieToken),
+          supabaseUserId,
 
-        accessTokenCiphertext: this.crypto.encrypt(session.access_token, 'access'),
+          supabaseSessionId: getSupabaseSessionId(session.access_token),
 
-        refreshTokenCiphertext: this.crypto.encrypt(session.refresh_token, 'refresh'),
+          sessionTokenHash: hashSessionToken(cookieToken),
 
-        accessTokenExpiresAt: new Date(session.expires_at * 1000),
+          accessTokenCiphertext: this.crypto.encrypt(session.access_token, 'access'),
 
-        expiresAt,
-      },
+          refreshTokenCiphertext: this.crypto.encrypt(session.refresh_token, 'refresh'),
+
+          accessTokenExpiresAt: new Date(session.expires_at! * 1000),
+
+          expiresAt,
+        },
+      });
     });
 
     return {
@@ -105,6 +124,17 @@ export class AuthSessionService {
 
         expiresAt: {
           gt: new Date(),
+        },
+
+        employee: {
+          is: {
+            status: 'ACTIVE',
+            company: {
+              is: {
+                active: true,
+              },
+            },
+          },
         },
       },
 
@@ -212,6 +242,17 @@ export class AuthSessionService {
         expiresAt: {
           gt: now,
         },
+
+        employee: {
+          is: {
+            status: 'ACTIVE',
+            company: {
+              is: {
+                active: true,
+              },
+            },
+          },
+        },
       },
 
       data: {
@@ -250,6 +291,8 @@ export class AuthSessionService {
 
       data: {
         revokedAt: new Date(),
+        refreshLeaseId: null,
+        refreshLeaseUntil: null,
       },
     });
   }
@@ -264,6 +307,8 @@ export class AuthSessionService {
 
       data: {
         revokedAt: new Date(),
+        refreshLeaseId: null,
+        refreshLeaseUntil: null,
       },
     });
   }

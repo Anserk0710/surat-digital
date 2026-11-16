@@ -141,5 +141,30 @@ export function validateEnvironment(config: Record<string, unknown>): Record<str
     validated.AUTH_DEFAULT_COMPANY_ID = companyId;
   }
 
+  for (const name of ['AUTH_RATE_LIMIT_HMAC_KEY_BASE64', 'AUTH_CSRF_SECRET_BASE64']) {
+    const value = requiredString(config, name);
+    const decoded = Buffer.from(value, 'base64');
+
+    if (decoded.length !== 32) {
+      throw new Error(`${name} must contain exactly 32 bytes.`);
+    }
+
+    validated[name] = value;
+  }
+
+  const proxyHops = config.AUTH_TRUST_PROXY_HOPS ?? '0';
+
+  const parsedProxyHops = Number(proxyHops);
+
+  if (!Number.isInteger(parsedProxyHops) || parsedProxyHops < 0 || parsedProxyHops > 5) {
+    throw new Error('AUTH_TRUST_PROXY_HOPS must be between 0 and 5.');
+  }
+
+  validated.AUTH_TRUST_PROXY_HOPS = parsedProxyHops;
+
+  if ((validated.AUTH_SESSION_MAX_AGE_SECONDS as number) > 604800) {
+    throw new Error('AUTH_SESSION_MAX_AGE_SECONDS cannot exceed 7 days.');
+  }
+
   return validated;
 }

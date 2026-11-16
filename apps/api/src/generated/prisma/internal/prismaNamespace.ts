@@ -408,7 +408,8 @@ export const ModelName = {
   Permission: 'Permission',
   EmployeeGroup: 'EmployeeGroup',
   GroupPermission: 'GroupPermission',
-  AuthSession: 'AuthSession'
+  AuthSession: 'AuthSession',
+  AuthRateLimitBucket: 'AuthRateLimitBucket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "office" | "division" | "officeDivision" | "jobTitle" | "employee" | "employeeAssignment" | "group" | "permission" | "employeeGroup" | "groupPermission" | "authSession"
+    modelProps: "company" | "office" | "division" | "officeDivision" | "jobTitle" | "employee" | "employeeAssignment" | "group" | "permission" | "employeeGroup" | "groupPermission" | "authSession" | "authRateLimitBucket"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1316,6 +1317,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AuthRateLimitBucket: {
+      payload: Prisma.$AuthRateLimitBucketPayload<ExtArgs>
+      fields: Prisma.AuthRateLimitBucketFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AuthRateLimitBucketFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AuthRateLimitBucketFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>
+        }
+        findFirst: {
+          args: Prisma.AuthRateLimitBucketFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AuthRateLimitBucketFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>
+        }
+        findMany: {
+          args: Prisma.AuthRateLimitBucketFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>[]
+        }
+        create: {
+          args: Prisma.AuthRateLimitBucketCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>
+        }
+        createMany: {
+          args: Prisma.AuthRateLimitBucketCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AuthRateLimitBucketCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>[]
+        }
+        delete: {
+          args: Prisma.AuthRateLimitBucketDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>
+        }
+        update: {
+          args: Prisma.AuthRateLimitBucketUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>
+        }
+        deleteMany: {
+          args: Prisma.AuthRateLimitBucketDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AuthRateLimitBucketUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AuthRateLimitBucketUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>[]
+        }
+        upsert: {
+          args: Prisma.AuthRateLimitBucketUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthRateLimitBucketPayload>
+        }
+        aggregate: {
+          args: Prisma.AuthRateLimitBucketAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAuthRateLimitBucket>
+        }
+        groupBy: {
+          args: Prisma.AuthRateLimitBucketGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuthRateLimitBucketGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AuthRateLimitBucketCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuthRateLimitBucketCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1526,6 +1601,15 @@ export const AuthSessionScalarFieldEnum = {
 export type AuthSessionScalarFieldEnum = (typeof AuthSessionScalarFieldEnum)[keyof typeof AuthSessionScalarFieldEnum]
 
 
+export const AuthRateLimitBucketScalarFieldEnum = {
+  id: 'id',
+  requestCount: 'requestCount',
+  expiresAt: 'expiresAt'
+} as const
+
+export type AuthRateLimitBucketScalarFieldEnum = (typeof AuthRateLimitBucketScalarFieldEnum)[keyof typeof AuthRateLimitBucketScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1630,6 +1714,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -1795,6 +1893,7 @@ export type GlobalOmitConfig = {
   employeeGroup?: Prisma.EmployeeGroupOmit
   groupPermission?: Prisma.GroupPermissionOmit
   authSession?: Prisma.AuthSessionOmit
+  authRateLimitBucket?: Prisma.AuthRateLimitBucketOmit
 }
 
 /* Types for Logging */

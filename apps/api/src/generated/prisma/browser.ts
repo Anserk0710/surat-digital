@@ -77,3 +77,8 @@ export type GroupPermission = Prisma.GroupPermissionModel
  * 
  */
 export type AuthSession = Prisma.AuthSessionModel
+/**
+ * Model AuthRateLimitBucket
+ * 
+ */
+export type AuthRateLimitBucket = Prisma.AuthRateLimitBucketModel

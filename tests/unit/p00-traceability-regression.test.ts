@@ -19,7 +19,7 @@ interface RequirementMapping {
   };
 }
 
-function verifyFixture(mapping: RequirementMapping) {
+function verifyFixture(mapping: RequirementMapping, rtmRow = '') {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'p00-regression-'));
 
   function write(relativePath: string, content: string) {
@@ -46,7 +46,9 @@ function verifyFixture(mapping: RequirementMapping) {
 
     write(
       'docs/baseline/19_Requirements_Traceability_Matrix.md',
-      '| Requirement | Rule | API | DB | Test | Phase |\n',
+      '| Requirement | Rule | API | DB | Test | Phase |\n' +
+        '| --- | --- | --- | --- | --- | --- |\n' +
+        rtmRow,
     );
 
     write(
@@ -127,8 +129,58 @@ describe('C02 P00-T01 traceability regression', () => {
       verifyFixture({
         owner: 'Backend',
         phases: ['P01'],
+        tests: ['P01-T01'],
       }).status,
     ).toBe('PASS');
+  });
+
+  it('R01: rejects an RTM row with empty trace columns', () => {
+    const result = verifyFixture(
+      {
+        owner: 'Backend',
+        phases: ['P01'],
+        tests: [],
+      },
+      '| FR-TEST-001 | | | | | |\n',
+    );
+
+    expect(result.status).toBe('FAIL');
+  });
+
+  it('R01: rejects placeholder-only trace columns', () => {
+    const result = verifyFixture(
+      {
+        owner: 'Backend',
+        phases: ['P01'],
+        tests: [],
+      },
+      '| FR-TEST-001 | - | - | - | TBD | Pending |\n',
+    );
+
+    expect(result.status).toBe('FAIL');
+  });
+
+  it('R01: accepts a valid RTM test reference', () => {
+    const result = verifyFixture(
+      {
+        owner: 'Backend',
+        phases: ['P01'],
+        tests: [],
+      },
+      '| FR-TEST-001 | Rule | API | DB | P01-T01 | P01 |\n',
+    );
+
+    expect(result.status).toBe('PASS');
+  });
+
+  it('R01: accepts an explicit test mapping', () => {
+    const result = verifyFixture({
+      owner: 'Backend',
+      phases: ['P01'],
+      tests: ['P01-T01'],
+    });
+
+    expect(result.status).toBe('PASS');
   });
 
   it('passes P00-T01 with a documented exception', () => {

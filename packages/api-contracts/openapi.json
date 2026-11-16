@@ -1,10 +1,43 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/api/v1/auth/csrf": {
+      "get": {
+        "operationId": "authCsrf",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthCsrfResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Request rate limited."
+          }
+        },
+        "summary": "",
+        "tags": ["Auth"]
+      }
+    },
     "/api/v1/auth/login": {
       "post": {
         "operationId": "authLogin",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "description": "Token obtained from GET /api/v1/auth/csrf.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -30,7 +63,10 @@
             "description": "Invalid credentials."
           },
           "403": {
-            "description": "Origin not allowed."
+            "description": "Invalid CSRF token or untrusted Origin."
+          },
+          "429": {
+            "description": "Authentication request rate limited."
           }
         },
         "summary": "",
@@ -40,7 +76,17 @@
     "/api/v1/auth/refresh": {
       "post": {
         "operationId": "authRefresh",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "description": "Token obtained from GET /api/v1/auth/csrf.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -56,10 +102,13 @@
             "description": "Authentication required."
           },
           "403": {
-            "description": "Origin not allowed."
+            "description": "Invalid CSRF token or untrusted Origin."
           },
           "409": {
             "description": "Session refresh in progress."
+          },
+          "429": {
+            "description": "Authentication request rate limited."
           }
         },
         "summary": "",
@@ -69,13 +118,26 @@
     "/api/v1/auth/logout": {
       "post": {
         "operationId": "authLogout",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "description": "Token obtained from GET /api/v1/auth/csrf.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "204": {
             "description": ""
           },
           "403": {
-            "description": "Origin not allowed."
+            "description": "Invalid CSRF token or untrusted Origin."
+          },
+          "429": {
+            "description": "Authentication request rate limited."
           }
         },
         "summary": "",
@@ -99,6 +161,9 @@
           },
           "401": {
             "description": "Authentication required."
+          },
+          "429": {
+            "description": "Request rate limited."
           }
         },
         "summary": "",
@@ -116,6 +181,16 @@
   "servers": [],
   "components": {
     "schemas": {
+      "AuthCsrfResponseDto": {
+        "type": "object",
+        "properties": {
+          "csrfToken": {
+            "type": "string",
+            "description": "CSRF token for X-CSRF-Token header."
+          }
+        },
+        "required": ["csrfToken"]
+      },
       "LoginRequestDto": {
         "type": "object",
         "properties": {

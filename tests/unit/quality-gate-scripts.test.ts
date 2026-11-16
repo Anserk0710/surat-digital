@@ -13,14 +13,20 @@ function readPackage(relativePath: string): { scripts: Record<string, string> } 
 }
 
 describe('quality gate script paths', () => {
-  it('points root database verification commands at existing API files', () => {
+  it('runs database verification commands from the API workspace', () => {
     const rootPackage = readPackage('package.json');
+    const apiPackage = readPackage('apps/api/package.json');
 
-    expect(rootPackage.scripts['db:smoke']).toBe('tsx apps/api/src/database/smoke-query.ts');
-    expect(rootPackage.scripts['db:verify:seed']).toBe('tsx apps/api/scripts/verify-seed.ts');
-    expect(rootPackage.scripts['db:verify:runtime-role']).toBe(
-      'tsx apps/api/scripts/verify-runtime-role.ts',
+    expect(rootPackage.scripts['db:smoke']).toBe('npm run --workspace=@surat-digital/api db:smoke');
+    expect(rootPackage.scripts['db:verify:seed']).toBe(
+      'npm run --workspace=@surat-digital/api db:verify:seed',
     );
+    expect(rootPackage.scripts['db:verify:runtime-role']).toBe(
+      'npm run --workspace=@surat-digital/api db:verify:runtime-role',
+    );
+
+    expect(apiPackage.scripts['db:verify:seed']).toBe('tsx scripts/verify-seed.ts');
+    expect(apiPackage.scripts['db:verify:runtime-role']).toBe('tsx scripts/verify-runtime-role.ts');
   });
 
   it('keeps every referenced quality gate and P03 verifier available', () => {

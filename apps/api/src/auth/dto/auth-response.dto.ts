@@ -1,5 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+export class AuthCsrfResponseDto {
+  @ApiProperty({
+    type: String,
+    description: 'CSRF token for X-CSRF-Token header.',
+  })
+  csrfToken!: string;
+}
+
 export class AuthCompanyDto {
   @ApiProperty({ type: String, format: 'uuid' })
   id!: string;

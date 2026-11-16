@@ -39,7 +39,8 @@ async function verifyDataApiPrivileges(
         ('permissions'),
         ('employee_groups'),
         ('group_permissions'),
-        ('auth_sessions')
+        ('auth_sessions'),
+        ('auth_rate_limit_buckets')
     )
     SELECT "grantee", "tableName"
     FROM data_api_roles
@@ -84,6 +85,24 @@ function assertNoSupabaseTokens(body: unknown): void {
   assert.equal(serialized.includes('access_token'), false);
 
   assert.equal(serialized.includes('refresh_token'), false);
+}
+
+async function createAuthBrowser(server: Parameters<typeof request>[0], origin: string) {
+  const agent = request.agent(server);
+
+  const csrfResponse = await agent.get('/api/v1/auth/csrf').set('Origin', origin).expect(200);
+
+  const csrfToken = csrfResponse.body.csrfToken as string;
+
+  assert.ok(csrfToken);
+
+  return {
+    agent,
+
+    post(path: string) {
+      return agent.post(path).set('Origin', origin).set('X-CSRF-Token', csrfToken);
+    },
+  };
 }
 
 async function main(): Promise<void> {
@@ -191,32 +210,25 @@ async function main(): Promise<void> {
      * --------------------------------------------------------
      */
 
-    const existingWrong = await request(server)
-      .post('/api/v1/auth/login')
-      .set('Origin', browserOrigin)
-      .send({
-        identifier: username,
+    const negativeBrowser = await createAuthBrowser(server, browserOrigin);
 
-        password: `${password}-wrong`,
-      });
+    const existingWrong = await negativeBrowser.post('/api/v1/auth/login').send({
+      identifier: username,
 
-    const missingUsername = await request(server)
-      .post('/api/v1/auth/login')
-      .set('Origin', browserOrigin)
-      .send({
-        identifier: `missing-${suffix}`,
+      password: `${password}-wrong`,
+    });
 
-        password: `${password}-wrong`,
-      });
+    const missingUsername = await negativeBrowser.post('/api/v1/auth/login').send({
+      identifier: `missing-${suffix}`,
 
-    const missingNip = await request(server)
-      .post('/api/v1/auth/login')
-      .set('Origin', browserOrigin)
-      .send({
-        identifier: `999999-${suffix}`,
+      password: `${password}-wrong`,
+    });
 
-        password: `${password}-wrong`,
-      });
+    const missingNip = await negativeBrowser.post('/api/v1/auth/login').send({
+      identifier: `999999-${suffix}`,
+
+      password: `${password}-wrong`,
+    });
 
     assert.equal(existingWrong.status, 401);
 
@@ -234,9 +246,11 @@ async function main(): Promise<void> {
      * --------------------------------------------------------
      */
 
-    const agent = request.agent(server);
+    const browser = await createAuthBrowser(server, browserOrigin);
 
-    const loginResponse = await agent.post('/api/v1/auth/login').set('Origin', browserOrigin).send({
+    const agent = browser.agent;
+
+    const loginResponse = await browser.post('/api/v1/auth/login').send({
       identifier: username,
 
       password,
@@ -258,7 +272,7 @@ async function main(): Promise<void> {
      * Refresh must rotate opaque session.
      */
 
-    const refreshResponse = await agent.post('/api/v1/auth/refresh').set('Origin', browserOrigin);
+    const refreshResponse = await browser.post('/api/v1/auth/refresh');
 
     assert.equal(refreshResponse.status, 200);
 
@@ -286,7 +300,7 @@ async function main(): Promise<void> {
      * Logout.
      */
 
-    const logoutResponse = await agent.post('/api/v1/auth/logout').set('Origin', browserOrigin);
+    const logoutResponse = await browser.post('/api/v1/auth/logout');
 
     assert.equal(logoutResponse.status, 204);
 
@@ -307,9 +321,11 @@ async function main(): Promise<void> {
      * --------------------------------------------------------
      */
 
-    const nipAgent = request.agent(server);
+    const nipBrowser = await createAuthBrowser(server, browserOrigin);
 
-    const nipLogin = await nipAgent.post('/api/v1/auth/login').set('Origin', browserOrigin).send({
+    const nipAgent = nipBrowser.agent;
+
+    const nipLogin = await nipBrowser.post('/api/v1/auth/login').send({
       identifier: employeeNumber,
 
       password,
@@ -319,7 +335,7 @@ async function main(): Promise<void> {
 
     assert.equal((await nipAgent.get('/api/v1/auth/me')).status, 200);
 
-    await nipAgent.post('/api/v1/auth/logout').set('Origin', browserOrigin);
+    await nipBrowser.post('/api/v1/auth/logout');
 
     /*
      * --------------------------------------------------------
@@ -327,22 +343,21 @@ async function main(): Promise<void> {
      * --------------------------------------------------------
      */
 
-    const emailAgent = request.agent(server);
+    const emailBrowser = await createAuthBrowser(server, browserOrigin);
 
-    const emailLogin = await emailAgent
-      .post('/api/v1/auth/login')
-      .set('Origin', browserOrigin)
-      .send({
-        identifier: email,
+    const emailAgent = emailBrowser.agent;
 
-        password,
-      });
+    const emailLogin = await emailBrowser.post('/api/v1/auth/login').send({
+      identifier: email,
+
+      password,
+    });
 
     assert.equal(emailLogin.status, 200);
 
     assert.equal((await emailAgent.get('/api/v1/auth/me')).status, 200);
 
-    await emailAgent.post('/api/v1/auth/logout').set('Origin', browserOrigin);
+    await emailBrowser.post('/api/v1/auth/logout');
 
     /*
      * --------------------------------------------------------

@@ -1,4 +1,10 @@
-import { ConflictException, Inject, Injectable, Logger } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../database/prisma.service.js';
 import { authenticationRequiredException, invalidCredentialsException } from './auth-errors.js';
@@ -82,6 +88,10 @@ export class AuthService {
 
         'login_rollback',
       );
+
+      if (error instanceof UnauthorizedException) {
+        throw invalidCredentialsException();
+      }
 
       throw error;
     }

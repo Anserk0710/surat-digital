@@ -212,6 +212,24 @@ Supabase service role/secret key dapat melewati RLS. Jika key diperlukan untuk o
 - Suspended/inactive employee ditolak backend pada setiap protected request walaupun token provider belum kedaluwarsa; revoke dilakukan saat status berubah bila tersedia.
 - MFA dapat dipertimbangkan sebagai peningkatan keamanan.
 
+### P04 — Implemented Authentication Security Policy
+
+**Brute-force protection:** PostgreSQL-backed rate limiting with HMAC-derived keys and explicit HTTP 429 responses.
+
+**Session validity:** An application session is accepted only when its opaque token matches a non-revoked, non-expired session, and the linked employee and company are active.
+
+**Suspension:** Employee suspension and application session revocation occur within the same database transaction. Backend protected requests re-check status independently of Supabase JWT expiration.
+
+**CSRF:** Browser state-changing API requests require a valid, signed CSRF cookie plus matching `X-CSRF-Token` header. A strict trusted-Origin check provides defense in depth.
+
+**Cookie security:** Production cookies use `HttpOnly` and `Secure`; SameSite policy is selected according to deployment topology. Session cookies are host-only and must not be placed into localStorage.
+
+**Trusted proxies:** Proxy-derived client IP values may be trusted only when network ingress controls ensure requests pass through the configured trusted proxy chain.
+
+**Authentication logging:** Only structured, allowlisted security metadata may be logged. No raw request bodies, tokens, passwords, PINs, or cookie values are permitted.
+
+**Residual risks:** Refresh-token provider commit failures, cross-tab session synchronization, browser third-party cookie restrictions, and operational log aggregation require production-specific verification.
+
 ## 10. Internal signature PIN
 
 - PIN khusus tanda tangan.

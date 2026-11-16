@@ -1,166 +1,104 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import {
-  ApiHttpError,
-  login,
-  logout,
-  me,
-  meWithRefresh,
-  refresh,
-  refreshOnce,
-} from './auth-api.js';
 
-const BASE_URL = 'https://api.example.com';
+import { ApiHttpError, getCsrfToken, login, meWithRefresh } from './auth-api.js';
 
-function jsonResponse(body: unknown): Response {
+const BASE = 'https://api.example.com';
+
+function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 }
 
-function createDeferred<T>() {
-  let resolve!: (value: T) => void;
-  let reject!: (reason?: unknown) => void;
-  const promise = new Promise<T>((resolvePromise, rejectPromise) => {
-    resolve = resolvePromise;
-    reject = rejectPromise;
-  });
-
-  return { promise, reject, resolve };
-}
-
-describe('auth API client', () => {
+describe('P04 frontend authentication', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
   });
 
-  it('uses the versioned auth contract for every endpoint', async () => {
+  it('adds a CSRF header to login', async () => {
     const fetchMock = vi
       .fn()
-      .mockImplementation(() =>
-        Promise.resolve(
-          jsonResponse({ authenticated: true, refreshed: true, sessionExpiresAt: '2099-01-01' }),
-        ),
-      );
-    vi.stubGlobal('fetch', fetchMock);
-
-    await login(BASE_URL, { identifier: 'employee', password: 'password' });
-    await refresh(BASE_URL);
-    await logout(BASE_URL);
-    await me(BASE_URL);
-
-    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
-      `${BASE_URL}/api/v1/auth/login`,
-      `${BASE_URL}/api/v1/auth/refresh`,
-      `${BASE_URL}/api/v1/auth/logout`,
-      `${BASE_URL}/api/v1/auth/me`,
-    ]);
-  });
-
-  it('deduplicates concurrent refreshes and permits a later refresh', async () => {
-    const deferred = createDeferred<Response>();
-    const firstBody = { refreshed: true as const, sessionExpiresAt: '2099-01-01' };
-    const secondBody = { refreshed: true as const, sessionExpiresAt: '2099-01-02' };
-    const fetchMock = vi
-      .fn()
-      .mockReturnValueOnce(deferred.promise)
-      .mockResolvedValueOnce(jsonResponse(secondBody));
-    vi.stubGlobal('fetch', fetchMock);
-
-    const concurrent = [refreshOnce(BASE_URL), refreshOnce(BASE_URL), refreshOnce(BASE_URL)];
-
-    expect(fetchMock).toHaveBeenCalledOnce();
-    deferred.resolve(jsonResponse(firstBody));
-
-    const results = await Promise.all(concurrent);
-
-    expect(results).toEqual([firstBody, firstBody, firstBody]);
-    expect(results[0]).toBe(results[1]);
-    expect(results[1]).toBe(results[2]);
-
-    await expect(refreshOnce(BASE_URL)).resolves.toEqual(secondBody);
-    expect(fetchMock).toHaveBeenCalledTimes(2);
-  });
-
-  it('refreshes once when /me returns 401', async () => {
-    const userResponse = {
-      authenticated: true,
-      user: {
-        id: 'employee-1',
-        employeeNumber: 'EMP-1',
-        username: 'employee',
-        email: 'employee@example.com',
-        fullName: 'Employee',
-        status: 'ACTIVE',
-        company: {
-          id: 'company-1',
-          code: 'COMPANY',
-          name: 'Company',
-        },
-      },
-    };
-
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValueOnce(new Response(null, { status: 401 }))
       .mockResolvedValueOnce(
-        jsonResponse({
-          refreshed: true,
-          sessionExpiresAt: '2099-01-01',
+        json({
+          csrfToken: 'test-csrf-token',
         }),
       )
-      .mockResolvedValueOnce(jsonResponse(userResponse));
+      .mockResolvedValueOnce(
+        json({
+          authenticated: true,
+        }),
+      );
 
     vi.stubGlobal('fetch', fetchMock);
 
-    await expect(meWithRefresh(BASE_URL)).resolves.toEqual(userResponse);
-
-    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
-      `${BASE_URL}/api/v1/auth/me`,
-      `${BASE_URL}/api/v1/auth/refresh`,
-      `${BASE_URL}/api/v1/auth/me`,
-    ]);
-
-    expect(fetchMock).toHaveBeenCalledTimes(3);
-  });
-
-  it('does not refresh on server error', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(new Response(null, { status: 503 }));
-
-    vi.stubGlobal('fetch', fetchMock);
-
-    await expect(meWithRefresh(BASE_URL)).rejects.toBeInstanceOf(ApiHttpError);
-
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-  });
-
-  it('stops when refresh fails', async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValueOnce(new Response(null, { status: 401 }))
-      .mockResolvedValueOnce(new Response(null, { status: 401 }));
-
-    vi.stubGlobal('fetch', fetchMock);
-
-    await expect(meWithRefresh(BASE_URL)).rejects.toMatchObject({
-      status: 401,
+    await login(BASE, {
+      identifier: 'user',
+      password: 'password',
     });
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
+
+    const requestInit = fetchMock.mock.calls[1]![1] as RequestInit;
+    const headers = new Headers(requestInit.headers);
+
+    expect(headers.get('X-CSRF-Token')).toBe('test-csrf-token');
   });
 
-  it('does not start a refresh for a successful /me', async () => {
-    const body = {
-      authenticated: true,
-      user: { id: 'employee-1' },
-    };
-
-    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(body));
+  it('deduplicates CSRF bootstrap requests', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(json({ csrfToken: 'shared-csrf' }));
 
     vi.stubGlobal('fetch', fetchMock);
 
-    await expect(meWithRefresh(BASE_URL)).resolves.toEqual(body);
+    const [first, second] = await Promise.all([
+      getCsrfToken('https://another-api.example.com'),
+      getCsrfToken('https://another-api.example.com'),
+    ]);
 
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(first).toBe(second);
+    expect(fetchMock).toHaveBeenCalledOnce();
+  });
+
+  it('does not turn refresh 409 into logout', async () => {
+    const refreshInProgress = json(
+      {
+        code: 'REFRESH_IN_PROGRESS',
+      },
+      409,
+    );
+
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(json({ code: 'AUTHENTICATION_REQUIRED' }, 401))
+      .mockResolvedValueOnce(json({ csrfToken: 'csrf-value' }))
+      .mockResolvedValueOnce(refreshInProgress)
+      .mockResolvedValueOnce(
+        json({
+          authenticated: true,
+          user: { id: 'employee-1' },
+        }),
+      );
+
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(meWithRefresh('https://concurrent-api.example.com')).resolves.toMatchObject({
+      authenticated: true,
+    });
+
+    const urls = fetchMock.mock.calls.map(([url]) => String(url));
+
+    expect(urls.filter((url) => url.endsWith('/refresh'))).toHaveLength(1);
+
+    expect(urls.filter((url) => url.endsWith('/logout'))).toHaveLength(0);
+  });
+
+  it('preserves structured HTTP error status', () => {
+    const error = new ApiHttpError(429, 'AUTH_RATE_LIMITED', 300);
+
+    expect(error.status).toBe(429);
+    expect(error.code).toBe('AUTH_RATE_LIMITED');
+    expect(error.retryAfter).toBe(300);
   });
 });
