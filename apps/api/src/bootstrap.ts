@@ -49,7 +49,7 @@ export async function createApplication(): Promise<INestApplication> {
 
     credentials: true,
 
-    methods: ['GET', 'POST', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 
     allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
 

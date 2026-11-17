@@ -699,3 +699,24 @@ Menyimpan transaksi pembayaran/top-up/subscription secara provider-neutral: `typ
 ### 14.9 Credit concurrency
 
 Implementasi harus memakai row lock/atomic conditional update yang terbukti melalui concurrency test. Dua request paralel yang masing-masing mencoba me-reserve last credit tidak boleh keduanya berhasil.
+
+## P05 — Organization Integrity Rules
+
+1. Company merupakan boundary kepemilikan seluruh organisasi.
+2. Office dan Division mempunyai kode unik dalam company masing-masing.
+3. OfficeDivision hanya boleh menghubungkan Office dan Division dalam company yang sama.
+4. EmployeeAssignment wajib menghubungkan Employee, OfficeDivision, dan JobTitle (jika ada) dalam company yang sama.
+5. `offices.timezone` menyimpan identifier IANA, bukan fixed UTC offset.
+6. Maksimal satu assignment primary aktif per employee.
+7. Assignment boleh memiliki `validFrom` dan `validUntil`; `validUntil` tidak boleh mendahului `validFrom`.
+8. Company, Office, Division, OfficeDivision, dan JobTitle tidak boleh dinonaktifkan selama masih memiliki dependensi aktif sesuai aturan P05.
+9. Deactivation mempertahankan ID serta histori. Penghapusan permanen tidak tersedia melalui API.
+10. Reactivation mengharuskan parent masih aktif.
+11. Company ID pada Office, Division, JobTitle, dan Employee tidak dapat dipindahkan secara langsung setelah dibuat.
+12. Database trigger dan constraint menegakkan integritas tambahan terhadap write yang melewati application service.
+
+**Authorization:** Semua operasi dibatasi oleh company dari authenticated employee. `System.Configure` digunakan untuk master organisasi, sedangkan `User.Manage` digunakan untuk pengelolaan assignment. Jabatan tidak memberikan permission otomatis.
+
+**Concurrency:** Endpoint pembentukan relasi menggunakan parent-row locks dan transaksi PostgreSQL. Constraint dan trigger menjadi pertahanan kedua. Operasi concurrent perlu diuji pada database runtime sebelum production release.
+
+**Historical references:** Model P05 mempertahankan soft-deactivation karena identifier master akan menjadi referensi untuk numbering, workflow, dokumen, dan audit pada phase berikutnya.

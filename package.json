@@ -37,6 +37,8 @@
     "p01:verify:fresh-install": "node scripts/p01-verify-fresh-install.mjs",
     "p04:verify": "node scripts/verify-p04.mjs",
     "p04:verify:integration": "node scripts/verify-p04.mjs --integration",
+    "p05:verify": "node scripts/verify-p05.mjs",
+    "p05:verify:integration": "node scripts/verify-p05.mjs --integration",
     "verify:pre-p04": "node scripts/verify-pre-p04.mjs",
     "verify:pre-p04:integration": "node scripts/verify-pre-p04.mjs --integration"
   },

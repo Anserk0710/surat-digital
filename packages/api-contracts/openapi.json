@@ -169,6 +169,655 @@
         "summary": "",
         "tags": ["Auth"]
       }
+    },
+    "/api/v1/organization/companies": {
+      "get": {
+        "operationId": "organizationListCompanies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/companies/{id}": {
+      "get": {
+        "operationId": "organizationGetCompany",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Organization"]
+      },
+      "patch": {
+        "operationId": "organizationUpdateCompany",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCompanyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Organization"]
+      },
+      "delete": {
+        "operationId": "organizationDeactivateCompany",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/offices": {
+      "get": {
+        "operationId": "OrganizationController_listOffices",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "post": {
+        "operationId": "OrganizationController_createOffice",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOfficeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/offices/{id}": {
+      "get": {
+        "operationId": "OrganizationController_getOffice",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "patch": {
+        "operationId": "OrganizationController_updateOffice",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOfficeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "delete": {
+        "operationId": "OrganizationController_deactivateOffice",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/divisions": {
+      "get": {
+        "operationId": "OrganizationController_listDivisions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DivisionResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "post": {
+        "operationId": "OrganizationController_createDivision",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMasterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/divisions/{id}": {
+      "get": {
+        "operationId": "OrganizationController_getDivision",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "patch": {
+        "operationId": "OrganizationController_updateDivision",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMasterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "delete": {
+        "operationId": "OrganizationController_deactivateDivision",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/job-titles": {
+      "get": {
+        "operationId": "OrganizationController_listJobTitles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobTitleResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "post": {
+        "operationId": "OrganizationController_createJobTitle",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMasterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobTitleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/job-titles/{id}": {
+      "get": {
+        "operationId": "OrganizationController_getJobTitle",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobTitleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "patch": {
+        "operationId": "OrganizationController_updateJobTitle",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMasterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobTitleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "delete": {
+        "operationId": "OrganizationController_deactivateJobTitle",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobTitleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/office-divisions": {
+      "get": {
+        "operationId": "OrganizationController_listOfficeDivisions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OfficeDivisionResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "post": {
+        "operationId": "OrganizationController_createOfficeDivision",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOfficeDivisionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeDivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/office-divisions/{id}": {
+      "get": {
+        "operationId": "OrganizationController_getOfficeDivision",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeDivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "patch": {
+        "operationId": "OrganizationController_updateOfficeDivision",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActiveDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeDivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "delete": {
+        "operationId": "OrganizationController_deactivateOfficeDivision",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OfficeDivisionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/assignments": {
+      "get": {
+        "operationId": "OrganizationController_listAssignments",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeAssignmentResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "post": {
+        "operationId": "OrganizationController_createAssignment",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAssignmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeAssignmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
+    "/api/v1/organization/assignments/{id}": {
+      "get": {
+        "operationId": "OrganizationController_getAssignment",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeAssignmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "patch": {
+        "operationId": "OrganizationController_updateAssignment",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAssignmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeAssignmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      },
+      "delete": {
+        "operationId": "OrganizationController_deactivateAssignment",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeAssignmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Organization"]
+      }
     }
   },
   "info": {
@@ -297,6 +946,383 @@
           }
         },
         "required": ["authenticated", "user"]
+      },
+      "CompanyResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "code", "name", "active", "createdAt", "updatedAt"]
+      },
+      "UpdateCompanyDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "OfficeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "Asia/Makassar"
+          }
+        },
+        "required": [
+          "id",
+          "companyId",
+          "code",
+          "name",
+          "active",
+          "createdAt",
+          "updatedAt",
+          "timezone"
+        ]
+      },
+      "CreateOfficeDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "HRD"
+          },
+          "name": {
+            "type": "string",
+            "example": "Human Resource Development"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "Asia/Makassar"
+          }
+        },
+        "required": ["code", "name", "timezone"]
+      },
+      "UpdateOfficeDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "HRD"
+          },
+          "name": {
+            "type": "string",
+            "example": "Human Resource Development"
+          },
+          "timezone": {
+            "type": "string",
+            "example": "Asia/Makassar"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DivisionResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "companyId", "code", "name", "active", "createdAt", "updatedAt"]
+      },
+      "CreateMasterDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "HRD"
+          },
+          "name": {
+            "type": "string",
+            "example": "Human Resource Development"
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "UpdateMasterDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "HRD"
+          },
+          "name": {
+            "type": "string",
+            "example": "Human Resource Development"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "JobTitleResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "companyId", "code", "name", "active", "createdAt", "updatedAt"]
+      },
+      "OfficeDivisionResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "divisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["id", "officeId", "divisionId", "active", "createdAt", "updatedAt"]
+      },
+      "CreateOfficeDivisionDto": {
+        "type": "object",
+        "properties": {
+          "officeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "divisionId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": ["officeId", "divisionId"]
+      },
+      "UpdateActiveDto": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": ["active"]
+      },
+      "EmployeeAssignmentResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officeDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "jobTitleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validUntil": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "employeeId",
+          "officeDivisionId",
+          "jobTitleId",
+          "isPrimary",
+          "validFrom",
+          "validUntil",
+          "active",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateAssignmentDto": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officeDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "jobTitleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "default": false
+          },
+          "validFrom": {
+            "type": "string",
+            "example": "2026-11-16"
+          },
+          "validUntil": {
+            "type": "string",
+            "example": "2027-11-16"
+          }
+        },
+        "required": ["employeeId", "officeDivisionId"]
+      },
+      "UpdateAssignmentDto": {
+        "type": "object",
+        "properties": {
+          "jobTitleId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "validFrom": {
+            "type": "string",
+            "nullable": true
+          },
+          "validUntil": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
       }
     }
   }

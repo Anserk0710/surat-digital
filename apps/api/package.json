@@ -30,6 +30,8 @@
     "p04:prune-rate-limits": "tsx scripts/prune-auth-rate-limits.ts",
     "p04:verify:http": "tsx scripts/verify-p04-http.ts",
     "p04:verify:integration": "tsx scripts/verify-p04-integration.ts",
+    "p05:seed:dev": "npm run db:verify:migration-role && tsx prisma/seed-organization-dev.ts",
+    "p05:verify": "tsx scripts/verify-p05-organization.ts",
     "seed:test-user": "tsx scripts/seed-test-user.ts"
   },
   "dependencies": {

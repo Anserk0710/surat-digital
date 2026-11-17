@@ -176,6 +176,96 @@ Raw credentials, access tokens, refresh tokens, session cookies, PIN values, and
 | GET    | `/organization/office-divisions` | Relasi divisi-kantor              |
 | GET    | `/organization/job-titles`       | Daftar jabatan                    |
 
+### P05 — Organization Master API
+
+**Base URL:** `/api/v1/organization`
+
+Semua endpoint menggunakan application session cookie dan memerlukan authorization. Mutation juga memerlukan trusted Origin dan signed CSRF token sesuai kontrak P04.
+
+#### Company
+
+| Method | Endpoint         | Permission                      |
+|--------|------------------|---------------------------------|
+| GET    | `/companies`     | System.Configure atau User.View |
+| GET    | `/companies/:id` | System.Configure atau User.View |
+| PATCH  | `/companies/:id` | System.Configure                |
+| DELETE | `/companies/:id` | System.Configure                |
+
+Company creation dilakukan melalui trusted provisioning/seed; tidak tersedia sebagai endpoint tenant-level pada baseline single-company.
+
+#### Office, Division, dan JobTitle
+
+Masing-masing resource menggunakan:
+
+- `GET /{resource}` — list
+- `GET /{resource}/:id` — detail
+- `POST /{resource}` — create
+- `PATCH /{resource}/:id` — update/reactivate
+- `DELETE /{resource}/:id` — deactivate
+
+Resource path adalah `offices`, `divisions`, dan `job-titles`. Read memerlukan `System.Configure` atau `User.View`; mutation memerlukan `System.Configure`.
+
+Office wajib memiliki `code`, `name`, dan `timezone` dengan identifier IANA seperti `Asia/Makassar`. Division dan JobTitle wajib memiliki `code` serta `name`.
+
+#### OfficeDivision
+
+- `GET /office-divisions`
+- `GET /office-divisions/:id`
+- `POST /office-divisions`
+- `PATCH /office-divisions/:id`
+- `DELETE /office-divisions/:id`
+
+Create body:
+
+```json
+{
+  "officeId": "<uuid>",
+  "divisionId": "<uuid>"
+}
+```
+
+Office dan Division harus berada dalam company yang sama dan aktif.
+
+#### EmployeeAssignment
+
+- `GET /assignments`
+- `GET /assignments/:id`
+- `POST /assignments`
+- `PATCH /assignments/:id`
+- `DELETE /assignments/:id`
+
+Read memerlukan `User.View`, `User.Manage`, atau `System.Configure`. Mutation memerlukan `User.Manage`.
+
+Create body:
+
+```json
+{
+  "employeeId": "<uuid>",
+  "officeDivisionId": "<uuid>",
+  "jobTitleId": "<uuid-or-null>",
+  "isPrimary": true,
+  "validFrom": "2026-11-16",
+  "validUntil": null
+}
+```
+
+Employee, OfficeDivision, dan JobTitle harus konsisten dalam satu company. Maksimal satu assignment primary aktif per employee.
+
+#### Response Status
+
+| Status | Makna                                                 |
+|--------|-------------------------------------------------------|
+| 200    | Read, update, atau deactivate berhasil                |
+| 201    | Resource dibuat                                       |
+| 400    | Input atau relasi organisasi tidak valid              |
+| 401    | Application session tidak valid                       |
+| 403    | Permission tidak cukup atau gagal CSRF/Origin          |
+| 404    | Resource tidak ditemukan dalam tenant                 |
+| 409    | Duplicate code, constraint, atau referenced conflict  |
+| 429    | Rate limit P04                                        |
+
+DELETE selalu merupakan soft-deactivation. Tidak ada hard delete pada tenant API P05.
+
 ## 4. Group Policy
 
 | Method | Endpoint                          | Fungsi                     |

@@ -84,6 +84,198 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/organization/companies': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['organizationListCompanies'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/organization/companies/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['organizationGetCompany'];
+    put?: never;
+    post?: never;
+    delete: operations['organizationDeactivateCompany'];
+    options?: never;
+    head?: never;
+    patch: operations['organizationUpdateCompany'];
+    trace?: never;
+  };
+  '/api/v1/organization/offices': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_listOffices'];
+    put?: never;
+    post: operations['OrganizationController_createOffice'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/organization/offices/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_getOffice'];
+    put?: never;
+    post?: never;
+    delete: operations['OrganizationController_deactivateOffice'];
+    options?: never;
+    head?: never;
+    patch: operations['OrganizationController_updateOffice'];
+    trace?: never;
+  };
+  '/api/v1/organization/divisions': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_listDivisions'];
+    put?: never;
+    post: operations['OrganizationController_createDivision'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/organization/divisions/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_getDivision'];
+    put?: never;
+    post?: never;
+    delete: operations['OrganizationController_deactivateDivision'];
+    options?: never;
+    head?: never;
+    patch: operations['OrganizationController_updateDivision'];
+    trace?: never;
+  };
+  '/api/v1/organization/job-titles': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_listJobTitles'];
+    put?: never;
+    post: operations['OrganizationController_createJobTitle'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/organization/job-titles/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_getJobTitle'];
+    put?: never;
+    post?: never;
+    delete: operations['OrganizationController_deactivateJobTitle'];
+    options?: never;
+    head?: never;
+    patch: operations['OrganizationController_updateJobTitle'];
+    trace?: never;
+  };
+  '/api/v1/organization/office-divisions': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_listOfficeDivisions'];
+    put?: never;
+    post: operations['OrganizationController_createOfficeDivision'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/organization/office-divisions/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_getOfficeDivision'];
+    put?: never;
+    post?: never;
+    delete: operations['OrganizationController_deactivateOfficeDivision'];
+    options?: never;
+    head?: never;
+    patch: operations['OrganizationController_updateOfficeDivision'];
+    trace?: never;
+  };
+  '/api/v1/organization/assignments': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_listAssignments'];
+    put?: never;
+    post: operations['OrganizationController_createAssignment'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/organization/assignments/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_getAssignment'];
+    put?: never;
+    post?: never;
+    delete: operations['OrganizationController_deactivateAssignment'];
+    options?: never;
+    head?: never;
+    patch: operations['OrganizationController_updateAssignment'];
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -132,6 +324,156 @@ export interface components {
       /** @example true */
       authenticated: boolean;
       user: components['schemas']['AuthUserDto'];
+    };
+    CompanyResponseDto: {
+      /** Format: uuid */
+      id: string;
+      code: string;
+      name: string;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    UpdateCompanyDto: {
+      name?: string;
+      active?: boolean;
+    };
+    OfficeResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      companyId: string;
+      code: string;
+      name: string;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+      /** @example Asia/Makassar */
+      timezone: string;
+    };
+    CreateOfficeDto: {
+      /** @example HRD */
+      code: string;
+      /** @example Human Resource Development */
+      name: string;
+      /** @example Asia/Makassar */
+      timezone: string;
+    };
+    UpdateOfficeDto: {
+      /** @example HRD */
+      code?: string;
+      /** @example Human Resource Development */
+      name?: string;
+      /** @example Asia/Makassar */
+      timezone?: string;
+      active?: boolean;
+    };
+    DivisionResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      companyId: string;
+      code: string;
+      name: string;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    CreateMasterDto: {
+      /** @example HRD */
+      code: string;
+      /** @example Human Resource Development */
+      name: string;
+    };
+    UpdateMasterDto: {
+      /** @example HRD */
+      code?: string;
+      /** @example Human Resource Development */
+      name?: string;
+      active?: boolean;
+    };
+    JobTitleResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      companyId: string;
+      code: string;
+      name: string;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    OfficeDivisionResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      officeId: string;
+      /** Format: uuid */
+      divisionId: string;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    CreateOfficeDivisionDto: {
+      /** Format: uuid */
+      officeId: string;
+      /** Format: uuid */
+      divisionId: string;
+    };
+    UpdateActiveDto: {
+      active: boolean;
+    };
+    EmployeeAssignmentResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      employeeId: string;
+      /** Format: uuid */
+      officeDivisionId: string;
+      /** Format: uuid */
+      jobTitleId: string | null;
+      isPrimary: boolean;
+      /** Format: date-time */
+      validFrom: string | null;
+      /** Format: date-time */
+      validUntil: string | null;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    CreateAssignmentDto: {
+      /** Format: uuid */
+      employeeId: string;
+      /** Format: uuid */
+      officeDivisionId: string;
+      /** Format: uuid */
+      jobTitleId?: string | null;
+      /** @default false */
+      isPrimary: boolean;
+      /** @example 2026-11-16 */
+      validFrom?: string;
+      /** @example 2027-11-16 */
+      validUntil?: string;
+    };
+    UpdateAssignmentDto: {
+      /** Format: uuid */
+      jobTitleId?: string | null;
+      isPrimary?: boolean;
+      validFrom?: string | null;
+      validUntil?: string | null;
+      active?: boolean;
     };
   };
   responses: never;
@@ -329,6 +671,601 @@ export interface operations {
           [name: string]: unknown;
         };
         content?: never;
+      };
+    };
+  };
+  organizationListCompanies: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['CompanyResponseDto'][];
+        };
+      };
+    };
+  };
+  organizationGetCompany: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['CompanyResponseDto'];
+        };
+      };
+    };
+  };
+  organizationDeactivateCompany: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['CompanyResponseDto'];
+        };
+      };
+    };
+  };
+  organizationUpdateCompany: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateCompanyDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['CompanyResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_listOffices: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeResponseDto'][];
+        };
+      };
+    };
+  };
+  OrganizationController_createOffice: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateOfficeDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_getOffice: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_deactivateOffice: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_updateOffice: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateOfficeDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_listDivisions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DivisionResponseDto'][];
+        };
+      };
+    };
+  };
+  OrganizationController_createDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateMasterDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_getDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_deactivateDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_updateDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateMasterDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_listJobTitles: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['JobTitleResponseDto'][];
+        };
+      };
+    };
+  };
+  OrganizationController_createJobTitle: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateMasterDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['JobTitleResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_getJobTitle: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['JobTitleResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_deactivateJobTitle: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['JobTitleResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_updateJobTitle: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateMasterDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['JobTitleResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_listOfficeDivisions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeDivisionResponseDto'][];
+        };
+      };
+    };
+  };
+  OrganizationController_createOfficeDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateOfficeDivisionDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeDivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_getOfficeDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeDivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_deactivateOfficeDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeDivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_updateOfficeDivision: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateActiveDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['OfficeDivisionResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_listAssignments: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['EmployeeAssignmentResponseDto'][];
+        };
+      };
+    };
+  };
+  OrganizationController_createAssignment: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateAssignmentDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['EmployeeAssignmentResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_getAssignment: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['EmployeeAssignmentResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_deactivateAssignment: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['EmployeeAssignmentResponseDto'];
+        };
+      };
+    };
+  };
+  OrganizationController_updateAssignment: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateAssignmentDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['EmployeeAssignmentResponseDto'];
+        };
       };
     };
   };

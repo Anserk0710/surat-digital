@@ -1,0 +1,64 @@
+{
+  "phaseId": "P05",
+  "date": "2026-11-17T06:29:34.505Z",
+  "integrationExecuted": true,
+  "overallStatus": "PASS",
+  "evidence": [
+    {
+      "id": "P05-SCHEMA",
+      "status": "PASS",
+      "command": "npm run prisma:validate",
+      "executedAt": "2026-11-17T06:27:42.538Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-UNIT",
+      "status": "PASS",
+      "command": "npm exec -- vitest run apps/api/src/organization/organization-validation.test.ts apps/api/src/organization/organization-permissions.test.ts",
+      "executedAt": "2026-11-17T06:27:46.005Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-CONTRACT",
+      "status": "PASS",
+      "command": "npm run api:contract",
+      "executedAt": "2026-11-17T06:27:59.824Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-LINT",
+      "status": "PASS",
+      "command": "npm run lint",
+      "executedAt": "2026-11-17T06:28:05.840Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-TYPECHECK",
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "executedAt": "2026-11-17T06:28:24.115Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-TEST",
+      "status": "PASS",
+      "command": "npm run test",
+      "executedAt": "2026-11-17T06:28:31.824Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-BUILD",
+      "status": "PASS",
+      "command": "npm run build",
+      "executedAt": "2026-11-17T06:28:44.855Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P05-T01-T04",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api p05:verify",
+      "executedAt": "2026-11-17T06:29:34.505Z",
+      "exitCode": 0
+    }
+  ]
+}
