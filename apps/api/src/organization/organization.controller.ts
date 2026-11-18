@@ -11,9 +11,17 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CurrentOrganizationActor } from './current-organization-actor.decorator.js';
 import {
   CreateAssignmentDto,
@@ -156,11 +164,16 @@ export class OrganizationController {
   @Delete('offices/:id')
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
+  @ApiQuery({ name: 'permanent', required: false, type: Boolean })
   @ApiOkResponse({ type: OfficeResponseDto })
   async deactivateOffice(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
+    @Query('permanent') permanent?: string,
   ) {
+    if (permanent === 'true') {
+      return this.service.deleteMasterPermanently(actor, 'office', id);
+    }
     return this.service.deactivateMaster(actor, 'office', id);
   }
 
@@ -211,11 +224,16 @@ export class OrganizationController {
   @Delete('divisions/:id')
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
+  @ApiQuery({ name: 'permanent', required: false, type: Boolean })
   @ApiOkResponse({ type: DivisionResponseDto })
   async deactivateDivision(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
+    @Query('permanent') permanent?: string,
   ) {
+    if (permanent === 'true') {
+      return this.service.deleteMasterPermanently(actor, 'division', id);
+    }
     return this.service.deactivateMaster(actor, 'division', id);
   }
 
@@ -266,11 +284,16 @@ export class OrganizationController {
   @Delete('job-titles/:id')
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
+  @ApiQuery({ name: 'permanent', required: false, type: Boolean })
   @ApiOkResponse({ type: JobTitleResponseDto })
   async deactivateJobTitle(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
+    @Query('permanent') permanent?: string,
   ) {
+    if (permanent === 'true') {
+      return this.service.deleteMasterPermanently(actor, 'jobTitle', id);
+    }
     return this.service.deactivateMaster(actor, 'jobTitle', id);
   }
 
@@ -321,11 +344,16 @@ export class OrganizationController {
   @Delete('office-divisions/:id')
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
+  @ApiQuery({ name: 'permanent', required: false, type: Boolean })
   @ApiOkResponse({ type: OfficeDivisionResponseDto })
   async deactivateOfficeDivision(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
+    @Query('permanent') permanent?: string,
   ) {
+    if (permanent === 'true') {
+      return this.service.deleteOfficeDivisionPermanently(actor, id);
+    }
     return this.service.updateOfficeDivision(actor, id, false);
   }
 
@@ -376,11 +404,16 @@ export class OrganizationController {
   @Delete('assignments/:id')
   @HttpCode(HttpStatus.OK)
   @Permissions('User.Manage')
+  @ApiQuery({ name: 'permanent', required: false, type: Boolean })
   @ApiOkResponse({ type: EmployeeAssignmentResponseDto })
   async deactivateAssignment(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
+    @Query('permanent') permanent?: string,
   ) {
+    if (permanent === 'true') {
+      return this.service.deleteAssignmentPermanently(actor, id);
+    }
     return this.service.deactivateAssignment(actor, id);
   }
 }

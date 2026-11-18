@@ -38,7 +38,8 @@ export class AuthService {
   ) {}
 
   async login(input: LoginRequestDto) {
-    const trustedCompanyId = this.config.get<string>('AUTH_DEFAULT_COMPANY_ID');
+    const trustedCompanyId =
+      this.config.get<string>('AUTH_DEFAULT_COMPANY_ID')?.trim() || undefined;
 
     const identity = await this.identityResolver.resolve(input.identifier, trustedCompanyId);
 

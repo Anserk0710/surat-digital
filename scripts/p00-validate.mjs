@@ -328,14 +328,21 @@ function main() {
     }),
   ];
 
+  const sourceHashes = {
+    srs: sha256(srsText),
+    decisions: sha256(decisionText),
+    roadmap: sha256(roadmapText),
+    rtm: sha256(rtmText),
+  };
+  const baselineApproved =
+    baseline.baselineVersion === '1.6' &&
+    baseline.baselineStatus === 'FROZEN' &&
+    baseline.approval?.status === 'APPROVED' &&
+    Object.entries(sourceHashes).every(([key, hash]) => baseline.sourceHashes?.[key] === hash);
+
   const coverage = {
     baselineVersion: baseline.baselineVersion,
-    sourceHashes: {
-      srs: sha256(srsText),
-      decisions: sha256(decisionText),
-      roadmap: sha256(roadmapText),
-      rtm: sha256(rtmText),
-    },
+    sourceHashes,
     totalRequirements: requirements.length,
     totalMust: mustRequirements.length,
     totalShould: mapped.filter((item) => item.priority === 'Should').length,
@@ -346,6 +353,9 @@ function main() {
     pendingExplicitMapping: mapped
       .filter((item) => item.mappingSource !== 'EXPLICIT')
       .map((item) => item.id),
+    pendingRequirementReview: mapped
+      .filter((item) => overrides.requirements[item.id]?.reviewed !== true)
+      .map((item) => item.id),
   };
 
   writeJson(paths.requirements, mapped);
@@ -353,6 +363,7 @@ function main() {
   writeJson(paths.evidence, {
     phaseId: 'P00',
     baselineVersion: baseline.baselineVersion,
+    baselineApproved,
     verification,
   });
 
@@ -366,8 +377,9 @@ function main() {
   for (const test of verification) {
     console.log(`${test.testId}: ${test.status}`);
   }
+  console.log(`P00-BASELINE: ${baselineApproved ? 'PASS' : 'FAIL'}`);
 
-  const passed = verification.every((test) => test.status === 'PASS');
+  const passed = baselineApproved && verification.every((test) => test.status === 'PASS');
 
   if (!passed) {
     process.exitCode = 1;

@@ -170,6 +170,350 @@
         "tags": ["Auth"]
       }
     },
+    "/api/v1/group-policy/me/effective-permissions": {
+      "get": {
+        "operationId": "groupPolicyMyEffectivePermissions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EffectivePermissionResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/permissions": {
+      "get": {
+        "operationId": "groupPolicyListPermissions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PermissionCatalogResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups": {
+      "get": {
+        "operationId": "groupPolicyListGroups",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GroupResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      },
+      "post": {
+        "operationId": "groupPolicyCreateGroup",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups/{groupId}": {
+      "get": {
+        "operationId": "groupPolicyGetGroup",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      },
+      "patch": {
+        "operationId": "groupPolicyUpdateGroup",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      },
+      "delete": {
+        "operationId": "groupPolicyDeactivateGroup",
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups/{groupId}/status": {
+      "patch": {
+        "operationId": "groupPolicySetGroupActive",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetGroupActiveDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups/{groupId}/members": {
+      "get": {
+        "operationId": "groupPolicyListMembers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GroupMemberResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      },
+      "post": {
+        "operationId": "groupPolicyAddMember",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddGroupMemberDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemberResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups/{groupId}/members/{employeeId}": {
+      "delete": {
+        "operationId": "groupPolicyRemoveMember",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupMemberResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups/{groupId}/permissions": {
+      "get": {
+        "operationId": "groupPolicyListGroupPermissions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GroupPermissionResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      },
+      "post": {
+        "operationId": "groupPolicySetPermission",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetGroupPermissionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupPermissionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
+    "/api/v1/group-policy/groups/{groupId}/permissions/{permissionCode}": {
+      "delete": {
+        "operationId": "groupPolicyRemovePermission",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupPermissionResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
     "/api/v1/organization/companies": {
       "get": {
         "operationId": "organizationListCompanies",
@@ -355,7 +699,16 @@
       },
       "delete": {
         "operationId": "OrganizationController_deactivateOffice",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -467,7 +820,16 @@
       },
       "delete": {
         "operationId": "OrganizationController_deactivateDivision",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -579,7 +941,16 @@
       },
       "delete": {
         "operationId": "OrganizationController_deactivateJobTitle",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -691,7 +1062,16 @@
       },
       "delete": {
         "operationId": "OrganizationController_deactivateOfficeDivision",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -803,7 +1183,16 @@
       },
       "delete": {
         "operationId": "OrganizationController_deactivateAssignment",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -817,6 +1206,177 @@
           }
         },
         "tags": ["Organization"]
+      }
+    },
+    "/api/v1/users/register": {
+      "post": {
+        "operationId": "usersRegister",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "accepted": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "operationId": "usersList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
+      }
+    },
+    "/api/v1/users/me/profile": {
+      "get": {
+        "operationId": "usersMyProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
+      },
+      "patch": {
+        "operationId": "usersUpdateMyProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
+      }
+    },
+    "/api/v1/users/{id}/status": {
+      "patch": {
+        "operationId": "usersSetStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
+      }
+    },
+    "/api/v1/users/{id}": {
+      "delete": {
+        "operationId": "usersDelete",
+        "parameters": [
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
+      }
+    },
+    "/api/v1/users/import": {
+      "post": {
+        "operationId": "usersImportExcel",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportResultDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Users"]
       }
     }
   },
@@ -946,6 +1506,191 @@
           }
         },
         "required": ["authenticated", "user"]
+      },
+      "EffectivePermissionResponseDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string",
+            "enum": ["ALLOW", "DENY"]
+          }
+        },
+        "required": ["code", "decision"]
+      },
+      "PermissionCatalogResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": ["id", "code", "name", "description"]
+      },
+      "GroupResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "companyId",
+          "code",
+          "name",
+          "description",
+          "active",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateGroupDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "FINANCE_APPROVERS"
+          },
+          "name": {
+            "type": "string",
+            "example": "Finance Approvers"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["code", "name"]
+      },
+      "UpdateGroupDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SetGroupActiveDto": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": ["active"]
+      },
+      "GroupMemberResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "groupId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": ["id", "employeeId", "groupId", "active"]
+      },
+      "AddGroupMemberDto": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": ["employeeId"]
+      },
+      "GroupPermissionResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "groupId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "permissionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "effect": {
+            "type": "string",
+            "enum": ["ALLOW", "DENY"]
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": ["id", "groupId", "permissionId", "effect", "active"]
+      },
+      "SetGroupPermissionDto": {
+        "type": "object",
+        "properties": {
+          "permissionCode": {
+            "type": "string",
+            "example": "Document.Download"
+          },
+          "effect": {
+            "type": "string",
+            "enum": ["ALLOW", "DENY"]
+          }
+        },
+        "required": ["permissionCode", "effect"]
       },
       "CompanyResponseDto": {
         "type": "object",
@@ -1323,6 +2068,58 @@
             "type": "boolean"
           }
         }
+      },
+      "UserResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employeeNumber": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PENDING", "ACTIVE", "SUSPENDED", "INACTIVE"]
+          }
+        },
+        "required": ["id", "employeeNumber", "username", "fullName", "email", "status"]
+      },
+      "ImportErrorDto": {
+        "type": "object",
+        "properties": {
+          "row": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": ["row", "message"]
+      },
+      "ImportResultDto": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "number"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportErrorDto"
+            }
+          }
+        },
+        "required": ["created", "errors"]
       }
     }
   }

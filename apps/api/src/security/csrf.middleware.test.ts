@@ -48,6 +48,10 @@ function testApplication(secure = false) {
     res.json({ authenticated: true });
   });
 
+  app.post('/api/v1/group-policy/test-csrf', (_req, res) => {
+    res.json({ accepted: true });
+  });
+
   return app;
 }
 
@@ -100,6 +104,18 @@ describe('P04-T03 CSRF and Origin protection', () => {
       .set('Origin', origin)
       .set('X-CSRF-Token', token)
       .set('Cookie', csrfCookie.split(';', 1)[0]!)
+      .expect(200);
+  });
+
+  it('sends CSRF cookie to Group Policy mutation paths', async () => {
+    const agent = request.agent(testApplication(false));
+    const bootstrap = await agent.get('/api/v1/auth/csrf').expect(200);
+    const csrfToken = bootstrap.body.csrfToken as string;
+
+    await agent
+      .post('/api/v1/group-policy/test-csrf')
+      .set('Origin', origin)
+      .set('X-CSRF-Token', csrfToken)
       .expect(200);
   });
 

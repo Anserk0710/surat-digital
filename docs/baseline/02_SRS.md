@@ -2,7 +2,13 @@
 
 ## Surat Digital
 
-**Versi:** 1.3 — Implementation baseline
+**Versi:** 1.6 — Implementation baseline Backend & Frontend terpadu
+
+## 0. Cakupan implementasi antarmuka — v1.6
+
+Requirement Must untuk alur pengguna dinyatakan terpenuhi pada produk hanya setelah endpoint **dan** UI React terintegrasi tersedia, dengan evidence browser yang sesuai. Tailwind CSS dan shadcn/ui adalah pilihan implementasi presentasi, bukan sumber aturan bisnis atau permission. Pemetaan seluruh layar ada pada P00–P59 di roadmap dan RTM.
+
+Evidence historis P00–P06 dapat membuktikan fondasi/API tanpa membuktikan frontend baru. Kekurangan UI fase itu harus diselesaikan dan diuji sebagai gap fase yang sama sebelum checkpoint terkait. Registrasi/aktivasi/import pengguna dan profil membutuhkan API nyata pada P05; dashboard pada P29, dan konfigurasi admin pada phase terkait. Pengujian mock tidak menggantikan integrasi API. Requirement produk dan prioritas v1.3 tidak diubah oleh penjadwalan ini.
 
 ## 1. Tujuan dokumen
 

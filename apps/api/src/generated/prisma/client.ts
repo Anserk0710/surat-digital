@@ -106,3 +106,8 @@ export type AuthSession = Prisma.AuthSessionModel
  * 
  */
 export type AuthRateLimitBucket = Prisma.AuthRateLimitBucketModel
+/**
+ * Model GroupPolicyAudit
+ * 
+ */
+export type GroupPolicyAudit = Prisma.GroupPolicyAuditModel

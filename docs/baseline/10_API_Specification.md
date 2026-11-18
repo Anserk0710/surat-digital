@@ -2,10 +2,16 @@
 
 ## NestJS REST API — Surat Digital
 
-**Versi:** 1.3 — OpenAPI-first contract baseline  
+**Versi:** 1.6 — OpenAPI-first contract terpadu Backend & Frontend  
 **Base path:** `/api/v1`
 
 > Endpoint di bawah adalah baseline kontrak v1.3. **OpenAPI yang dihasilkan NestJS menjadi source of truth executable** untuk DTO, parameter, pagination, response, dan error schema. TypeScript client/types frontend digenerate dari OpenAPI dan tidak dipelihara ganda secara manual.
+
+## 0. Integrasi `apps/web` — v1.6
+
+React memanggil NestJS `/api/v1` dengan `credentials: include` dan header CSRF untuk mutation sesuai kontrak P04. TypeScript client/types digenerate dari OpenAPI dalam CI; status 401 memicu pemulihan sesi/login, 403 menampilkan akses ditolak, dan state mutation tidak dioptimistiskan jika server menolak. Permission dari `/auth/me` hanya mengatur affordance UI, tidak menggantikan guard server.
+
+Dalam P05 (registrasi/aktivasi/import/profil), P29 (ringkasan dashboard), serta P25/P32 (konfigurasi/audit), lengkapi OpenAPI dan implementasi API yang diperlukan layar terkait jika belum tersedia. Cantumkan DTO, permission, pagination, error schema, dan negative tests. Dokumentasi endpoint konseptual bukan bukti endpoint telah diimplementasikan; UI yang memakai mock belum memenuhi exit criteria integrasi. Gap backend dan frontend dicatat pada P yang sama dalam backlog/evidence; P03–P06 historis tidak dianggap sudah memiliki UI tanpa bukti.
 
 ## 1. Konvensi API
 
@@ -58,8 +64,9 @@ Response error contoh:
 | POST   | `/auth/logout`          | Logout/revoke session          |
 | POST   | `/auth/refresh`         | Refresh session jika digunakan |
 | GET    | `/auth/me`              | Profil dan permission efektif  |
-| POST   | `/auth/register`        | Registrasi mandiri             |
-| POST   | `/auth/forgot-password` | Proses reset password          |
+| POST   | `/users/register`       | Registrasi mandiri P05         |
+
+Reset password merupakan kontrak fase lanjutan; belum ada endpoint executable dalam P00–P06.
 
 Untuk login Username/NIP, backend melakukan lookup aman ke akun yang
 terkait. Jangan mengembalikan informasi apakah NIP/email tertentu
@@ -152,7 +159,7 @@ Invalid CSRF token: `403 Forbidden`, code `CSRF_INVALID`.
 - Suspension and revoke-all invalidate application sessions immediately.
 - Access tokens and refresh tokens belonging to Supabase Auth are never included in browser API responses.
 - Application session refresh preserves the original absolute expiration time.
-- Suspension/revoke-all are internal application services until an authorized administration endpoint is introduced.
+- Suspend/activate pengguna tersedia melalui `PATCH /users/:id/status` dengan `User.Manage`; sesi aktif dicabut saat status tidak lagi `ACTIVE`.
 
 #### Security Logging
 
@@ -162,19 +169,20 @@ Raw credentials, access tokens, refresh tokens, session cookies, PIN values, and
 
 ## 3. User dan organisasi
 
-| Method | Endpoint                         | Fungsi                            |
-|--------|----------------------------------|-----------------------------------|
-| GET    | `/users`                         | Daftar pengguna sesuai permission |
-| POST   | `/users/import`                  | Import Excel                      |
-| POST   | `/users`                         | Buat pengguna                     |
-| GET    | `/users/:id`                     | Detail pengguna                   |
-| PATCH  | `/users/:id`                     | Update pengguna                   |
-| POST   | `/users/:id/activate`            | Aktivasi                          |
-| POST   | `/users/:id/suspend`             | Suspend                           |
-| GET    | `/organization/offices`          | Daftar kantor                     |
-| GET    | `/organization/divisions`        | Daftar divisi                     |
-| GET    | `/organization/office-divisions` | Relasi divisi-kantor              |
-| GET    | `/organization/job-titles`       | Daftar jabatan                    |
+| Method | Endpoint                         | Fungsi dan izin                    |
+|--------|----------------------------------|------------------------------------|
+| POST   | `/users/register`                | Registrasi publik; status `PENDING` |
+| GET    | `/users`                         | Daftar pengguna; `User.View`/`User.Manage` |
+| GET    | `/users/me/profile`              | Profil sendiri; sesi aktif          |
+| PATCH  | `/users/me/profile`              | Ubah nama profil sendiri            |
+| PATCH  | `/users/:id/status`              | Aktivasi/suspend; `User.Manage`     |
+| POST   | `/users/import`                  | Import `.xlsx`; `User.Manage`       |
+| GET    | `/organization/offices`          | Daftar kantor                      |
+| GET    | `/organization/divisions`        | Daftar divisi                      |
+| GET    | `/organization/office-divisions` | Relasi divisi-kantor               |
+| GET    | `/organization/job-titles`       | Daftar jabatan                     |
+
+Import membatasi file `.xlsx` sampai 2 MB dan 1000 baris data. Respons memuat jumlah `created` dan daftar `errors` per nomor baris. Aktivasi pengguna hasil import mengirim undangan Supabase Auth. Kontrak request/response executable ada di `packages/api-contracts/openapi.json`.
 
 ### P05 — Organization Master API
 
@@ -268,19 +276,87 @@ DELETE selalu merupakan soft-deactivation. Tidak ada hard delete pada tenant API
 
 ## 4. Group Policy
 
-| Method | Endpoint                          | Fungsi                     |
-|--------|-----------------------------------|----------------------------|
-| GET    | `/groups`                         | Daftar group               |
-| POST   | `/groups`                         | Membuat group              |
-| GET    | `/groups/:id`                     | Detail group               |
-| PATCH  | `/groups/:id`                     | Update group               |
-| POST   | `/groups/:id/members`             | Tambah anggota             |
-| DELETE | `/groups/:id/members/:employeeId` | Nonaktifkan membership     |
-| PUT    | `/groups/:id/permissions`         | Atur permission Allow/Deny |
-| GET    | `/permissions`                    | Katalog permission         |
+### P06 — Group Policy API
 
-Penghapusan membership sebaiknya berupa revoke/nonaktifkan, bukan
-menghapus jejak historis.
+**Base URL:** `/api/v1/group-policy`
+
+Seluruh endpoint memerlukan valid application session. Mutation mengikuti CORS, trusted Origin, CSRF, cookie policy, dan rate-limiting policy P04. Read-only Group Policy menerima `Group.View` atau `Group.Manage`; mutation mensyaratkan `Group.Manage` dan `System.Configure`. Evaluasi selalu menggunakan DENY precedence dan Default Deny.
+
+#### Effective Permissions
+
+`GET /me/effective-permissions` mengembalikan policy efektif employee yang sedang login dan tidak menerima employee ID atau company ID dari client.
+
+```json
+[
+  { "code": "Group.View", "decision": "ALLOW" },
+  { "code": "Group.Manage", "decision": "DENY" }
+]
+```
+
+#### Permission Catalog
+
+`GET /permissions` mengembalikan permission aktif beserta code, name, dan description. Katalog bersifat read-only untuk tenant.
+
+#### Group Master
+
+- `GET /groups`
+- `GET /groups/:groupId`
+- `POST /groups`
+- `PATCH /groups/:groupId`
+- `PATCH /groups/:groupId/status`
+- `DELETE /groups/:groupId`
+
+```json
+{
+  "code": "FINANCE_APPROVERS",
+  "name": "Finance Approvers",
+  "description": "Group untuk pengelola keuangan"
+}
+```
+
+DELETE merupakan soft-deactivation.
+
+#### Group Membership
+
+- `GET /groups/:groupId/members`
+- `POST /groups/:groupId/members`
+- `DELETE /groups/:groupId/members/:employeeId`
+
+```json
+{ "employeeId": "<uuid>" }
+```
+
+Employee harus aktif dan berada dalam company yang sama dengan group.
+
+#### Group Permissions
+
+- `GET /groups/:groupId/permissions`
+- `POST /groups/:groupId/permissions`
+- `DELETE /groups/:groupId/permissions/:permissionCode`
+
+```json
+{
+  "permissionCode": "Document.Download",
+  "effect": "DENY"
+}
+```
+
+Set menggunakan upsert dan permission harus aktif di katalog. Delete menonaktifkan policy, bukan menghapus baris fisik.
+
+#### Common HTTP Responses
+
+| Status | Makna                                                    |
+|--------|----------------------------------------------------------|
+| 200    | Read, update, atau deactivate berhasil                   |
+| 201    | Resource dibuat atau policy/membership diaktifkan         |
+| 400    | Input atau relasi tidak valid                            |
+| 401    | Session tidak valid                                      |
+| 403    | Effective permission kurang atau CSRF/Origin gagal       |
+| 404    | Resource tidak tersedia dalam tenant                     |
+| 409    | Unique constraint atau integrity conflict                |
+| 429    | Request rate limited                                     |
+
+Tenant isolation diterapkan server-side; client tidak dapat memilih company lain melalui request body.
 
 ## 5. Document creation
 

@@ -1,0 +1,24 @@
+{
+  "version": "1.6",
+  "note": "P00 design trace. Planned screens are not implementation evidence.",
+  "domains": {
+    "FR-AUTH": { "screen": "Login and session", "route": "/login", "permission": "Public or authenticated", "states": "loading, invalid credentials, expired session", "uat": "P03-FE-T01; P04-FE-T01" },
+    "FR-USER": { "screen": "Registration, users and profile", "route": "/register, /users, /profile", "permission": "Public; User.View; User.Manage; owner", "states": "pending, active, suspended, row errors, denied", "uat": "P05-FE-T01" },
+    "FR-ORG": { "screen": "Organization", "route": "/organization", "permission": "System.Configure or User.View/Manage", "states": "loading, empty, invalid relation, denied", "uat": "P05-FE-T01" },
+    "FR-IAM": { "screen": "Group Policy", "route": "/groups", "permission": "Group.View or Group.Manage", "states": "allow, deny, default deny, changed membership", "uat": "P06-FE-T01" },
+    "FR-DOC": { "screen": "Document wizard and review", "route": "/documents/new", "permission": "Document.Create", "states": "draft, processing, reviewed, locked, failed", "uat": "P08–P16-FE-T01" },
+    "FR-FORM": { "screen": "Form Builder", "route": "/forms", "permission": "Form.Manage", "states": "draft, published, validation error", "uat": "P39-FE-T01" },
+    "FR-WF": { "screen": "Tasks and workflow", "route": "/tasks", "permission": "Participant-specific", "states": "knowing, active approver, rejected, withdrawn, recovery", "uat": "P14–P21-FE-T01" },
+    "FR-SIG": { "screen": "Signature action and verification", "route": "/tasks, /verify", "permission": "Signer or public verification", "states": "PIN error, signed, tampered", "uat": "P22–P24-FE-T01" },
+    "FR-NUM": { "screen": "Numbering and issuance", "route": "/documents/:id", "permission": "Document access", "states": "reserved, finalizing, issued, failed", "uat": "P25–P27-FE-T01" },
+    "FR-NOT": { "screen": "Notifications", "route": "/notifications", "permission": "Authenticated", "states": "unread, read, delivery failure", "uat": "P29–P30-FE-T01" },
+    "FR-ARC": { "screen": "Archive", "route": "/archive", "permission": "Archive.View", "states": "loading, empty, denied", "uat": "P31-FE-T01" },
+    "FR-AUD": { "screen": "Audit", "route": "/audit", "permission": "Audit.View or Audit.Export", "states": "filters, empty, denied", "uat": "P32-FE-T01" },
+    "FR-REL": { "screen": "No direct screen: reliability invariant", "route": "N/A", "permission": "Server", "states": "retry and dead letter are visible in owning flow", "uat": "P11-FE-T01" },
+    "FR-FILE": { "screen": "Document upload/review", "route": "/documents/new", "permission": "Document.Create", "states": "scanning, quarantined, failed", "uat": "P09–P13-FE-T01" },
+    "FR-API": { "screen": "Cross-screen API/session contract", "route": "All authenticated screens", "permission": "Server enforced", "states": "401, 403, validation error", "uat": "P02–P06-FE-T01" },
+    "FR-EXT": { "screen": "External Signing", "route": "/external/sign/:token", "permission": "Purpose-bound capability", "states": "expired, challenged, signed", "uat": "P49–P51-FE-T01" },
+    "FR-VER": { "screen": "Public verification", "route": "/verify/:token", "permission": "Public metadata allowlist", "states": "valid, revoked, unknown", "uat": "P28-FE-T01; P51-FE-T01" },
+    "FR-BILL": { "screen": "Billing and credits", "route": "/billing", "permission": "Billing permission", "states": "available, reserved, insufficient, expired", "uat": "P52–P59-FE-T01" }
+  }
+}

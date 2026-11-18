@@ -71,4 +71,33 @@ describe('I01 OpenAPI generated contract', () => {
 
     expect(document.paths['/api/v1/auth/refresh']?.post?.responses).toHaveProperty('429');
   });
+
+  it.each([
+    ['/api/v1/group-policy/groups', 'get'],
+    ['/api/v1/group-policy/groups', 'post'],
+    ['/api/v1/group-policy/permissions', 'get'],
+    ['/api/v1/group-policy/me/effective-permissions', 'get'],
+    ['/api/v1/group-policy/groups/{groupId}/members', 'post'],
+    ['/api/v1/group-policy/groups/{groupId}/permissions', 'post'],
+  ])('documents P06 endpoint %s %s', (endpoint, method) => {
+    const specification = readSpecification();
+
+    expect(specification.paths[endpoint]?.[method]).toBeDefined();
+  });
+
+  it.each([
+    'CreateGroupDto',
+    'UpdateGroupDto',
+    'SetGroupActiveDto',
+    'AddGroupMemberDto',
+    'SetGroupPermissionDto',
+    'GroupResponseDto',
+    'GroupMemberResponseDto',
+    'GroupPermissionResponseDto',
+    'EffectivePermissionResponseDto',
+  ])('generates P06 schema %s', (schema) => {
+    const specification = readSpecification();
+
+    expect(specification.components.schemas).toHaveProperty(schema);
+  });
 });

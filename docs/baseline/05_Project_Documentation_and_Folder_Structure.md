@@ -2,14 +2,14 @@
 
 ## Surat Digital
 
-**Versi:** 1.3  
+**Versi:** 1.6  
 **Package manager:** npm
 
 ## 1. Rekomendasi repository
 
 Gunakan monorepo berbasis npm workspaces. Frontend, API, worker, shared packages, Prisma schema/migrations, dan dokumentasi berada dalam satu repository, tetapi deployment dilakukan secara terpisah.
 
-- `apps/web`: React, dibangun dan diunggah ke cPanel.
+- `apps/web`: React + Tailwind CSS + shadcn/ui, dibangun dan diunggah ke cPanel.
 - `apps/api`: NestJS API, dideploy ke Vercel.
 - `apps/document-worker`: worker/container pemrosesan dokumen.
 - `packages/*`: shared types, validation, dan API contracts.
@@ -39,6 +39,7 @@ surat-digital/
 │   │   │   ├── app/
 │   │   │   ├── assets/
 │   │   │   ├── components/
+│   │   │   │   ├── ui/           # komponen shadcn/ui yang dikurasi
 │   │   │   │   ├── common/
 │   │   │   │   ├── document/
 │   │   │   │   ├── workflow/
@@ -50,9 +51,10 @@ surat-digital/
 │   │   │   ├── routes/
 │   │   │   ├── services/
 │   │   │   ├── stores/
-│   │   │   ├── styles/
+│   │   │   ├── styles/       # token desain dan gaya global Tailwind
 │   │   │   └── types/
 │   │   ├── tests/
+│   │   ├── components.json  # konfigurasi komponen shadcn/ui
 │   │   ├── .env.example
 │   │   └── package.json
 │   │
@@ -222,6 +224,9 @@ Contoh scripts root yang dapat disesuaikan:
 - Tidak melakukan query langsung ke tabel aplikasi menggunakan Supabase Data API.
 - Tidak menyimpan database URL, service role key, Blob token, atau secret.
 - Menampilkan status processing, preview, dan review file.
+- React menggunakan Tailwind CSS dan shadcn/ui. Tempatkan konfigurasi Tailwind, token desain global, dan komponen primitive hasil penambahan shadcn/ui dalam `apps/web`; komponen domain bisnis tetap dipisahkan dari primitive UI.
+- Gunakan TypeScript API client/types yang digenerate dari OpenAPI. Hindari DTO duplikat manual; pembaruan kontrak diuji di CI.
+- Sediakan route protection/CSRF/session handling, respons 401/403, keyboard/mobile UX, serta browser integration tests untuk alur inti. Jangan jadikan permission guard di browser sebagai kontrol akses utama.
 
 ### Backend (`apps/api`)
 
@@ -281,7 +286,7 @@ VITE_API_BASE_URL=
 VITE_APP_NAME=Surat Digital
 ```
 
-Frontend tidak memerlukan Supabase URL/key untuk login pada desain v1.2 karena seluruh auth flow melewati NestJS.
+Frontend tidak memerlukan Supabase URL/key untuk login karena seluruh auth flow melewati NestJS. Tailwind CSS dan shadcn/ui tidak membutuhkan secret frontend; pin versi saat implementasi di `package-lock.json`.
 
 ### Backend API
 

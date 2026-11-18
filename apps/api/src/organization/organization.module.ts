@@ -1,14 +1,14 @@
-import { Module } from "@nestjs/common";
-import { AuthModule } from "../auth/auth.module.js";
-import { OrganizationController } from "./organization.controller.js";
-import { OrganizationService } from "./organization.service.js";
-import { OrganizationAccessGuard } from "./organization-access.guard.js";
+import { Module } from '@nestjs/common';
+
+import { AuthModule } from '../auth/auth.module.js';
+import { PolicyModule } from '../policy/policy.module.js';
+import { OrganizationController } from './organization.controller.js';
+import { OrganizationService } from './organization.service.js';
 
 @Module({
-    imports: [AuthModule],
-    controllers: [OrganizationController],
-    providers: [OrganizationService, OrganizationAccessGuard],
-    exports: [OrganizationService],
+  imports: [AuthModule, PolicyModule],
+  controllers: [OrganizationController],
+  providers: [OrganizationService],
+  exports: [OrganizationService],
 })
-
-export class OrganizationModule { }
+export class OrganizationModule {}

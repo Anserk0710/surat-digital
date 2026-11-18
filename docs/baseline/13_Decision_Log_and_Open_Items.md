@@ -2,7 +2,7 @@
 
 ## Surat Digital
 
-**Versi:** 1.3
+**Versi:** 1.6
 
 ## 1. Tujuan
 
@@ -103,6 +103,15 @@ produk tidak berubah tanpa jejak.
 | D-087 | Launch pricing | Lite 100/Rp49k, Starter 300/Rp129k, Business 1000/Rp349k, Business+ 3000/Rp899k, Enterprise custom; subject to validation |
 | D-088 | Subscription expiry | Tidak otomatis membuat dokumen issued menjadi invalid pada public verification |
 
+## 2A. Keputusan roadmap terpadu v1.6
+
+| ID | Area | Keputusan |
+|---|---|---|
+| D-089 | Frontend stack | React memakai Tailwind CSS dan shadcn/ui; dependency dipin di npm lockfile saat implementasi. |
+| D-090 | Roadmap unified | P00–P59 tetap satu jalur; setiap phase mencakup Backend & Frontend dan enam bagian wajib. Evidence P00–P06 tetap historis. |
+| D-091 | Phase completion | Phase hanya Done setelah test Backend dan Frontend lulus; mock tidak menggantikan browser/API integration. |
+| D-092 | Phase estimate | Setiap P00–P59 diestimasi satu hari pengerjaan penuh; bila exit criteria belum lulus, phase tetap terbuka. |
+
 ## 3. Keputusan ERD terbaru
 
 | ID     | Area                    | Keputusan                    |
@@ -165,6 +174,14 @@ Keputusan yang sudah ditutup pada v1.2 tidak lagi menjadi open item. Khusus malw
 
 Status yang digunakan: `Open`, `POC`, `Decided`, `Deferred`, `Closed`. Setiap item yang berubah menjadi `Decided/Closed` wajib menunjuk Decision/ADR dan update RTM bila memengaruhi requirement.
 
+## 5A. Open item integrasi web v1.6
+
+| ID | Pertanyaan | Priority | Owner | Status | Blocker |
+|---|---|---|---|---|---|
+| O-029 | Apakah API registrasi/aktivasi/import/profil sudah lengkap dan diuji? | P1 | Backend/Product | Open | P05 dan UAT onboarding |
+| O-030 | Endpoint ringkasan dashboard, numbering/system settings, serta permission per layar yang diperlukan | P1 | Backend/Product | Open | P25/P29/P32 |
+| O-031 | Desain final token visual, branding, dan set komponen shadcn/ui yang dipakai | P2 | Product/Frontend | Open | P01 sebelum visual sign-off |
+
 ## 6. Change control
 
 Setiap perubahan keputusan:
@@ -191,3 +208,5 @@ Setiap perubahan keputusan:
 | 1.1   | Revisi spesifikasi | Supabase + Prisma, npm, RLS/transaction context, document processing, OCR, dan worker |
 | 1.2   | Architecture & Integrity Hardening | Auth gateway, manifest, atomic submit, outbox, numbering/finalization order, workflow recovery, malware mandatory, OpenAPI, NFR/RTM |
 | 1.3   | Credit Billing & External Signing | Document Credits, pricing baseline, credit ledger/reservation, QR Verification Must, External Signing, rollover/top-up/trial |
+| 1.5   | Rencana sementara | Jalur frontend tambahan yang digantikan oleh roadmap terpadu v1.6 |
+| 1.6   | Unified phase execution | P00–P59 masing-masing Backend & Frontend dan estimasi satu hari penuh; evidence historis dipertahankan |

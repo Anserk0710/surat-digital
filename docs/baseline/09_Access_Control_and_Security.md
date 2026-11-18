@@ -42,6 +42,51 @@ Permission efektif:
 
 Jabatan tidak otomatis menentukan permission.
 
+### P06 — Group Policy Implementation
+
+#### Permission naming convention
+
+Permission menggunakan format `Domain.Action` dengan aturan berikut:
+
+1. Domain menggunakan PascalCase dan menjelaskan modul atau sumber daya.
+2. Action menggunakan PascalCase dan menjelaskan kemampuan spesifik.
+3. Nama permission bersifat case-sensitive.
+4. Setiap permission harus terdaftar pada katalog permission backend.
+5. Tidak ada wildcard permission, misalnya `Document.*`.
+6. Tidak ada inheritance implisit: `Document.ViewAll` tidak otomatis memberikan `Document.DownloadAll`.
+7. JobTitle tidak memberikan permission otomatis.
+8. Permission baru hanya ditambahkan melalui migration/seed katalog tepercaya.
+
+Contoh: `Group.View` membaca konfigurasi Group Policy; `Group.Manage` mengelolanya dengan otorisasi tambahan; `User.View` dan `User.Manage` mengatur akses pengguna; `Document.ViewAll` dan `Document.DownloadAll` adalah kemampuan terpisah; serta `System.Configure` mengubah konfigurasi sistem.
+
+#### Effective permission evaluation
+
+Untuk setiap permission, backend memvalidasi application session dan employee aktif, lalu mengambil membership aktif pada company employee serta policy aktif dari group dan permission aktif. Satu atau lebih `DENY` menghasilkan `DENY`; tanpa `DENY`, satu atau lebih `ALLOW` menghasilkan `ALLOW`; tanpa policy yang cocok hasilnya `DENY`.
+
+DENY precedence berlaku per permission. DENY pada `Group.View` tidak otomatis membatalkan `User.View`. Satu employee dapat berada dalam beberapa group aktif dan semua policy digabung tanpa bergantung pada urutan group atau query.
+
+#### Policy management authorization
+
+- Membaca group memerlukan `Group.View` atau `Group.Manage`.
+- Membuat, memperbarui, mengaktifkan, atau menonaktifkan group, membership, dan policy memerlukan `Group.Manage` serta `System.Configure`.
+- Semua mutation dibatasi pada company milik authenticated employee.
+- Permission catalog tidak dapat diubah melalui API tenant.
+- Operasi policy tercatat dalam audit transaksional.
+
+#### Cache strategy
+
+P06 tidak menggunakan cache permission lintas request. Evaluator membaca PostgreSQL setiap kali authorization dilakukan, sehingga perubahan yang telah commit tercermin pada request berikutnya di semua instance backend.
+
+Request yang sudah diotorisasi sebelum perubahan policy commit tidak otomatis dibatalkan. Operasi sensitif yang membutuhkan authorization dan write secara atomik harus menggunakan validasi transaksional yang sesuai.
+
+#### Group deactivation
+
+Deactivation group menonaktifkan group, membership, dan policy aktif di dalam transaksi yang sama. Reactivation tidak otomatis mengaktifkan kembali membership atau policy lama; administrator harus memulihkan akses yang masih diperlukan secara eksplisit.
+
+#### Audit
+
+Perubahan group, membership, dan policy menghasilkan audit entry dalam transaksi yang sama dengan mutation. Application runtime boleh melakukan `INSERT` dan `SELECT` metadata audit, tetapi tidak boleh melakukan `UPDATE` maupun `DELETE`. Audit metadata harus bebas dari credential, session cookie, PIN, access token, dan refresh token.
+
 ## 3. Permission catalogue baseline
 
 | Permission               | Fungsi                                                |

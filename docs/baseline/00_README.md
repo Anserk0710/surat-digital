@@ -1,10 +1,12 @@
 # Dokumentasi Proyek — Surat Digital
 
 **Nama kerja:** Digital Document Management System (DDMS)  
-**Versi dokumentasi:** 1.4  
-**Status:** Baseline spesifikasi v1.4; v1.3 commercial model dipertahankan dan roadmap diperdalam menjadi executable phase guide  
+**Versi dokumentasi:** 1.6  
+**Status:** Baseline spesifikasi v1.6; tiap phase P00–P59 menggabungkan Backend & Frontend dengan estimasi 1 hari penuh  
 **Bahasa:** Indonesia  
 **Package manager:** npm
+
+`docs/governance/baseline.json` dan `docs/evidence/*` adalah catatan approval/verifikasi historis baseline 1.4. Revisi dokumentasi v1.6 tidak mengubah approval lama atau otomatis membuktikan pekerjaan frontend P00–P06; validasi ulang dan approval governance mengikuti proses P00/Definition of Done sebelum baseline baru dibekukan.
 
 ## 1. Tujuan paket dokumentasi
 
@@ -50,7 +52,7 @@ Sistem dirancang untuk satu perusahaan dengan tiga kantor (termasuk kantor pusat
 
 ## 4. Arsitektur target
 
-- **Frontend:** React, di-host pada cPanel perusahaan.
+- **Frontend:** React, Tailwind CSS, dan shadcn/ui, di-host pada cPanel perusahaan; API client/types berasal dari OpenAPI.
 - **Backend API:** NestJS, direncanakan di Vercel.
 - **Database:** Supabase PostgreSQL.
 - **ORM dan database access utama:** Prisma ORM melalui Prisma Client di NestJS.
@@ -101,7 +103,7 @@ NestJS tidak menggunakan Supabase JS Client sebagai ORM atau jalur query utama k
 3. Jadikan Database Design sebagai acuan Prisma schema dan migrasi.
 4. Jadikan System Architecture dan Document Processing sebagai acuan integrasi teknis.
 5. Jadikan UI/UX Specification sebagai acuan implementasi React.
-6. Jadikan Roadmap dan Backlog sebagai dasar milestone; setiap phase implementasi ditimebox 8 atau 12 jam fokus engineering.
+6. Jadikan Roadmap dan Backlog sebagai dasar milestone; setiap phase P00–P59 mencakup Backend & Frontend dan direncanakan 1 hari pengerjaan penuh. Exit criteria tetap menentukan kapan phase selesai.
 7. Jadikan Credit Billing & Pricing sebagai kontrak monetisasi; perubahan credit economy harus diperbarui lintas API/data/test.
 8. Gunakan Requirements Traceability Matrix untuk memastikan requirement memiliki API/data/test/backlog coverage.
 9. Perbarui Decision Log setiap ada keputusan baru.
@@ -121,9 +123,11 @@ NestJS tidak menggunakan Supabase JS Client sebagai ORM atau jalur query utama k
 |---|---|---|
 | 1.0 | Draft baseline | Hasil diskusi kebutuhan dan rancangan awal |
 | 1.1 | Revisi spesifikasi | Supabase + Prisma, npm, RLS yang kompatibel dengan Prisma, dan Document Processing/OCR/Worker |
-| 1.2 | Architecture & Integrity Hardening | Auth gateway, atomic Creator Sign+Submit, document manifest hash, numbering-before-final-PDF, outbox, mandatory malware scan, workflow recovery, OpenAPI, measurable NFR, traceability, dan roadmap 8/12 jam |
+| 1.2 | Architecture & Integrity Hardening | Auth gateway, atomic Creator Sign+Submit, document manifest hash, numbering-before-final-PDF, outbox, mandatory malware scan, workflow recovery, OpenAPI, measurable NFR, traceability, dan roadmap awal |
 | 1.3 | Credit Billing & External Signing Commercialization | Document Credits, QR Verification sebagai Must, External Signing, credit ledger/reservation, rollover/top-up/trial, pricing baseline, dan roadmap commercial extension |
-| 1.4 | Phase Execution Roadmap | Roadmap P00–P59 tetap 8/12 jam tetapi setiap phase memiliki Goal, Dependencies, Pekerjaan/Scope, Deliverables, Test/Verification, dan Exit Criteria |
+| 1.4 | Phase Execution Roadmap | Roadmap P00–P59 diberi Goal, Dependencies, Pekerjaan/Scope, Deliverables, Test/Verification, dan Exit Criteria |
+| 1.5 | Rencana frontend sementara | Rencana jalur frontend tambahan yang telah digantikan pada v1.6 |
+| 1.6 | Phase Backend & Frontend terpadu | Seluruh P00–P59 mencakup enam bagian wajib dan estimasi 1 hari penuh; evidence lama tidak diubah |
 
 ## 10. Catatan penting
 

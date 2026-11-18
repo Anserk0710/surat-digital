@@ -4,6 +4,15 @@
 
 **Versi:** 1.3
 
+## 0. Kriteria Backend & Frontend per phase — v1.6
+
+- P00–P59 memiliki test backend dan frontend sesuai jenis phase; seluruh test pada kartu phase wajib memiliki evidence sebelum phase ditutup. P01–P59 yang menyediakan UI memerlukan build/lint dan browser integration dengan API nyata pada exit criteria. Screenshot membantu inspeksi visual, tetapi tidak menggantikan negative authorization/integration tests.
+- Uji login, CSRF, refresh/logout, 401/403, perubahan permission setelah sesi aktif, dan tidak ada secret server di bundle `apps/web`.
+- Alur Core browser: buat draft → upload satu per satu → preview/review → participant → Sign & Submit → Knowing → Approver → finalisasi/terbit → verifikasi. Uji juga double-click, retry, processing failure, blocked/recovery, reject dan withdraw.
+- Uji view/download/export secara terpisah, hasil pencarian tidak mengungkap resource tanpa akses, QR publik tidak membuka PDF privat, dan External Signing capability tidak berubah menjadi session internal.
+- Uji mobile/desktop pada alur utama, keyboard/focus/label/error, serta WCAG 2.2 AA untuk alur inti. P44 regression dan P45 UAT harus memasukkan browser; P58 commercial E2E memasukkan External Signing publik dan billing UI.
+- Jika API pendukung belum diimplementasikan, tes integrasi ditandai BLOCKED dengan owner, bukan PASS dari mock.
+
 ## 1. Tujuan
 
 Memastikan sistem:

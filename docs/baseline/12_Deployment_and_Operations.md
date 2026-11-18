@@ -2,7 +2,7 @@
 
 ## Surat Digital
 
-**Versi:** 1.3
+**Versi:** 1.6
 
 ## 1. Environment
 
@@ -20,7 +20,7 @@ terpisah.
 
 ### Frontend
 
-- React.
+- React dengan Tailwind CSS dan shadcn/ui; build CSS disertakan dalam output static.
 
 - Build static production.
 
@@ -29,6 +29,8 @@ terpisah.
 - Domain dan HTTPS.
 
 - SPA fallback/rewrite perlu dikonfigurasi.
+- CI memverifikasi build web, asset CSS, klien OpenAPI, navigation fallback, serta tidak adanya secret server pada bundle.
+- Pengujian browser pada domain frontend/API yang sebenarnya memverifikasi CORS allowlist, cookie credentials/flags, CSRF, logout, dan route privat sebelum UAT; konfigurasi cross-site cookie harus dibuktikan pada domain deployment yang dipilih.
 
 ### Backend
 

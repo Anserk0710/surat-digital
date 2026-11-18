@@ -1,0 +1,16 @@
+{
+  "testId": "P01-T02-local",
+  "status": "PASS",
+  "command": "npm run ci",
+  "checks": [
+    "contract",
+    "format",
+    "lint",
+    "typecheck",
+    "167 unit tests",
+    "build"
+  ],
+  "lockfileSha256": "42854763cfa687f8dd3ffdaa7290b60f50b21ba18145c9f7c3efcd2fee34014b",
+  "executedAt": "2026-11-18T02:52:38.494Z",
+  "note": "Local worktree quality gate; remote CI runs on pushed commits."
+}

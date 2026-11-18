@@ -42,7 +42,14 @@ export class AuthRateLimitGuard implements CanActivate {
     const method = request.method;
     const policies = [];
 
-    if (method === 'POST' && route.endsWith('/auth/login')) {
+    if (method === 'POST' && route.endsWith('/users/register')) {
+      policies.push({
+        scope: 'register-ip',
+        identity: ip,
+        limit: 10,
+        windowSeconds: WINDOW_SECONDS,
+      });
+    } else if (method === 'POST' && route.endsWith('/auth/login')) {
       const body = request.body as { identifier?: unknown } | undefined;
 
       const identifier = normalizeIdentifier(body?.identifier);

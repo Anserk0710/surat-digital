@@ -15,7 +15,12 @@
     "dist"
   ],
   "scripts": {
+    "generate:types": "openapi-typescript ../api-contracts/openapi.json -o src/generated/openapi.ts && prettier --write src/generated/openapi.ts",
     "build": "tsc6 -p tsconfig.build.json",
     "typecheck": "tsc6 --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0",
+    "typescript": "5.9.3"
   }
 }

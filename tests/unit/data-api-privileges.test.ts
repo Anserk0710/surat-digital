@@ -5,14 +5,17 @@ import { describe, expect, it } from 'vitest';
 
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 const rootDirectory = path.resolve(currentDirectory, '../..');
-const migrationPath = path.join(
-  rootDirectory,
+const migrationPaths = [
   'apps/api/prisma/migrations/20261115170000_p03_revoke_data_api_table_privileges/migration.sql',
-);
+  'apps/api/prisma/migrations/20261117150000_p06_group_policy/migration.sql',
+].map((migration) => path.join(rootDirectory, migration));
 
 describe('Supabase Data API table privilege hardening', () => {
   it('revokes public API roles from every current application table', () => {
-    const migration = fs.readFileSync(migrationPath, 'utf8');
+    const migration = migrationPaths
+      .map((migrationPath) => fs.readFileSync(migrationPath, 'utf8'))
+      .join('\n')
+      .replaceAll('"', '');
     const tables = [
       'companies',
       'offices',
@@ -25,6 +28,7 @@ describe('Supabase Data API table privilege hardening', () => {
       'permissions',
       'employee_groups',
       'group_permissions',
+      'group_policy_audit',
       'auth_sessions',
     ];
 
@@ -32,7 +36,7 @@ describe('Supabase Data API table privilege hardening', () => {
     expect(migration).toMatch(/FROM anon, authenticated/i);
 
     for (const table of tables) {
-      expect(migration).toContain(`public."${table}"`);
+      expect(migration).toContain(`public.${table}`);
     }
   });
 });

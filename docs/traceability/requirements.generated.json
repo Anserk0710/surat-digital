@@ -71,14 +71,13 @@
       "P05"
     ],
     "tests": [
-      "USER-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -93,14 +92,13 @@
       "P05"
     ],
     "tests": [
-      "USER-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -115,14 +113,13 @@
       "P05"
     ],
     "tests": [
-      "USER-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -137,14 +134,13 @@
       "P05"
     ],
     "tests": [
-      "USER-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -159,14 +155,13 @@
       "P05"
     ],
     "tests": [
-      "USER-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -181,14 +176,13 @@
       "P05"
     ],
     "tests": [
-      "USER-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -203,14 +197,13 @@
       "P05"
     ],
     "tests": [
-      "ORG-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -225,14 +218,13 @@
       "P05"
     ],
     "tests": [
-      "ORG-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -247,14 +239,13 @@
       "P05"
     ],
     "tests": [
-      "ORG-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -269,14 +260,13 @@
       "P05"
     ],
     "tests": [
-      "ORG-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -291,14 +281,13 @@
       "P05"
     ],
     "tests": [
-      "ORG-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -313,14 +302,13 @@
       "P05"
     ],
     "tests": [
-      "ORG-PLANNED"
+      "P05-T01",
+      "P05-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -342,11 +330,9 @@
       "P06-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -368,11 +354,9 @@
       "P06-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -394,11 +378,9 @@
       "P06-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -420,11 +402,9 @@
       "P06-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -446,11 +426,9 @@
       "P06-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -472,11 +450,9 @@
       "P06-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -492,14 +468,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -515,14 +490,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -538,14 +512,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -561,14 +534,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -584,14 +556,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -607,14 +578,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -630,14 +600,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -653,14 +622,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -676,14 +644,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -699,14 +666,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -722,14 +688,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -745,14 +710,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -768,14 +732,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -791,14 +754,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -814,14 +776,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -837,14 +798,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -860,14 +820,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -883,14 +842,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -906,14 +864,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -929,14 +886,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -952,14 +908,13 @@
       "P13"
     ],
     "tests": [
-      "DOC-PLANNED"
+      "P08-T01",
+      "P08-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -980,11 +935,9 @@
       "P39-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1005,11 +958,9 @@
       "P39-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1030,11 +981,9 @@
       "P39-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1055,11 +1004,9 @@
       "P39-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1080,11 +1027,9 @@
       "P39-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1133,14 +1078,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1161,14 +1105,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1189,14 +1132,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1217,7 +1159,8 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [
       {
@@ -1228,11 +1171,9 @@
         "backlogPhase": "E18 / P20,P21"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1253,14 +1194,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1281,14 +1221,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1309,7 +1248,8 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [
       {
@@ -1320,11 +1260,9 @@
         "backlogPhase": "E09 / P17"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1345,14 +1283,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1373,7 +1310,8 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [
       {
@@ -1384,11 +1322,9 @@
         "backlogPhase": "E09/E10 / P18"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1409,14 +1345,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1437,14 +1372,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1465,14 +1399,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1493,14 +1426,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1521,7 +1453,8 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [
       {
@@ -1532,11 +1465,9 @@
         "backlogPhase": "E09 / P19"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1557,14 +1488,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1585,14 +1515,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1613,14 +1542,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1641,14 +1569,13 @@
       "P21"
     ],
     "tests": [
-      "WF-PLANNED"
+      "P14-T01",
+      "P14-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1666,14 +1593,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1691,14 +1617,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1716,14 +1641,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1741,14 +1665,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1766,14 +1689,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1791,14 +1713,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1816,14 +1737,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1870,14 +1790,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1895,14 +1814,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1920,14 +1838,13 @@
       "P24"
     ],
     "tests": [
-      "SIG-PLANNED"
+      "P15-T01",
+      "P15-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1944,14 +1861,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -1968,7 +1884,8 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [
       {
@@ -1979,11 +1896,9 @@
         "backlogPhase": "E21 / P25–P27"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2000,14 +1915,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2024,14 +1938,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2048,14 +1961,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2072,14 +1984,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2096,14 +2007,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2120,14 +2030,13 @@
       "P27"
     ],
     "tests": [
-      "NUM-PLANNED"
+      "P25-T01",
+      "P25-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2153,11 +2062,9 @@
       "P30-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2183,11 +2090,9 @@
       "P30-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2213,11 +2118,9 @@
       "P30-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2243,11 +2146,9 @@
       "P36-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2273,11 +2174,9 @@
       "P36-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2303,11 +2202,9 @@
       "P36-T04"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2322,7 +2219,8 @@
       "P32"
     ],
     "tests": [
-      "AUD-PLANNED"
+      "P32-T01",
+      "P32-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2333,11 +2231,9 @@
         "backlogPhase": "E13 / P32"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2352,14 +2248,13 @@
       "P32"
     ],
     "tests": [
-      "AUD-PLANNED"
+      "P32-T01",
+      "P32-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2374,14 +2269,13 @@
       "P32"
     ],
     "tests": [
-      "AUD-PLANNED"
+      "P32-T01",
+      "P32-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2396,7 +2290,8 @@
       "P11"
     ],
     "tests": [
-      "REL-PLANNED"
+      "P11-T01",
+      "P11-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2407,11 +2302,9 @@
         "backlogPhase": "E17 / P11"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2426,14 +2319,13 @@
       "P11"
     ],
     "tests": [
-      "REL-PLANNED"
+      "P11-T01",
+      "P11-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2450,7 +2342,8 @@
       "P12"
     ],
     "tests": [
-      "FILE-PLANNED"
+      "P09-T01",
+      "P09-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2461,11 +2354,9 @@
         "backlogPhase": "E19 / P10"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2482,14 +2373,13 @@
       "P12"
     ],
     "tests": [
-      "FILE-PLANNED"
+      "P09-T01",
+      "P09-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2505,7 +2395,8 @@
       "P40"
     ],
     "tests": [
-      "API-PLANNED"
+      "P03-T01",
+      "P03-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2514,13 +2405,18 @@
         "database": "n/a",
         "test": "API-001/CI",
         "backlogPhase": "E20 / P03+"
+      },
+      {
+        "businessRule": "`/auth/csrf`, login, refresh, logout, me",
+        "api": "P01–P04",
+        "database": "P03/P04-FE-T01",
+        "test": "",
+        "backlogPhase": ""
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2536,7 +2432,8 @@
       "P40"
     ],
     "tests": [
-      "API-PLANNED"
+      "P03-T01",
+      "P03-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2547,11 +2444,9 @@
         "backlogPhase": "E02/E20 / P03,P04"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2567,7 +2462,8 @@
       "P40"
     ],
     "tests": [
-      "API-PLANNED"
+      "P03-T01",
+      "P03-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2578,11 +2474,9 @@
         "backlogPhase": "E10/E19 / P23"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2592,19 +2486,20 @@
     "description": "Responsif",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Frontend/UX",
+    "phases": [
+      "P01",
+      "P45"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P01-FE-T01",
+      "P45-FE-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2613,19 +2508,19 @@
     "description": "Keamanan transport",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Security",
+    "phases": [
+      "P04",
+      "P40"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P04-T03"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2634,19 +2529,21 @@
     "description": "Password/session",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Auth",
+    "phases": [
+      "P03",
+      "P04"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P03-T01",
+      "P03-T03",
+      "P04-T02"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2655,19 +2552,20 @@
     "description": "Authorization",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/IAM",
+    "phases": [
+      "P06",
+      "P07"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P06-T01",
+      "P07-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2676,19 +2574,19 @@
     "description": "File privacy",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Storage",
+    "phases": [
+      "P10",
+      "P12"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P10-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2697,19 +2595,19 @@
     "description": "Integritas dokumen",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Document",
+    "phases": [
+      "P13",
+      "P26"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P13-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2718,19 +2616,18 @@
     "description": "Auditability",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Audit",
+    "phases": [
+      "P32"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P32-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2739,19 +2636,19 @@
     "description": "Availability",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "DevOps",
+    "phases": [
+      "P43",
+      "P48"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P43-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2760,19 +2657,18 @@
     "description": "Backup",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "DevOps",
+    "phases": [
+      "P42"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P42-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2781,19 +2677,20 @@
     "description": "Maintainability",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Architecture",
+    "phases": [
+      "P01",
+      "P02"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P01-T02",
+      "P02-FE-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2802,9 +2699,13 @@
     "description": "Capacity",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
+    "owner": "Backend/Performance",
+    "phases": [
+      "P41"
+    ],
+    "tests": [
+      "P41-T01"
+    ],
     "originalTrace": [
       {
         "businessRule": "p95 common API/search target",
@@ -2814,12 +2715,9 @@
         "backlogPhase": "E15 / P41"
       }
     ],
-    "mappingSource": "UNMAPPED",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2829,9 +2727,14 @@
     "description": "Accessibility",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
+    "owner": "Frontend/UX",
+    "phases": [
+      "P01",
+      "P45"
+    ],
+    "tests": [
+      "P45-FE-T01"
+    ],
     "originalTrace": [
       {
         "businessRule": "WCAG 2.2 AA core flow",
@@ -2839,14 +2742,18 @@
         "database": "n/a",
         "test": "accessibility checks",
         "backlogPhase": "E15 / P40,P45"
+      },
+      {
+        "businessRule": "issued/archive/public verification",
+        "api": "P25–P32",
+        "database": "P25–P32-FE-T01",
+        "test": "",
+        "backlogPhase": ""
       }
     ],
-    "mappingSource": "UNMAPPED",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2856,19 +2763,19 @@
     "description": "Data retention",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Audit",
+    "phases": [
+      "P32",
+      "P42"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P32-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2877,9 +2784,13 @@
     "description": "Recovery",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
+    "owner": "DevOps",
+    "phases": [
+      "P42"
+    ],
+    "tests": [
+      "P42-T03"
+    ],
     "originalTrace": [
       {
         "businessRule": "RPO/RTO baseline",
@@ -2889,12 +2800,9 @@
         "backlogPhase": "E14/E15 / P42"
       }
     ],
-    "mappingSource": "UNMAPPED",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2904,19 +2812,19 @@
     "description": "Worker processing",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Worker",
+    "phases": [
+      "P33",
+      "P34"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P34-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -2925,9 +2833,13 @@
     "description": "Observability",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
+    "owner": "DevOps",
+    "phases": [
+      "P43"
+    ],
+    "tests": [
+      "P43-T01"
+    ],
     "originalTrace": [
       {
         "businessRule": "Observability",
@@ -2937,12 +2849,9 @@
         "backlogPhase": "E14 / P43"
       }
     ],
-    "mappingSource": "UNMAPPED",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2959,7 +2868,8 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [
       {
@@ -2970,11 +2880,9 @@
         "backlogPhase": "E22/E23 / P49–P51"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -2991,14 +2899,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3015,14 +2922,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3039,14 +2945,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3063,14 +2968,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3087,14 +2991,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3111,14 +3014,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3135,14 +3037,13 @@
       "P51"
     ],
     "tests": [
-      "EXT-PLANNED"
+      "P49-T01",
+      "P49-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3158,7 +3059,8 @@
       "P58"
     ],
     "tests": [
-      "VER-PLANNED"
+      "P28-T01",
+      "P28-FE-T01"
     ],
     "originalTrace": [
       {
@@ -3169,11 +3071,9 @@
         "backlogPhase": "E22/E29 / P49,P58"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3189,14 +3089,13 @@
       "P58"
     ],
     "tests": [
-      "VER-PLANNED"
+      "P28-T01",
+      "P28-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3212,14 +3111,13 @@
       "P58"
     ],
     "tests": [
-      "VER-PLANNED"
+      "P28-T01",
+      "P28-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3235,14 +3133,13 @@
       "P58"
     ],
     "tests": [
-      "VER-PLANNED"
+      "P28-T01",
+      "P28-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3264,7 +3161,8 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [
       {
@@ -3275,11 +3173,9 @@
         "backlogPhase": "E24/E26 / P52–P56"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3301,14 +3197,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3330,14 +3225,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3359,14 +3253,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3388,7 +3281,8 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [
       {
@@ -3399,11 +3293,9 @@
         "backlogPhase": "E25/E29 / P54,P58"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3425,14 +3317,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3454,14 +3345,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3483,7 +3373,8 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [
       {
@@ -3494,11 +3385,9 @@
         "backlogPhase": "E26–E30 / P55–P59"
       }
     ],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3520,14 +3409,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3549,14 +3437,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3578,14 +3465,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3607,14 +3493,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3636,14 +3521,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3665,14 +3549,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3694,14 +3577,13 @@
       "P59"
     ],
     "tests": [
-      "BILL-PLANNED"
+      "P52-T01",
+      "P52-FE-T01"
     ],
     "originalTrace": [],
-    "mappingSource": "DOMAIN_FALLBACK",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3711,9 +3593,14 @@
     "description": "Credit consistency",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
+    "owner": "Backend/Billing",
+    "phases": [
+      "P54",
+      "P58"
+    ],
+    "tests": [
+      "P58-T01"
+    ],
     "originalTrace": [
       {
         "businessRule": "Credit concurrency + reconciliation",
@@ -3723,12 +3610,9 @@
         "backlogPhase": "E25/E29 / P54,P58"
       }
     ],
-    "mappingSource": "UNMAPPED",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3738,19 +3622,18 @@
     "description": "Billing reconciliation",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Billing",
+    "phases": [
+      "P58"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P58-T04"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   },
@@ -3759,9 +3642,14 @@
     "description": "External token security",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
+    "owner": "Backend/External Signing",
+    "phases": [
+      "P50",
+      "P51"
+    ],
+    "tests": [
+      "P50-T01"
+    ],
     "originalTrace": [
       {
         "businessRule": "Public token & verification abuse resistance",
@@ -3771,12 +3659,9 @@
         "backlogPhase": "E22/E23/E29 / P49–P50,P58"
       }
     ],
-    "mappingSource": "UNMAPPED",
+    "mappingSource": "EXPLICIT",
     "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Requirement-level mapping pending"
-    ],
+    "gaps": [],
     "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
@@ -3786,19 +3671,19 @@
     "description": "Public verification abuse resistance",
     "priority": "UNSPECIFIED",
     "domain": "NFR",
-    "owner": null,
-    "phases": [],
-    "tests": [],
-    "originalTrace": [],
-    "mappingSource": "UNMAPPED",
-    "status": "Planned",
-    "gaps": [
-      "Missing technical owner",
-      "Missing phase/backlog trace",
-      "Missing test reference",
-      "Requirement-level mapping pending"
+    "owner": "Backend/Verification",
+    "phases": [
+      "P28",
+      "P51"
     ],
-    "hasTrace": false,
+    "tests": [
+      "P28-T01"
+    ],
+    "originalTrace": [],
+    "mappingSource": "EXPLICIT",
+    "status": "Planned",
+    "gaps": [],
+    "hasTrace": true,
     "hasDocumentedTraceGap": false,
     "traceGap": null
   }

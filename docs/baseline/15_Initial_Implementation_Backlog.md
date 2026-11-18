@@ -2,9 +2,24 @@
 
 ## Surat Digital
 
-**Versi:** 1.3 — Backlog awal  
+**Versi:** 1.6 — Backlog Backend & Frontend per phase  
 **Catatan:** Item adalah backlog kandidat. Estimasi story point dan
 penugasan personel dilakukan setelah tim dan kapasitas diketahui.
+
+## 0. Backlog terpadu per phase — v1.6
+
+Setiap P00–P59 memiliki story/task Backend dan Frontend di phase yang sama. Task frontend mengacu pada endpoint/OpenAPI, permission, loading/empty/error state, dan browser evidence. P01 memasang React/Tailwind CSS/shadcn/ui; P03 login web; P05 administrasi organisasi; P06 Group Policy. Sisa pemetaan lengkap ada di kartu phase roadmap.
+
+| Kelompok story | Phase | Acceptance bersama |
+|---|---|---|
+| Fondasi, auth, organisasi, policy | P00–P07 | API/DB + web shell/login/admin + negative auth |
+| Draft, file, review, participant, sign | P08–P16 | API/worker + wizard web; review dan submit idempotent |
+| Tugas, integrity, numbering, verification | P17–P28 | State machine/worker + tugas/status publik di browser |
+| Notifikasi, arsip, audit, Office, editor, form | P29–P39 | Backend + halaman fitur; akses dan provenance teruji |
+| Hardening, E2E, UAT, pilot | P40–P48 | Evidence operasional/backend dan browser web |
+| External Signing dan credit billing | P49–P59 | API/ledger + halaman publik/billing dan E2E |
+
+**Gap check P00–P06:** hasil backend yang sudah ada tetap valid sebagai evidence historis, tetapi task frontend P01/P03–P06 belum boleh dianggap selesai tanpa implementasi dan test. API registrasi/aktivasi/import/profil yang belum tersedia dikerjakan sebagai gap kontrak pada phase pengguna yang relevan. Satu hari penuh adalah estimasi phase, bukan izin melewati exit criteria.
 
 ## 1. Epic overview
 

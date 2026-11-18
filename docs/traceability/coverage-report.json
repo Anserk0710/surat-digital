@@ -1,10 +1,10 @@
 {
-  "baselineVersion": "1.4",
+  "baselineVersion": "1.6",
   "sourceHashes": {
-    "srs": "381d69b1cc3c313dc8b99a4a6bedd49eead50c194fbbfb16b59cb81f2b852d90",
-    "decisions": "c75306663a84e4946db803da060409dae4598507368c8a1f862c5882397cd8d7",
-    "roadmap": "3c2af71dcc600ad9340bc5d16b0a36bb660b0c9ca491daa841c51aa118235d3e",
-    "rtm": "7b8b14fc25d4a360f2127eb6efa25875daf5f203ee1a8380b563d60d75a10f10"
+    "srs": "3dfa9e035f2c7452a5f80b61e82aada7504c796662496c498719f0ee0d62b423",
+    "decisions": "58ad536eaac9c498a537c5241d057c13bd8fdb6f437566fc67c5d7b4fe0ffa24",
+    "roadmap": "05176c25cd6580f8800b15cb060d51fefa8f3d1e2a4293f3edafe6e93c847ec6",
+    "rtm": "849c6003a75f0b8893765f6c37db2d2979e2e3ff156f2f2d976e61507b2c0b5c"
   },
   "totalRequirements": 148,
   "totalMust": 124,
@@ -12,29 +12,9 @@
   "missingOwner": [],
   "missingTrace": [],
   "missingTraceWithoutExplanation": [],
-  "unmapped": [
-    "NFR-001",
-    "NFR-002",
-    "NFR-003",
-    "NFR-004",
-    "NFR-005",
-    "NFR-006",
-    "NFR-007",
-    "NFR-008",
-    "NFR-009",
-    "NFR-010",
-    "NFR-011",
-    "NFR-012",
-    "NFR-013",
-    "NFR-014",
-    "NFR-015",
-    "NFR-016",
-    "NFR-017",
-    "NFR-018",
-    "NFR-019",
-    "NFR-020"
-  ],
-  "pendingExplicitMapping": [
+  "unmapped": [],
+  "pendingExplicitMapping": [],
+  "pendingRequirementReview": [
     "FR-USER-001",
     "FR-USER-002",
     "FR-USER-003",

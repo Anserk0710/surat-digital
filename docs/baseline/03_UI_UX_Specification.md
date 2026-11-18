@@ -2,7 +2,26 @@
 
 ## Surat Digital
 
-**Versi:** 1.3 — Design baseline
+**Versi:** 1.6 — Design baseline dan pemetaan phase terpadu
+
+## 0. Implementasi antarmuka dan pemetaan fase — v1.6
+
+- `apps/web` menggunakan React, Tailwind CSS untuk styling utility, dan komponen shadcn/ui yang dikurasi di repository; token warna, tipografi, spacing, radius, dan focus ring ditetapkan konsisten. Komponen shadcn/ui tidak menggantikan aturan bisnis atau pemeriksaan akses di NestJS.
+- Navigasi dan menu boleh menyesuaikan `/auth/me`, tetapi respons 403 dari server selalu ditangani. Gunakan komponen aplikasi di atas primitive UI untuk aksi bisnis, status dokumen, dan dialog PIN. Jangan simpan PIN/token di local storage atau log.
+- Loading, empty, error, expired session, dan retry yang aman wajib ditentukan untuk setiap layar. Dialog dapat dioperasikan dengan keyboard, memiliki label/focus yang benar, dan nyaman digunakan di mobile. Target alur inti WCAG 2.2 AA mengikuti test strategy.
+- Kontrak respons dan error mengikuti OpenAPI; TypeScript client/types dihasilkan otomatis. Browser hanya berkomunikasi dengan NestJS API melalui session/CSRF sesuai kontrak, tanpa Supabase Auth SDK atau secret server.
+
+| Halaman/alur | Phase Backend & Frontend |
+|---|---|
+| Shell, login, sesi, otorisasi | P01–P07 |
+| Draft, upload, scan, preview, review | P08–P13 |
+| Participant, Sign & Submit, Knowing, Approver, recovery | P14–P24 |
+| Numbering, issued, QR, notifikasi, arsip, audit | P25–P32 |
+| Office, OCR, template, editor, Form Builder | P33–P39 |
+| Uji keamanan, performa, UAT, pilot | P40–P48 |
+| External Signing publik dan billing | P49–P59 |
+
+Detail tiap phase mencantumkan Goals Backend & Frontend, Dependencies, Scope, Deliverables, Test, dan Exit Criteria di `04_Development_Roadmap.md`. P05 mengerjakan UI organisasi, registrasi, aktivasi, import dan profil; P06 mengerjakan Group Policy. UI serta API yang belum tersedia tetap menjadi gap phase tersebut.
 
 ## 1. Prinsip desain
 

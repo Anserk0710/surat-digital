@@ -52,9 +52,7 @@ async function main(): Promise<void> {
   const expectedDb = process.env.P05_EXPECTED_DATABASE_NAME;
 
   if (!expectedDb) {
-    throw new Error(
-      'P05_EXPECTED_DATABASE_NAME is required.',
-    );
+    throw new Error('P05_EXPECTED_DATABASE_NAME is required.');
   }
 
   const database = await prisma.$queryRaw<Array<{ name: string }>>`
@@ -62,9 +60,7 @@ async function main(): Promise<void> {
 `;
 
   if (database[0]?.name !== expectedDb) {
-    throw new Error(
-      'Refusing to seed an unexpected database.',
-    );
+    throw new Error('Refusing to seed an unexpected database.');
   }
   const company = await prisma.company.upsert({
     where: { code: companyCode },

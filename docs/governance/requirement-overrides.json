@@ -111,6 +111,96 @@
     }
   },
   "requirements": {
+    "FR-API-001": {
+      "owner": "Backend/API",
+      "phases": ["P03", "P40"],
+      "tests": ["P03-T01", "P03-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-API-002": {
+      "owner": "Backend/API",
+      "phases": ["P03", "P40"],
+      "tests": ["P03-T01", "P03-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-API-003": {
+      "owner": "Backend/API",
+      "phases": ["P03", "P40"],
+      "tests": ["P03-T01", "P03-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ARC-001": {
+      "owner": "Backend/Archive",
+      "phases": ["P31", "P36"],
+      "tests": [
+        "P31-T01",
+        "P31-T02",
+        "P31-T03",
+        "P31-T04",
+        "P36-T01",
+        "P36-T02",
+        "P36-T03",
+        "P36-T04"
+      ],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ARC-002": {
+      "owner": "Backend/Archive",
+      "phases": ["P31", "P36"],
+      "tests": [
+        "P31-T01",
+        "P31-T02",
+        "P31-T03",
+        "P31-T04",
+        "P36-T01",
+        "P36-T02",
+        "P36-T03",
+        "P36-T04"
+      ],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ARC-003": {
+      "owner": "Backend/Archive",
+      "phases": ["P31", "P36"],
+      "tests": [
+        "P31-T01",
+        "P31-T02",
+        "P31-T03",
+        "P31-T04",
+        "P36-T01",
+        "P36-T02",
+        "P36-T03",
+        "P36-T04"
+      ],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-AUD-001": {
+      "owner": "Backend/Audit",
+      "phases": ["P32"],
+      "tests": ["P32-T01", "P32-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-AUD-002": {
+      "owner": "Backend/Audit",
+      "phases": ["P32"],
+      "tests": ["P32-T01", "P32-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-AUD-003": {
+      "owner": "Backend/Audit",
+      "phases": ["P32"],
+      "tests": ["P32-T01", "P32-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
     "FR-AUTH-001": {
       "owner": "Backend/Auth",
       "phases": ["P03", "P04"],
@@ -132,12 +222,613 @@
       "reviewed": true,
       "notes": "Password hanya dikelola Supabase Auth"
     },
-    "FR-WF-001": {
-      "owner": "Backend/Workflow",
-      "phases": ["P16"],
-      "tests": ["INT-001"],
-      "reviewed": true,
-      "notes": "Atomic Creator Sign, Lock, Submit"
+    "FR-BILL-001": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-002": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-003": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-004": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-005": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-006": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-007": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-008": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-009": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-010": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-011": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-012": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-013": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-014": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-BILL-015": {
+      "owner": "Backend/Billing",
+      "phases": ["P52", "P53", "P54", "P55", "P56", "P57", "P58", "P59"],
+      "tests": ["P52-T01", "P52-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-001": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-002": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-003": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-004": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-005": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-006": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-007": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-008": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-009": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-010": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-011": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-012": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-013": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-014": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-015": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-016": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-017": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-018": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-019": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-020": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-DOC-021": {
+      "owner": "Backend/Document",
+      "phases": ["P08", "P13"],
+      "tests": ["P08-T01", "P08-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-001": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-002": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-003": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-004": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-005": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-006": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-007": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-EXT-008": {
+      "owner": "Backend/External Signing",
+      "phases": ["P49", "P50", "P51"],
+      "tests": ["P49-T01", "P49-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FILE-001": {
+      "owner": "Backend/Document Processing",
+      "phases": ["P09", "P10", "P12"],
+      "tests": ["P09-T01", "P09-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FILE-002": {
+      "owner": "Backend/Document Processing",
+      "phases": ["P09", "P10", "P12"],
+      "tests": ["P09-T01", "P09-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FORM-001": {
+      "owner": "Backend/Form Builder",
+      "phases": ["P39"],
+      "tests": ["P39-T01", "P39-T02", "P39-T03", "P39-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FORM-002": {
+      "owner": "Backend/Form Builder",
+      "phases": ["P39"],
+      "tests": ["P39-T01", "P39-T02", "P39-T03", "P39-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FORM-003": {
+      "owner": "Backend/Form Builder",
+      "phases": ["P39"],
+      "tests": ["P39-T01", "P39-T02", "P39-T03", "P39-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FORM-004": {
+      "owner": "Backend/Form Builder",
+      "phases": ["P39"],
+      "tests": ["P39-T01", "P39-T02", "P39-T03", "P39-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-FORM-005": {
+      "owner": "Backend/Form Builder",
+      "phases": ["P39"],
+      "tests": ["P39-T01", "P39-T02", "P39-T03", "P39-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-IAM-001": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-IAM-002": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-IAM-003": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-IAM-004": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-IAM-005": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-IAM-006": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P06-T02", "P06-T03", "P06-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NOT-001": {
+      "owner": "Backend/Notification",
+      "phases": ["P29", "P30"],
+      "tests": [
+        "P29-T01",
+        "P29-T02",
+        "P29-T03",
+        "P29-T04",
+        "P30-T01",
+        "P30-T02",
+        "P30-T03",
+        "P30-T04"
+      ],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NOT-002": {
+      "owner": "Backend/Notification",
+      "phases": ["P29", "P30"],
+      "tests": [
+        "P29-T01",
+        "P29-T02",
+        "P29-T03",
+        "P29-T04",
+        "P30-T01",
+        "P30-T02",
+        "P30-T03",
+        "P30-T04"
+      ],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NOT-003": {
+      "owner": "Backend/Notification",
+      "phases": ["P29", "P30"],
+      "tests": [
+        "P29-T01",
+        "P29-T02",
+        "P29-T03",
+        "P29-T04",
+        "P30-T01",
+        "P30-T02",
+        "P30-T03",
+        "P30-T04"
+      ],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-001": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-002": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-003": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-004": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-005": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-006": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-007": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-NUM-008": {
+      "owner": "Backend/Numbering",
+      "phases": ["P25", "P26", "P27"],
+      "tests": ["P25-T01", "P25-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ORG-001": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ORG-002": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ORG-003": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ORG-004": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ORG-005": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-ORG-006": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-REL-001": {
+      "owner": "Backend/Infrastructure",
+      "phases": ["P11"],
+      "tests": ["P11-T01", "P11-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-REL-002": {
+      "owner": "Backend/Infrastructure",
+      "phases": ["P11"],
+      "tests": ["P11-T01", "P11-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-001": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-002": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-003": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-004": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-005": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-006": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-007": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
     },
     "FR-SIG-008": {
       "owner": "Backend/Signature",
@@ -145,6 +836,370 @@
       "tests": ["INT-002"],
       "reviewed": true,
       "notes": "Canonical Document Manifest dan signature integrity"
+    },
+    "FR-SIG-009": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-010": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-SIG-011": {
+      "owner": "Backend/Signature",
+      "phases": ["P15", "P22", "P23", "P24"],
+      "tests": ["P15-T01", "P15-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-USER-001": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-USER-002": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-USER-003": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-USER-004": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-USER-005": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-USER-006": {
+      "owner": "Backend/Organization",
+      "phases": ["P05"],
+      "tests": ["P05-T01", "P05-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-VER-001": {
+      "owner": "Backend/Verification",
+      "phases": ["P28", "P58"],
+      "tests": ["P28-T01", "P28-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-VER-002": {
+      "owner": "Backend/Verification",
+      "phases": ["P28", "P58"],
+      "tests": ["P28-T01", "P28-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-VER-003": {
+      "owner": "Backend/Verification",
+      "phases": ["P28", "P58"],
+      "tests": ["P28-T01", "P28-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-VER-004": {
+      "owner": "Backend/Verification",
+      "phases": ["P28", "P58"],
+      "tests": ["P28-T01", "P28-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-001": {
+      "owner": "Backend/Workflow",
+      "phases": ["P16"],
+      "tests": ["INT-001"],
+      "reviewed": true,
+      "notes": "Atomic Creator Sign, Lock, Submit"
+    },
+    "FR-WF-002": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-003": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-004": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-004A": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-005": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-006": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-007": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-008": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-009": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-010": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-011": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-012": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-013": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-014": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-015": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-016": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-017": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "FR-WF-018": {
+      "owner": "Backend/Workflow",
+      "phases": ["P14", "P16", "P17", "P18", "P19", "P20", "P21"],
+      "tests": ["P14-T01", "P14-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-001": {
+      "owner": "Frontend/UX",
+      "phases": ["P01", "P45"],
+      "tests": ["P01-FE-T01", "P45-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-002": {
+      "owner": "Backend/Security",
+      "phases": ["P04", "P40"],
+      "tests": ["P04-T03"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-003": {
+      "owner": "Backend/Auth",
+      "phases": ["P03", "P04"],
+      "tests": ["P03-T01", "P03-T03", "P04-T02"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-004": {
+      "owner": "Backend/IAM",
+      "phases": ["P06", "P07"],
+      "tests": ["P06-T01", "P07-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-005": {
+      "owner": "Backend/Storage",
+      "phases": ["P10", "P12"],
+      "tests": ["P10-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-006": {
+      "owner": "Backend/Document",
+      "phases": ["P13", "P26"],
+      "tests": ["P13-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-007": {
+      "owner": "Backend/Audit",
+      "phases": ["P32"],
+      "tests": ["P32-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-008": {
+      "owner": "DevOps",
+      "phases": ["P43", "P48"],
+      "tests": ["P43-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-009": {
+      "owner": "DevOps",
+      "phases": ["P42"],
+      "tests": ["P42-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-010": {
+      "owner": "Architecture",
+      "phases": ["P01", "P02"],
+      "tests": ["P01-T02", "P02-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-011": {
+      "owner": "Backend/Performance",
+      "phases": ["P41"],
+      "tests": ["P41-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-012": {
+      "owner": "Frontend/UX",
+      "phases": ["P01", "P45"],
+      "tests": ["P45-FE-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-013": {
+      "owner": "Backend/Audit",
+      "phases": ["P32", "P42"],
+      "tests": ["P32-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-014": {
+      "owner": "DevOps",
+      "phases": ["P42"],
+      "tests": ["P42-T03"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-015": {
+      "owner": "Backend/Worker",
+      "phases": ["P33", "P34"],
+      "tests": ["P34-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-016": {
+      "owner": "DevOps",
+      "phases": ["P43"],
+      "tests": ["P43-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-017": {
+      "owner": "Backend/Billing",
+      "phases": ["P54", "P58"],
+      "tests": ["P58-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-018": {
+      "owner": "Backend/Billing",
+      "phases": ["P58"],
+      "tests": ["P58-T04"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-019": {
+      "owner": "Backend/External Signing",
+      "phases": ["P50", "P51"],
+      "tests": ["P50-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
+    },
+    "NFR-020": {
+      "owner": "Backend/Verification",
+      "phases": ["P28", "P51"],
+      "tests": ["P28-T01"],
+      "reviewed": false,
+      "notes": "P00 initial owner and roadmap trace; verify detailed test coverage in the owning phase."
     }
   }
 }

@@ -409,7 +409,8 @@ export const ModelName = {
   EmployeeGroup: 'EmployeeGroup',
   GroupPermission: 'GroupPermission',
   AuthSession: 'AuthSession',
-  AuthRateLimitBucket: 'AuthRateLimitBucket'
+  AuthRateLimitBucket: 'AuthRateLimitBucket',
+  GroupPolicyAudit: 'GroupPolicyAudit'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -425,7 +426,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "office" | "division" | "officeDivision" | "jobTitle" | "employee" | "employeeAssignment" | "group" | "permission" | "employeeGroup" | "groupPermission" | "authSession" | "authRateLimitBucket"
+    modelProps: "company" | "office" | "division" | "officeDivision" | "jobTitle" | "employee" | "employeeAssignment" | "group" | "permission" | "employeeGroup" | "groupPermission" | "authSession" | "authRateLimitBucket" | "groupPolicyAudit"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1391,6 +1392,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GroupPolicyAudit: {
+      payload: Prisma.$GroupPolicyAuditPayload<ExtArgs>
+      fields: Prisma.GroupPolicyAuditFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GroupPolicyAuditFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GroupPolicyAuditFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>
+        }
+        findFirst: {
+          args: Prisma.GroupPolicyAuditFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GroupPolicyAuditFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>
+        }
+        findMany: {
+          args: Prisma.GroupPolicyAuditFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>[]
+        }
+        create: {
+          args: Prisma.GroupPolicyAuditCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>
+        }
+        createMany: {
+          args: Prisma.GroupPolicyAuditCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GroupPolicyAuditCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>[]
+        }
+        delete: {
+          args: Prisma.GroupPolicyAuditDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>
+        }
+        update: {
+          args: Prisma.GroupPolicyAuditUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>
+        }
+        deleteMany: {
+          args: Prisma.GroupPolicyAuditDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GroupPolicyAuditUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GroupPolicyAuditUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>[]
+        }
+        upsert: {
+          args: Prisma.GroupPolicyAuditUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GroupPolicyAuditPayload>
+        }
+        aggregate: {
+          args: Prisma.GroupPolicyAuditAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGroupPolicyAudit>
+        }
+        groupBy: {
+          args: Prisma.GroupPolicyAuditGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GroupPolicyAuditGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GroupPolicyAuditCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GroupPolicyAuditCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1608,6 +1683,19 @@ export const AuthRateLimitBucketScalarFieldEnum = {
 } as const
 
 export type AuthRateLimitBucketScalarFieldEnum = (typeof AuthRateLimitBucketScalarFieldEnum)[keyof typeof AuthRateLimitBucketScalarFieldEnum]
+
+
+export const GroupPolicyAuditScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  actorEmployeeId: 'actorEmployeeId',
+  action: 'action',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  occurredAt: 'occurredAt'
+} as const
+
+export type GroupPolicyAuditScalarFieldEnum = (typeof GroupPolicyAuditScalarFieldEnum)[keyof typeof GroupPolicyAuditScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1894,6 +1982,7 @@ export type GlobalOmitConfig = {
   groupPermission?: Prisma.GroupPermissionOmit
   authSession?: Prisma.AuthSessionOmit
   authRateLimitBucket?: Prisma.AuthRateLimitBucketOmit
+  groupPolicyAudit?: Prisma.GroupPolicyAuditOmit
 }
 
 /* Types for Logging */

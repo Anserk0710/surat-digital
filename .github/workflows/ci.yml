@@ -61,3 +61,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Install Chromium for web smoke
+        run: npx playwright install --with-deps chromium
+
+      - name: Web route smoke without API
+        run: npm run web:verify:smoke

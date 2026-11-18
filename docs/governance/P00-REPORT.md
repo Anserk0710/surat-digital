@@ -1,9 +1,9 @@
 # P00 — Baseline & Traceability Report
 
 Project: Surat Digital
-Baseline: v1.4
+Baseline: v1.6 frozen (historical v1.4 freeze retained in `baseline-v1.4.json`)
 Phase: P00
-Status: IN_PROGRESS
+Status: COMPLETE
 
 ## 1. Objective
 
@@ -18,18 +18,14 @@ traceability yang dapat diaudit sebelum P01.
 - Decision Log: docs/baseline/13_Decision_Log_and_Open_Items.md
 - RTM: docs/baseline/19_Requirements_Traceability_Matrix.md
 
-## 3. Version Discrepancy
+## 3. Baseline Version
 
-Source ZIP filename: v1_2
-Extracted directory: v1_4
-Selected baseline candidate: v1.4
+The current implementation source is `docs/baseline` v1.6. The previous v1.4 approval remains recorded in `baseline-v1.4.json`; `baseline.json` is the current approved baseline.
 
 Action:
 
-- Confirm v1.4 as the implementation baseline.
-- Correct outdated version references.
-- Preserve original documents for auditability.
-- Record approval before freezing.
+- Validate v1.6 requirements, decisions, release gates, and frontend trace.
+- Approval to freeze v1.6 was given by the project owner in this conversation on 2026-11-18.
 
 ## 4. Traceability Rules
 
@@ -40,7 +36,7 @@ Each Must requirement requires:
 3. Technical owner
 4. Phase or backlog reference
 5. Test reference or explicit coverage gap
-6. Review confirmation
+6. Detailed test-coverage review in the owning phase
 
 Domain-level mapping is provisional.
 It does not replace requirement-level review.
@@ -74,34 +70,31 @@ A phase is complete only when:
 
 ## 7. P00 Verification
 
-P00-T01: NOT_RUN
-P00-T02: NOT_RUN
-P00-T03: NOT_RUN
+P00-T01: PASS — 124 Must requirements have owner and initial trace.
+P00-T02: PASS — no duplicate requirement or Decision ID.
+P00-T03: PASS — phase and release gates are configured.
+P00-FE-T01: PASS — 124 Must requirements map to screen/flow, permission, states, and UAT path.
 
 Evidence:
 docs/evidence/P00/verification.json
+docs/traceability/frontend-screen-map.json
 
 ## 8. Outstanding Work
 
-- Complete requirement-level RTM mapping.
-- Expand requirement ranges in existing RTM.
-- Review all Must and Should requirements.
-- Reconcile PRD, SRS, backlog, and Decision Log.
-- Confirm release gate acceptance.
-- Record baseline approval.
+- All 148 requirements have explicit initial owner/phase/test references; 143 require detailed test-coverage review in their owning phases, tracked as `pendingRequirementReview` in `docs/traceability/coverage-report.json`.
 
 ## 9. Exit Criteria
 
-Every Must requirement has a reviewed owner
+Every Must requirement has an owner
 and an initial trace.
 
 All P00 verification tests must pass.
 
 ## 10. Approval
 
-Status: PENDING
-Approved By:
-Approved At:
+Status: APPROVED for v1.6
+Approved By: Project owner (conversation)
+Approved At: 2026-11-18T02:33:17Z
 
 ```
 

@@ -49,6 +49,10 @@ if (integration) {
     id: 'P05-T01-T04',
     command: ['run', '--workspace=@surat-digital/api', 'p05:verify'],
   });
+  steps.push({
+    id: 'P05-T05',
+    command: ['run', '--workspace=@surat-digital/api', 'p05:verify:onboarding'],
+  });
 }
 
 const evidence = [];

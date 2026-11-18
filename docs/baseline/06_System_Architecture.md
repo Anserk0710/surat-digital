@@ -2,13 +2,13 @@
 
 ## Surat Digital
 
-**Versi:** 1.3 — Target architecture
+**Versi:** 1.6 — Target architecture dengan frontend implementation track
 
 ## 1. Ringkasan
 
 | Layer | Teknologi | Tanggung jawab |
 |---|---|---|
-| Presentation | React di cPanel | UI web responsif |
+| Presentation | React + Tailwind CSS + shadcn/ui di cPanel | UI web responsif, design tokens, komponen reusable |
 | API | NestJS di Vercel | Business logic, authorization, API |
 | ORM | Prisma Client | Akses tabel aplikasi dan transaksi |
 | Database | Supabase PostgreSQL | Data relasional, constraints, RLS |
@@ -42,6 +42,8 @@ flowchart LR
 
 ### 3.1 React Frontend
 
+- Tailwind CSS mengelola styling dan token; komponen shadcn/ui disimpan/dikurasi dalam `apps/web`, dengan komponen domain di atas primitive tersebut.
+- Client dan tipe API digenerate dari OpenAPI NestJS; browser tidak mengimplementasikan aturan otorisasi sebagai sumber kebenaran.
 - Login/session hanya melalui NestJS auth gateway/BFF. Browser tidak memanggil Supabase Auth secara langsung.
 - Dashboard, document wizard, editor, Form Builder.
 - Preview dan review file.

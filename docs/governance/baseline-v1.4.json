@@ -1,0 +1,25 @@
+{
+  "project": "Surat Digital",
+  "baselineVersion": "1.4",
+  "baselineStatus": "FROZEN",
+  "sourceArchive": "Surat_Digital_Dokumentasi_v1_2.zip",
+  "sourceDirectory": "Surat_Digital_Dokumentasi_v1_4",
+  "sourceOfTruth": {
+    "requirements": "docs/baseline/02_SRS.md",
+    "product": "docs/baseline/01_PRD.md",
+    "roadmap": "docs/baseline/04_Development_Roadmap.md",
+    "decisions": "docs/baseline/13_Decision_Log_and_Open_Items.md",
+    "traceability": "docs/baseline/19_Requirements_Traceability_Matrix.md"
+  },
+  "freezePolicy": {
+    "requiresAllP00TestsPass": true,
+    "requiresApproval": true,
+    "changesRequireTraceabilityUpdate": true,
+    "noSilentRequirementChanges": true
+  },
+  "approval": {
+    "status": "APPROVED",
+    "approvedBy": "Administrator",
+    "approvedAt": "2026-11-09T07:00:08+00:00"
+  }
+}

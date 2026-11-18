@@ -266,6 +266,56 @@ export class OrganizationService {
     return this.updateMaster(actor, kind, id, { active: false });
   }
 
+  async deleteMasterPermanently(actor: OrganizationActor, kind: MasterKind, id: string) {
+    await this.getMaster(actor, kind, id);
+
+    return this.write(() =>
+      this.prisma.$transaction(async (tx) => {
+        switch (kind) {
+          case 'office': {
+            const officeDivisions = await tx.officeDivision.findMany({
+              where: { officeId: id },
+              select: { id: true },
+            });
+            const odIds = officeDivisions.map((od) => od.id);
+            if (odIds.length > 0) {
+              await tx.employeeAssignment.deleteMany({
+                where: { officeDivisionId: { in: odIds } },
+              });
+              await tx.officeDivision.deleteMany({
+                where: { id: { in: odIds } },
+              });
+            }
+            return tx.office.delete({ where: { id } });
+          }
+          case 'division': {
+            const officeDivisions = await tx.officeDivision.findMany({
+              where: { divisionId: id },
+              select: { id: true },
+            });
+            const odIds = officeDivisions.map((od) => od.id);
+            if (odIds.length > 0) {
+              await tx.employeeAssignment.deleteMany({
+                where: { officeDivisionId: { in: odIds } },
+              });
+              await tx.officeDivision.deleteMany({
+                where: { id: { in: odIds } },
+              });
+            }
+            return tx.division.delete({ where: { id } });
+          }
+          case 'jobTitle': {
+            await tx.employeeAssignment.updateMany({
+              where: { jobTitleId: id },
+              data: { jobTitleId: null },
+            });
+            return tx.jobTitle.delete({ where: { id } });
+          }
+        }
+      }),
+    );
+  }
+
   // ---------------------------------------------------------
   // OfficeDivision — must belong to the same company.
   // ---------------------------------------------------------
@@ -363,6 +413,19 @@ export class OrganizationService {
           where: { id },
           data: { active },
         });
+      }),
+    );
+  }
+
+  async deleteOfficeDivisionPermanently(actor: OrganizationActor, id: string) {
+    await this.getOfficeDivision(actor, id);
+
+    return this.write(() =>
+      this.prisma.$transaction(async (tx) => {
+        await tx.employeeAssignment.deleteMany({
+          where: { officeDivisionId: id },
+        });
+        return tx.officeDivision.delete({ where: { id } });
       }),
     );
   }
@@ -536,5 +599,11 @@ export class OrganizationService {
 
   async deactivateAssignment(actor: OrganizationActor, id: string) {
     return this.updateAssignment(actor, id, { active: false });
+  }
+
+  async deleteAssignmentPermanently(actor: OrganizationActor, id: string) {
+    await this.getAssignment(actor, id);
+
+    return this.write(() => this.prisma.employeeAssignment.delete({ where: { id } }));
   }
 }

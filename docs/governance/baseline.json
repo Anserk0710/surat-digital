@@ -1,9 +1,8 @@
 {
   "project": "Surat Digital",
-  "baselineVersion": "1.4",
+  "baselineVersion": "1.6",
   "baselineStatus": "FROZEN",
-  "sourceArchive": "Surat_Digital_Dokumentasi_v1_2.zip",
-  "sourceDirectory": "Surat_Digital_Dokumentasi_v1_4",
+  "sourceDirectory": "docs/baseline",
   "sourceOfTruth": {
     "requirements": "docs/baseline/02_SRS.md",
     "product": "docs/baseline/01_PRD.md",
@@ -19,7 +18,13 @@
   },
   "approval": {
     "status": "APPROVED",
-    "approvedBy": "Administrator",
-    "approvedAt": "2026-11-09T07:00:08+00:00"
+    "approvedBy": "Project owner (conversation)",
+    "approvedAt": "2026-11-18T02:33:17Z"
+  },
+  "sourceHashes": {
+    "srs": "3dfa9e035f2c7452a5f80b61e82aada7504c796662496c498719f0ee0d62b423",
+    "decisions": "58ad536eaac9c498a537c5241d057c13bd8fdb6f437566fc67c5d7b4fe0ffa24",
+    "roadmap": "05176c25cd6580f8800b15cb060d51fefa8f3d1e2a4293f3edafe6e93c847ec6",
+    "rtm": "849c6003a75f0b8893765f6c37db2d2979e2e3ff156f2f2d976e61507b2c0b5c"
   }
 }

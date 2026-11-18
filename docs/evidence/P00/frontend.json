@@ -1,0 +1,9 @@
+{
+  "testId": "P00-FE-T01",
+  "status": "PASS",
+  "baselineVersion": "1.6",
+  "mustRequirements": 124,
+  "missing": [],
+  "artifactPath": "docs/traceability/frontend-screen-map.json",
+  "executedAt": "2026-11-18T02:30:36.552Z"
+}

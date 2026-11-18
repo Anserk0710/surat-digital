@@ -266,10 +266,23 @@ model AuthSession {
 }
 
 model AuthRateLimitBucket {
-  id    String  @id @db.VarChar(64)
-  requestCount  Int @default(0) @map("request_count")
-  expiresAt  DateTime  @map("expires_at")  @db.Timestamptz(6)
+  id           String   @id @db.VarChar(64)
+  requestCount Int      @default(0) @map("request_count")
+  expiresAt    DateTime @map("expires_at") @db.Timestamptz(6)
 
   @@index([expiresAt], map: "auth_rate_limit_buckets_expires_at_idx")
   @@map("auth_rate_limit_buckets")
+}
+
+model GroupPolicyAudit {
+  id              String   @id @default(uuid()) @db.Uuid
+  companyId       String   @map("company_id") @db.Uuid
+  actorEmployeeId String   @map("actor_employee_id") @db.Uuid
+  action          String   @db.VarChar(60)
+  targetType      String   @map("target_type") @db.VarChar(40)
+  targetId        String   @map("target_id") @db.Uuid
+  occurredAt      DateTime @default(now()) @map("occurred_at") @db.Timestamptz(6)
+
+  @@index([companyId, occurredAt], map: "group_policy_audit_company_time_idx")
+  @@map("group_policy_audit")
 }

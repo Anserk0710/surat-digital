@@ -1,12 +1,12 @@
-# Indeks Dokumentasi Surat Digital v1.4
+# Indeks Dokumentasi Surat Digital v1.6
 
-Versi 1.4 mempertahankan seluruh keputusan v1.3 dan memperdalam `04_Development_Roadmap.md` menjadi **Phase Execution Roadmap**. P00–P59 tetap menggunakan timebox 8/12 jam, tetapi setiap phase kini memiliki Goal, Dependencies, Pekerjaan/Scope, Deliverables, Test/Verification, dan Exit Criteria.
+Versi 1.6 menggunakan satu roadmap P00–P59: setiap phase mencakup Backend dan Frontend, Goals, Dependencies, Scope, Deliverables, Test, dan Exit Criteria. Estimasi tiap phase adalah 1 hari pengerjaan penuh. React menggunakan Tailwind CSS dan shadcn/ui; evidence historis disimpan tanpa klaim bahwa frontend lama sudah selesai.
 
 1. [00_README.md](00_README.md) — overview dan prinsip konsistensi
 2. [01_PRD.md](01_PRD.md) — product requirements dan commercial focus
 3. [02_SRS.md](02_SRS.md) — software requirements + External Signing/Credit Billing requirements
 4. [03_UI_UX_Specification.md](03_UI_UX_Specification.md) — internal/public signing, verification, dan billing UX
-5. [04_Development_Roadmap.md](04_Development_Roadmap.md) — executable phase guide 8/12 jam dengan goal, scope, deliverable, test, dan exit criteria untuk P00–P59
+5. [04_Development_Roadmap.md](04_Development_Roadmap.md) — roadmap terpadu P00–P59, masing-masing 1 hari penuh dan enam bagian wajib Backend & Frontend
 6. [05_Project_Documentation_and_Folder_Structure.md](05_Project_Documentation_and_Folder_Structure.md) — repository/module standards
 7. [06_System_Architecture.md](06_System_Architecture.md) — auth, manifest, outbox, External Signing, credit architecture
 8. [07_Database_Design_and_ERD.md](07_Database_Design_and_ERD.md) — target 45 tables + credit/external signing model

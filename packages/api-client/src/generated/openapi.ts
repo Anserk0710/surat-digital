@@ -84,6 +84,150 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/group-policy/me/effective-permissions': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicyMyEffectivePermissions'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/group-policy/permissions': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicyListPermissions'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicyListGroups'];
+    put?: never;
+    post: operations['groupPolicyCreateGroup'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups/{groupId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicyGetGroup'];
+    put?: never;
+    post?: never;
+    delete: operations['groupPolicyDeactivateGroup'];
+    options?: never;
+    head?: never;
+    patch: operations['groupPolicyUpdateGroup'];
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups/{groupId}/status': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations['groupPolicySetGroupActive'];
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups/{groupId}/members': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicyListMembers'];
+    put?: never;
+    post: operations['groupPolicyAddMember'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups/{groupId}/members/{employeeId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete: operations['groupPolicyRemoveMember'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups/{groupId}/permissions': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicyListGroupPermissions'];
+    put?: never;
+    post: operations['groupPolicySetPermission'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/group-policy/groups/{groupId}/permissions/{permissionCode}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete: operations['groupPolicyRemovePermission'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/organization/companies': {
     parameters: {
       query?: never;
@@ -276,6 +420,102 @@ export interface paths {
     patch: operations['OrganizationController_updateAssignment'];
     trace?: never;
   };
+  '/api/v1/users/register': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations['usersRegister'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/users': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['usersList'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/users/me/profile': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['usersMyProfile'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations['usersUpdateMyProfile'];
+    trace?: never;
+  };
+  '/api/v1/users/{id}/status': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations['usersSetStatus'];
+    trace?: never;
+  };
+  '/api/v1/users/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete: operations['usersDelete'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/users/import': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations['usersImportExcel'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -324,6 +564,76 @@ export interface components {
       /** @example true */
       authenticated: boolean;
       user: components['schemas']['AuthUserDto'];
+    };
+    EffectivePermissionResponseDto: {
+      code: string;
+      /** @enum {string} */
+      decision: 'ALLOW' | 'DENY';
+    };
+    PermissionCatalogResponseDto: {
+      /** Format: uuid */
+      id: string;
+      code: string;
+      name: string;
+      description: string | null;
+    };
+    GroupResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      companyId: string;
+      code: string;
+      name: string;
+      description: string | null;
+      active: boolean;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    CreateGroupDto: {
+      /** @example FINANCE_APPROVERS */
+      code: string;
+      /** @example Finance Approvers */
+      name: string;
+      description?: string;
+    };
+    UpdateGroupDto: {
+      name?: string;
+      description?: string | null;
+    };
+    SetGroupActiveDto: {
+      active: boolean;
+    };
+    GroupMemberResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      employeeId: string;
+      /** Format: uuid */
+      groupId: string;
+      active: boolean;
+    };
+    AddGroupMemberDto: {
+      /** Format: uuid */
+      employeeId: string;
+    };
+    GroupPermissionResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      groupId: string;
+      /** Format: uuid */
+      permissionId: string;
+      /** @enum {string} */
+      effect: 'ALLOW' | 'DENY';
+      active: boolean;
+    };
+    SetGroupPermissionDto: {
+      /** @example Document.Download */
+      permissionCode: string;
+      /** @enum {string} */
+      effect: 'ALLOW' | 'DENY';
     };
     CompanyResponseDto: {
       /** Format: uuid */
@@ -474,6 +784,23 @@ export interface components {
       validFrom?: string | null;
       validUntil?: string | null;
       active?: boolean;
+    };
+    UserResponseDto: {
+      id: string;
+      employeeNumber: string;
+      username: string;
+      fullName: string;
+      email: string;
+      /** @enum {string} */
+      status: 'PENDING' | 'ACTIVE' | 'SUSPENDED' | 'INACTIVE';
+    };
+    ImportErrorDto: {
+      row: number;
+      message: string;
+    };
+    ImportResultDto: {
+      created: number;
+      errors: components['schemas']['ImportErrorDto'][];
     };
   };
   responses: never;
@@ -674,6 +1001,294 @@ export interface operations {
       };
     };
   };
+  groupPolicyMyEffectivePermissions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['EffectivePermissionResponseDto'][];
+        };
+      };
+    };
+  };
+  groupPolicyListPermissions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['PermissionCatalogResponseDto'][];
+        };
+      };
+    };
+  };
+  groupPolicyListGroups: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupResponseDto'][];
+        };
+      };
+    };
+  };
+  groupPolicyCreateGroup: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateGroupDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyGetGroup: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyDeactivateGroup: {
+    parameters: {
+      query?: {
+        permanent?: boolean;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyUpdateGroup: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateGroupDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicySetGroupActive: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['SetGroupActiveDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyListMembers: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupMemberResponseDto'][];
+        };
+      };
+    };
+  };
+  groupPolicyAddMember: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['AddGroupMemberDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupMemberResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyRemoveMember: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupMemberResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyListGroupPermissions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupPermissionResponseDto'][];
+        };
+      };
+    };
+  };
+  groupPolicySetPermission: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['SetGroupPermissionDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupPermissionResponseDto'];
+        };
+      };
+    };
+  };
+  groupPolicyRemovePermission: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupPermissionResponseDto'];
+        };
+      };
+    };
+  };
   organizationListCompanies: {
     parameters: {
       query?: never;
@@ -817,7 +1432,9 @@ export interface operations {
   };
   OrganizationController_deactivateOffice: {
     parameters: {
-      query?: never;
+      query?: {
+        permanent?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -920,7 +1537,9 @@ export interface operations {
   };
   OrganizationController_deactivateDivision: {
     parameters: {
-      query?: never;
+      query?: {
+        permanent?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1023,7 +1642,9 @@ export interface operations {
   };
   OrganizationController_deactivateJobTitle: {
     parameters: {
-      query?: never;
+      query?: {
+        permanent?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1126,7 +1747,9 @@ export interface operations {
   };
   OrganizationController_deactivateOfficeDivision: {
     parameters: {
-      query?: never;
+      query?: {
+        permanent?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1229,7 +1852,9 @@ export interface operations {
   };
   OrganizationController_deactivateAssignment: {
     parameters: {
-      query?: never;
+      query?: {
+        permanent?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1265,6 +1890,150 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['EmployeeAssignmentResponseDto'];
+        };
+      };
+    };
+  };
+  usersRegister: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            accepted?: boolean;
+          };
+        };
+      };
+    };
+  };
+  usersList: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserResponseDto'][];
+        };
+      };
+    };
+  };
+  usersMyProfile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserResponseDto'];
+        };
+      };
+    };
+  };
+  usersUpdateMyProfile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserResponseDto'];
+        };
+      };
+    };
+  };
+  usersSetStatus: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserResponseDto'];
+        };
+      };
+    };
+  };
+  usersDelete: {
+    parameters: {
+      query?: {
+        permanent?: boolean;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['UserResponseDto'];
+        };
+      };
+    };
+  };
+  usersImportExcel: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'multipart/form-data': {
+          /** Format: binary */
+          file: string;
+        };
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['ImportResultDto'];
         };
       };
     };

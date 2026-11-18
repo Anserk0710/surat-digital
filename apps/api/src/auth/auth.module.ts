@@ -34,7 +34,10 @@ import { AuthAuditInterceptor } from '../security/auth-audit.interceptor.js';
   exports: [
     EmployeeSessionPolicyService,
     AuthCookieService,
-    AuthSessionService
+    AuthSessionService,
+    AuthRateLimitGuard,
+    AuthRateLimitService,
+    AuthAuditService,
   ],
 })
-export class AuthModule { }
+export class AuthModule {}

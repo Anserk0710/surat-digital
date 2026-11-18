@@ -10,7 +10,7 @@ export class AuthCsrfService {
   private readonly sameSite: 'lax' | 'strict' | 'none';
 
   private readonly cookieName = 'sd_csrf';
-  private readonly cookiePath = '/api/v1/auth';
+  private readonly cookiePath = '/api/v1';
   private readonly maxAgeMs = 2 * 60 * 60 * 1000;
 
   constructor(

@@ -39,6 +39,7 @@ async function verifyDataApiPrivileges(
         ('permissions'),
         ('employee_groups'),
         ('group_permissions'),
+        ('group_policy_audit'),
         ('auth_sessions'),
         ('auth_rate_limit_buckets')
     )
