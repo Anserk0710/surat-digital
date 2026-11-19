@@ -50,6 +50,8 @@
     "p05:verify:integration": "node scripts/verify-p05.mjs --integration",
     "p06:verify": "node scripts/verify-p06.mjs",
     "p06:verify:integration": "node scripts/verify-p06.mjs --integration",
+    "p07:verify": "node scripts/verify-p07.mjs",
+    "p07:verify:integration": "node scripts/verify-p07.mjs --integration",
     "verify:pre-p04": "node scripts/verify-pre-p04.mjs",
     "verify:pre-p04:integration": "node scripts/verify-pre-p04.mjs --integration"
   },
@@ -69,7 +71,7 @@
     "@types/node": "26.6.6",
     "eslint": "10.14.0",
     "globals": "17.14.0",
-    "playwright": "1.58.2",
+    "playwright": "1.60.0",
     "prettier": "3.9.10",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "typescript-eslint": "8.72.1",

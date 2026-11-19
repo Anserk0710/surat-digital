@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth.js';
 import { Shell } from './components/Shell.js';
+import { ProtectedRoute } from './components/ProtectedRoute.js';
 import { LoginPage } from './pages/LoginPage.js';
 import { RegisterPage } from './pages/RegisterPage.js';
 import { DashboardPage } from './pages/DashboardPage.js';
@@ -39,9 +40,30 @@ export function App() {
     <Shell>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/organization" element={<OrganizationPage />} />
-        <Route path="/users" element={<UsersPage />} />
-        <Route path="/groups" element={<GroupsPage />} />
+        <Route
+          path="/organization"
+          element={
+            <ProtectedRoute requiredAny={['System.Configure', 'User.View']}>
+              <OrganizationPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute requiredAny={['User.View', 'User.Manage']}>
+              <UsersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/groups"
+          element={
+            <ProtectedRoute requiredAny={['Group.View', 'Group.Manage']}>
+              <GroupsPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/forbidden" element={<ForbiddenPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

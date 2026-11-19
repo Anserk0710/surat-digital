@@ -14,6 +14,9 @@ if (process.env.WEB_NONPROD_ACK !== 'YES' || process.env.NODE_ENV === 'productio
 if (process.env.FRONTEND_ORIGIN !== 'http://localhost:5173') {
   throw new Error('Browser verification requires FRONTEND_ORIGIN=http://localhost:5173.');
 }
+if (!process.env.DIRECT_URL) {
+  throw new Error('DIRECT_URL is required for P07 RLS browser fixtures.');
+}
 
 // The browser test opens several parallel HTTP requests. Keep the runtime role,
 // but use the Supabase session pooler for a stable, isolated test connection.
@@ -26,14 +29,20 @@ if (runtimeUrl.searchParams.get('pgbouncer') === 'true' && runtimeUrl.port === '
 
 const { createApplication } = await import('../apps/api/src/bootstrap.js');
 const { PrismaService } = await import('../apps/api/src/database/prisma.service.js');
+const { createPrismaClient } = await import('../apps/api/src/database/prisma-client.js');
 const { AuthSessionService } = await import('../apps/api/src/auth/auth-session.service.js');
 const prismaApp = await createApplication();
+const fixturePrisma = createPrismaClient(process.env.DIRECT_URL);
 let vite: Awaited<ReturnType<typeof createServer>> | undefined;
 let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
 let companyId: string | undefined;
 let registeredAuthId: string | undefined;
 let adminAuthId: string | undefined;
 let adminEmployeeId: string | undefined;
+let registeredEmployeeId: string | undefined;
+let p07OwnResourceId: string | undefined;
+let p07CrossUserResourceId: string | undefined;
+let p07CrossOfficeResourceId: string | undefined;
 const statuses: Record<string, string> = {};
 const suffix = randomBytes(5).toString('hex');
 
@@ -107,6 +116,7 @@ try {
       where: { companyId: company.id, emailNormalized: email },
     });
     registeredAuthId = pending.authUserId ?? undefined;
+    registeredEmployeeId = pending.id;
     assert.equal(pending.status, 'PENDING');
     await page.getByRole('link', { name: /Kembali ke login/ }).click();
     await page.getByLabel('Email, username, atau NIP').fill(username);
@@ -183,7 +193,7 @@ try {
     await page.goto('/users');
     await page.getByRole('heading', { name: 'Pengguna' }).waitFor();
     await page.getByText('Browser User').waitFor();
-    await page.getByRole('button', { name: 'Aktifkan' }).click();
+    await page.getByRole('button', { name: 'Aktifkan', exact: true }).click();
     await page.getByText('Browser User').locator('..').getByText('ACTIVE').waitFor();
 
     const workbook = new ExcelJS.Workbook();
@@ -240,6 +250,77 @@ try {
     await page.getByRole('status').filter({ hasText: 'Profil tersimpan' }).waitFor();
   });
 
+  if (!companyId || !adminEmployeeId || !registeredEmployeeId) {
+    throw new Error('P07 browser fixtures require P05 employee/company fixtures.');
+  }
+  const p07PrimaryOffice = await prisma.office.findFirstOrThrow({
+    where: { companyId, code: `OFF${suffix}` },
+  });
+  const p07SecondaryOffice = await prisma.office.create({
+    data: {
+      companyId,
+      code: `P07B${suffix}`,
+      name: 'P07 Secondary Office',
+      timezone: 'Asia/Makassar',
+    },
+  });
+  const p07Division = await prisma.division.create({
+    data: { companyId, code: `P07D${suffix}`, name: 'P07 Browser Division' },
+  });
+  const [p07OfficeDivisionA, p07OfficeDivisionB] = await Promise.all([
+    prisma.officeDivision.create({
+      data: { officeId: p07PrimaryOffice.id, divisionId: p07Division.id },
+    }),
+    prisma.officeDivision.create({
+      data: { officeId: p07SecondaryOffice.id, divisionId: p07Division.id },
+    }),
+  ]);
+  await Promise.all([
+    prisma.employeeAssignment.create({
+      data: {
+        employeeId: adminEmployeeId,
+        officeDivisionId: p07OfficeDivisionA.id,
+        isPrimary: true,
+        active: true,
+      },
+    }),
+    prisma.employeeAssignment.create({
+      data: {
+        employeeId: registeredEmployeeId,
+        officeDivisionId: p07OfficeDivisionB.id,
+        isPrimary: true,
+        active: true,
+      },
+    }),
+  ]);
+  p07OwnResourceId = (
+    await fixturePrisma.rlsPocResource.create({
+      data: {
+        ownerEmployeeId: adminEmployeeId,
+        officeId: p07PrimaryOffice.id,
+        label: 'P07 Admin Own Resource',
+      },
+    })
+  ).id;
+  p07CrossUserResourceId = (
+    await fixturePrisma.rlsPocResource.create({
+      data: {
+        ownerEmployeeId: registeredEmployeeId,
+        officeId: p07SecondaryOffice.id,
+        label: 'P07 Other User Resource',
+      },
+    })
+  ).id;
+  p07CrossOfficeResourceId = (
+    await fixturePrisma.rlsPocResource.create({
+      data: {
+        ownerEmployeeId: adminEmployeeId,
+        officeId: p07SecondaryOffice.id,
+        label: 'P07 Foreign Office Resource',
+      },
+    })
+  ).id;
+
   await record('P06', async () => {
     await page.getByRole('link', { name: 'Group Policy' }).click();
     await page.getByRole('heading', { name: 'Group Policy' }).waitFor();
@@ -248,7 +329,9 @@ try {
     await page.getByRole('button', { name: 'Tambah' }).click();
     await page.getByRole('button', { name: /Browser Group/ }).waitFor();
     await page.getByRole('button', { name: /Browser Group/ }).click();
-    const detail = page.getByRole('heading', { name: 'Anggota dan izin' }).locator('..');
+    const detail = page.locator('.panel').filter({
+      has: page.getByRole('heading', { name: /Browser Group/ }),
+    });
     await detail.waitFor();
     await detail.getByPlaceholder('ID karyawan').fill(adminEmployeeId!);
     await detail.getByRole('button', { name: 'Tambah' }).click();
@@ -258,6 +341,61 @@ try {
     await detail.getByRole('button', { name: 'Simpan izin' }).click();
     await page.getByText('User.View: DENY').waitFor();
     await page.getByText('User.Manage: ALLOW').waitFor();
+  });
+
+  await record('P07', async () => {
+    if (!p07OwnResourceId || !p07CrossUserResourceId || !p07CrossOfficeResourceId) {
+      throw new Error('P07 browser resource fixtures were not created.');
+    }
+
+    async function fetchProbe(targetPage: typeof page, resourceId: string) {
+      return targetPage.evaluate(async (id) => {
+        const response = await fetch(`/api/v1/rls-poc/resources/${id}`, {
+          credentials: 'include',
+          cache: 'no-store',
+        });
+        return { status: response.status, body: await response.text() };
+      }, resourceId);
+    }
+
+    const own = await fetchProbe(page, p07OwnResourceId);
+    assert.equal(own.status, 200, own.body);
+    assert.match(own.body, /P07 Admin Own Resource/);
+
+    const crossUser = await fetchProbe(page, p07CrossUserResourceId);
+    assert.equal(crossUser.status, 403, crossUser.body);
+    assert.doesNotMatch(crossUser.body, /P07 Other User Resource/);
+
+    const crossOffice = await fetchProbe(page, p07CrossOfficeResourceId);
+    assert.equal(crossOffice.status, 403, crossOffice.body);
+    assert.doesNotMatch(crossOffice.body, /P07 Foreign Office Resource/);
+    assert.equal(await page.getByText('P07 Other User Resource').count(), 0);
+    assert.equal(await page.getByText('P07 Foreign Office Resource').count(), 0);
+
+    const limitedContext = await browser!.newContext({ baseURL: process.env.FRONTEND_ORIGIN });
+    const limitedPage = await limitedContext.newPage();
+    try {
+      await limitedPage.goto('/login');
+      await limitedPage.getByLabel('Email, username, atau NIP').fill(username);
+      await limitedPage.getByLabel('Kata sandi').fill(password);
+      await limitedPage.getByRole('button', { name: 'Masuk' }).click();
+      await limitedPage.getByRole('heading', { name: /Selamat datang, Browser User/ }).waitFor();
+
+      await limitedPage.goto('/users');
+      await limitedPage.getByRole('heading', { name: '403 — Akses Ditolak' }).waitFor();
+      assert.match(limitedPage.url(), /\/forbidden$/);
+
+      const limitedOwn = await fetchProbe(limitedPage, p07CrossUserResourceId);
+      assert.equal(limitedOwn.status, 200, limitedOwn.body);
+      assert.match(limitedOwn.body, /P07 Other User Resource/);
+
+      const limitedCrossUser = await fetchProbe(limitedPage, p07OwnResourceId);
+      assert.equal(limitedCrossUser.status, 403, limitedCrossUser.body);
+      assert.doesNotMatch(limitedCrossUser.body, /P07 Admin Own Resource/);
+      assert.equal(await limitedPage.getByText('P07 Admin Own Resource').count(), 0);
+    } finally {
+      await limitedContext.close();
+    }
   });
 
   await record('P04', async () => {
@@ -315,6 +453,17 @@ try {
   try {
     if (companyId) {
       const prisma = prismaApp.get(PrismaService);
+      if (p07OwnResourceId || p07CrossUserResourceId || p07CrossOfficeResourceId) {
+        await fixturePrisma.rlsPocResource.deleteMany({
+          where: {
+            id: {
+              in: [p07OwnResourceId, p07CrossUserResourceId, p07CrossOfficeResourceId].filter(
+                (value): value is string => Boolean(value),
+              ),
+            },
+          },
+        });
+      }
       await prisma.authSession.deleteMany({ where: { employee: { companyId } } });
       await prisma.groupPermission.deleteMany({ where: { group: { companyId } } });
       await prisma.employeeGroup.deleteMany({ where: { group: { companyId } } });
@@ -342,7 +491,8 @@ try {
     await browser?.close();
     await vite?.close();
     await prismaApp.close();
-    for (const phase of ['P01', 'P03', 'P04', 'P05', 'P06']) {
+    await fixturePrisma.$disconnect();
+    for (const phase of ['P01', 'P03', 'P04', 'P05', 'P06', 'P07']) {
       await mkdir(`docs/evidence/${phase}`, { recursive: true });
       await writeFile(
         `docs/evidence/${phase}/frontend.json`,

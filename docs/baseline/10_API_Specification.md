@@ -358,6 +358,38 @@ Set menggunakan upsert dan permission harus aktif di katalog. Delete menonaktifk
 
 Tenant isolation diterapkan server-side; client tidak dapat memilih company lain melalui request body.
 
+## 4.A P07 — RLS Runtime POC
+
+P07 membuktikan PostgreSQL RLS terhadap Prisma runtime connection. Backend authorization tetap menjadi enforcement utama. RLS adalah defense-in-depth dan hanya berlaku pada query yang memakai transaction-local identity context melalui transaction client yang sama.
+
+### Diagnostic POC Endpoint
+
+`GET /api/v1/rls-poc/resources/:id`
+
+Memerlukan application session valid, employee dan company aktif, active primary office, serta resource yang dimiliki employee dan berada pada office tersebut.
+
+Response sukses (`200 OK`):
+
+```json
+{
+  "id": "<uuid>",
+  "ownerEmployeeId": "<uuid>",
+  "officeId": "<uuid>",
+  "label": "P07 probe"
+}
+```
+
+Resource yang tidak ada, dimiliki user lain, atau berada pada office lain menghasilkan generic `403 Forbidden`:
+
+```json
+{
+  "code": "RLS_ACCESS_DENIED",
+  "message": "Access denied."
+}
+```
+
+Endpoint ini diagnostic P07, bukan business-domain endpoint. Probe table tidak dipakai untuk data production. Setelah RLS-protected Document domain memiliki equivalent coverage, endpoint dan probe table dapat dihapus melalui migration terpisah.
+
 ## 5. Document creation
 
 | Method | Endpoint                              | Fungsi                         |

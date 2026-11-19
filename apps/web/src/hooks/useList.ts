@@ -11,11 +11,14 @@ export function useList<T = RecordItem>(path: string | null) {
 
   const reload = useCallback(async () => {
     if (!path) {
+      generation.current++;
       setItems([]);
       setLoading(false);
+      setError('');
       return;
     }
     const current = ++generation.current;
+    setItems([]);
     setLoading(true);
     setError('');
     try {
@@ -25,6 +28,7 @@ export function useList<T = RecordItem>(path: string | null) {
       }
     } catch (reason) {
       if (current === generation.current) {
+        setItems([]);
         setError(formatErrorMessage(reason));
       }
     } finally {

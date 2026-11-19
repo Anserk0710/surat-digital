@@ -1,0 +1,35 @@
+{
+  "phaseId": "P07",
+  "generatedAt": "2026-11-18T14:45:35.229Z",
+  "database": "postgres",
+  "runtimeRole": "surat_runtime",
+  "methodology": {
+    "kind": "sequential microbenchmark",
+    "note": "Directional comparison only; rerun under staging load before production sizing.",
+    "authzOnly": "One explicit Prisma authorization/scope query without interactive RLS transaction context.",
+    "authzPlusRls": "RlsContextService interactive transaction: actor lookup, transaction-local set_config, then protected Prisma read."
+  },
+  "authzOnly": {
+    "iterations": 100,
+    "meanMs": 130.043,
+    "p50Ms": 102.586,
+    "p95Ms": 205.045
+  },
+  "authzPlusRls": {
+    "iterations": 100,
+    "meanMs": 882.685,
+    "p50Ms": 921.102,
+    "p95Ms": 1126.551
+  },
+  "delta": {
+    "p95Ms": 921.506,
+    "p95Ratio": 5.494
+  },
+  "complexityTradeoff": [
+    "Backend authorization remains mandatory and is not replaced by RLS.",
+    "Every RLS-protected request requires one interactive transaction.",
+    "Identity is set only with transaction-local set_config(..., true).",
+    "Every protected Prisma query must use the same transaction client.",
+    "Missing context fails closed and returns zero protected rows."
+  ]
+}

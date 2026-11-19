@@ -50,6 +50,7 @@ model Office {
   company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "offices_company_id_fkey")
 
   officeDivisions OfficeDivision[]
+  rlsPocResources RlsPocResource[]
 
   @@unique([companyId, code], map: "offices_company_id_code_key")
   @@index([companyId], map: "offices_company_id_idx")
@@ -121,6 +122,7 @@ model Employee {
   emailNormalized    String         @map("email_normalized") @db.VarChar(320)
   fullName           String         @map("full_name") @db.VarChar(200)
   status             EmployeeStatus @default(PENDING)
+  isPlatformAdmin    Boolean        @default(false) @map("is_platform_admin")
   createdAt          DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt          DateTime       @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
@@ -129,6 +131,8 @@ model Employee {
   assignments    EmployeeAssignment[]
   employeeGroups EmployeeGroup[]
   authSessions   AuthSession[]
+
+  rlsPocResources RlsPocResource[] @relation("RlsPocResourceOwner")
 
   @@unique([companyId, employeeNumber], map: "employees_company_id_employee_number_key")
   @@unique([companyId, usernameNormalized], map: "employees_company_id_username_normalized_key")
@@ -228,34 +232,21 @@ model GroupPermission {
 }
 
 model AuthSession {
-  id String @id @default(uuid()) @db.Uuid
-
-  employeeId String @map("employee_id") @db.Uuid
-
-  supabaseUserId String @map("supabase_user_id") @db.Uuid
-
-  supabaseSessionId String @unique(map: "auth_sessions_supabase_session_id_key") @map("supabase_session_id") @db.Uuid
-
-  sessionTokenHash String @unique(map: "auth_sessions_session_token_hash_key") @map("session_token_hash") @db.Char(64)
-
-  accessTokenCiphertext String @map("access_token_ciphertext") @db.Text
-
-  refreshTokenCiphertext String @map("refresh_token_ciphertext") @db.Text
-
-  accessTokenExpiresAt DateTime @map("access_token_expires_at") @db.Timestamptz(6)
-
-  expiresAt DateTime @map("expires_at") @db.Timestamptz(6)
-
-  lastRefreshedAt DateTime? @map("last_refreshed_at") @db.Timestamptz(6)
-
-  refreshLeaseId    String?   @map("refresh_lease_id") @db.Uuid
-  refreshLeaseUntil DateTime? @map("refresh_lease_until") @db.Timestamptz(6)
-
-  revokedAt DateTime? @map("revoked_at") @db.Timestamptz(6)
-
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  id                     String    @id @default(uuid()) @db.Uuid
+  employeeId             String    @map("employee_id") @db.Uuid
+  supabaseUserId         String    @map("supabase_user_id") @db.Uuid
+  supabaseSessionId      String    @unique(map: "auth_sessions_supabase_session_id_key") @map("supabase_session_id") @db.Uuid
+  sessionTokenHash       String    @unique(map: "auth_sessions_session_token_hash_key") @map("session_token_hash") @db.Char(64)
+  accessTokenCiphertext  String    @map("access_token_ciphertext") @db.Text
+  refreshTokenCiphertext String    @map("refresh_token_ciphertext") @db.Text
+  accessTokenExpiresAt   DateTime  @map("access_token_expires_at") @db.Timestamptz(6)
+  expiresAt              DateTime  @map("expires_at") @db.Timestamptz(6)
+  lastRefreshedAt        DateTime? @map("last_refreshed_at") @db.Timestamptz(6)
+  refreshLeaseId         String?   @map("refresh_lease_id") @db.Uuid
+  refreshLeaseUntil      DateTime? @map("refresh_lease_until") @db.Timestamptz(6)
+  revokedAt              DateTime? @map("revoked_at") @db.Timestamptz(6)
+  createdAt              DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt              DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   employee Employee @relation(fields: [employeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "auth_sessions_employee_id_fkey")
 
@@ -285,4 +276,19 @@ model GroupPolicyAudit {
 
   @@index([companyId, occurredAt], map: "group_policy_audit_company_time_idx")
   @@map("group_policy_audit")
+}
+
+model RlsPocResource {
+  id              String   @id @default(uuid()) @db.Uuid
+  ownerEmployeeId String   @map("owner_employee_id") @db.Uuid
+  officeId        String   @map("office_id") @db.Uuid
+  label           String   @db.VarChar(200)
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  ownerEmployee Employee @relation("RlsPocResourceOwner", fields: [ownerEmployeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "rls_poc_resources_owner_employee_id_fkey")
+  office        Office   @relation(fields: [officeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "rls_poc_resources_office_id_fkey")
+
+  @@index([ownerEmployeeId], map: "rls_poc_resources_owner_employee_id_idx")
+  @@index([officeId], map: "rls_poc_resources_office_id_idx")
+  @@map("rls_poc_resources")
 }

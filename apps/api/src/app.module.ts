@@ -6,15 +6,14 @@ import { PrismaModule } from './database/prisma.module.js';
 import { OrganizationModule } from './organization/organization.module.js';
 import { PolicyModule } from './policy/policy.module.js';
 import { UsersModule } from './users/users.module.js';
+import { RlsModule } from './rls/rls.module.js';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-
       envFilePath: ['.env'],
-
       validate: validateEnvironment,
     }),
 
@@ -23,6 +22,7 @@ import { UsersModule } from './users/users.module.js';
     PolicyModule,
     OrganizationModule,
     UsersModule,
+    RlsModule,
   ],
 })
 export class AppModule {}

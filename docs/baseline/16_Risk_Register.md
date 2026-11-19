@@ -36,8 +36,8 @@
 | R-018 | Business rule berubah tanpa dokumentasi | Medium | High | Decision Log, RTM, PR review | Product | Mitigating | Continuous | Low |
 | R-019 | Employee nonaktif masih punya session | Medium | High | Backend active check per request + revoke | Backend/IT | Open | P04 | Low |
 | R-020 | Final PDF gagal setelah nomor di-reserve | Medium | High | Retry same reservation, FINALIZING monitoring, VOID no-reuse | Backend/Worker | Open | P27 | Low |
-| R-021 | Prisma runtime role bypass RLS | Medium | High | Runtime role test, backend authz, ADR | Backend/DBA | Open | P07 | Low/Accepted by ADR |
-| R-022 | RLS claim/context bocor antar request | Medium | Critical | tx-local `set_config`, same tx client, concurrency tests | Backend/Security | Open | P07/P40 | Low |
+| R-021 | Prisma runtime role bypass RLS | Medium | High | Runtime role test, backend authz, tx-local RLS context, ADR-0002 | Backend/DBA | Mitigated | P07/P40 | Low |
+| R-022 | RLS claim/context bocor antar request | Medium | Critical | tx-local `set_config`, same tx client, single-connection reuse test, concurrency regression | Backend/Security | Mitigating | P07/P40 | Low |
 | R-023 | OCR salah mengenali angka/nama | High | Medium | Label OCR, confidence/warning, human review | Product/Worker | Open | P35 | Medium |
 | R-024 | Malware/zip bomb masuk parser/converter | Medium | Critical | Mandatory malware scan, quarantine, sandbox, resource limits | Security/Worker | Open | P10 | Low |
 | R-025 | LibreOffice gagal karena font/layout | High | Medium | Locked image/fonts, fixture regression | Worker/DevOps | Open | P33/P34 | Medium |

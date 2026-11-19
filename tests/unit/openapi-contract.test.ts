@@ -100,4 +100,12 @@ describe('I01 OpenAPI generated contract', () => {
 
     expect(specification.components.schemas).toHaveProperty(schema);
   });
+
+  it('documents the P07 RLS POC endpoint', () => {
+    const document = readSpecification();
+
+    expect(document.paths['/api/v1/rls-poc/resources/{id}']?.get).toBeDefined();
+
+    expect(document.paths['/api/v1/rls-poc/resources/{id}']?.get?.responses).toHaveProperty('200');
+  });
 });

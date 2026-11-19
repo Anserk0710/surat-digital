@@ -7,6 +7,7 @@ export type PermissionDecision = 'ALLOW' | 'DENY';
 export interface PolicyActor {
   employeeId: string;
   companyId: string;
+  isPlatformAdmin?: boolean;
 }
 
 export interface PermissionEffectRow {

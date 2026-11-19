@@ -35,6 +35,7 @@
     "p05:verify:onboarding": "tsx scripts/verify-p05-onboarding.ts",
     "p06:seed:dev": "npm run db:verify:migration-role && tsx prisma/seed-group-policy-dev.ts",
     "p06:verify:integration": "tsx scripts/verify-p06-group-policy.ts",
+    "p07:verify:integration": "tsx scripts/verify-p0-rls.ts",
     "seed:test-user": "tsx scripts/seed-test-user.ts"
   },
   "dependencies": {

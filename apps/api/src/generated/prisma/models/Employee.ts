@@ -242,6 +242,7 @@ export type EmployeeWhereInput = {
   assignments?: Prisma.EmployeeAssignmentListRelationFilter
   employeeGroups?: Prisma.EmployeeGroupListRelationFilter
   authSessions?: Prisma.AuthSessionListRelationFilter
+  rlsPocResources?: Prisma.RlsPocResourceListRelationFilter
 }
 
 export type EmployeeOrderByWithRelationInput = {
@@ -261,6 +262,7 @@ export type EmployeeOrderByWithRelationInput = {
   assignments?: Prisma.EmployeeAssignmentOrderByRelationAggregateInput
   employeeGroups?: Prisma.EmployeeGroupOrderByRelationAggregateInput
   authSessions?: Prisma.AuthSessionOrderByRelationAggregateInput
+  rlsPocResources?: Prisma.RlsPocResourceOrderByRelationAggregateInput
 }
 
 export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -286,6 +288,7 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   assignments?: Prisma.EmployeeAssignmentListRelationFilter
   employeeGroups?: Prisma.EmployeeGroupListRelationFilter
   authSessions?: Prisma.AuthSessionListRelationFilter
+  rlsPocResources?: Prisma.RlsPocResourceListRelationFilter
 }, "id" | "authUserId" | "companyId_employeeNumber" | "companyId_usernameNormalized" | "companyId_emailNormalized">
 
 export type EmployeeOrderByWithAggregationInput = {
@@ -340,6 +343,7 @@ export type EmployeeCreateInput = {
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeUncheckedCreateInput = {
@@ -358,6 +362,7 @@ export type EmployeeUncheckedCreateInput = {
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeUpdateInput = {
@@ -376,6 +381,7 @@ export type EmployeeUpdateInput = {
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateInput = {
@@ -394,6 +400,7 @@ export type EmployeeUncheckedUpdateInput = {
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeCreateManyInput = {
@@ -607,6 +614,20 @@ export type EmployeeUpdateOneRequiredWithoutAuthSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutAuthSessionsInput, Prisma.EmployeeUpdateWithoutAuthSessionsInput>, Prisma.EmployeeUncheckedUpdateWithoutAuthSessionsInput>
 }
 
+export type EmployeeCreateNestedOneWithoutRlsPocResourcesInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutRlsPocResourcesInput, Prisma.EmployeeUncheckedCreateWithoutRlsPocResourcesInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutRlsPocResourcesInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutRlsPocResourcesNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutRlsPocResourcesInput, Prisma.EmployeeUncheckedCreateWithoutRlsPocResourcesInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutRlsPocResourcesInput
+  upsert?: Prisma.EmployeeUpsertWithoutRlsPocResourcesInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutRlsPocResourcesInput, Prisma.EmployeeUpdateWithoutRlsPocResourcesInput>, Prisma.EmployeeUncheckedUpdateWithoutRlsPocResourcesInput>
+}
+
 export type EmployeeCreateWithoutCompanyInput = {
   id?: string
   authUserId?: string | null
@@ -622,6 +643,7 @@ export type EmployeeCreateWithoutCompanyInput = {
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutCompanyInput = {
@@ -639,6 +661,7 @@ export type EmployeeUncheckedCreateWithoutCompanyInput = {
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutCompanyInput = {
@@ -700,6 +723,7 @@ export type EmployeeCreateWithoutAssignmentsInput = {
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssignmentsInput = {
@@ -717,6 +741,7 @@ export type EmployeeUncheckedCreateWithoutAssignmentsInput = {
   updatedAt?: Date | string
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssignmentsInput = {
@@ -750,6 +775,7 @@ export type EmployeeUpdateWithoutAssignmentsInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssignmentsInput = {
@@ -767,6 +793,7 @@ export type EmployeeUncheckedUpdateWithoutAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutEmployeeGroupsInput = {
@@ -784,6 +811,7 @@ export type EmployeeCreateWithoutEmployeeGroupsInput = {
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutEmployeeGroupsInput = {
@@ -801,6 +829,7 @@ export type EmployeeUncheckedCreateWithoutEmployeeGroupsInput = {
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutEmployeeGroupsInput = {
@@ -834,6 +863,7 @@ export type EmployeeUpdateWithoutEmployeeGroupsInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutEmployeeGroupsInput = {
@@ -851,6 +881,7 @@ export type EmployeeUncheckedUpdateWithoutEmployeeGroupsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutAuthSessionsInput = {
@@ -868,6 +899,7 @@ export type EmployeeCreateWithoutAuthSessionsInput = {
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeUncheckedCreateWithoutAuthSessionsInput = {
@@ -885,6 +917,7 @@ export type EmployeeUncheckedCreateWithoutAuthSessionsInput = {
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAuthSessionsInput = {
@@ -918,6 +951,7 @@ export type EmployeeUpdateWithoutAuthSessionsInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAuthSessionsInput = {
@@ -935,6 +969,95 @@ export type EmployeeUncheckedUpdateWithoutAuthSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+}
+
+export type EmployeeCreateWithoutRlsPocResourcesInput = {
+  id?: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
+  assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+}
+
+export type EmployeeUncheckedCreateWithoutRlsPocResourcesInput = {
+  id?: string
+  companyId: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+}
+
+export type EmployeeCreateOrConnectWithoutRlsPocResourcesInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutRlsPocResourcesInput, Prisma.EmployeeUncheckedCreateWithoutRlsPocResourcesInput>
+}
+
+export type EmployeeUpsertWithoutRlsPocResourcesInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutRlsPocResourcesInput, Prisma.EmployeeUncheckedUpdateWithoutRlsPocResourcesInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutRlsPocResourcesInput, Prisma.EmployeeUncheckedCreateWithoutRlsPocResourcesInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutRlsPocResourcesInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutRlsPocResourcesInput, Prisma.EmployeeUncheckedUpdateWithoutRlsPocResourcesInput>
+}
+
+export type EmployeeUpdateWithoutRlsPocResourcesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
+  assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutRlsPocResourcesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateManyCompanyInput = {
@@ -966,6 +1089,7 @@ export type EmployeeUpdateWithoutCompanyInput = {
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutCompanyInput = {
@@ -983,6 +1107,7 @@ export type EmployeeUncheckedUpdateWithoutCompanyInput = {
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
 }
 
 export type EmployeeUncheckedUpdateManyWithoutCompanyInput = {
@@ -1008,12 +1133,14 @@ export type EmployeeCountOutputType = {
   assignments: number
   employeeGroups: number
   authSessions: number
+  rlsPocResources: number
 }
 
 export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignments?: boolean | EmployeeCountOutputTypeCountAssignmentsArgs
   employeeGroups?: boolean | EmployeeCountOutputTypeCountEmployeeGroupsArgs
   authSessions?: boolean | EmployeeCountOutputTypeCountAuthSessionsArgs
+  rlsPocResources?: boolean | EmployeeCountOutputTypeCountRlsPocResourcesArgs
 }
 
 /**
@@ -1047,6 +1174,13 @@ export type EmployeeCountOutputTypeCountAuthSessionsArgs<ExtArgs extends runtime
   where?: Prisma.AuthSessionWhereInput
 }
 
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountRlsPocResourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RlsPocResourceWhereInput
+}
+
 
 export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1065,6 +1199,7 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   assignments?: boolean | Prisma.Employee$assignmentsArgs<ExtArgs>
   employeeGroups?: boolean | Prisma.Employee$employeeGroupsArgs<ExtArgs>
   authSessions?: boolean | Prisma.Employee$authSessionsArgs<ExtArgs>
+  rlsPocResources?: boolean | Prisma.Employee$rlsPocResourcesArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employee"]>
 
@@ -1121,6 +1256,7 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   assignments?: boolean | Prisma.Employee$assignmentsArgs<ExtArgs>
   employeeGroups?: boolean | Prisma.Employee$employeeGroupsArgs<ExtArgs>
   authSessions?: boolean | Prisma.Employee$authSessionsArgs<ExtArgs>
+  rlsPocResources?: boolean | Prisma.Employee$rlsPocResourcesArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1137,6 +1273,7 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     assignments: Prisma.$EmployeeAssignmentPayload<ExtArgs>[]
     employeeGroups: Prisma.$EmployeeGroupPayload<ExtArgs>[]
     authSessions: Prisma.$AuthSessionPayload<ExtArgs>[]
+    rlsPocResources: Prisma.$RlsPocResourcePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1549,6 +1686,7 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   assignments<T extends Prisma.Employee$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   employeeGroups<T extends Prisma.Employee$employeeGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$employeeGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   authSessions<T extends Prisma.Employee$authSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$authSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuthSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rlsPocResources<T extends Prisma.Employee$rlsPocResourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$rlsPocResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RlsPocResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2060,6 +2198,30 @@ export type Employee$authSessionsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.AuthSessionScalarFieldEnum | Prisma.AuthSessionScalarFieldEnum[]
+}
+
+/**
+ * Employee.rlsPocResources
+ */
+export type Employee$rlsPocResourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RlsPocResource
+   */
+  select?: Prisma.RlsPocResourceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RlsPocResource
+   */
+  omit?: Prisma.RlsPocResourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RlsPocResourceInclude<ExtArgs> | null
+  where?: Prisma.RlsPocResourceWhereInput
+  orderBy?: Prisma.RlsPocResourceOrderByWithRelationInput | Prisma.RlsPocResourceOrderByWithRelationInput[]
+  cursor?: Prisma.RlsPocResourceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RlsPocResourceScalarFieldEnum | Prisma.RlsPocResourceScalarFieldEnum[]
 }
 
 /**

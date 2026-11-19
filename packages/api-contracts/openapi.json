@@ -1378,6 +1378,29 @@
         "summary": "",
         "tags": ["Users"]
       }
+    },
+    "/api/v1/rls-poc/resources/{id}": {
+      "get": {
+        "operationId": "rlsPocGetResource",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RlsPocResourceResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Resource is outside the active employee/office RLS scope."
+          }
+        },
+        "summary": "P07 diagnostic read through transaction-local RLS context",
+        "tags": ["RLS POC"]
+      }
     }
   },
   "info": {
@@ -2120,6 +2143,27 @@
           }
         },
         "required": ["created", "errors"]
+      },
+      "RlsPocResourceResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ownerEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "ownerEmployeeId", "officeId", "label"]
       }
     }
   }

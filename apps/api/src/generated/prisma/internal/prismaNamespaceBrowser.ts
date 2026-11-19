@@ -64,7 +64,8 @@ export const ModelName = {
   GroupPermission: 'GroupPermission',
   AuthSession: 'AuthSession',
   AuthRateLimitBucket: 'AuthRateLimitBucket',
-  GroupPolicyAudit: 'GroupPolicyAudit'
+  GroupPolicyAudit: 'GroupPolicyAudit',
+  RlsPocResource: 'RlsPocResource'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -274,6 +275,17 @@ export const GroupPolicyAuditScalarFieldEnum = {
 } as const
 
 export type GroupPolicyAuditScalarFieldEnum = (typeof GroupPolicyAuditScalarFieldEnum)[keyof typeof GroupPolicyAuditScalarFieldEnum]
+
+
+export const RlsPocResourceScalarFieldEnum = {
+  id: 'id',
+  ownerEmployeeId: 'ownerEmployeeId',
+  officeId: 'officeId',
+  label: 'label',
+  createdAt: 'createdAt'
+} as const
+
+export type RlsPocResourceScalarFieldEnum = (typeof RlsPocResourceScalarFieldEnum)[keyof typeof RlsPocResourceScalarFieldEnum]
 
 
 export const SortOrder = {

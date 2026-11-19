@@ -1,0 +1,85 @@
+{
+  "phaseId": "P07",
+  "executedAt": "2026-11-18T14:46:42.213Z",
+  "integrationExecuted": true,
+  "overallStatus": "PASS",
+  "testVerification": {
+    "P07-T01": "PASS",
+    "P07-T02": "PASS",
+    "P07-T03": "PASS",
+    "P07-T04": "PASS",
+    "P07-FE-T01": "PASS"
+  },
+  "evidence": [
+    {
+      "id": "P07-SCHEMA",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api prisma:validate",
+      "executedAt": "2026-11-18T14:42:14.077Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-PRISMA-GENERATE",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api prisma:generate",
+      "executedAt": "2026-11-18T14:42:17.428Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-UNIT",
+      "status": "PASS",
+      "command": "npm exec -- vitest run tests/unit/p07-rls-contract.test.ts",
+      "executedAt": "2026-11-18T14:42:19.830Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-CONTRACT",
+      "status": "PASS",
+      "command": "npm run api:contract",
+      "executedAt": "2026-11-18T14:42:35.768Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-LINT",
+      "status": "PASS",
+      "command": "npm run lint",
+      "executedAt": "2026-11-18T14:42:43.243Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-TYPECHECK",
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "executedAt": "2026-11-18T14:43:03.567Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-ALL-TESTS",
+      "status": "PASS",
+      "command": "npm run test",
+      "executedAt": "2026-11-18T14:43:10.555Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-BUILD",
+      "status": "PASS",
+      "command": "npm run build",
+      "executedAt": "2026-11-18T14:43:29.562Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-T01-T04-INTEGRATION",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api p07:verify:integration",
+      "executedAt": "2026-11-18T14:45:36.927Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P07-FE-T01-BROWSER",
+      "status": "PASS",
+      "command": "npm run web:verify:browser",
+      "executedAt": "2026-11-18T14:46:42.213Z",
+      "exitCode": 0
+    }
+  ]
+}

@@ -410,7 +410,8 @@ export const ModelName = {
   GroupPermission: 'GroupPermission',
   AuthSession: 'AuthSession',
   AuthRateLimitBucket: 'AuthRateLimitBucket',
-  GroupPolicyAudit: 'GroupPolicyAudit'
+  GroupPolicyAudit: 'GroupPolicyAudit',
+  RlsPocResource: 'RlsPocResource'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -426,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "company" | "office" | "division" | "officeDivision" | "jobTitle" | "employee" | "employeeAssignment" | "group" | "permission" | "employeeGroup" | "groupPermission" | "authSession" | "authRateLimitBucket" | "groupPolicyAudit"
+    modelProps: "company" | "office" | "division" | "officeDivision" | "jobTitle" | "employee" | "employeeAssignment" | "group" | "permission" | "employeeGroup" | "groupPermission" | "authSession" | "authRateLimitBucket" | "groupPolicyAudit" | "rlsPocResource"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1466,6 +1467,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RlsPocResource: {
+      payload: Prisma.$RlsPocResourcePayload<ExtArgs>
+      fields: Prisma.RlsPocResourceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RlsPocResourceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RlsPocResourceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>
+        }
+        findFirst: {
+          args: Prisma.RlsPocResourceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RlsPocResourceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>
+        }
+        findMany: {
+          args: Prisma.RlsPocResourceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>[]
+        }
+        create: {
+          args: Prisma.RlsPocResourceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>
+        }
+        createMany: {
+          args: Prisma.RlsPocResourceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RlsPocResourceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>[]
+        }
+        delete: {
+          args: Prisma.RlsPocResourceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>
+        }
+        update: {
+          args: Prisma.RlsPocResourceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>
+        }
+        deleteMany: {
+          args: Prisma.RlsPocResourceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RlsPocResourceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RlsPocResourceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>[]
+        }
+        upsert: {
+          args: Prisma.RlsPocResourceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RlsPocResourcePayload>
+        }
+        aggregate: {
+          args: Prisma.RlsPocResourceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRlsPocResource>
+        }
+        groupBy: {
+          args: Prisma.RlsPocResourceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RlsPocResourceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RlsPocResourceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RlsPocResourceCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1696,6 +1771,17 @@ export const GroupPolicyAuditScalarFieldEnum = {
 } as const
 
 export type GroupPolicyAuditScalarFieldEnum = (typeof GroupPolicyAuditScalarFieldEnum)[keyof typeof GroupPolicyAuditScalarFieldEnum]
+
+
+export const RlsPocResourceScalarFieldEnum = {
+  id: 'id',
+  ownerEmployeeId: 'ownerEmployeeId',
+  officeId: 'officeId',
+  label: 'label',
+  createdAt: 'createdAt'
+} as const
+
+export type RlsPocResourceScalarFieldEnum = (typeof RlsPocResourceScalarFieldEnum)[keyof typeof RlsPocResourceScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1983,6 +2069,7 @@ export type GlobalOmitConfig = {
   authSession?: Prisma.AuthSessionOmit
   authRateLimitBucket?: Prisma.AuthRateLimitBucketOmit
   groupPolicyAudit?: Prisma.GroupPolicyAuditOmit
+  rlsPocResource?: Prisma.RlsPocResourceOmit
 }
 
 /* Types for Logging */

@@ -111,3 +111,8 @@ export type AuthRateLimitBucket = Prisma.AuthRateLimitBucketModel
  * 
  */
 export type GroupPolicyAudit = Prisma.GroupPolicyAuditModel
+/**
+ * Model RlsPocResource
+ * 
+ */
+export type RlsPocResource = Prisma.RlsPocResourceModel

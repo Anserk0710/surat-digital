@@ -77,7 +77,7 @@ produk tidak berubah tanpa jejak.
 | D-061 | File extraction      | Parser per format; PDF scan memakai OCR fallback              |
 | D-062 | Office rendering     | LibreOffice headless sebagai kandidat utama konversi PDF       |
 | D-063 | Extraction storage   | Metadata job dan hasil ekstraksi disimpan di PostgreSQL        |
-| D-064 | RLS + Prisma         | RLS tidak otomatis diterapkan Prisma; role/context harus diuji |
+| D-064 | RLS + Prisma | Selective RLS defense-in-depth diterima. `surat_runtime` wajib non-BYPASSRLS/non-owner; protected Prisma query memakai transaction-local context melalui `RlsContextService`; backend authorization tetap mandatory. Lihat ADR-0002. |
 | D-065 | Auth boundary        | Browser menggunakan NestJS auth gateway/BFF; Supabase Auth tidak dipanggil langsung frontend |
 | D-066 | Signature integrity  | Semua signature mengikat canonical `document_manifest_hash` |
 | D-067 | Queue reliability    | Transactional outbox + idempotent consumers wajib untuk event/job kritis |
@@ -157,7 +157,7 @@ Keputusan yang sudah ditutup pada v1.2 tidak lagi menjadi open item. Khusus malw
 | O-012 | Proses reset PIN dan identity verification | P1 | IT/Legal | Open | Sebelum P23 |
 | O-013 | Apakah public verification page menampilkan field apa saja | P1 | Product/Security | Open | Sebelum P28 |
 | O-014 | Detail scope ViewAll/ExportAll per organisasi | P1 | Product/Security | Open | Sebelum P31 |
-| O-015 | Final runtime DB role dan tx-local RLS implementation | P0 | Backend/DBA/Security | POC | P07 blocker |
+| O-015 | Final runtime DB role dan tx-local RLS implementation | P0 | Backend/DBA/Security | Closed — ADR-0002 | P07 selesai; regression diteruskan ke P40 |
 | O-016 | Versi Prisma/driver adapter yang dipin | P0 | Backend | Open | Sebelum P02 selesai |
 | O-017 | Versi parser/LibreOffice/OCR yang dipin | P1 | Worker/DevOps | POC | Sebelum P33 |
 | O-018 | Malware scanner: ClamAV atau managed service | P0 | IT/Security | POC | Sebelum P10 selesai |
