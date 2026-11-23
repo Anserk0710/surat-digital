@@ -38,7 +38,8 @@ export class PolicyGuard implements CanActivate {
       'organization:permissions',
       targets,
     );
-    const requirement = policy ?? (legacyPermissions ? { any: legacyPermissions } : null);
+    const requirement =
+      policy ?? (legacyPermissions ? { any: legacyPermissions, platformAdminAllowed: true } : null);
 
     if (!requirement) {
       throw this.forbidden();
@@ -64,7 +65,7 @@ export class PolicyGuard implements CanActivate {
         status: 'ACTIVE',
         company: { active: true },
       },
-      select: { id: true, companyId: true },
+      select: { id: true, companyId: true, isPlatformAdmin: true },
     });
 
     if (!employee) {
@@ -74,9 +75,18 @@ export class PolicyGuard implements CanActivate {
     const actor: PolicyActor = {
       employeeId: employee.id,
       companyId: employee.companyId,
+      isPlatformAdmin: employee.isPlatformAdmin,
     };
 
-    if (!requirement.authenticatedOnly) {
+    if (requirement.platformAdminOnly && !actor.isPlatformAdmin) {
+      throw this.forbidden();
+    }
+
+    if (
+      !requirement.authenticatedOnly &&
+      !requirement.platformAdminOnly &&
+      !(requirement.platformAdminAllowed && actor.isPlatformAdmin)
+    ) {
       const hasAnyRequirement = (requirement.any?.length ?? 0) > 0;
       const hasAllRequirement = (requirement.all?.length ?? 0) > 0;
 
@@ -90,6 +100,27 @@ export class PolicyGuard implements CanActivate {
 
       if (hasAllRequirement && !(await this.permissions.hasAll(actor, requirement.all!))) {
         throw this.forbidden();
+      }
+    }
+
+    const route = request.path;
+    const isOrganizationChild =
+      /^\/api\/v1\/organization\/(?:offices|divisions|job-titles|office-divisions|assignments|changes)(?:\/|$)/.test(
+        route,
+      );
+    if (isOrganizationChild || route === '/api/v1/users') {
+      const selectedCompanyId = request.query.companyId;
+      if (selectedCompanyId !== undefined) {
+        if (
+          typeof selectedCompanyId !== 'string' ||
+          !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+            selectedCompanyId,
+          ) ||
+          (!actor.isPlatformAdmin && selectedCompanyId !== actor.companyId)
+        ) {
+          throw this.forbidden();
+        }
+        actor.companyId = selectedCompanyId;
       }
     }
 

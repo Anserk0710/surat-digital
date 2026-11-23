@@ -11,6 +11,7 @@ const migrationPaths = [
   'apps/api/prisma/migrations/20261117150000_p06_group_policy/migration.sql',
 
   'apps/api/prisma/migrations/20261118153323_rls_runtime_poc/migration.sql',
+  'apps/api/prisma/migrations/20261119095458_p08_document_master/migration.sql',
 ].map((migration) => path.join(rootDirectory, migration));
 
 const tables = [
@@ -29,6 +30,9 @@ const tables = [
   'auth_sessions',
 
   'rls_poc_resources',
+  'document_types',
+  'document_subtypes',
+  'documents',
 ];
 
 describe('Supabase Data API table privilege hardening', () => {

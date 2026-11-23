@@ -1,27 +1,43 @@
 {
   "phaseId": "P03",
-  "timestamp": "2026-11-18T02:11:39.736Z",
+  "executedAt": "2026-11-21T09:56:50.452Z",
   "overallStatus": "PASS",
   "verification": [
     {
+      "phaseId": "P03",
       "testId": "P03-T01",
       "status": "PASS",
-      "command": "npm run --workspace=@surat-digital/api p03:verify"
+      "executedAt": "2026-11-21T09:56:50.450Z",
+      "command": "npm run --workspace=@surat-digital/api p03:verify",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P03/verification.json"
     },
     {
+      "phaseId": "P03",
       "testId": "P03-T02",
       "status": "PASS",
-      "command": "npm run --workspace=@surat-digital/api p03:verify"
+      "executedAt": "2026-11-21T09:56:50.452Z",
+      "command": "npm run --workspace=@surat-digital/api p03:verify",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P03/verification.json"
     },
     {
+      "phaseId": "P03",
       "testId": "P03-T03",
       "status": "PASS",
-      "command": "npm run --workspace=@surat-digital/api p03:verify"
+      "executedAt": "2026-11-21T09:56:50.452Z",
+      "command": "npm run --workspace=@surat-digital/api p03:verify",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P03/verification.json"
     },
     {
+      "phaseId": "P03",
       "testId": "P03-T04",
       "status": "PASS",
-      "command": "npm run --workspace=@surat-digital/api p03:verify"
+      "executedAt": "2026-11-21T09:56:50.452Z",
+      "command": "npm run --workspace=@surat-digital/api p03:verify",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P03/verification.json"
     }
   ]
 }

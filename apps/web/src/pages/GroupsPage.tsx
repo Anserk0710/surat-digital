@@ -1,14 +1,12 @@
-import { useState, type FormEvent } from 'react';
-import {
-  Plus,
-  PowerOff,
-  RotateCcw,
-  Shield,
-  ShieldAlert,
-  ShieldCheck,
-  Trash2,
-  Users,
-} from 'lucide-react';
+import { useEffect, useState, type FormEvent } from 'react';
+import { PlusIcon as Plus } from '@phosphor-icons/react/dist/csr/Plus';
+import { PowerIcon as PowerOff } from '@phosphor-icons/react/dist/csr/Power';
+import { ArrowCounterClockwiseIcon as RotateCcw } from '@phosphor-icons/react/dist/csr/ArrowCounterClockwise';
+import { ShieldIcon as Shield } from '@phosphor-icons/react/dist/csr/Shield';
+import { ShieldWarningIcon as ShieldAlert } from '@phosphor-icons/react/dist/csr/ShieldWarning';
+import { ShieldCheckIcon as ShieldCheck } from '@phosphor-icons/react/dist/csr/ShieldCheck';
+import { TrashIcon as Trash2 } from '@phosphor-icons/react/dist/csr/Trash';
+import { UsersIcon as Users } from '@phosphor-icons/react/dist/csr/Users';
 import { request } from '../api.js';
 import { useAuth } from '../hooks/useAuth.js';
 import { useList } from '../hooks/useList.js';
@@ -20,7 +18,7 @@ import { Alert } from '../ui/alert.js';
 import { Card, CardHeader } from '../ui/card.js';
 import { TableSkeleton } from '../ui/skeleton.js';
 import { ConfirmDialog } from '../ui/confirm-dialog.js';
-import type { GroupItem, PermissionCatalogItem } from '../types/index.js';
+import type { GroupItem, GroupMemberCandidate, PermissionCatalogItem } from '../types/index.js';
 
 interface GroupDetailProps {
   group: GroupItem;
@@ -46,6 +44,29 @@ function GroupDetail({
   const policies = useList(`/group-policy/groups/${id}/permissions`);
   const catalog = useList<PermissionCatalogItem>('/group-policy/permissions');
   const toast = useToast();
+  const [memberSearch, setMemberSearch] = useState('');
+  const [memberQuery, setMemberQuery] = useState('');
+  const [selectedMember, setSelectedMember] = useState<GroupMemberCandidate | null>(null);
+  const [permissionSearch, setPermissionSearch] = useState('');
+  const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
+  const [permissionEffect, setPermissionEffect] = useState<'ALLOW' | 'DENY'>('ALLOW');
+  const [savingPermissions, setSavingPermissions] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setMemberQuery(memberSearch.trim()), 250);
+    return () => clearTimeout(timer);
+  }, [memberSearch]);
+  const candidates = useList<GroupMemberCandidate>(
+    manage && memberQuery.length >= 2
+      ? `/group-policy/groups/${id}/member-candidates?q=${encodeURIComponent(memberQuery)}`
+      : null,
+  );
+  const activeMembers = members.items.filter((member) => member.active !== false);
+  const activePolicies = policies.items.filter((policy) => policy.active !== false);
+  const filteredCatalog = catalog.items.filter((permission) =>
+    `${permission.code} ${permission.name ?? ''} ${permission.description ?? ''}`
+      .toLocaleLowerCase('id-ID')
+      .includes(permissionSearch.trim().toLocaleLowerCase('id-ID')),
+  );
 
   const [deleteMemberTarget, setDeleteMemberTarget] = useState<string | null>(null);
   const [deletePolicyTarget, setDeletePolicyTarget] = useState<string | null>(null);
@@ -58,11 +79,13 @@ function GroupDetail({
 
   async function addMember(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    if (!selectedMember) {
+      return;
+    }
     try {
-      await submit(`/group-policy/groups/${id}/members`, 'POST', data);
-      form.reset();
+      await submit(`/group-policy/groups/${id}/members`, 'POST', { employeeId: selectedMember.id });
+      setMemberSearch('');
+      setSelectedMember(null);
       await members.reload();
       await onPermissionsChanged();
       toast.success('Anggota berhasil ditambahkan ke grup.');
@@ -73,15 +96,23 @@ function GroupDetail({
 
   async function addPermission(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    if (selectedCodes.length === 0 || savingPermissions) {
+      return;
+    }
+    setSavingPermissions(true);
     try {
-      await submit(`/group-policy/groups/${id}/permissions`, 'POST', data);
+      await request(`/group-policy/groups/${id}/permissions/batch`, {
+        method: 'POST',
+        body: JSON.stringify({ permissionCodes: selectedCodes, effect: permissionEffect }),
+      });
       await policies.reload();
       await onPermissionsChanged();
-      toast.success('Kebijakan izin berhasil disimpan.');
+      setSelectedCodes([]);
+      toast.success(`${selectedCodes.length} kebijakan izin berhasil disimpan.`);
     } catch (err) {
       toast.error(formatErrorMessage(err));
+    } finally {
+      setSavingPermissions(false);
     }
   }
 
@@ -181,7 +212,7 @@ function GroupDetail({
           <Users size={16} className="text-slate-500" />
           <span>Anggota Grup</span>
           <Badge variant="outline" className="text-[10px]">
-            {members.items.length}
+            {activeMembers.length}
           </Badge>
         </h3>
 
@@ -189,35 +220,87 @@ function GroupDetail({
           <TableSkeleton rows={2} />
         ) : members.error ? (
           <Alert variant="danger">{members.error}</Alert>
-        ) : members.items.length ? (
+        ) : activeMembers.length ? (
           <ul className="divide-y divide-slate-100 max-h-48 overflow-y-auto mb-3">
-            {members.items.map((m) => (
-              <li key={m.id} className="flex items-center justify-between py-2 text-sm">
-                <span className="font-mono text-xs text-slate-700 bg-slate-100 px-2 py-1 rounded">
-                  {m.employeeId ?? m.id}
-                </span>
-                {manage && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-7 text-xs text-red-600 hover:text-red-700 hover:bg-red-50"
-                    onClick={() => setDeleteMemberTarget(m.employeeId ?? m.id)}
-                  >
-                    <Trash2 size={13} className="mr-1" /> Hapus
-                  </Button>
-                )}
-              </li>
-            ))}
+            {activeMembers.map((m) => {
+              const employee = m.employee as
+                { fullName: string; employeeNumber: string } | undefined;
+              return (
+                <li key={m.id} className="flex items-center justify-between py-2 text-sm">
+                  <span className="text-slate-700">
+                    <strong>{employee?.fullName ?? m.employeeId ?? m.id}</strong>
+                    {employee && (
+                      <span className="ml-2 text-xs text-slate-500">
+                        NIP {employee.employeeNumber}
+                      </span>
+                    )}
+                  </span>
+                  {manage && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 text-xs text-red-600 hover:text-red-700 hover:bg-red-50"
+                      onClick={() => setDeleteMemberTarget(m.employeeId ?? m.id)}
+                    >
+                      <Trash2 size={13} className="mr-1" /> Hapus
+                    </Button>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className="text-xs text-slate-400 py-2">Belum ada anggota dalam grup ini.</p>
         )}
 
         {manage && (
-          <form className="mt-2 flex gap-2" onSubmit={addMember}>
-            <input className="field" name="employeeId" placeholder="ID karyawan" required />
-            <Button size="sm" className="shrink-0 gap-1">
-              <Plus size={14} /> Tambah
+          <form className="mt-3 space-y-2" onSubmit={addMember}>
+            <label className="block text-xs font-medium text-slate-700" htmlFor="member-search">
+              Cari karyawan berdasarkan nama atau NIP
+            </label>
+            <input
+              id="member-search"
+              className="field"
+              value={memberSearch}
+              maxLength={100}
+              autoComplete="off"
+              placeholder="Ketik minimal 2 karakter"
+              onChange={(event) => {
+                setMemberSearch(event.target.value);
+                setSelectedMember(null);
+              }}
+            />
+            {selectedMember ? (
+              <p className="text-xs text-emerald-700" role="status">
+                Dipilih: {selectedMember.fullName} · NIP {selectedMember.employeeNumber}
+              </p>
+            ) : memberSearch.trim().length >= 2 ? (
+              <div className="max-h-40 overflow-y-auto rounded border border-slate-200">
+                {memberQuery !== memberSearch.trim() || candidates.loading ? (
+                  <p className="p-2 text-xs text-slate-500">Mencari karyawan…</p>
+                ) : candidates.error ? (
+                  <p className="p-2 text-xs text-red-600">{candidates.error}</p>
+                ) : candidates.items.length === 0 ? (
+                  <p className="p-2 text-xs text-slate-500">Tidak ada karyawan aktif yang cocok.</p>
+                ) : (
+                  candidates.items.map((candidate) => (
+                    <button
+                      key={candidate.id}
+                      type="button"
+                      className="block w-full px-3 py-2 text-left text-sm hover:bg-slate-50"
+                      onClick={() => setSelectedMember(candidate)}
+                    >
+                      {candidate.fullName}{' '}
+                      <span className="text-xs text-slate-500">
+                        · NIP {candidate.employeeNumber}
+                      </span>
+                    </button>
+                  ))
+                )}
+              </div>
+            ) : null}
+            <Button size="sm" className="gap-1" disabled={!selectedMember}>
+              <Plus size={14} /> Tambah anggota
             </Button>
           </form>
         )}
@@ -229,7 +312,7 @@ function GroupDetail({
           <ShieldAlert size={16} className="text-slate-500" />
           <span>Kebijakan Izin (Allow / Deny)</span>
           <Badge variant="outline" className="text-[10px]">
-            {policies.items.length}
+            {activePolicies.length}
           </Badge>
         </h3>
 
@@ -237,9 +320,9 @@ function GroupDetail({
           <TableSkeleton rows={2} />
         ) : policies.error ? (
           <Alert variant="danger">{policies.error}</Alert>
-        ) : policies.items.length ? (
+        ) : activePolicies.length ? (
           <ul className="divide-y divide-slate-100 max-h-56 overflow-y-auto mb-3">
-            {policies.items.map((p) => {
+            {activePolicies.map((p) => {
               const pRecord = p as Record<string, unknown>;
               const code = catalogCode(String(pRecord.permissionId));
               const effect = String(pRecord.effect ?? 'ALLOW');
@@ -273,20 +356,89 @@ function GroupDetail({
         )}
 
         {manage && (
-          <form className="mt-3 grid gap-2 sm:grid-cols-3" onSubmit={addPermission}>
-            <select className="field text-xs" name="permissionCode" required>
-              {catalog.items.map((p) => (
-                <option key={p.id} value={p.code}>
-                  {p.code}
-                </option>
+          <form className="mt-3 space-y-3" onSubmit={addPermission}>
+            <input
+              className="field"
+              aria-label="Cari izin"
+              placeholder="Cari kode atau nama izin"
+              value={permissionSearch}
+              onChange={(event) => setPermissionSearch(event.target.value)}
+            />
+            <div className="flex items-center justify-between text-xs text-slate-600">
+              <span>{selectedCodes.length} izin dipilih</span>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  className="text-brand hover:underline"
+                  onClick={() =>
+                    setSelectedCodes((current) => [
+                      ...new Set([...current, ...filteredCatalog.map((p) => p.code)]),
+                    ])
+                  }
+                >
+                  Pilih semua hasil
+                </button>
+                <button
+                  type="button"
+                  className="text-slate-500 hover:underline"
+                  onClick={() => setSelectedCodes([])}
+                >
+                  Kosongkan
+                </button>
+              </div>
+            </div>
+            {catalog.error ? (
+              <Alert variant="danger">{catalog.error}</Alert>
+            ) : (
+              <div className="max-h-56 overflow-y-auto rounded border border-slate-200 divide-y divide-slate-100">
+                {filteredCatalog.map((permission) => (
+                  <label
+                    key={permission.id}
+                    className="flex cursor-pointer items-start gap-2 px-3 py-2 hover:bg-slate-50"
+                  >
+                    <input
+                      type="checkbox"
+                      className="mt-1"
+                      checked={selectedCodes.includes(permission.code)}
+                      onChange={(event) =>
+                        setSelectedCodes((current) =>
+                          event.target.checked
+                            ? [...current, permission.code]
+                            : current.filter((code) => code !== permission.code),
+                        )
+                      }
+                    />
+                    <span className="min-w-0 text-sm">
+                      <strong className="block text-slate-800">{permission.code}</strong>
+                      <span className="text-xs text-slate-500">
+                        {permission.name ?? permission.description}
+                      </span>
+                    </span>
+                  </label>
+                ))}
+                {!catalog.loading && filteredCatalog.length === 0 && (
+                  <p className="p-3 text-xs text-slate-500">Tidak ada izin yang cocok.</p>
+                )}
+              </div>
+            )}
+            <fieldset className="flex items-center gap-4 text-sm">
+              <legend className="mb-1 text-xs font-medium text-slate-700">
+                Keputusan untuk izin terpilih
+              </legend>
+              {(['ALLOW', 'DENY'] as const).map((effect) => (
+                <label key={effect} className="flex items-center gap-1.5">
+                  <input
+                    type="radio"
+                    name="effect"
+                    checked={permissionEffect === effect}
+                    onChange={() => setPermissionEffect(effect)}
+                  />
+                  {effect === 'ALLOW' ? 'Allow' : 'Deny'}
+                </label>
               ))}
-            </select>
-            <select className="field text-xs" name="effect">
-              <option value="ALLOW">ALLOW</option>
-              <option value="DENY">DENY</option>
-            </select>
-            <Button size="sm" className="w-full text-xs">
-              Simpan izin
+            </fieldset>
+            <Button size="sm" disabled={selectedCodes.length === 0 || savingPermissions}>
+              {savingPermissions ? 'Menyimpan…' : `Simpan ${selectedCodes.length} izin`}
             </Button>
           </form>
         )}
@@ -554,6 +706,7 @@ export function GroupsPage() {
         {/* Right: Group Detail or Placeholder */}
         {selectedGroup ? (
           <GroupDetail
+            key={selectedGroup.id}
             group={selectedGroup}
             manage={manage}
             submit={handleGroupApi}

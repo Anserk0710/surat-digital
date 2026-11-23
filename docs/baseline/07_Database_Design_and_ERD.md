@@ -313,9 +313,19 @@ erDiagram
 
 - `title`, `description`, `status`.
 
+- `revision`: integer optimistic concurrency untuk mutation metadata. Nilai ini berbeda dari `document_versions.version_no`; `revision` hanya mencegah lost update pada record `documents`.
+
 - timestamp submit, issue, reject, cancel, archive.
 
 - alasan reject/withdraw.
+
+### P08 integrity
+
+`document_subtypes` memiliki composite unique `(id, document_type_id)`. `documents` menggunakan composite foreign key `(document_subtype_id, document_type_id)` sehingga subtype tidak dapat dipasangkan dengan document type yang salah walaupun validasi aplikasi terlewati.
+
+`documents.(issuer_office_id, issuer_division_id)` juga memiliki foreign key terhadap `office_divisions.(office_id, division_id)`.
+
+P08 tidak menetapkan kode production type/subtype karena O-001 masih Open. Development seed memakai prefix `P08DEV_` dan bukan product baseline.
 
 ### 6.2 `document_versions`
 
@@ -351,6 +361,8 @@ Partial unique index memastikan satu file MAIN per versi, satu rendered
 PDF per versi, dan satu final PDF per versi. Metadata file juga perlu
 menyimpan detected MIME, ukuran byte, SHA-256, status processing, status
 review, dan referensi preview bila tersedia.
+
+P09 mengimplementasikan subset awal: `document_versions` untuk versi upload pertama, `storage_objects` untuk objek private dan hash, serta `document_files` untuk `MAIN`/`ATTACHMENT`, uploader, dan status `UPLOADED`/`PENDING`. `storage_objects` juga menyimpan `company_id` dan `uploaded_by_employee_id` untuk tenant boundary pada metadata. Partial unique index `document_files_one_main_per_version_idx` menjaga satu MAIN per versi. Kolom manifest, hasil processing, rendered/final PDF, dan lock workflow ditambahkan pada phase terkait.
 
 ### 6.4 `document_participants`
 

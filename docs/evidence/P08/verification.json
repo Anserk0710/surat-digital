@@ -1,0 +1,132 @@
+{
+  "phaseId": "P08",
+  "executedAt": "2026-11-21T10:11:56.436Z",
+  "integrationExecuted": true,
+  "overallStatus": "PASS",
+  "testVerification": {
+    "P08-T01": "PASS",
+    "P08-T02": "PASS",
+    "P08-T03": "PASS",
+    "P08-T04": "PASS",
+    "P08-FE-T01": "PASS"
+  },
+  "verification": [
+    {
+      "phaseId": "P08",
+      "testId": "P08-T01",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:10:05.318Z",
+      "command": "npm run --workspace=@surat-digital/api p08:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P08/verification.json"
+    },
+    {
+      "phaseId": "P08",
+      "testId": "P08-T02",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:10:05.318Z",
+      "command": "npm run --workspace=@surat-digital/api p08:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P08/verification.json"
+    },
+    {
+      "phaseId": "P08",
+      "testId": "P08-T03",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:10:05.318Z",
+      "command": "npm run --workspace=@surat-digital/api p08:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P08/verification.json"
+    },
+    {
+      "phaseId": "P08",
+      "testId": "P08-T04",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:10:05.318Z",
+      "command": "npm run --workspace=@surat-digital/api p08:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P08/verification.json"
+    },
+    {
+      "phaseId": "P08",
+      "testId": "P08-FE-T01",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:11:56.436Z",
+      "command": "npm run web:verify:browser",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P08/verification.json"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "P08-SCHEMA",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api prisma:validate",
+      "executedAt": "2026-11-21T10:08:16.185Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-PRISMA-GENERATE",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api prisma:generate",
+      "executedAt": "2026-11-21T10:08:19.496Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-UNIT",
+      "status": "PASS",
+      "command": "npm exec -- vitest run tests/unit/p08-document-contract.test.ts",
+      "executedAt": "2026-11-21T10:08:21.919Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-OPENAPI",
+      "status": "PASS",
+      "command": "npm run api:contract",
+      "executedAt": "2026-11-21T10:08:37.881Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-LINT",
+      "status": "PASS",
+      "command": "npm run lint",
+      "executedAt": "2026-11-21T10:08:46.638Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-TYPECHECK",
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "executedAt": "2026-11-21T10:09:08.387Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-ALL-TESTS",
+      "status": "PASS",
+      "command": "npm run test",
+      "executedAt": "2026-11-21T10:09:15.458Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-BUILD",
+      "status": "PASS",
+      "command": "npm run build",
+      "executedAt": "2026-11-21T10:09:33.956Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-T01-T04-INTEGRATION",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api p08:verify:integration",
+      "executedAt": "2026-11-21T10:10:05.318Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P08-FE-T01-BROWSER",
+      "status": "PASS",
+      "command": "npm run web:verify:browser",
+      "executedAt": "2026-11-21T10:11:56.436Z",
+      "exitCode": 0
+    }
+  ]
+}

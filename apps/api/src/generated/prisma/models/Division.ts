@@ -200,6 +200,7 @@ export type DivisionWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Division"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   officeDivisions?: Prisma.OfficeDivisionListRelationFilter
+  issuedDocuments?: Prisma.DocumentListRelationFilter
 }
 
 export type DivisionOrderByWithRelationInput = {
@@ -212,6 +213,7 @@ export type DivisionOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
   officeDivisions?: Prisma.OfficeDivisionOrderByRelationAggregateInput
+  issuedDocuments?: Prisma.DocumentOrderByRelationAggregateInput
 }
 
 export type DivisionWhereUniqueInput = Prisma.AtLeast<{
@@ -228,6 +230,7 @@ export type DivisionWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Division"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   officeDivisions?: Prisma.OfficeDivisionListRelationFilter
+  issuedDocuments?: Prisma.DocumentListRelationFilter
 }, "id" | "companyId_code">
 
 export type DivisionOrderByWithAggregationInput = {
@@ -265,6 +268,7 @@ export type DivisionCreateInput = {
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutDivisionsInput
   officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutDivisionInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerDivisionInput
 }
 
 export type DivisionUncheckedCreateInput = {
@@ -276,6 +280,7 @@ export type DivisionUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutDivisionInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerDivisionInput
 }
 
 export type DivisionUpdateInput = {
@@ -287,6 +292,7 @@ export type DivisionUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutDivisionsNestedInput
   officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerDivisionNestedInput
 }
 
 export type DivisionUncheckedUpdateInput = {
@@ -298,6 +304,7 @@ export type DivisionUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerDivisionNestedInput
 }
 
 export type DivisionCreateManyInput = {
@@ -435,6 +442,20 @@ export type DivisionUpdateOneRequiredWithoutOfficeDivisionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DivisionUpdateToOneWithWhereWithoutOfficeDivisionsInput, Prisma.DivisionUpdateWithoutOfficeDivisionsInput>, Prisma.DivisionUncheckedUpdateWithoutOfficeDivisionsInput>
 }
 
+export type DivisionCreateNestedOneWithoutIssuedDocumentsInput = {
+  create?: Prisma.XOR<Prisma.DivisionCreateWithoutIssuedDocumentsInput, Prisma.DivisionUncheckedCreateWithoutIssuedDocumentsInput>
+  connectOrCreate?: Prisma.DivisionCreateOrConnectWithoutIssuedDocumentsInput
+  connect?: Prisma.DivisionWhereUniqueInput
+}
+
+export type DivisionUpdateOneRequiredWithoutIssuedDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.DivisionCreateWithoutIssuedDocumentsInput, Prisma.DivisionUncheckedCreateWithoutIssuedDocumentsInput>
+  connectOrCreate?: Prisma.DivisionCreateOrConnectWithoutIssuedDocumentsInput
+  upsert?: Prisma.DivisionUpsertWithoutIssuedDocumentsInput
+  connect?: Prisma.DivisionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DivisionUpdateToOneWithWhereWithoutIssuedDocumentsInput, Prisma.DivisionUpdateWithoutIssuedDocumentsInput>, Prisma.DivisionUncheckedUpdateWithoutIssuedDocumentsInput>
+}
+
 export type DivisionCreateWithoutCompanyInput = {
   id?: string
   code: string
@@ -443,6 +464,7 @@ export type DivisionCreateWithoutCompanyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutDivisionInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerDivisionInput
 }
 
 export type DivisionUncheckedCreateWithoutCompanyInput = {
@@ -453,6 +475,7 @@ export type DivisionUncheckedCreateWithoutCompanyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutDivisionInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerDivisionInput
 }
 
 export type DivisionCreateOrConnectWithoutCompanyInput = {
@@ -502,6 +525,7 @@ export type DivisionCreateWithoutOfficeDivisionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutDivisionsInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerDivisionInput
 }
 
 export type DivisionUncheckedCreateWithoutOfficeDivisionsInput = {
@@ -512,6 +536,7 @@ export type DivisionUncheckedCreateWithoutOfficeDivisionsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerDivisionInput
 }
 
 export type DivisionCreateOrConnectWithoutOfficeDivisionsInput = {
@@ -538,6 +563,7 @@ export type DivisionUpdateWithoutOfficeDivisionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutDivisionsNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerDivisionNestedInput
 }
 
 export type DivisionUncheckedUpdateWithoutOfficeDivisionsInput = {
@@ -548,6 +574,67 @@ export type DivisionUncheckedUpdateWithoutOfficeDivisionsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerDivisionNestedInput
+}
+
+export type DivisionCreateWithoutIssuedDocumentsInput = {
+  id?: string
+  code: string
+  name: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutDivisionsInput
+  officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutDivisionInput
+}
+
+export type DivisionUncheckedCreateWithoutIssuedDocumentsInput = {
+  id?: string
+  companyId: string
+  code: string
+  name: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutDivisionInput
+}
+
+export type DivisionCreateOrConnectWithoutIssuedDocumentsInput = {
+  where: Prisma.DivisionWhereUniqueInput
+  create: Prisma.XOR<Prisma.DivisionCreateWithoutIssuedDocumentsInput, Prisma.DivisionUncheckedCreateWithoutIssuedDocumentsInput>
+}
+
+export type DivisionUpsertWithoutIssuedDocumentsInput = {
+  update: Prisma.XOR<Prisma.DivisionUpdateWithoutIssuedDocumentsInput, Prisma.DivisionUncheckedUpdateWithoutIssuedDocumentsInput>
+  create: Prisma.XOR<Prisma.DivisionCreateWithoutIssuedDocumentsInput, Prisma.DivisionUncheckedCreateWithoutIssuedDocumentsInput>
+  where?: Prisma.DivisionWhereInput
+}
+
+export type DivisionUpdateToOneWithWhereWithoutIssuedDocumentsInput = {
+  where?: Prisma.DivisionWhereInput
+  data: Prisma.XOR<Prisma.DivisionUpdateWithoutIssuedDocumentsInput, Prisma.DivisionUncheckedUpdateWithoutIssuedDocumentsInput>
+}
+
+export type DivisionUpdateWithoutIssuedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutDivisionsNestedInput
+  officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutDivisionNestedInput
+}
+
+export type DivisionUncheckedUpdateWithoutIssuedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutDivisionNestedInput
 }
 
 export type DivisionCreateManyCompanyInput = {
@@ -567,6 +654,7 @@ export type DivisionUpdateWithoutCompanyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerDivisionNestedInput
 }
 
 export type DivisionUncheckedUpdateWithoutCompanyInput = {
@@ -577,6 +665,7 @@ export type DivisionUncheckedUpdateWithoutCompanyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerDivisionNestedInput
 }
 
 export type DivisionUncheckedUpdateManyWithoutCompanyInput = {
@@ -595,10 +684,12 @@ export type DivisionUncheckedUpdateManyWithoutCompanyInput = {
 
 export type DivisionCountOutputType = {
   officeDivisions: number
+  issuedDocuments: number
 }
 
 export type DivisionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   officeDivisions?: boolean | DivisionCountOutputTypeCountOfficeDivisionsArgs
+  issuedDocuments?: boolean | DivisionCountOutputTypeCountIssuedDocumentsArgs
 }
 
 /**
@@ -618,6 +709,13 @@ export type DivisionCountOutputTypeCountOfficeDivisionsArgs<ExtArgs extends runt
   where?: Prisma.OfficeDivisionWhereInput
 }
 
+/**
+ * DivisionCountOutputType without action
+ */
+export type DivisionCountOutputTypeCountIssuedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentWhereInput
+}
+
 
 export type DivisionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -629,6 +727,7 @@ export type DivisionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   officeDivisions?: boolean | Prisma.Division$officeDivisionsArgs<ExtArgs>
+  issuedDocuments?: boolean | Prisma.Division$issuedDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.DivisionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["division"]>
 
@@ -668,6 +767,7 @@ export type DivisionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type DivisionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   officeDivisions?: boolean | Prisma.Division$officeDivisionsArgs<ExtArgs>
+  issuedDocuments?: boolean | Prisma.Division$issuedDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.DivisionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DivisionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -682,6 +782,7 @@ export type $DivisionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     company: Prisma.$CompanyPayload<ExtArgs>
     officeDivisions: Prisma.$OfficeDivisionPayload<ExtArgs>[]
+    issuedDocuments: Prisma.$DocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1087,6 +1188,7 @@ export interface Prisma__DivisionClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   officeDivisions<T extends Prisma.Division$officeDivisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Division$officeDivisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfficeDivisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  issuedDocuments<T extends Prisma.Division$issuedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Division$issuedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1545,6 +1647,30 @@ export type Division$officeDivisionsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.OfficeDivisionScalarFieldEnum | Prisma.OfficeDivisionScalarFieldEnum[]
+}
+
+/**
+ * Division.issuedDocuments
+ */
+export type Division$issuedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Document
+   */
+  select?: Prisma.DocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Document
+   */
+  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentInclude<ExtArgs> | null
+  where?: Prisma.DocumentWhereInput
+  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
 }
 
 /**

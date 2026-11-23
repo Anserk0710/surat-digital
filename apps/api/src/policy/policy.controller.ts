@@ -32,11 +32,13 @@ import {
   CreateGroupDto,
   SetGroupActiveDto,
   SetGroupPermissionDto,
+  SetGroupPermissionsBatchDto,
   UpdateGroupDto,
 } from './policy.dto.js';
 import {
   EffectivePermissionResponseDto,
   GroupMemberResponseDto,
+  GroupMemberCandidateResponseDto,
   GroupPermissionResponseDto,
   GroupResponseDto,
   PermissionCatalogResponseDto,
@@ -151,6 +153,18 @@ export class PolicyController {
   ) {
     return this.service.listMembers(actor, groupId);
   }
+  @Get('groups/:groupId/member-candidates')
+  @RequirePolicyAll('Group.Manage', 'System.Configure')
+  @ApiOperation({ operationId: 'groupPolicySearchMemberCandidates' })
+  @ApiQuery({ name: 'q', required: true, type: String })
+  @ApiOkResponse({ type: GroupMemberCandidateResponseDto, isArray: true })
+  searchMemberCandidates(
+    @CurrentOrganizationActor() actor: PolicyActor,
+    @Param('groupId', uuid) groupId: string,
+    @Query('q') query = '',
+  ) {
+    return this.service.searchMemberCandidates(actor, groupId, query);
+  }
 
   @Post('groups/:groupId/members')
   @RequirePolicyAll('Group.Manage', 'System.Configure')
@@ -199,6 +213,18 @@ export class PolicyController {
     @Body() input: SetGroupPermissionDto,
   ) {
     return this.service.setPermission(actor, groupId, input);
+  }
+  @Post('groups/:groupId/permissions/batch')
+  @RequirePolicyAll('Group.Manage', 'System.Configure')
+  @ApiOperation({ operationId: 'groupPolicySetPermissionsBatch' })
+  @ApiBody({ type: SetGroupPermissionsBatchDto })
+  @ApiCreatedResponse({ type: GroupPermissionResponseDto, isArray: true })
+  setPermissionsBatch(
+    @CurrentOrganizationActor() actor: PolicyActor,
+    @Param('groupId', uuid) groupId: string,
+    @Body() input: SetGroupPermissionsBatchDto,
+  ) {
+    return this.service.setPermissionsBatch(actor, groupId, input);
   }
 
   @Delete('groups/:groupId/permissions/:permissionCode')

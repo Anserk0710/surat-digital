@@ -6,10 +6,14 @@ import { parse } from 'dotenv';
 const root = resolve(import.meta.dirname, '..');
 const evidencePath = join(root, 'docs/evidence/P02/frontend.json');
 const result = {
-  test: 'P02-FE-T01',
+  phaseId: 'P02',
+  testId: 'P02-FE-T01',
+  command: 'npm run p02:frontend',
+  result: 'Frontend verification failed.',
+  artifactPath: 'docs/evidence/P02/frontend.json',
   status: 'FAIL',
   checks: [],
-  timestamp: new Date().toISOString(),
+  executedAt: new Date().toISOString(),
 };
 
 function run(script, extra = []) {
@@ -60,6 +64,7 @@ try {
   }
   result.checks.push('Server credentials and Supabase SDK absent from browser bundle: PASS');
   result.status = 'PASS';
+  result.result = 'API contract, web build and server credential isolation verification passed.';
   console.log('P02-FE-T01: PASS');
 } catch (error) {
   console.error(error);

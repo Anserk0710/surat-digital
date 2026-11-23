@@ -1,0 +1,152 @@
+{
+  "phaseId": "GATE-P09",
+  "executedAt": "2026-11-21T09:53:45.150Z",
+  "overallStatus": "NO_GO",
+  "nextPhase": null,
+  "verification": [
+    {
+      "phaseId": "GATE-P09",
+      "testId": "GOVERNANCE-HYGIENE",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:42:51.495Z",
+      "command": "npm run governance:check",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P02-CLEAN-MIGRATION",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:43:10.430Z",
+      "command": "npm run p02:verify:clean-migration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P02-BACKEND",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:43:46.148Z",
+      "command": "npm run p02:verify:backend",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P02-FRONTEND",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:44:10.628Z",
+      "command": "npm run p02:frontend",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P03",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:44:36.747Z",
+      "command": "npm run p03:verify",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P04",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:45:17.387Z",
+      "command": "npm run p04:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P05",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:47:53.242Z",
+      "command": "npm run p05:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P06",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:50:08.094Z",
+      "command": "npm run p06:verify:integration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P07",
+      "status": "FAIL",
+      "executedAt": "2026-11-21T09:53:45.148Z",
+      "command": "npm run p07:verify:integration",
+      "result": "Verification failed with exit code 1.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P08",
+      "status": "NOT_RUN",
+      "executedAt": "2026-11-21T09:53:45.148Z",
+      "command": "npm run p08:verify:integration",
+      "result": "Skipped after preceding failure.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "P09",
+      "status": "NOT_RUN",
+      "executedAt": "2026-11-21T09:53:45.148Z",
+      "command": "npm run p09:verify:integration",
+      "result": "Skipped after preceding failure.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "DECISION-O-003",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:53:45.149Z",
+      "command": "check decision O-003",
+      "result": "O-003 is Decided/Closed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "DECISION-O-006",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:53:45.149Z",
+      "command": "check decision O-006",
+      "result": "O-006 is Decided/Closed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "DECISION-O-008",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:53:45.150Z",
+      "command": "check decision O-008",
+      "result": "O-008 is Decided/Closed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "DECISION-O-015",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:53:45.150Z",
+      "command": "check decision O-015",
+      "result": "O-015 is Decided/Closed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    },
+    {
+      "phaseId": "GATE-P09",
+      "testId": "DECISION-O-016",
+      "status": "PASS",
+      "executedAt": "2026-11-21T09:53:45.150Z",
+      "command": "check decision O-016",
+      "result": "O-016 is Decided/Closed.",
+      "artifactPath": "docs/evidence/GATE-P09/verification.json"
+    }
+  ]
+}

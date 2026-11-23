@@ -35,6 +35,7 @@ export type EmployeeMinAggregateOutputType = {
   emailNormalized: string | null
   fullName: string | null
   status: $Enums.EmployeeStatus | null
+  isPlatformAdmin: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +51,7 @@ export type EmployeeMaxAggregateOutputType = {
   emailNormalized: string | null
   fullName: string | null
   status: $Enums.EmployeeStatus | null
+  isPlatformAdmin: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,6 +67,7 @@ export type EmployeeCountAggregateOutputType = {
   emailNormalized: number
   fullName: number
   status: number
+  isPlatformAdmin: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -82,6 +85,7 @@ export type EmployeeMinAggregateInputType = {
   emailNormalized?: true
   fullName?: true
   status?: true
+  isPlatformAdmin?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,6 +101,7 @@ export type EmployeeMaxAggregateInputType = {
   emailNormalized?: true
   fullName?: true
   status?: true
+  isPlatformAdmin?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +117,7 @@ export type EmployeeCountAggregateInputType = {
   emailNormalized?: true
   fullName?: true
   status?: true
+  isPlatformAdmin?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -200,6 +206,7 @@ export type EmployeeGroupByOutputType = {
   emailNormalized: string
   fullName: string
   status: $Enums.EmployeeStatus
+  isPlatformAdmin: boolean
   createdAt: Date
   updatedAt: Date
   _count: EmployeeCountAggregateOutputType | null
@@ -236,6 +243,7 @@ export type EmployeeWhereInput = {
   emailNormalized?: Prisma.StringFilter<"Employee"> | string
   fullName?: Prisma.StringFilter<"Employee"> | string
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFilter<"Employee"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -243,6 +251,10 @@ export type EmployeeWhereInput = {
   employeeGroups?: Prisma.EmployeeGroupListRelationFilter
   authSessions?: Prisma.AuthSessionListRelationFilter
   rlsPocResources?: Prisma.RlsPocResourceListRelationFilter
+  createdDocuments?: Prisma.DocumentListRelationFilter
+  createdDocumentVersions?: Prisma.DocumentVersionListRelationFilter
+  uploadedDocumentFiles?: Prisma.DocumentFileListRelationFilter
+  uploadedStorageObjects?: Prisma.StorageObjectListRelationFilter
 }
 
 export type EmployeeOrderByWithRelationInput = {
@@ -256,6 +268,7 @@ export type EmployeeOrderByWithRelationInput = {
   emailNormalized?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  isPlatformAdmin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
@@ -263,6 +276,10 @@ export type EmployeeOrderByWithRelationInput = {
   employeeGroups?: Prisma.EmployeeGroupOrderByRelationAggregateInput
   authSessions?: Prisma.AuthSessionOrderByRelationAggregateInput
   rlsPocResources?: Prisma.RlsPocResourceOrderByRelationAggregateInput
+  createdDocuments?: Prisma.DocumentOrderByRelationAggregateInput
+  createdDocumentVersions?: Prisma.DocumentVersionOrderByRelationAggregateInput
+  uploadedDocumentFiles?: Prisma.DocumentFileOrderByRelationAggregateInput
+  uploadedStorageObjects?: Prisma.StorageObjectOrderByRelationAggregateInput
 }
 
 export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -282,6 +299,7 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   emailNormalized?: Prisma.StringFilter<"Employee"> | string
   fullName?: Prisma.StringFilter<"Employee"> | string
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFilter<"Employee"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
@@ -289,6 +307,10 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   employeeGroups?: Prisma.EmployeeGroupListRelationFilter
   authSessions?: Prisma.AuthSessionListRelationFilter
   rlsPocResources?: Prisma.RlsPocResourceListRelationFilter
+  createdDocuments?: Prisma.DocumentListRelationFilter
+  createdDocumentVersions?: Prisma.DocumentVersionListRelationFilter
+  uploadedDocumentFiles?: Prisma.DocumentFileListRelationFilter
+  uploadedStorageObjects?: Prisma.StorageObjectListRelationFilter
 }, "id" | "authUserId" | "companyId_employeeNumber" | "companyId_usernameNormalized" | "companyId_emailNormalized">
 
 export type EmployeeOrderByWithAggregationInput = {
@@ -302,6 +324,7 @@ export type EmployeeOrderByWithAggregationInput = {
   emailNormalized?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  isPlatformAdmin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EmployeeCountOrderByAggregateInput
@@ -323,6 +346,7 @@ export type EmployeeScalarWhereWithAggregatesInput = {
   emailNormalized?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   fullName?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   status?: Prisma.EnumEmployeeStatusWithAggregatesFilter<"Employee"> | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolWithAggregatesFilter<"Employee"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
 }
@@ -337,6 +361,7 @@ export type EmployeeCreateInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
@@ -344,6 +369,10 @@ export type EmployeeCreateInput = {
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUncheckedCreateInput = {
@@ -357,12 +386,17 @@ export type EmployeeUncheckedCreateInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUpdateInput = {
@@ -375,6 +409,7 @@ export type EmployeeUpdateInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
@@ -382,6 +417,10 @@ export type EmployeeUpdateInput = {
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateInput = {
@@ -395,12 +434,17 @@ export type EmployeeUncheckedUpdateInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeCreateManyInput = {
@@ -414,6 +458,7 @@ export type EmployeeCreateManyInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -428,6 +473,7 @@ export type EmployeeUpdateManyMutationInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -443,6 +489,7 @@ export type EmployeeUncheckedUpdateManyInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -483,6 +530,7 @@ export type EmployeeCountOrderByAggregateInput = {
   emailNormalized?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  isPlatformAdmin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -498,6 +546,7 @@ export type EmployeeMaxOrderByAggregateInput = {
   emailNormalized?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  isPlatformAdmin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -513,6 +562,7 @@ export type EmployeeMinOrderByAggregateInput = {
   emailNormalized?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  isPlatformAdmin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -628,6 +678,62 @@ export type EmployeeUpdateOneRequiredWithoutRlsPocResourcesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutRlsPocResourcesInput, Prisma.EmployeeUpdateWithoutRlsPocResourcesInput>, Prisma.EmployeeUncheckedUpdateWithoutRlsPocResourcesInput>
 }
 
+export type EmployeeCreateNestedOneWithoutCreatedDocumentsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutCreatedDocumentsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutCreatedDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutCreatedDocumentsInput
+  upsert?: Prisma.EmployeeUpsertWithoutCreatedDocumentsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutCreatedDocumentsInput, Prisma.EmployeeUpdateWithoutCreatedDocumentsInput>, Prisma.EmployeeUncheckedUpdateWithoutCreatedDocumentsInput>
+}
+
+export type EmployeeCreateNestedOneWithoutCreatedDocumentVersionsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentVersionsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutCreatedDocumentVersionsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutCreatedDocumentVersionsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentVersionsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutCreatedDocumentVersionsInput
+  upsert?: Prisma.EmployeeUpsertWithoutCreatedDocumentVersionsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUpdateWithoutCreatedDocumentVersionsInput>, Prisma.EmployeeUncheckedUpdateWithoutCreatedDocumentVersionsInput>
+}
+
+export type EmployeeCreateNestedOneWithoutUploadedStorageObjectsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedStorageObjectsInput, Prisma.EmployeeUncheckedCreateWithoutUploadedStorageObjectsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUploadedStorageObjectsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutUploadedStorageObjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedStorageObjectsInput, Prisma.EmployeeUncheckedCreateWithoutUploadedStorageObjectsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUploadedStorageObjectsInput
+  upsert?: Prisma.EmployeeUpsertWithoutUploadedStorageObjectsInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutUploadedStorageObjectsInput, Prisma.EmployeeUpdateWithoutUploadedStorageObjectsInput>, Prisma.EmployeeUncheckedUpdateWithoutUploadedStorageObjectsInput>
+}
+
+export type EmployeeCreateNestedOneWithoutUploadedDocumentFilesInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedDocumentFilesInput, Prisma.EmployeeUncheckedCreateWithoutUploadedDocumentFilesInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUploadedDocumentFilesInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutUploadedDocumentFilesNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedDocumentFilesInput, Prisma.EmployeeUncheckedCreateWithoutUploadedDocumentFilesInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutUploadedDocumentFilesInput
+  upsert?: Prisma.EmployeeUpsertWithoutUploadedDocumentFilesInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutUploadedDocumentFilesInput, Prisma.EmployeeUpdateWithoutUploadedDocumentFilesInput>, Prisma.EmployeeUncheckedUpdateWithoutUploadedDocumentFilesInput>
+}
+
 export type EmployeeCreateWithoutCompanyInput = {
   id?: string
   authUserId?: string | null
@@ -638,12 +744,17 @@ export type EmployeeCreateWithoutCompanyInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUncheckedCreateWithoutCompanyInput = {
@@ -656,12 +767,17 @@ export type EmployeeUncheckedCreateWithoutCompanyInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeCreateOrConnectWithoutCompanyInput = {
@@ -704,6 +820,7 @@ export type EmployeeScalarWhereInput = {
   emailNormalized?: Prisma.StringFilter<"Employee"> | string
   fullName?: Prisma.StringFilter<"Employee"> | string
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFilter<"Employee"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
 }
@@ -718,12 +835,17 @@ export type EmployeeCreateWithoutAssignmentsInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUncheckedCreateWithoutAssignmentsInput = {
@@ -737,11 +859,16 @@ export type EmployeeUncheckedCreateWithoutAssignmentsInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeCreateOrConnectWithoutAssignmentsInput = {
@@ -770,12 +897,17 @@ export type EmployeeUpdateWithoutAssignmentsInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAssignmentsInput = {
@@ -789,11 +921,16 @@ export type EmployeeUncheckedUpdateWithoutAssignmentsInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeCreateWithoutEmployeeGroupsInput = {
@@ -806,12 +943,17 @@ export type EmployeeCreateWithoutEmployeeGroupsInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUncheckedCreateWithoutEmployeeGroupsInput = {
@@ -825,11 +967,16 @@ export type EmployeeUncheckedCreateWithoutEmployeeGroupsInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeCreateOrConnectWithoutEmployeeGroupsInput = {
@@ -858,12 +1005,17 @@ export type EmployeeUpdateWithoutEmployeeGroupsInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutEmployeeGroupsInput = {
@@ -877,11 +1029,16 @@ export type EmployeeUncheckedUpdateWithoutEmployeeGroupsInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeCreateWithoutAuthSessionsInput = {
@@ -894,12 +1051,17 @@ export type EmployeeCreateWithoutAuthSessionsInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUncheckedCreateWithoutAuthSessionsInput = {
@@ -913,11 +1075,16 @@ export type EmployeeUncheckedCreateWithoutAuthSessionsInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeCreateOrConnectWithoutAuthSessionsInput = {
@@ -946,12 +1113,17 @@ export type EmployeeUpdateWithoutAuthSessionsInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutAuthSessionsInput = {
@@ -965,11 +1137,16 @@ export type EmployeeUncheckedUpdateWithoutAuthSessionsInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeCreateWithoutRlsPocResourcesInput = {
@@ -982,12 +1159,17 @@ export type EmployeeCreateWithoutRlsPocResourcesInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
   assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeUncheckedCreateWithoutRlsPocResourcesInput = {
@@ -1001,11 +1183,16 @@ export type EmployeeUncheckedCreateWithoutRlsPocResourcesInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
   authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
 }
 
 export type EmployeeCreateOrConnectWithoutRlsPocResourcesInput = {
@@ -1034,12 +1221,17 @@ export type EmployeeUpdateWithoutRlsPocResourcesInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutRlsPocResourcesInput = {
@@ -1053,11 +1245,448 @@ export type EmployeeUncheckedUpdateWithoutRlsPocResourcesInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeCreateWithoutCreatedDocumentsInput = {
+  id?: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
+  assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeUncheckedCreateWithoutCreatedDocumentsInput = {
+  id?: string
+  companyId: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeCreateOrConnectWithoutCreatedDocumentsInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentsInput>
+}
+
+export type EmployeeUpsertWithoutCreatedDocumentsInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutCreatedDocumentsInput, Prisma.EmployeeUncheckedUpdateWithoutCreatedDocumentsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentsInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutCreatedDocumentsInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutCreatedDocumentsInput, Prisma.EmployeeUncheckedUpdateWithoutCreatedDocumentsInput>
+}
+
+export type EmployeeUpdateWithoutCreatedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
+  assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutCreatedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeCreateWithoutCreatedDocumentVersionsInput = {
+  id?: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
+  assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeUncheckedCreateWithoutCreatedDocumentVersionsInput = {
+  id?: string
+  companyId: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeCreateOrConnectWithoutCreatedDocumentVersionsInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentVersionsInput>
+}
+
+export type EmployeeUpsertWithoutCreatedDocumentVersionsInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUncheckedUpdateWithoutCreatedDocumentVersionsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUncheckedCreateWithoutCreatedDocumentVersionsInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutCreatedDocumentVersionsInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutCreatedDocumentVersionsInput, Prisma.EmployeeUncheckedUpdateWithoutCreatedDocumentVersionsInput>
+}
+
+export type EmployeeUpdateWithoutCreatedDocumentVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
+  assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutCreatedDocumentVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeCreateWithoutUploadedStorageObjectsInput = {
+  id?: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
+  assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeUncheckedCreateWithoutUploadedStorageObjectsInput = {
+  id?: string
+  companyId: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeCreateOrConnectWithoutUploadedStorageObjectsInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedStorageObjectsInput, Prisma.EmployeeUncheckedCreateWithoutUploadedStorageObjectsInput>
+}
+
+export type EmployeeUpsertWithoutUploadedStorageObjectsInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutUploadedStorageObjectsInput, Prisma.EmployeeUncheckedUpdateWithoutUploadedStorageObjectsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedStorageObjectsInput, Prisma.EmployeeUncheckedCreateWithoutUploadedStorageObjectsInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutUploadedStorageObjectsInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutUploadedStorageObjectsInput, Prisma.EmployeeUncheckedUpdateWithoutUploadedStorageObjectsInput>
+}
+
+export type EmployeeUpdateWithoutUploadedStorageObjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
+  assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutUploadedStorageObjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeCreateWithoutUploadedDocumentFilesInput = {
+  id?: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutEmployeesInput
+  assignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionCreateNestedManyWithoutCreatorInput
+  uploadedStorageObjects?: Prisma.StorageObjectCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeUncheckedCreateWithoutUploadedDocumentFilesInput = {
+  id?: string
+  companyId: string
+  authUserId?: string | null
+  employeeNumber: string
+  username: string
+  usernameNormalized: string
+  email: string
+  emailNormalized: string
+  fullName: string
+  status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedCreateNestedManyWithoutEmployeeInput
+  authSessions?: Prisma.AuthSessionUncheckedCreateNestedManyWithoutEmployeeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOwnerEmployeeInput
+  createdDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutCreatorInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedCreateNestedManyWithoutCreatorInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutUploaderInput
+}
+
+export type EmployeeCreateOrConnectWithoutUploadedDocumentFilesInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedDocumentFilesInput, Prisma.EmployeeUncheckedCreateWithoutUploadedDocumentFilesInput>
+}
+
+export type EmployeeUpsertWithoutUploadedDocumentFilesInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutUploadedDocumentFilesInput, Prisma.EmployeeUncheckedUpdateWithoutUploadedDocumentFilesInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutUploadedDocumentFilesInput, Prisma.EmployeeUncheckedCreateWithoutUploadedDocumentFilesInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutUploadedDocumentFilesInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutUploadedDocumentFilesInput, Prisma.EmployeeUncheckedUpdateWithoutUploadedDocumentFilesInput>
+}
+
+export type EmployeeUpdateWithoutUploadedDocumentFilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutEmployeesNestedInput
+  assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutUploadedDocumentFilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  authUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  usernameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+  employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
+  authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeCreateManyCompanyInput = {
@@ -1070,6 +1699,7 @@ export type EmployeeCreateManyCompanyInput = {
   emailNormalized: string
   fullName: string
   status?: $Enums.EmployeeStatus
+  isPlatformAdmin?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1084,12 +1714,17 @@ export type EmployeeUpdateWithoutCompanyInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateWithoutCompanyInput = {
@@ -1102,12 +1737,17 @@ export type EmployeeUncheckedUpdateWithoutCompanyInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
   employeeGroups?: Prisma.EmployeeGroupUncheckedUpdateManyWithoutEmployeeNestedInput
   authSessions?: Prisma.AuthSessionUncheckedUpdateManyWithoutEmployeeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOwnerEmployeeNestedInput
+  createdDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+  createdDocumentVersions?: Prisma.DocumentVersionUncheckedUpdateManyWithoutCreatorNestedInput
+  uploadedDocumentFiles?: Prisma.DocumentFileUncheckedUpdateManyWithoutUploaderNestedInput
+  uploadedStorageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutUploaderNestedInput
 }
 
 export type EmployeeUncheckedUpdateManyWithoutCompanyInput = {
@@ -1120,6 +1760,7 @@ export type EmployeeUncheckedUpdateManyWithoutCompanyInput = {
   emailNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1134,6 +1775,10 @@ export type EmployeeCountOutputType = {
   employeeGroups: number
   authSessions: number
   rlsPocResources: number
+  createdDocuments: number
+  createdDocumentVersions: number
+  uploadedDocumentFiles: number
+  uploadedStorageObjects: number
 }
 
 export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1141,6 +1786,10 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   employeeGroups?: boolean | EmployeeCountOutputTypeCountEmployeeGroupsArgs
   authSessions?: boolean | EmployeeCountOutputTypeCountAuthSessionsArgs
   rlsPocResources?: boolean | EmployeeCountOutputTypeCountRlsPocResourcesArgs
+  createdDocuments?: boolean | EmployeeCountOutputTypeCountCreatedDocumentsArgs
+  createdDocumentVersions?: boolean | EmployeeCountOutputTypeCountCreatedDocumentVersionsArgs
+  uploadedDocumentFiles?: boolean | EmployeeCountOutputTypeCountUploadedDocumentFilesArgs
+  uploadedStorageObjects?: boolean | EmployeeCountOutputTypeCountUploadedStorageObjectsArgs
 }
 
 /**
@@ -1181,6 +1830,34 @@ export type EmployeeCountOutputTypeCountRlsPocResourcesArgs<ExtArgs extends runt
   where?: Prisma.RlsPocResourceWhereInput
 }
 
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountCreatedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountCreatedDocumentVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentVersionWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountUploadedDocumentFilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentFileWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountUploadedStorageObjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StorageObjectWhereInput
+}
+
 
 export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1193,6 +1870,7 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   emailNormalized?: boolean
   fullName?: boolean
   status?: boolean
+  isPlatformAdmin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1200,6 +1878,10 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   employeeGroups?: boolean | Prisma.Employee$employeeGroupsArgs<ExtArgs>
   authSessions?: boolean | Prisma.Employee$authSessionsArgs<ExtArgs>
   rlsPocResources?: boolean | Prisma.Employee$rlsPocResourcesArgs<ExtArgs>
+  createdDocuments?: boolean | Prisma.Employee$createdDocumentsArgs<ExtArgs>
+  createdDocumentVersions?: boolean | Prisma.Employee$createdDocumentVersionsArgs<ExtArgs>
+  uploadedDocumentFiles?: boolean | Prisma.Employee$uploadedDocumentFilesArgs<ExtArgs>
+  uploadedStorageObjects?: boolean | Prisma.Employee$uploadedStorageObjectsArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["employee"]>
 
@@ -1214,6 +1896,7 @@ export type EmployeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   emailNormalized?: boolean
   fullName?: boolean
   status?: boolean
+  isPlatformAdmin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1230,6 +1913,7 @@ export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   emailNormalized?: boolean
   fullName?: boolean
   status?: boolean
+  isPlatformAdmin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1246,17 +1930,22 @@ export type EmployeeSelectScalar = {
   emailNormalized?: boolean
   fullName?: boolean
   status?: boolean
+  isPlatformAdmin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "authUserId" | "employeeNumber" | "username" | "usernameNormalized" | "email" | "emailNormalized" | "fullName" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
+export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "authUserId" | "employeeNumber" | "username" | "usernameNormalized" | "email" | "emailNormalized" | "fullName" | "status" | "isPlatformAdmin" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
 export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   assignments?: boolean | Prisma.Employee$assignmentsArgs<ExtArgs>
   employeeGroups?: boolean | Prisma.Employee$employeeGroupsArgs<ExtArgs>
   authSessions?: boolean | Prisma.Employee$authSessionsArgs<ExtArgs>
   rlsPocResources?: boolean | Prisma.Employee$rlsPocResourcesArgs<ExtArgs>
+  createdDocuments?: boolean | Prisma.Employee$createdDocumentsArgs<ExtArgs>
+  createdDocumentVersions?: boolean | Prisma.Employee$createdDocumentVersionsArgs<ExtArgs>
+  uploadedDocumentFiles?: boolean | Prisma.Employee$uploadedDocumentFilesArgs<ExtArgs>
+  uploadedStorageObjects?: boolean | Prisma.Employee$uploadedStorageObjectsArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1274,6 +1963,10 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     employeeGroups: Prisma.$EmployeeGroupPayload<ExtArgs>[]
     authSessions: Prisma.$AuthSessionPayload<ExtArgs>[]
     rlsPocResources: Prisma.$RlsPocResourcePayload<ExtArgs>[]
+    createdDocuments: Prisma.$DocumentPayload<ExtArgs>[]
+    createdDocumentVersions: Prisma.$DocumentVersionPayload<ExtArgs>[]
+    uploadedDocumentFiles: Prisma.$DocumentFilePayload<ExtArgs>[]
+    uploadedStorageObjects: Prisma.$StorageObjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1286,6 +1979,7 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     emailNormalized: string
     fullName: string
     status: $Enums.EmployeeStatus
+    isPlatformAdmin: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["employee"]>
@@ -1687,6 +2381,10 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   employeeGroups<T extends Prisma.Employee$employeeGroupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$employeeGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   authSessions<T extends Prisma.Employee$authSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$authSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuthSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   rlsPocResources<T extends Prisma.Employee$rlsPocResourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$rlsPocResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RlsPocResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdDocuments<T extends Prisma.Employee$createdDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$createdDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdDocumentVersions<T extends Prisma.Employee$createdDocumentVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$createdDocumentVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  uploadedDocumentFiles<T extends Prisma.Employee$uploadedDocumentFilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$uploadedDocumentFilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  uploadedStorageObjects<T extends Prisma.Employee$uploadedStorageObjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$uploadedStorageObjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StorageObjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1726,6 +2424,7 @@ export interface EmployeeFieldRefs {
   readonly emailNormalized: Prisma.FieldRef<"Employee", 'String'>
   readonly fullName: Prisma.FieldRef<"Employee", 'String'>
   readonly status: Prisma.FieldRef<"Employee", 'EmployeeStatus'>
+  readonly isPlatformAdmin: Prisma.FieldRef<"Employee", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Employee", 'DateTime'>
 }
@@ -2222,6 +2921,102 @@ export type Employee$rlsPocResourcesArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.RlsPocResourceScalarFieldEnum | Prisma.RlsPocResourceScalarFieldEnum[]
+}
+
+/**
+ * Employee.createdDocuments
+ */
+export type Employee$createdDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Document
+   */
+  select?: Prisma.DocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Document
+   */
+  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentInclude<ExtArgs> | null
+  where?: Prisma.DocumentWhereInput
+  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
+}
+
+/**
+ * Employee.createdDocumentVersions
+ */
+export type Employee$createdDocumentVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DocumentVersion
+   */
+  select?: Prisma.DocumentVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DocumentVersion
+   */
+  omit?: Prisma.DocumentVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentVersionInclude<ExtArgs> | null
+  where?: Prisma.DocumentVersionWhereInput
+  orderBy?: Prisma.DocumentVersionOrderByWithRelationInput | Prisma.DocumentVersionOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentVersionScalarFieldEnum | Prisma.DocumentVersionScalarFieldEnum[]
+}
+
+/**
+ * Employee.uploadedDocumentFiles
+ */
+export type Employee$uploadedDocumentFilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DocumentFile
+   */
+  select?: Prisma.DocumentFileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DocumentFile
+   */
+  omit?: Prisma.DocumentFileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentFileInclude<ExtArgs> | null
+  where?: Prisma.DocumentFileWhereInput
+  orderBy?: Prisma.DocumentFileOrderByWithRelationInput | Prisma.DocumentFileOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentFileWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentFileScalarFieldEnum | Prisma.DocumentFileScalarFieldEnum[]
+}
+
+/**
+ * Employee.uploadedStorageObjects
+ */
+export type Employee$uploadedStorageObjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StorageObject
+   */
+  select?: Prisma.StorageObjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StorageObject
+   */
+  omit?: Prisma.StorageObjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StorageObjectInclude<ExtArgs> | null
+  where?: Prisma.StorageObjectWhereInput
+  orderBy?: Prisma.StorageObjectOrderByWithRelationInput | Prisma.StorageObjectOrderByWithRelationInput[]
+  cursor?: Prisma.StorageObjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StorageObjectScalarFieldEnum | Prisma.StorageObjectScalarFieldEnum[]
 }
 
 /**

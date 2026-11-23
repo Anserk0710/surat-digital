@@ -1,4 +1,8 @@
-import { AlertCircle, CheckCircle2, Info, TriangleAlert, X } from 'lucide-react';
+import { WarningCircleIcon as AlertCircle } from '@phosphor-icons/react/dist/csr/WarningCircle';
+import { CheckCircleIcon as CheckCircle2 } from '@phosphor-icons/react/dist/csr/CheckCircle';
+import { InfoIcon as Info } from '@phosphor-icons/react/dist/csr/Info';
+import { WarningIcon as TriangleAlert } from '@phosphor-icons/react/dist/csr/Warning';
+import { XIcon as X } from '@phosphor-icons/react/dist/csr/X';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

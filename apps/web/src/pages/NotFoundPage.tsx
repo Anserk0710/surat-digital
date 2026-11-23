@@ -1,4 +1,4 @@
-import { FileQuestion } from 'lucide-react';
+import { FileTextIcon as FileQuestion } from '@phosphor-icons/react/dist/csr/FileText';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button.js';
 import { Card } from '../ui/card.js';

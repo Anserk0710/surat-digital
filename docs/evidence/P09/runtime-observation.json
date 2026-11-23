@@ -1,0 +1,13 @@
+{
+  "phaseId": "P09",
+  "testId": "P09-REA-OBSERVATION",
+  "status": "NOT_RUN",
+  "executedAt": "2026-11-21T09:01:48.008272+00:00",
+  "command": "REA capture_browser_scenario; rea doctor --client codex --json; CLI capture-browser-scenario",
+  "result": "REA MCP and CLI browser providers returned execution_failure and cleanup_incomplete (no resource identifiers supplied). Doctor reported Codex registration config_drift. No successful REA runtime Evidence was produced; registration was not modified. Actual authorization behavior is verified separately by the passing HTTP integration matrix and Chromium browser verifier.",
+  "artifactPath": "docs/evidence/P09/runtime-observation.json",
+  "limitations": [
+    "REA observation does not establish any application behavior.",
+    "Doctor registration findings do not establish the cause of the browser provider execution failure."
+  ]
+}

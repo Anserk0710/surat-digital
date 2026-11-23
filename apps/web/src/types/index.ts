@@ -6,16 +6,22 @@ export type LoginResponse = components['schemas']['AuthLoginResponseDto'];
 export type RefreshResponse = components['schemas']['AuthRefreshResponseDto'];
 export type MeResponse = components['schemas']['AuthMeResponseDto'];
 
+export type DocumentTypeItem = components['schemas']['DocumentTypeResponseDto'];
+export type DocumentSubtypeItem = components['schemas']['DocumentSubtypeResponseDto'];
+export type DocumentIssuerScope = components['schemas']['DocumentIssuerScopeResponseDto'];
+export type DocumentItem = components['schemas']['DocumentResponseDto'];
+export type DocumentListResponse = components['schemas']['DocumentListResponseDto'];
+export type DocumentFileItem = components['schemas']['DocumentFileResponseDto'];
+export type CreateDocumentInput = components['schemas']['CreateDocumentDraftDto'];
+export type UpdateDocumentInput = components['schemas']['UpdateDocumentDraftDto'];
+
 export type Permission = {
   code: string;
   decision: 'ALLOW' | 'DENY';
 };
 
-export type PermissionCatalogItem = {
-  id: string;
-  code: string;
-  description?: string;
-};
+export type PermissionCatalogItem = components['schemas']['PermissionCatalogResponseDto'];
+export type GroupMemberCandidate = components['schemas']['GroupMemberCandidateResponseDto'];
 
 export type CompanyItem = {
   id: string;

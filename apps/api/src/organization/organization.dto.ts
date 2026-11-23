@@ -1,6 +1,7 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import {
   IsBoolean,
+  IsEmail,
   IsDateString,
   IsOptional,
   IsString,
@@ -22,6 +23,7 @@ export class CreateMasterDto {
   @ApiProperty({ type: String, example: 'Human Resource Development' })
   @IsString()
   @MinLength(2)
+  @Matches(/\S/)
   @MaxLength(200)
   name!: string;
 }
@@ -37,7 +39,15 @@ export class UpdateCompanyDto {
   @ApiProperty({ type: String, required: false })
   @IsOptional()
   @IsString()
+  @Matches(CODE_PATTERN)
+  @MaxLength(50)
+  code?: string;
+
+  @ApiProperty({ type: String, required: false })
+  @IsOptional()
+  @IsString()
   @MinLength(2)
+  @Matches(/\S/)
   @MaxLength(200)
   name?: string;
 
@@ -45,6 +55,20 @@ export class UpdateCompanyDto {
   @IsOptional()
   @IsBoolean()
   active?: boolean;
+}
+
+export class CreateCompanyDto extends CreateMasterDto {
+  @ApiProperty({ type: String, format: 'email' })
+  @IsEmail()
+  @MaxLength(320)
+  adminEmail!: string;
+
+  @ApiProperty({ type: String })
+  @IsString()
+  @MinLength(2)
+  @Matches(/\S/)
+  @MaxLength(200)
+  adminName!: string;
 }
 
 export class CreateOfficeDto extends CreateMasterDto {
@@ -75,6 +99,23 @@ export class UpdateActiveDto {
   @ApiProperty({ type: Boolean })
   @IsBoolean()
   active!: boolean;
+}
+
+export class UpdateOfficeDivisionDto {
+  @ApiProperty({ type: String, format: 'uuid', required: false })
+  @IsOptional()
+  @IsUUID()
+  officeId?: string;
+
+  @ApiProperty({ type: String, format: 'uuid', required: false })
+  @IsOptional()
+  @IsUUID()
+  divisionId?: string;
+
+  @ApiProperty({ type: Boolean, required: false })
+  @IsOptional()
+  @IsBoolean()
+  active?: boolean;
 }
 
 export class CreateAssignmentDto {
@@ -108,6 +149,16 @@ export class CreateAssignmentDto {
 }
 
 export class UpdateAssignmentDto {
+  @ApiProperty({ type: String, format: 'uuid', required: false })
+  @IsOptional()
+  @IsUUID()
+  employeeId?: string;
+
+  @ApiProperty({ type: String, format: 'uuid', required: false })
+  @IsOptional()
+  @IsUUID()
+  officeDivisionId?: string;
+
   @ApiProperty({ type: String, format: 'uuid', required: false, nullable: true })
   @IsOptional()
   @IsUUID()

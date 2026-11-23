@@ -9,7 +9,12 @@ import {
 import { PrismaService } from '../database/prisma.service.js';
 import type { Prisma } from '../generated/prisma/client.js';
 import { EffectivePermissionService, type PolicyActor } from './effective-permission.service.js';
-import type { CreateGroupDto, SetGroupPermissionDto, UpdateGroupDto } from './policy.dto.js';
+import type {
+  CreateGroupDto,
+  SetGroupPermissionDto,
+  SetGroupPermissionsBatchDto,
+  UpdateGroupDto,
+} from './policy.dto.js';
 
 type TransactionClient = Prisma.TransactionClient;
 
@@ -266,6 +271,40 @@ export class PolicyManagementService {
     });
   }
 
+  async searchMemberCandidates(actor: PolicyActor, groupId: string, query: string) {
+    await this.getGroup(actor, groupId);
+    if (typeof query !== 'string') {
+      throw new BadRequestException({
+        code: 'INVALID_MEMBER_SEARCH',
+        message: 'Search must be text.',
+      });
+    }
+    const search = query.trim();
+    if (search.length < 2) {
+      return [];
+    }
+    if (search.length > 100) {
+      throw new BadRequestException({
+        code: 'INVALID_MEMBER_SEARCH',
+        message: 'Search is too long.',
+      });
+    }
+    return this.prisma.employee.findMany({
+      where: {
+        companyId: actor.companyId,
+        status: 'ACTIVE',
+        employeeGroups: { none: { groupId, active: true } },
+        OR: [
+          { fullName: { contains: search, mode: 'insensitive' } },
+          { employeeNumber: { contains: search, mode: 'insensitive' } },
+        ],
+      },
+      select: { id: true, fullName: true, employeeNumber: true },
+      orderBy: [{ fullName: 'asc' }, { employeeNumber: 'asc' }],
+      take: 20,
+    });
+  }
+
   async addMember(actor: PolicyActor, groupId: string, employeeId: string) {
     return this.mutate(async (tx) => {
       await this.requireGroup(tx, actor, groupId, true);
@@ -335,36 +374,54 @@ export class PolicyManagementService {
   }
 
   async setPermission(actor: PolicyActor, groupId: string, input: SetGroupPermissionDto) {
+    const policies = await this.setPermissionsBatch(actor, groupId, {
+      permissionCodes: [input.permissionCode],
+      effect: input.effect,
+    });
+    return policies[0];
+  }
+
+  async setPermissionsBatch(
+    actor: PolicyActor,
+    groupId: string,
+    input: SetGroupPermissionsBatchDto,
+  ) {
     return this.mutate(async (tx) => {
       await this.requireGroup(tx, actor, groupId, true);
-
-      const permission = await tx.permission.findFirst({
-        where: { code: input.permissionCode, active: true },
+      const codes = [...new Set(input.permissionCodes)];
+      if (
+        codes.length === 0 ||
+        codes.length > 100 ||
+        codes.length !== input.permissionCodes.length
+      ) {
+        throw new BadRequestException({
+          code: 'INVALID_PERMISSION',
+          message: 'Invalid permission selection.',
+        });
+      }
+      const catalog = await tx.permission.findMany({
+        where: { code: { in: codes }, active: true },
+        select: { id: true, code: true },
       });
-
-      if (!permission) {
+      if (catalog.length !== codes.length) {
         throw new BadRequestException({
           code: 'INVALID_PERMISSION',
           message: 'Unknown or inactive permission.',
         });
       }
-
-      const policy = await tx.groupPermission.upsert({
-        where: {
-          groupId_permissionId: { groupId, permissionId: permission.id },
-        },
-        create: {
-          groupId,
-          permissionId: permission.id,
-          effect: input.effect,
-          active: true,
-        },
-        update: { effect: input.effect, active: true },
-      });
-
-      await this.audit(tx, actor, 'POLICY_SET', 'GroupPermission', policy.id);
-
-      return policy;
+      const ids = new Map(catalog.map((permission) => [permission.code, permission.id]));
+      const policies = [];
+      for (const code of codes) {
+        const permissionId = ids.get(code)!;
+        const policy = await tx.groupPermission.upsert({
+          where: { groupId_permissionId: { groupId, permissionId } },
+          create: { groupId, permissionId, effect: input.effect, active: true },
+          update: { effect: input.effect, active: true },
+        });
+        await this.audit(tx, actor, 'POLICY_SET', 'GroupPermission', policy.id);
+        policies.push(policy);
+      }
+      return policies;
     });
   }
 

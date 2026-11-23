@@ -88,7 +88,42 @@ export type AuthRateLimitBucket = Prisma.AuthRateLimitBucketModel
  */
 export type GroupPolicyAudit = Prisma.GroupPolicyAuditModel
 /**
+ * Model OrganizationChange
+ * 
+ */
+export type OrganizationChange = Prisma.OrganizationChangeModel
+/**
  * Model RlsPocResource
  * 
  */
 export type RlsPocResource = Prisma.RlsPocResourceModel
+/**
+ * Model DocumentType
+ * 
+ */
+export type DocumentType = Prisma.DocumentTypeModel
+/**
+ * Model DocumentSubtype
+ * 
+ */
+export type DocumentSubtype = Prisma.DocumentSubtypeModel
+/**
+ * Model Document
+ * 
+ */
+export type Document = Prisma.DocumentModel
+/**
+ * Model DocumentVersion
+ * 
+ */
+export type DocumentVersion = Prisma.DocumentVersionModel
+/**
+ * Model StorageObject
+ * 
+ */
+export type StorageObject = Prisma.StorageObjectModel
+/**
+ * Model DocumentFile
+ * 
+ */
+export type DocumentFile = Prisma.DocumentFileModel

@@ -1,5 +1,8 @@
 import { useState, type FormEvent } from 'react';
-import { Building, Mail, Shield, UserRound } from 'lucide-react';
+import { BuildingsIcon as Building } from '@phosphor-icons/react/dist/csr/Buildings';
+import { EnvelopeIcon as Mail } from '@phosphor-icons/react/dist/csr/Envelope';
+import { ShieldIcon as Shield } from '@phosphor-icons/react/dist/csr/Shield';
+import { UserIcon as UserRound } from '@phosphor-icons/react/dist/csr/User';
 import { request } from '../api.js';
 import { useAuth } from '../hooks/useAuth.js';
 import { useToast } from '../hooks/useToast.js';

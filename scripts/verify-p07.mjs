@@ -1,3 +1,4 @@
+import { phaseTestRecords } from './phase-evidence.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -72,6 +73,13 @@ const result = {
     'P07-T04': backendPassed ? 'PASS' : 'NOT_FULLY_VERIFIED',
     'P07-FE-T01': frontendPassed ? 'PASS' : 'NOT_FULLY_VERIFIED',
   },
+  verification: phaseTestRecords('P07', [
+    {
+      testIds: ['P07-T01', 'P07-T02', 'P07-T03', 'P07-T04'],
+      step: evidence.find((item) => item.id === 'P07-T01-T04-INTEGRATION'),
+    },
+    { testIds: ['P07-FE-T01'], step: evidence.find((item) => item.id === 'P07-FE-T01-BROWSER') },
+  ]),
   evidence,
 };
 const output = path.join(root, 'docs/evidence/P07/verification.json');

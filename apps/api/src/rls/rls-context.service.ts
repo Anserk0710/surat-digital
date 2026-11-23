@@ -3,11 +3,13 @@ import { PrismaService } from '../database/prisma.service.js';
 import type { Prisma } from '../generated/prisma/client.js';
 import type { PolicyActor } from '../policy/effective-permission.service.js';
 
+export type RlsAccessPurpose = 'DEFAULT' | 'DOCUMENT_DOWNLOAD';
+
 export interface RlsIdentityContext {
   authUserId: string;
   employeeId: string;
   companyId: string;
-  officeId: string;
+  officeId: string | null;
 }
 
 @Injectable()
@@ -21,33 +23,57 @@ export class RlsContextService {
     actor: PolicyActor,
     operation: (tx: Prisma.TransactionClient, context: RlsIdentityContext) => Promise<T>,
   ): Promise<T> {
+    return this.runInternal(actor, true, 'DEFAULT', operation);
+  }
+
+  runIdentity<T>(
+    actor: PolicyActor,
+    operation: (tx: Prisma.TransactionClient, context: RlsIdentityContext) => Promise<T>,
+  ): Promise<T> {
+    return this.runInternal(actor, false, 'DEFAULT', operation);
+  }
+
+  runDocumentDownload<T>(
+    actor: PolicyActor,
+    operation: (tx: Prisma.TransactionClient, context: RlsIdentityContext) => Promise<T>,
+  ): Promise<T> {
+    return this.runInternal(actor, false, 'DOCUMENT_DOWNLOAD', operation);
+  }
+
+  private runInternal<T>(
+    actor: PolicyActor,
+    requirePrimaryOffice: boolean,
+    accessPurpose: RlsAccessPurpose,
+    operation: (tx: Prisma.TransactionClient, context: RlsIdentityContext) => Promise<T>,
+  ): Promise<T> {
     return this.prisma.$transaction(
       async (tx) => {
-        const context = await this.resolveContext(tx, actor);
+        const context = await this.resolveContext(tx, actor, requirePrimaryOffice);
 
         await tx.$queryRaw`
-          SELECT
-            set_config(
-              'request.jwt.claim.sub',
-              ${context.authUserId},
-              true
-            ),
-            set_config(
-              'app.employee_id',
-              ${context.employeeId},
-              true
-            ),
-            set_config(
-              'app.company_id',
-              ${context.companyId},
-              true
-            ),
-            set_config(
-              'app.office_id',
-              ${context.officeId},
-              true
-            )
-        `;
+        SELECT
+          set_config(
+            'request.jwt.claim.sub',
+            ${context.authUserId},
+            true
+          ),
+          set_config(
+            'app.employee_id',
+            ${context.employeeId},
+            true
+          ),
+          set_config(
+            'app.company_id',
+            ${context.companyId},
+            true
+          ),
+          set_config(
+            'app.office_id',
+            ${context.officeId ?? ''},
+            true
+          ),
+          set_config('app.access_purpose', ${accessPurpose}, true)
+      `;
 
         return operation(tx, context);
       },
@@ -61,6 +87,7 @@ export class RlsContextService {
   private async resolveContext(
     tx: Prisma.TransactionClient,
     actor: PolicyActor,
+    requirePrimaryOffice: boolean,
   ): Promise<RlsIdentityContext> {
     const today = new Date().toISOString().slice(0, 10);
 
@@ -124,7 +151,14 @@ export class RlsContextService {
 
     const officeId = assignmentIsCurrent ? assignment?.officeDivision.officeId : undefined;
 
-    if (!authUserId || !officeId) {
+    if (!authUserId) {
+      throw new ForbiddenException({
+        code: 'RLS_CONTEXT_UNAVAILABLE',
+        message: 'Access context unavailable.',
+      });
+    }
+
+    if (requirePrimaryOffice && !officeId) {
       throw new ForbiddenException({
         code: 'RLS_CONTEXT_UNAVAILABLE',
         message: 'Access context unavailable.',
@@ -135,7 +169,7 @@ export class RlsContextService {
       authUserId,
       employeeId: actor.employeeId,
       companyId: actor.companyId,
-      officeId,
+      officeId: officeId ?? null,
     };
   }
 }

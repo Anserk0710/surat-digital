@@ -356,7 +356,23 @@ async function main(): Promise<void> {
     await admin.api('delete', `/offices/${officeId}`).expect(409);
     await admin.api('delete', `/divisions/${divisionId}`).expect(409);
     await admin.api('delete', `/job-titles/${jobTitleId}`).expect(409);
-    await admin.api('delete', `/companies/${companyA.id}`).expect(409);
+    // Company lifecycle now requires platform administration, independently of System.Configure.
+    await admin.api('delete', `/companies/${companyA.id}`).expect(403);
+    await prisma.employee.update({
+      where: { id: otherTenant.employee.id },
+      data: { isPlatformAdmin: true },
+    });
+    try {
+      const blocked = await otherTenant.api('delete', `/companies/${companyA.id}`).expect(400);
+      assert.equal(blocked.body.code, 'COMPANY_ACTIVITY_CONFIRMATION_REQUIRED');
+      const companyAfter = await prisma.company.findUniqueOrThrow({ where: { id: companyA.id } });
+      assert.equal(companyAfter.active, true);
+    } finally {
+      await prisma.employee.update({
+        where: { id: otherTenant.employee.id },
+        data: { isPlatformAdmin: false },
+      });
+    }
     await admin.api('delete', `/assignments/${assignmentId}`).expect(200);
     await admin.api('delete', `/office-divisions/${mappingId}`).expect(200);
     await admin.api('delete', `/offices/${officeId}`).expect(200);

@@ -193,6 +193,7 @@ export type OfficeDivisionWhereInput = {
   office?: Prisma.XOR<Prisma.OfficeScalarRelationFilter, Prisma.OfficeWhereInput>
   division?: Prisma.XOR<Prisma.DivisionScalarRelationFilter, Prisma.DivisionWhereInput>
   employeeAssignments?: Prisma.EmployeeAssignmentListRelationFilter
+  issuedDocuments?: Prisma.DocumentListRelationFilter
 }
 
 export type OfficeDivisionOrderByWithRelationInput = {
@@ -205,6 +206,7 @@ export type OfficeDivisionOrderByWithRelationInput = {
   office?: Prisma.OfficeOrderByWithRelationInput
   division?: Prisma.DivisionOrderByWithRelationInput
   employeeAssignments?: Prisma.EmployeeAssignmentOrderByRelationAggregateInput
+  issuedDocuments?: Prisma.DocumentOrderByRelationAggregateInput
 }
 
 export type OfficeDivisionWhereUniqueInput = Prisma.AtLeast<{
@@ -221,6 +223,7 @@ export type OfficeDivisionWhereUniqueInput = Prisma.AtLeast<{
   office?: Prisma.XOR<Prisma.OfficeScalarRelationFilter, Prisma.OfficeWhereInput>
   division?: Prisma.XOR<Prisma.DivisionScalarRelationFilter, Prisma.DivisionWhereInput>
   employeeAssignments?: Prisma.EmployeeAssignmentListRelationFilter
+  issuedDocuments?: Prisma.DocumentListRelationFilter
 }, "id" | "officeId_divisionId">
 
 export type OfficeDivisionOrderByWithAggregationInput = {
@@ -255,6 +258,7 @@ export type OfficeDivisionCreateInput = {
   office: Prisma.OfficeCreateNestedOneWithoutOfficeDivisionsInput
   division: Prisma.DivisionCreateNestedOneWithoutOfficeDivisionsInput
   employeeAssignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutOfficeDivisionInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionUncheckedCreateInput = {
@@ -265,6 +269,7 @@ export type OfficeDivisionUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeAssignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutOfficeDivisionInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionUpdateInput = {
@@ -275,6 +280,7 @@ export type OfficeDivisionUpdateInput = {
   office?: Prisma.OfficeUpdateOneRequiredWithoutOfficeDivisionsNestedInput
   division?: Prisma.DivisionUpdateOneRequiredWithoutOfficeDivisionsNestedInput
   employeeAssignments?: Prisma.EmployeeAssignmentUpdateManyWithoutOfficeDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionUncheckedUpdateInput = {
@@ -285,6 +291,7 @@ export type OfficeDivisionUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeAssignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutOfficeDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionCreateManyInput = {
@@ -457,6 +464,20 @@ export type OfficeDivisionUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OfficeDivisionUpdateToOneWithWhereWithoutEmployeeAssignmentsInput, Prisma.OfficeDivisionUpdateWithoutEmployeeAssignmentsInput>, Prisma.OfficeDivisionUncheckedUpdateWithoutEmployeeAssignmentsInput>
 }
 
+export type OfficeDivisionCreateNestedOneWithoutIssuedDocumentsInput = {
+  create?: Prisma.XOR<Prisma.OfficeDivisionCreateWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUncheckedCreateWithoutIssuedDocumentsInput>
+  connectOrCreate?: Prisma.OfficeDivisionCreateOrConnectWithoutIssuedDocumentsInput
+  connect?: Prisma.OfficeDivisionWhereUniqueInput
+}
+
+export type OfficeDivisionUpdateOneRequiredWithoutIssuedDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.OfficeDivisionCreateWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUncheckedCreateWithoutIssuedDocumentsInput>
+  connectOrCreate?: Prisma.OfficeDivisionCreateOrConnectWithoutIssuedDocumentsInput
+  upsert?: Prisma.OfficeDivisionUpsertWithoutIssuedDocumentsInput
+  connect?: Prisma.OfficeDivisionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OfficeDivisionUpdateToOneWithWhereWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUpdateWithoutIssuedDocumentsInput>, Prisma.OfficeDivisionUncheckedUpdateWithoutIssuedDocumentsInput>
+}
+
 export type OfficeDivisionCreateWithoutOfficeInput = {
   id?: string
   active?: boolean
@@ -464,6 +485,7 @@ export type OfficeDivisionCreateWithoutOfficeInput = {
   updatedAt?: Date | string
   division: Prisma.DivisionCreateNestedOneWithoutOfficeDivisionsInput
   employeeAssignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutOfficeDivisionInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionUncheckedCreateWithoutOfficeInput = {
@@ -473,6 +495,7 @@ export type OfficeDivisionUncheckedCreateWithoutOfficeInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeAssignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutOfficeDivisionInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionCreateOrConnectWithoutOfficeInput = {
@@ -520,6 +543,7 @@ export type OfficeDivisionCreateWithoutDivisionInput = {
   updatedAt?: Date | string
   office: Prisma.OfficeCreateNestedOneWithoutOfficeDivisionsInput
   employeeAssignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutOfficeDivisionInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionUncheckedCreateWithoutDivisionInput = {
@@ -529,6 +553,7 @@ export type OfficeDivisionUncheckedCreateWithoutDivisionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   employeeAssignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutOfficeDivisionInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionCreateOrConnectWithoutDivisionInput = {
@@ -564,6 +589,7 @@ export type OfficeDivisionCreateWithoutEmployeeAssignmentsInput = {
   updatedAt?: Date | string
   office: Prisma.OfficeCreateNestedOneWithoutOfficeDivisionsInput
   division: Prisma.DivisionCreateNestedOneWithoutOfficeDivisionsInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionUncheckedCreateWithoutEmployeeAssignmentsInput = {
@@ -573,6 +599,7 @@ export type OfficeDivisionUncheckedCreateWithoutEmployeeAssignmentsInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerScopeInput
 }
 
 export type OfficeDivisionCreateOrConnectWithoutEmployeeAssignmentsInput = {
@@ -598,6 +625,7 @@ export type OfficeDivisionUpdateWithoutEmployeeAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   office?: Prisma.OfficeUpdateOneRequiredWithoutOfficeDivisionsNestedInput
   division?: Prisma.DivisionUpdateOneRequiredWithoutOfficeDivisionsNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionUncheckedUpdateWithoutEmployeeAssignmentsInput = {
@@ -607,6 +635,63 @@ export type OfficeDivisionUncheckedUpdateWithoutEmployeeAssignmentsInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerScopeNestedInput
+}
+
+export type OfficeDivisionCreateWithoutIssuedDocumentsInput = {
+  id?: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  office: Prisma.OfficeCreateNestedOneWithoutOfficeDivisionsInput
+  division: Prisma.DivisionCreateNestedOneWithoutOfficeDivisionsInput
+  employeeAssignments?: Prisma.EmployeeAssignmentCreateNestedManyWithoutOfficeDivisionInput
+}
+
+export type OfficeDivisionUncheckedCreateWithoutIssuedDocumentsInput = {
+  id?: string
+  officeId: string
+  divisionId: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employeeAssignments?: Prisma.EmployeeAssignmentUncheckedCreateNestedManyWithoutOfficeDivisionInput
+}
+
+export type OfficeDivisionCreateOrConnectWithoutIssuedDocumentsInput = {
+  where: Prisma.OfficeDivisionWhereUniqueInput
+  create: Prisma.XOR<Prisma.OfficeDivisionCreateWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUncheckedCreateWithoutIssuedDocumentsInput>
+}
+
+export type OfficeDivisionUpsertWithoutIssuedDocumentsInput = {
+  update: Prisma.XOR<Prisma.OfficeDivisionUpdateWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUncheckedUpdateWithoutIssuedDocumentsInput>
+  create: Prisma.XOR<Prisma.OfficeDivisionCreateWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUncheckedCreateWithoutIssuedDocumentsInput>
+  where?: Prisma.OfficeDivisionWhereInput
+}
+
+export type OfficeDivisionUpdateToOneWithWhereWithoutIssuedDocumentsInput = {
+  where?: Prisma.OfficeDivisionWhereInput
+  data: Prisma.XOR<Prisma.OfficeDivisionUpdateWithoutIssuedDocumentsInput, Prisma.OfficeDivisionUncheckedUpdateWithoutIssuedDocumentsInput>
+}
+
+export type OfficeDivisionUpdateWithoutIssuedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  office?: Prisma.OfficeUpdateOneRequiredWithoutOfficeDivisionsNestedInput
+  division?: Prisma.DivisionUpdateOneRequiredWithoutOfficeDivisionsNestedInput
+  employeeAssignments?: Prisma.EmployeeAssignmentUpdateManyWithoutOfficeDivisionNestedInput
+}
+
+export type OfficeDivisionUncheckedUpdateWithoutIssuedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  officeId?: Prisma.StringFieldUpdateOperationsInput | string
+  divisionId?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeAssignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutOfficeDivisionNestedInput
 }
 
 export type OfficeDivisionCreateManyOfficeInput = {
@@ -624,6 +709,7 @@ export type OfficeDivisionUpdateWithoutOfficeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   division?: Prisma.DivisionUpdateOneRequiredWithoutOfficeDivisionsNestedInput
   employeeAssignments?: Prisma.EmployeeAssignmentUpdateManyWithoutOfficeDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionUncheckedUpdateWithoutOfficeInput = {
@@ -633,6 +719,7 @@ export type OfficeDivisionUncheckedUpdateWithoutOfficeInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeAssignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutOfficeDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionUncheckedUpdateManyWithoutOfficeInput = {
@@ -658,6 +745,7 @@ export type OfficeDivisionUpdateWithoutDivisionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   office?: Prisma.OfficeUpdateOneRequiredWithoutOfficeDivisionsNestedInput
   employeeAssignments?: Prisma.EmployeeAssignmentUpdateManyWithoutOfficeDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionUncheckedUpdateWithoutDivisionInput = {
@@ -667,6 +755,7 @@ export type OfficeDivisionUncheckedUpdateWithoutDivisionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employeeAssignments?: Prisma.EmployeeAssignmentUncheckedUpdateManyWithoutOfficeDivisionNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerScopeNestedInput
 }
 
 export type OfficeDivisionUncheckedUpdateManyWithoutDivisionInput = {
@@ -684,10 +773,12 @@ export type OfficeDivisionUncheckedUpdateManyWithoutDivisionInput = {
 
 export type OfficeDivisionCountOutputType = {
   employeeAssignments: number
+  issuedDocuments: number
 }
 
 export type OfficeDivisionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employeeAssignments?: boolean | OfficeDivisionCountOutputTypeCountEmployeeAssignmentsArgs
+  issuedDocuments?: boolean | OfficeDivisionCountOutputTypeCountIssuedDocumentsArgs
 }
 
 /**
@@ -707,6 +798,13 @@ export type OfficeDivisionCountOutputTypeCountEmployeeAssignmentsArgs<ExtArgs ex
   where?: Prisma.EmployeeAssignmentWhereInput
 }
 
+/**
+ * OfficeDivisionCountOutputType without action
+ */
+export type OfficeDivisionCountOutputTypeCountIssuedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentWhereInput
+}
+
 
 export type OfficeDivisionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -718,6 +816,7 @@ export type OfficeDivisionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   office?: boolean | Prisma.OfficeDefaultArgs<ExtArgs>
   division?: boolean | Prisma.DivisionDefaultArgs<ExtArgs>
   employeeAssignments?: boolean | Prisma.OfficeDivision$employeeAssignmentsArgs<ExtArgs>
+  issuedDocuments?: boolean | Prisma.OfficeDivision$issuedDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.OfficeDivisionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["officeDivision"]>
 
@@ -757,6 +856,7 @@ export type OfficeDivisionInclude<ExtArgs extends runtime.Types.Extensions.Inter
   office?: boolean | Prisma.OfficeDefaultArgs<ExtArgs>
   division?: boolean | Prisma.DivisionDefaultArgs<ExtArgs>
   employeeAssignments?: boolean | Prisma.OfficeDivision$employeeAssignmentsArgs<ExtArgs>
+  issuedDocuments?: boolean | Prisma.OfficeDivision$issuedDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.OfficeDivisionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OfficeDivisionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -774,6 +874,7 @@ export type $OfficeDivisionPayload<ExtArgs extends runtime.Types.Extensions.Inte
     office: Prisma.$OfficePayload<ExtArgs>
     division: Prisma.$DivisionPayload<ExtArgs>
     employeeAssignments: Prisma.$EmployeeAssignmentPayload<ExtArgs>[]
+    issuedDocuments: Prisma.$DocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1179,6 +1280,7 @@ export interface Prisma__OfficeDivisionClient<T, Null = never, ExtArgs extends r
   office<T extends Prisma.OfficeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfficeDefaultArgs<ExtArgs>>): Prisma.Prisma__OfficeClient<runtime.Types.Result.GetResult<Prisma.$OfficePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   division<T extends Prisma.DivisionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DivisionDefaultArgs<ExtArgs>>): Prisma.Prisma__DivisionClient<runtime.Types.Result.GetResult<Prisma.$DivisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   employeeAssignments<T extends Prisma.OfficeDivision$employeeAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfficeDivision$employeeAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  issuedDocuments<T extends Prisma.OfficeDivision$issuedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfficeDivision$issuedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1636,6 +1738,30 @@ export type OfficeDivision$employeeAssignmentsArgs<ExtArgs extends runtime.Types
   take?: number
   skip?: number
   distinct?: Prisma.EmployeeAssignmentScalarFieldEnum | Prisma.EmployeeAssignmentScalarFieldEnum[]
+}
+
+/**
+ * OfficeDivision.issuedDocuments
+ */
+export type OfficeDivision$issuedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Document
+   */
+  select?: Prisma.DocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Document
+   */
+  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentInclude<ExtArgs> | null
+  where?: Prisma.DocumentWhereInput
+  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
 }
 
 /**

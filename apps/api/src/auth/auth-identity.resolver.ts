@@ -22,25 +22,28 @@ export class AuthIdentityResolver {
     const raw = identifier.normalize('NFKC').trim();
 
     const normalized = normalizeIdentifier(identifier);
+    const isEmail = normalized.includes('@');
 
     const candidates = await this.prisma.employee.findMany({
       where: {
         status: 'ACTIVE',
-        ...(trustedCompanyId === undefined ? {} : { companyId: trustedCompanyId }),
+        ...(trustedCompanyId === undefined || isEmail ? {} : { companyId: trustedCompanyId }),
         authUserId: {
           not: null,
         },
-        OR: [
-          {
-            emailNormalized: normalized,
-          },
-          {
-            usernameNormalized: normalized,
-          },
-          {
-            employeeNumber: raw,
-          },
-        ],
+        OR: isEmail
+          ? [{ emailNormalized: normalized }]
+          : [
+              {
+                emailNormalized: normalized,
+              },
+              {
+                usernameNormalized: normalized,
+              },
+              {
+                employeeNumber: raw,
+              },
+            ],
       },
 
       select: {

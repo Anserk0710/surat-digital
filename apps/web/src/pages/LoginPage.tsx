@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Layers3 } from 'lucide-react';
+import { StackIcon as Layers3 } from '@phosphor-icons/react/dist/csr/Stack';
 import { ApiHttpError, login } from '../auth/auth-api.js';
 import { baseUrl } from '../api.js';
 import { useAuth } from '../hooks/useAuth.js';

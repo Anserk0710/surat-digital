@@ -180,6 +180,22 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/group-policy/groups/{groupId}/member-candidates': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['groupPolicySearchMemberCandidates'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/group-policy/groups/{groupId}/members/{employeeId}': {
     parameters: {
       query?: never;
@@ -212,6 +228,22 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/group-policy/groups/{groupId}/permissions/batch': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations['groupPolicySetPermissionsBatch'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/group-policy/groups/{groupId}/permissions/{permissionCode}': {
     parameters: {
       query?: never;
@@ -228,6 +260,22 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/organization/changes/{type}/{id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['OrganizationController_listChanges'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/organization/companies': {
     parameters: {
       query?: never;
@@ -237,7 +285,7 @@ export interface paths {
     };
     get: operations['organizationListCompanies'];
     put?: never;
-    post?: never;
+    post: operations['organizationCreateCompany'];
     delete?: never;
     options?: never;
     head?: never;
@@ -533,6 +581,158 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/document-types': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List active document types */
+    get: operations['listDocumentTypes'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/document-subtypes': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List active document subtypes */
+    get: operations['listDocumentSubtypes'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/documents/issuer-scopes': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List active office/division scopes available to current creator */
+    get: operations['listDocumentIssuerScopes'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/documents': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List documents visible to current employee */
+    get: operations['listDocuments'];
+    put?: never;
+    /** Create document draft */
+    post: operations['createDocumentDraft'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/documents/{documentId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Read visible document */
+    get: operations['getDocument'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** Update own document while it is still Draft */
+    patch: operations['updateDocumentDraft'];
+    trace?: never;
+  };
+  '/api/v1/documents/{documentId}/files': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['listDocumentFiles'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/documents/{documentId}/files/upload': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Upload one file to a private document version */
+    post: operations['uploadDocumentFile'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/documents/{documentId}/files/{fileId}/download': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['downloadDocumentFile'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/documents/{documentId}/files/{fileId}/preview': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations['previewDocumentFile'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -562,6 +762,7 @@ export interface components {
       fullName: string;
       /** @enum {string} */
       status: 'ACTIVE';
+      isPlatformAdmin: boolean;
       company: components['schemas']['AuthCompanyDto'];
     };
     AuthLoginResponseDto: {
@@ -631,6 +832,12 @@ export interface components {
       groupId: string;
       active: boolean;
     };
+    GroupMemberCandidateResponseDto: {
+      /** Format: uuid */
+      id: string;
+      fullName: string;
+      employeeNumber: string;
+    };
     AddGroupMemberDto: {
       /** Format: uuid */
       employeeId: string;
@@ -652,6 +859,17 @@ export interface components {
       /** @enum {string} */
       effect: 'ALLOW' | 'DENY';
     };
+    SetGroupPermissionsBatchDto: {
+      /**
+       * @example [
+       *       "Document.Create",
+       *       "Document.ViewAll"
+       *     ]
+       */
+      permissionCodes: string[];
+      /** @enum {string} */
+      effect: 'ALLOW' | 'DENY';
+    };
     CompanyResponseDto: {
       /** Format: uuid */
       id: string;
@@ -663,7 +881,17 @@ export interface components {
       /** Format: date-time */
       updatedAt: string;
     };
+    CreateCompanyDto: {
+      /** @example HRD */
+      code: string;
+      /** @example Human Resource Development */
+      name: string;
+      /** Format: email */
+      adminEmail: string;
+      adminName: string;
+    };
     UpdateCompanyDto: {
+      code?: string;
       name?: string;
       active?: boolean;
     };
@@ -757,8 +985,12 @@ export interface components {
       /** Format: uuid */
       divisionId: string;
     };
-    UpdateActiveDto: {
-      active: boolean;
+    UpdateOfficeDivisionDto: {
+      /** Format: uuid */
+      officeId?: string;
+      /** Format: uuid */
+      divisionId?: string;
+      active?: boolean;
     };
     EmployeeAssignmentResponseDto: {
       /** Format: uuid */
@@ -796,6 +1028,10 @@ export interface components {
     };
     UpdateAssignmentDto: {
       /** Format: uuid */
+      employeeId?: string;
+      /** Format: uuid */
+      officeDivisionId?: string;
+      /** Format: uuid */
       jobTitleId?: string | null;
       isPrimary?: boolean;
       validFrom?: string | null;
@@ -827,6 +1063,140 @@ export interface components {
       /** Format: uuid */
       officeId: string;
       label: string;
+    };
+    DocumentTypeResponseDto: {
+      /** Format: uuid */
+      id: string;
+      code: string;
+      name: string;
+      description?: string | null;
+    };
+    DocumentSubtypeResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      documentTypeId: string;
+      code: string;
+      name: string;
+      description?: string | null;
+    };
+    DocumentIssuerOfficeDto: {
+      /** Format: uuid */
+      id: string;
+      code: string;
+      name: string;
+      timezone: string;
+    };
+    DocumentIssuerDivisionDto: {
+      /** Format: uuid */
+      id: string;
+      code: string;
+      name: string;
+    };
+    DocumentIssuerScopeResponseDto: {
+      /** Format: uuid */
+      officeDivisionId: string;
+      isPrimary: boolean;
+      office: components['schemas']['DocumentIssuerOfficeDto'];
+      division: components['schemas']['DocumentIssuerDivisionDto'];
+    };
+    CreateDocumentDraftDto: {
+      /** Format: uuid */
+      documentTypeId: string;
+      /** Format: uuid */
+      documentSubtypeId: string;
+      /** Format: uuid */
+      issuerOfficeId: string;
+      /** Format: uuid */
+      issuerDivisionId: string;
+      title: string;
+      description?: string | null;
+    };
+    DocumentCreatorResponseDto: {
+      /** Format: uuid */
+      id: string;
+      fullName: string;
+      employeeNumber: string;
+    };
+    DocumentResponseDto: {
+      /**
+       * Format: uuid
+       * @description Document ID sekaligus Tracking ID.
+       */
+      id: string;
+      /** Format: uuid */
+      companyId: string;
+      /** Format: uuid */
+      documentTypeId: string;
+      /** Format: uuid */
+      documentSubtypeId: string;
+      /** Format: uuid */
+      creatorEmployeeId: string;
+      /** Format: uuid */
+      issuerOfficeId: string;
+      /** Format: uuid */
+      issuerDivisionId: string;
+      title: string;
+      description?: string | null;
+      /** @enum {string} */
+      status:
+        | 'DRAFT'
+        | 'PENDING_ACKNOWLEDGMENT'
+        | 'PENDING_APPROVAL'
+        | 'IN_PROGRESS'
+        | 'FINALIZING'
+        | 'REJECTED'
+        | 'CANCELLED'
+        | 'ISSUED'
+        | 'ARCHIVED';
+      revision: number;
+      documentType: components['schemas']['DocumentTypeResponseDto'];
+      documentSubtype: components['schemas']['DocumentSubtypeResponseDto'];
+      issuerOffice: components['schemas']['DocumentIssuerOfficeDto'];
+      issuerDivision: components['schemas']['DocumentIssuerDivisionDto'];
+      creator: components['schemas']['DocumentCreatorResponseDto'];
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    DocumentListResponseDto: {
+      items: components['schemas']['DocumentResponseDto'][];
+      /** Format: uuid */
+      nextCursor?: string | null;
+    };
+    UpdateDocumentDraftDto: {
+      /** Format: uuid */
+      documentTypeId?: string;
+      /** Format: uuid */
+      documentSubtypeId?: string;
+      /** Format: uuid */
+      issuerOfficeId?: string;
+      /** Format: uuid */
+      issuerDivisionId?: string;
+      title?: string;
+      description?: string | null;
+      /** @description Revision terakhir yang dibaca browser untuk optimistic concurrency. */
+      expectedRevision: number;
+    };
+    DocumentFileResponseDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      documentVersionId: string;
+      /** @enum {string} */
+      fileRole: 'MAIN' | 'ATTACHMENT';
+      originalFilename: string;
+      detectedMime: string;
+      sizeBytes: number;
+      /** @description Lowercase hexadecimal SHA-256. */
+      sha256: string;
+      /** @enum {string} */
+      processingStatus: 'UPLOADED';
+      /** @enum {string} */
+      reviewStatus: 'PENDING';
+      /** Format: date-time */
+      createdAt: string;
     };
   };
   responses: never;
@@ -1235,6 +1605,27 @@ export interface operations {
       };
     };
   };
+  groupPolicySearchMemberCandidates: {
+    parameters: {
+      query: {
+        q: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupMemberCandidateResponseDto'][];
+        };
+      };
+    };
+  };
   groupPolicyRemoveMember: {
     parameters: {
       query?: never;
@@ -1296,6 +1687,29 @@ export interface operations {
       };
     };
   };
+  groupPolicySetPermissionsBatch: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['SetGroupPermissionsBatchDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['GroupPermissionResponseDto'][];
+        };
+      };
+    };
+  };
   groupPolicyRemovePermission: {
     parameters: {
       query?: never;
@@ -1315,6 +1729,23 @@ export interface operations {
       };
     };
   };
+  OrganizationController_listChanges: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
   organizationListCompanies: {
     parameters: {
       query?: never;
@@ -1330,6 +1761,29 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['CompanyResponseDto'][];
+        };
+      };
+    };
+  };
+  organizationCreateCompany: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateCompanyDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['CompanyResponseDto'];
         };
       };
     };
@@ -1355,7 +1809,10 @@ export interface operations {
   };
   organizationDeactivateCompany: {
     parameters: {
-      query?: never;
+      query?: {
+        force?: boolean;
+        permanent?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1459,6 +1916,7 @@ export interface operations {
   OrganizationController_deactivateOffice: {
     parameters: {
       query?: {
+        force?: boolean;
         permanent?: boolean;
       };
       header?: never;
@@ -1564,6 +2022,7 @@ export interface operations {
   OrganizationController_deactivateDivision: {
     parameters: {
       query?: {
+        force?: boolean;
         permanent?: boolean;
       };
       header?: never;
@@ -1669,6 +2128,7 @@ export interface operations {
   OrganizationController_deactivateJobTitle: {
     parameters: {
       query?: {
+        force?: boolean;
         permanent?: boolean;
       };
       header?: never;
@@ -1774,6 +2234,7 @@ export interface operations {
   OrganizationController_deactivateOfficeDivision: {
     parameters: {
       query?: {
+        force?: boolean;
         permanent?: boolean;
       };
       header?: never;
@@ -1801,7 +2262,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': components['schemas']['UpdateActiveDto'];
+        'application/json': components['schemas']['UpdateOfficeDivisionDto'];
       };
     };
     responses: {
@@ -2087,6 +2548,237 @@ export interface operations {
           [name: string]: unknown;
         };
         content?: never;
+      };
+    };
+  };
+  listDocumentTypes: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentTypeResponseDto'][];
+        };
+      };
+    };
+  };
+  listDocumentSubtypes: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentSubtypeResponseDto'][];
+        };
+      };
+    };
+  };
+  listDocumentIssuerScopes: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentIssuerScopeResponseDto'][];
+        };
+      };
+    };
+  };
+  listDocuments: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentListResponseDto'];
+        };
+      };
+    };
+  };
+  createDocumentDraft: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateDocumentDraftDto'];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentResponseDto'];
+        };
+      };
+    };
+  };
+  getDocument: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentResponseDto'];
+        };
+      };
+    };
+  };
+  updateDocumentDraft: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['UpdateDocumentDraftDto'];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentResponseDto'];
+        };
+      };
+    };
+  };
+  listDocumentFiles: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentFileResponseDto'][];
+        };
+      };
+    };
+  };
+  uploadDocumentFile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'multipart/form-data': {
+          /** Format: binary */
+          file: string;
+          /**
+           * @default MAIN
+           * @enum {string}
+           */
+          fileRole?: 'MAIN' | 'ATTACHMENT';
+        };
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': components['schemas']['DocumentFileResponseDto'];
+        };
+      };
+    };
+  };
+  downloadDocumentFile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Authenticated and authorized binary file */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/octet-stream': string;
+        };
+      };
+    };
+  };
+  previewDocumentFile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Authenticated PDF preview after processing */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/pdf': string;
+        };
       };
     };
   };

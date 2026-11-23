@@ -39,4 +39,20 @@ describe('AuthIdentityResolver company scope', () => {
       }),
     );
   });
+
+  it('resolves an invited administrator by email across companies', async () => {
+    const { findMany, resolver } = createResolver();
+    const companyId = '11111111-1111-4111-8111-111111111111';
+
+    await resolver.resolve('Admin@New-Company.com', companyId);
+
+    expect(findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({
+          OR: [{ emailNormalized: 'admin@new-company.com' }],
+        }),
+      }),
+    );
+    expect(findMany.mock.calls[0]?.[0].where).not.toHaveProperty('companyId');
+  });
 });

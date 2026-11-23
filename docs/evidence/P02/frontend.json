@@ -1,10 +1,14 @@
 {
-  "test": "P02-FE-T01",
+  "phaseId": "P02",
+  "testId": "P02-FE-T01",
+  "command": "npm run p02:frontend",
+  "result": "API contract, web build and server credential isolation verification passed.",
+  "artifactPath": "docs/evidence/P02/frontend.json",
   "status": "PASS",
   "checks": [
     "api:contract:check: PASS",
     "build: PASS",
     "Server credentials and Supabase SDK absent from browser bundle: PASS"
   ],
-  "timestamp": "2026-11-18T02:40:48.982Z"
+  "executedAt": "2026-11-21T09:56:01.041Z"
 }

@@ -39,6 +39,14 @@ export class GroupMemberResponseDto {
   @ApiProperty({ type: Boolean })
   active!: boolean;
 }
+export class GroupMemberCandidateResponseDto {
+  @ApiProperty({ type: String, format: 'uuid' })
+  id!: string;
+  @ApiProperty({ type: String })
+  fullName!: string;
+  @ApiProperty({ type: String })
+  employeeNumber!: string;
+}
 
 export class GroupPermissionResponseDto {
   @ApiProperty({ type: String, format: 'uuid' })

@@ -7,6 +7,7 @@ import { OrganizationModule } from './organization/organization.module.js';
 import { PolicyModule } from './policy/policy.module.js';
 import { UsersModule } from './users/users.module.js';
 import { RlsModule } from './rls/rls.module.js';
+import { DocumentModule } from './documents/document.module.js';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RlsModule } from './rls/rls.module.js';
     OrganizationModule,
     UsersModule,
     RlsModule,
+    DocumentModule,
   ],
 })
 export class AppModule {}

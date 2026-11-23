@@ -38,6 +38,9 @@ export class AuthUserDto {
   @ApiProperty({ type: String, enum: ['ACTIVE'] })
   status!: string;
 
+  @ApiProperty({ type: Boolean })
+  isPlatformAdmin!: boolean;
+
   @ApiProperty({ type: () => AuthCompanyDto })
   company!: AuthCompanyDto;
 }

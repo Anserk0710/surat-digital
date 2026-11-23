@@ -209,6 +209,7 @@ export type OfficeWhereInput = {
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   officeDivisions?: Prisma.OfficeDivisionListRelationFilter
   rlsPocResources?: Prisma.RlsPocResourceListRelationFilter
+  issuedDocuments?: Prisma.DocumentListRelationFilter
 }
 
 export type OfficeOrderByWithRelationInput = {
@@ -223,6 +224,7 @@ export type OfficeOrderByWithRelationInput = {
   company?: Prisma.CompanyOrderByWithRelationInput
   officeDivisions?: Prisma.OfficeDivisionOrderByRelationAggregateInput
   rlsPocResources?: Prisma.RlsPocResourceOrderByRelationAggregateInput
+  issuedDocuments?: Prisma.DocumentOrderByRelationAggregateInput
 }
 
 export type OfficeWhereUniqueInput = Prisma.AtLeast<{
@@ -241,6 +243,7 @@ export type OfficeWhereUniqueInput = Prisma.AtLeast<{
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   officeDivisions?: Prisma.OfficeDivisionListRelationFilter
   rlsPocResources?: Prisma.RlsPocResourceListRelationFilter
+  issuedDocuments?: Prisma.DocumentListRelationFilter
 }, "id" | "companyId_code">
 
 export type OfficeOrderByWithAggregationInput = {
@@ -282,6 +285,7 @@ export type OfficeCreateInput = {
   company: Prisma.CompanyCreateNestedOneWithoutOfficesInput
   officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutOfficeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeUncheckedCreateInput = {
@@ -295,6 +299,7 @@ export type OfficeUncheckedCreateInput = {
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutOfficeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeUpdateInput = {
@@ -308,6 +313,7 @@ export type OfficeUpdateInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutOfficesNestedInput
   officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutOfficeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeUncheckedUpdateInput = {
@@ -321,6 +327,7 @@ export type OfficeUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutOfficeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeCreateManyInput = {
@@ -478,6 +485,20 @@ export type OfficeUpdateOneRequiredWithoutRlsPocResourcesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OfficeUpdateToOneWithWhereWithoutRlsPocResourcesInput, Prisma.OfficeUpdateWithoutRlsPocResourcesInput>, Prisma.OfficeUncheckedUpdateWithoutRlsPocResourcesInput>
 }
 
+export type OfficeCreateNestedOneWithoutIssuedDocumentsInput = {
+  create?: Prisma.XOR<Prisma.OfficeCreateWithoutIssuedDocumentsInput, Prisma.OfficeUncheckedCreateWithoutIssuedDocumentsInput>
+  connectOrCreate?: Prisma.OfficeCreateOrConnectWithoutIssuedDocumentsInput
+  connect?: Prisma.OfficeWhereUniqueInput
+}
+
+export type OfficeUpdateOneRequiredWithoutIssuedDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.OfficeCreateWithoutIssuedDocumentsInput, Prisma.OfficeUncheckedCreateWithoutIssuedDocumentsInput>
+  connectOrCreate?: Prisma.OfficeCreateOrConnectWithoutIssuedDocumentsInput
+  upsert?: Prisma.OfficeUpsertWithoutIssuedDocumentsInput
+  connect?: Prisma.OfficeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OfficeUpdateToOneWithWhereWithoutIssuedDocumentsInput, Prisma.OfficeUpdateWithoutIssuedDocumentsInput>, Prisma.OfficeUncheckedUpdateWithoutIssuedDocumentsInput>
+}
+
 export type OfficeCreateWithoutCompanyInput = {
   id?: string
   code: string
@@ -488,6 +509,7 @@ export type OfficeCreateWithoutCompanyInput = {
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutOfficeInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeUncheckedCreateWithoutCompanyInput = {
@@ -500,6 +522,7 @@ export type OfficeUncheckedCreateWithoutCompanyInput = {
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutOfficeInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeCreateOrConnectWithoutCompanyInput = {
@@ -552,6 +575,7 @@ export type OfficeCreateWithoutOfficeDivisionsInput = {
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutOfficesInput
   rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeUncheckedCreateWithoutOfficeDivisionsInput = {
@@ -564,6 +588,7 @@ export type OfficeUncheckedCreateWithoutOfficeDivisionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeCreateOrConnectWithoutOfficeDivisionsInput = {
@@ -592,6 +617,7 @@ export type OfficeUpdateWithoutOfficeDivisionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutOfficesNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeUncheckedUpdateWithoutOfficeDivisionsInput = {
@@ -604,6 +630,7 @@ export type OfficeUncheckedUpdateWithoutOfficeDivisionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeCreateWithoutRlsPocResourcesInput = {
@@ -616,6 +643,7 @@ export type OfficeCreateWithoutRlsPocResourcesInput = {
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutOfficesInput
   officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeUncheckedCreateWithoutRlsPocResourcesInput = {
@@ -628,6 +656,7 @@ export type OfficeUncheckedCreateWithoutRlsPocResourcesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutOfficeInput
+  issuedDocuments?: Prisma.DocumentUncheckedCreateNestedManyWithoutIssuerOfficeInput
 }
 
 export type OfficeCreateOrConnectWithoutRlsPocResourcesInput = {
@@ -656,6 +685,7 @@ export type OfficeUpdateWithoutRlsPocResourcesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutOfficesNestedInput
   officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeUncheckedUpdateWithoutRlsPocResourcesInput = {
@@ -668,6 +698,75 @@ export type OfficeUncheckedUpdateWithoutRlsPocResourcesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerOfficeNestedInput
+}
+
+export type OfficeCreateWithoutIssuedDocumentsInput = {
+  id?: string
+  code: string
+  name: string
+  timezone: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutOfficesInput
+  officeDivisions?: Prisma.OfficeDivisionCreateNestedManyWithoutOfficeInput
+  rlsPocResources?: Prisma.RlsPocResourceCreateNestedManyWithoutOfficeInput
+}
+
+export type OfficeUncheckedCreateWithoutIssuedDocumentsInput = {
+  id?: string
+  companyId: string
+  code: string
+  name: string
+  timezone: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  officeDivisions?: Prisma.OfficeDivisionUncheckedCreateNestedManyWithoutOfficeInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedCreateNestedManyWithoutOfficeInput
+}
+
+export type OfficeCreateOrConnectWithoutIssuedDocumentsInput = {
+  where: Prisma.OfficeWhereUniqueInput
+  create: Prisma.XOR<Prisma.OfficeCreateWithoutIssuedDocumentsInput, Prisma.OfficeUncheckedCreateWithoutIssuedDocumentsInput>
+}
+
+export type OfficeUpsertWithoutIssuedDocumentsInput = {
+  update: Prisma.XOR<Prisma.OfficeUpdateWithoutIssuedDocumentsInput, Prisma.OfficeUncheckedUpdateWithoutIssuedDocumentsInput>
+  create: Prisma.XOR<Prisma.OfficeCreateWithoutIssuedDocumentsInput, Prisma.OfficeUncheckedCreateWithoutIssuedDocumentsInput>
+  where?: Prisma.OfficeWhereInput
+}
+
+export type OfficeUpdateToOneWithWhereWithoutIssuedDocumentsInput = {
+  where?: Prisma.OfficeWhereInput
+  data: Prisma.XOR<Prisma.OfficeUpdateWithoutIssuedDocumentsInput, Prisma.OfficeUncheckedUpdateWithoutIssuedDocumentsInput>
+}
+
+export type OfficeUpdateWithoutIssuedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutOfficesNestedInput
+  officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutOfficeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOfficeNestedInput
+}
+
+export type OfficeUncheckedUpdateWithoutIssuedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutOfficeNestedInput
+  rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOfficeNestedInput
 }
 
 export type OfficeCreateManyCompanyInput = {
@@ -690,6 +789,7 @@ export type OfficeUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUpdateManyWithoutOfficeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeUncheckedUpdateWithoutCompanyInput = {
@@ -702,6 +802,7 @@ export type OfficeUncheckedUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   officeDivisions?: Prisma.OfficeDivisionUncheckedUpdateManyWithoutOfficeNestedInput
   rlsPocResources?: Prisma.RlsPocResourceUncheckedUpdateManyWithoutOfficeNestedInput
+  issuedDocuments?: Prisma.DocumentUncheckedUpdateManyWithoutIssuerOfficeNestedInput
 }
 
 export type OfficeUncheckedUpdateManyWithoutCompanyInput = {
@@ -722,11 +823,13 @@ export type OfficeUncheckedUpdateManyWithoutCompanyInput = {
 export type OfficeCountOutputType = {
   officeDivisions: number
   rlsPocResources: number
+  issuedDocuments: number
 }
 
 export type OfficeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   officeDivisions?: boolean | OfficeCountOutputTypeCountOfficeDivisionsArgs
   rlsPocResources?: boolean | OfficeCountOutputTypeCountRlsPocResourcesArgs
+  issuedDocuments?: boolean | OfficeCountOutputTypeCountIssuedDocumentsArgs
 }
 
 /**
@@ -753,6 +856,13 @@ export type OfficeCountOutputTypeCountRlsPocResourcesArgs<ExtArgs extends runtim
   where?: Prisma.RlsPocResourceWhereInput
 }
 
+/**
+ * OfficeCountOutputType without action
+ */
+export type OfficeCountOutputTypeCountIssuedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentWhereInput
+}
+
 
 export type OfficeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -766,6 +876,7 @@ export type OfficeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   officeDivisions?: boolean | Prisma.Office$officeDivisionsArgs<ExtArgs>
   rlsPocResources?: boolean | Prisma.Office$rlsPocResourcesArgs<ExtArgs>
+  issuedDocuments?: boolean | Prisma.Office$issuedDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.OfficeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["office"]>
 
@@ -809,6 +920,7 @@ export type OfficeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   officeDivisions?: boolean | Prisma.Office$officeDivisionsArgs<ExtArgs>
   rlsPocResources?: boolean | Prisma.Office$rlsPocResourcesArgs<ExtArgs>
+  issuedDocuments?: boolean | Prisma.Office$issuedDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.OfficeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OfficeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -824,6 +936,7 @@ export type $OfficePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     company: Prisma.$CompanyPayload<ExtArgs>
     officeDivisions: Prisma.$OfficeDivisionPayload<ExtArgs>[]
     rlsPocResources: Prisma.$RlsPocResourcePayload<ExtArgs>[]
+    issuedDocuments: Prisma.$DocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1231,6 +1344,7 @@ export interface Prisma__OfficeClient<T, Null = never, ExtArgs extends runtime.T
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   officeDivisions<T extends Prisma.Office$officeDivisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Office$officeDivisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfficeDivisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   rlsPocResources<T extends Prisma.Office$rlsPocResourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Office$rlsPocResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RlsPocResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  issuedDocuments<T extends Prisma.Office$issuedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Office$issuedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1714,6 +1828,30 @@ export type Office$rlsPocResourcesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.RlsPocResourceScalarFieldEnum | Prisma.RlsPocResourceScalarFieldEnum[]
+}
+
+/**
+ * Office.issuedDocuments
+ */
+export type Office$issuedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Document
+   */
+  select?: Prisma.DocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Document
+   */
+  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentInclude<ExtArgs> | null
+  where?: Prisma.DocumentWhereInput
+  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
 }
 
 /**

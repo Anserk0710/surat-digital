@@ -111,6 +111,7 @@ produk tidak berubah tanpa jejak.
 | D-090 | Roadmap unified | P00–P59 tetap satu jalur; setiap phase mencakup Backend & Frontend dan enam bagian wajib. Evidence P00–P06 tetap historis. |
 | D-091 | Phase completion | Phase hanya Done setelah test Backend dan Frontend lulus; mock tidak menggantikan browser/API integration. |
 | D-092 | Phase estimate | Setiap P00–P59 diestimasi satu hari pengerjaan penuh; bila exit criteria belum lulus, phase tetap terbuka. |
+| D-093 | Organisasi | Memperluas D-002: admin platform dapat membuat beberapa perusahaan dalam satu deployment dan mengundang admin pertama; admin perusahaan hanya mengelola perusahaannya sendiri. Hak admin platform hanya diberikan lewat operasi tepercaya. |
 
 ## 3. Keputusan ERD terbaru
 
@@ -143,22 +144,22 @@ Keputusan yang sudah ditutup pada v1.2 tidak lagi menjadi open item. Khusus malw
 
 | ID | Pertanyaan | Priority | Owner | Status | Decision deadline / blocker |
 |---|---|---|---|---|---|
-| O-001 | Daftar kode jenis dan subjenis dokumen | P1 | Pemilik proses/Admin | Open | Sebelum P25 numbering |
+| O-001 | Daftar kode jenis dan subjenis dokumen | P1 | Pemilik proses/Admin | Open — P08 menyediakan master structure; tidak ada production seed sampai kode final disetujui | Sebelum P25 numbering |
 | O-002 | Apakah kode subjenis masuk nomor resmi? | P1 | Product/Management | Open | Sebelum P25 |
-| O-003 | Batas ukuran satu file dan total attachment | P0 | IT/Product | POC | Sebelum P09/P10 |
+| O-003 | Batas file: 4 MiB/file, 20 MiB total MAIN + ATTACHMENT per versi aktif - lihat [ADR-0004](../decisions/ADR-0004-document-limits-worker-hosting.md) | P0 | IT/Product | Closed | Keputusan 2026-11-21; enforcement kumulatif pada phase file lifecycle sebelum production |
 | O-004 | Maksimum attachment per dokumen | P1 | Product/IT | Open | Sebelum P16 |
 | O-005 | Excel: seluruh sheet atau print area/sheet terpilih | P1 | Pemilik proses | POC | Sebelum P33 |
-| O-006 | Batas halaman PDF dan sheet workbook | P0 | IT/Product | POC | Sebelum P10 |
+| O-006 | Maksimum 200 halaman/PDF (termasuk hasil konversi), 20 worksheet/workbook termasuk hidden - lihat [ADR-0004](../decisions/ADR-0004-document-limits-worker-hosting.md) | P0 | IT/Product | Closed | Keputusan 2026-11-21; enforcement pada phase worker terkait |
 | O-007 | Provider email transaksional | P2 | IT/Product | Open | Sebelum P30 |
-| O-008 | Hosting final worker/container | P0 | DevOps | POC | Sebelum P10 |
+| O-008 | Render Background Worker, Docker Linux, Singapore - lihat [ADR-0004](../decisions/ADR-0004-document-limits-worker-hosting.md) | P0 | DevOps | Closed | Keputusan 2026-11-21; deployment dan sizing belum dikerjakan |
 | O-009 | Redis/BullMQ managed provider final | P0 | DevOps | POC | Sebelum P11 |
 | O-010 | Detail retensi log teknis dan extraction text | P1 | Security/Legal | Open | Sebelum UAT |
 | O-011 | Kebijakan legal penggunaan TTE internal per jenis dokumen | P0 | Legal/Management | Open | Sebelum pilot |
 | O-012 | Proses reset PIN dan identity verification | P1 | IT/Legal | Open | Sebelum P23 |
 | O-013 | Apakah public verification page menampilkan field apa saja | P1 | Product/Security | Open | Sebelum P28 |
 | O-014 | Detail scope ViewAll/ExportAll per organisasi | P1 | Product/Security | Open | Sebelum P31 |
-| O-015 | Final runtime DB role dan tx-local RLS implementation | P0 | Backend/DBA/Security | Closed — ADR-0002 | P07 selesai; regression diteruskan ke P40 |
-| O-016 | Versi Prisma/driver adapter yang dipin | P0 | Backend | Open | Sebelum P02 selesai |
+| O-015 | Final runtime DB role dan tx-local RLS implementation - lihat [ADR-0003](../decisions/ADR-0003-runtime-database-rls.md) | P0 | Backend/DBA/Security | Closed | Ditutup pada P07 reconciliation |
+| O-016 | Versi Prisma/driver adapter yang dipin - lihat [ADR-0003](../decisions/ADR-0003-runtime-database-rls.md) | P0 | Backend | Closed | Prisma 7.10.1 + @prisma/adapter-pg 7.10.1 |
 | O-017 | Versi parser/LibreOffice/OCR yang dipin | P1 | Worker/DevOps | POC | Sebelum P33 |
 | O-018 | Malware scanner: ClamAV atau managed service | P0 | IT/Security | POC | Sebelum P10 selesai |
 | O-019 | Batas timeout/retry/dead-letter per job type | P1 | Backend/Worker | Open | Sebelum P11/P26 |

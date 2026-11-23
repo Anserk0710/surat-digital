@@ -1,32 +1,52 @@
 {
   "phaseId": "P02",
-  "timestamp": "2026-11-18T02:10:21.589Z",
+  "executedAt": "2026-11-21T09:56:00.426Z",
   "overallStatus": "PASS",
   "verification": [
     {
+      "phaseId": "P02",
       "testId": "P02-T01",
       "status": "PASS",
-      "evidence": "clean-migration.json"
+      "executedAt": "2026-11-21T09:55:03.337Z",
+      "command": "npm run p02:verify:clean-migration",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P02/verification.json"
     },
     {
+      "phaseId": "P02",
       "testId": "P02-T02",
       "status": "PASS",
-      "command": "npm run db:seed × 2"
+      "executedAt": "2026-11-21T09:55:42.131Z",
+      "command": "npm run db:seed × 2",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P02/verification.json"
     },
     {
+      "phaseId": "P02",
       "testId": "P02-T03",
       "status": "PASS",
-      "command": "npm run db:verify:runtime-role × 1"
+      "executedAt": "2026-11-21T09:55:45.882Z",
+      "command": "npm run db:verify:runtime-role × 1",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P02/verification.json"
     },
     {
+      "phaseId": "P02",
       "testId": "P02-T04",
       "status": "PASS",
-      "command": "npm run prisma:generate × 1"
+      "executedAt": "2026-11-21T09:55:49.850Z",
+      "command": "npm run prisma:generate × 1",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P02/verification.json"
     },
     {
+      "phaseId": "P02",
       "testId": "P02-T04-SMOKE",
       "status": "PASS",
-      "command": "npm run db:smoke × 1"
+      "executedAt": "2026-11-21T09:56:00.426Z",
+      "command": "npm run db:smoke × 1",
+      "result": "Verification command passed.",
+      "artifactPath": "docs/evidence/P02/verification.json"
     }
   ]
 }

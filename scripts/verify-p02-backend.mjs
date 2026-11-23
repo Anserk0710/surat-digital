@@ -1,3 +1,4 @@
+import { phaseTestRecords } from './phase-evidence.mjs';
 import { spawnSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -6,7 +7,13 @@ const clean = JSON.parse(
   readFileSync('docs/evidence/P02/clean-migration.json', 'utf8').replace(/^\uFEFF/, ''),
 );
 const verification = [
-  { testId: 'P02-T01', status: clean.status, evidence: 'clean-migration.json' },
+  {
+    testId: 'P02-T01',
+    status: clean.status,
+    command: 'npm run p02:verify:clean-migration',
+    executedAt: clean.executedAt ?? clean.timestamp,
+    evidence: 'clean-migration.json',
+  },
 ];
 
 function run(testId, script, times = 1) {
@@ -21,7 +28,12 @@ function run(testId, script, times = 1) {
       break;
     }
   }
-  verification.push({ testId, status, command: `npm run ${script} × ${times}` });
+  verification.push({
+    testId,
+    status,
+    executedAt: new Date().toISOString(),
+    command: `npm run ${script} × ${times}`,
+  });
   console.log(`${testId}: ${status}`);
   if (status !== 'PASS') {
     throw new Error(`${testId} failed.`);
@@ -46,9 +58,11 @@ try {
     JSON.stringify(
       {
         phaseId: 'P02',
-        timestamp: new Date().toISOString(),
+        executedAt: new Date().toISOString(),
         overallStatus: verification.every((item) => item.status === 'PASS') ? 'PASS' : 'FAIL',
-        verification,
+        verification: verification.flatMap((step) =>
+          phaseTestRecords('P02', [{ testIds: [step.testId], step }]),
+        ),
       },
       null,
       2,

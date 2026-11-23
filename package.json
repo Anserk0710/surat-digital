@@ -52,8 +52,15 @@
     "p06:verify:integration": "node scripts/verify-p06.mjs --integration",
     "p07:verify": "node scripts/verify-p07.mjs",
     "p07:verify:integration": "node scripts/verify-p07.mjs --integration",
+    "p08:verify": "node scripts/verify-p08.mjs",
+    "p08:verify:integration": "node scripts/verify-p08.mjs --integration",
     "verify:pre-p04": "node scripts/verify-pre-p04.mjs",
-    "verify:pre-p04:integration": "node scripts/verify-pre-p04.mjs --integration"
+    "verify:pre-p04:integration": "node scripts/verify-pre-p04.mjs --integration",
+    "p09:verify": "node scripts/verify-p09.mjs",
+    "p09:verify:integration": "node scripts/verify-p09.mjs --integration",
+    "verify:through-p09": "node scripts/verify-through-p09.mjs",
+    "evidence:validate": "node scripts/validate-phase-evidence.mjs",
+    "governance:check": "node scripts/check-governance-hygiene.mjs"
   },
   "packageManager": "npm@12.2.2",
   "workspaces": [

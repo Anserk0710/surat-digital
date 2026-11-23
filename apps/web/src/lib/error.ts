@@ -2,6 +2,18 @@ import { ApiHttpError } from '../auth/auth-api.js';
 
 export function formatErrorMessage(error: unknown): string {
   if (error instanceof ApiHttpError) {
+    if (error.code === 'DOCUMENT_REVISION_CONFLICT') {
+      return 'Draft telah berubah. Muat ulang data terbaru sebelum menyimpan kembali.';
+    }
+    if (error.code === 'DOCUMENT_NOT_DRAFT') {
+      return 'Dokumen tidak lagi berstatus Draft dan tidak dapat diedit.';
+    }
+    if (error.code === 'INVALID_DOCUMENT_CLASSIFICATION') {
+      return 'Kombinasi jenis dan subjenis dokumen tidak valid.';
+    }
+    if (error.code === 'INVALID_DOCUMENT_ISSUER_SCOPE') {
+      return 'Kantor dan divisi penerbit tidak tersedia untuk penempatan Anda.';
+    }
     if (error.status === 401) {
       return 'Sesi berakhir. Silakan masuk kembali.';
     }

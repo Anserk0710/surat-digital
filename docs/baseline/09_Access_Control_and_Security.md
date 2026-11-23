@@ -89,6 +89,8 @@ Perubahan group, membership, dan policy menghasilkan audit entry dalam transaksi
 
 ## 3. Permission catalogue baseline
 
+Admin platform dapat memilih perusahaan untuk mengelola master organisasi dan melihat daftar karyawan perusahaan tersebut. Query `companyId` pada endpoint master organisasi dan `GET /users` hanya boleh menunjuk perusahaan lain bagi admin platform. Admin perusahaan tetap dibatasi pada perusahaan sendiri. Penonaktifan perusahaan mempertahankan data tetapi menolak sesi penggunanya karena perusahaan tidak aktif. Hapus permanen perusahaan memerlukan konfirmasi eksplisit, menghapus data perusahaan melalui peran migrasi, dan menghapus akun Supabase terkait. Kegagalan penghapusan akun meninggalkan perusahaan nonaktif agar operasi dapat diulang. Hapus permanen master turunan juga memerlukan konfirmasi dan membersihkan dokumen atau penempatan yang bergantung padanya dalam transaksi peran migrasi.
+
 | Permission               | Fungsi                                                |
 |--------------------------|-------------------------------------------------------|
 | `User.View`              | Melihat direktori pengguna                            |
@@ -130,6 +132,20 @@ Creator tetap dapat melihat dokumen buatannya meskipun tidak memiliki
 `Document.ViewAll`.
 
 `Document.ViewAll` memberikan akses melihat seluruh dokumen perusahaan.
+
+### P08 Draft authorization
+
+Create Draft memerlukan `Document.Create`. Update Draft memerlukan:
+
+1. Effective `Document.Create`;
+2. Authenticated employee merupakan Creator document;
+3. Document masih `DRAFT`;
+4. Issuer Office/Division berasal dari assignment aktif Creator;
+5. `expectedRevision` cocok dengan revision saat ini.
+
+Creator tetap dapat membaca dokumen buatannya walaupun `Document.Create` dicabut. `Document.ViewAll` hanya memperluas visibility ke dokumen dalam company yang sama dan tidak memberi hak edit Draft orang lain. Document ID yang tidak visible dikembalikan sebagai generic 404 untuk mengurangi existence enumeration.
+
+P08 menerapkan pola RLS P07 pada domain bisnis. `documents` menggunakan tx-local `app.employee_id` dan `app.company_id`. RLS mengikuti Creator ownership atau effective `Document.ViewAll` untuk SELECT, serta Creator dan `Document.Create` untuk INSERT/UPDATE.
 
 ## 5. Download dan export
 

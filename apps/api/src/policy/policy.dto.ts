@@ -1,5 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  ArrayUnique,
+  IsArray,
   IsBoolean,
   IsIn,
   IsOptional,
@@ -63,6 +67,22 @@ export class SetGroupPermissionDto {
   @Matches(/^[A-Z][A-Za-z0-9]*\.[A-Z][A-Za-z0-9]*$/)
   @MaxLength(150)
   permissionCode!: string;
+
+  @ApiProperty({ type: String, enum: ['ALLOW', 'DENY'] })
+  @IsIn(['ALLOW', 'DENY'])
+  effect!: 'ALLOW' | 'DENY';
+}
+
+export class SetGroupPermissionsBatchDto {
+  @ApiProperty({ type: [String], example: ['Document.Create', 'Document.ViewAll'] })
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(100)
+  @ArrayUnique()
+  @IsString({ each: true })
+  @MaxLength(150, { each: true })
+  @Matches(/^[A-Z][A-Za-z0-9]*\.[A-Z][A-Za-z0-9]*$/, { each: true })
+  permissionCodes!: string[];
 
   @ApiProperty({ type: String, enum: ['ALLOW', 'DENY'] })
   @IsIn(['ALLOW', 'DENY'])

@@ -194,12 +194,15 @@ Semua endpoint menggunakan application session cookie dan memerlukan authorizati
 
 | Method | Endpoint         | Permission                      |
 |--------|------------------|---------------------------------|
-| GET    | `/companies`     | System.Configure atau User.View |
-| GET    | `/companies/:id` | System.Configure atau User.View |
-| PATCH  | `/companies/:id` | System.Configure                |
-| DELETE | `/companies/:id` | System.Configure                |
+| GET    | `/companies`     | Admin platform, System.Configure, atau User.View |
+| POST   | `/companies`     | Admin platform saja; membuat perusahaan dan mengundang admin pertama |
+| GET    | `/companies/:id` | Admin platform, System.Configure, atau User.View |
+| PATCH  | `/companies/:id` | Admin platform atau System.Configure |
+| DELETE | `/companies/:id` | Admin platform saja |
 
-Company creation dilakukan melalui trusted provisioning/seed; tidak tersedia sebagai endpoint tenant-level pada baseline single-company.
+Admin platform ditetapkan melalui operasi database tepercaya, bukan oleh admin perusahaan. `POST /companies` menerima `code`, `name`, `adminEmail`, dan `adminName`; undangan email serta akun admin pertama dibuat bersama perusahaan. Admin perusahaan hanya dapat membaca dan mengubah perusahaannya sendiri. Admin platform memilih perusahaan melalui daftar sebelum mengelola master turunannya. Request master turunan dan `GET /users` dapat membawa `companyId` perusahaan terpilih; hanya admin platform yang boleh memilih perusahaan lain. Riwayat perubahan tersedia melalui `GET /organization/changes/:type/:id` dengan cakupan perusahaan yang sama.
+
+`DELETE /companies/:id?force=true` menonaktifkan perusahaan beraktivitas beserta akses penggunanya tanpa menghapus data. `DELETE /companies/:id?permanent=true&force=true` menghapus seluruh data perusahaan dan akun Supabase terkait. `force=true` diperlukan jika perusahaan sudah mempunyai karyawan. Jika penghapusan akun eksternal gagal, perusahaan tetap nonaktif dan admin platform dapat mengulang permintaan hapus permanen. Admin platform tidak boleh menonaktifkan atau menghapus perusahaannya sendiri.
 
 #### Office, Division, dan JobTitle
 
@@ -211,7 +214,7 @@ Masing-masing resource menggunakan:
 - `PATCH /{resource}/:id` — update/reactivate
 - `DELETE /{resource}/:id` — deactivate
 
-Resource path adalah `offices`, `divisions`, dan `job-titles`. Read memerlukan `System.Configure` atau `User.View`; mutation memerlukan `System.Configure`.
+Resource path adalah `offices`, `divisions`, dan `job-titles`. Read memerlukan `System.Configure` atau `User.View`; mutation memerlukan `System.Configure`. `DELETE /:id?force=true` menonaktifkan master meski terdapat relasi aktif, tanpa menghapus data turunannya. `DELETE /:id?permanent=true` menghapus master dan data yang bergantung padanya. Kantor/Divisi menghapus dokumen penerbit, penempatan, dan relasi Kantor–Divisi terkait; Jabatan menghapus penempatan terkait.
 
 Office wajib memiliki `code`, `name`, dan `timezone` dengan identifier IANA seperti `Asia/Makassar`. Division dan JobTitle wajib memiliki `code` serta `name`.
 
@@ -233,6 +236,8 @@ Create body:
 ```
 
 Office dan Division harus berada dalam company yang sama dan aktif.
+
+`DELETE /office-divisions/:id?force=true` menonaktifkan relasi meski memiliki penempatan aktif. `permanent=true` menghapus dokumen dan penempatan yang bergantung pada relasi tersebut.
 
 #### EmployeeAssignment
 
@@ -272,7 +277,7 @@ Employee, OfficeDivision, dan JobTitle harus konsisten dalam satu company. Maksi
 | 409    | Duplicate code, constraint, atau referenced conflict  |
 | 429    | Rate limit P04                                        |
 
-DELETE selalu merupakan soft-deactivation. Tidak ada hard delete pada tenant API P05.
+Pada master turunan, `DELETE` menonaktifkan data secara default; `force=true` mengizinkan penonaktifan saat masih terdapat relasi aktif. `permanent=true` menghapus master beserta data terkait. Pada perusahaan, `DELETE` mengikuti aturan perusahaan di atas.
 
 ## 4. Group Policy
 
@@ -319,6 +324,7 @@ DELETE merupakan soft-deactivation.
 #### Group Membership
 
 - `GET /groups/:groupId/members`
+- `GET /groups/:groupId/member-candidates?q=<nama-atau-NIP>`
 - `POST /groups/:groupId/members`
 - `DELETE /groups/:groupId/members/:employeeId`
 
@@ -327,11 +333,13 @@ DELETE merupakan soft-deactivation.
 ```
 
 Employee harus aktif dan berada dalam company yang sama dengan group.
+Pencarian calon anggota hanya tersedia bagi pengelola grup, mencari nama atau NIP dalam perusahaan yang sama, dan mengembalikan maksimal 20 karyawan aktif yang belum menjadi anggota aktif. Client tetap mengirim `employeeId` setelah memilih hasil pencarian.
 
 #### Group Permissions
 
 - `GET /groups/:groupId/permissions`
 - `POST /groups/:groupId/permissions`
+- `POST /groups/:groupId/permissions/batch`
 - `DELETE /groups/:groupId/permissions/:permissionCode`
 
 ```json
@@ -342,6 +350,14 @@ Employee harus aktif dan berada dalam company yang sama dengan group.
 ```
 
 Set menggunakan upsert dan permission harus aktif di katalog. Delete menonaktifkan policy, bukan menghapus baris fisik.
+Batch menerima 1–100 kode izin unik dengan satu keputusan Allow atau Deny. Seluruh kode divalidasi dan disimpan dalam satu transaksi; setiap perubahan menghasilkan audit entry.
+
+```json
+{
+  "permissionCodes": ["Document.Create", "Document.Download"],
+  "effect": "ALLOW"
+}
+```
 
 #### Common HTTP Responses
 
@@ -392,6 +408,72 @@ Endpoint ini diagnostic P07, bukan business-domain endpoint. Probe table tidak d
 
 ## 5. Document creation
 
+### P08 — Document Master
+
+P08 menyediakan metadata Draft sebelum file, participant, signature, dan workflow ditambahkan.
+
+#### Document Master
+
+- `GET /document-types`
+- `GET /document-subtypes`
+- `GET /document-subtypes?documentTypeId=<uuid>`
+
+Master hanya mengembalikan type/subtype aktif. Kombinasi `documentTypeId` dan `documentSubtypeId` divalidasi di service serta composite foreign key database.
+
+#### Creator Issuer Scope
+
+`GET /documents/issuer-scopes` memerlukan `Document.Create`. Respons hanya berisi kombinasi Office dan Division dari assignment employee yang aktif dan masih valid. Client tidak mengirim company ID.
+
+#### Create Draft
+
+`POST /documents` memerlukan `Document.Create`.
+
+```json
+{
+  "documentTypeId": "<uuid>",
+  "documentSubtypeId": "<uuid>",
+  "issuerOfficeId": "<uuid>",
+  "issuerDivisionId": "<uuid>",
+  "title": "Judul dokumen",
+  "description": "Optional"
+}
+```
+
+Server menetapkan `companyId` dan `creatorEmployeeId` dari authenticated employee, `status = DRAFT`, `revision = 1`, dan UUID `id` sebagai Tracking ID. Creator hanya dapat memilih Office/Division dari assignment aktif miliknya.
+
+#### List Documents
+
+`GET /documents?scope=mine&status=DRAFT&limit=50&cursor=<uuid>`
+
+`scope=mine` hanya menampilkan dokumen milik creator. `scope=accessible` mengikuti document visibility policy: creator sendiri atau seluruh company bila mempunyai effective `Document.ViewAll`.
+
+#### Read Document
+
+`GET /documents/:documentId` mengizinkan creator membaca dokumen miliknya tanpa `Document.ViewAll`. Employee dengan `Document.ViewAll` dapat membaca dokumen dalam company yang sama. Resource yang tidak visible menghasilkan `404 DOCUMENT_NOT_FOUND` untuk mengurangi existence enumeration.
+
+#### Update Draft
+
+`PATCH /documents/:documentId` memerlukan effective `Document.Create`, ownership creator, status `DRAFT`, serta issuer scope yang masih valid. Request membawa revision terakhir yang dibaca browser:
+
+```json
+{
+  "expectedRevision": 3,
+  "title": "Judul baru"
+}
+```
+
+Update berhasil menaikkan revision secara atomik. Revision yang sudah berubah menghasilkan `409 DOCUMENT_REVISION_CONFLICT`; status selain Draft menghasilkan `409 DOCUMENT_NOT_DRAFT`. `Document.ViewAll` tidak memberi hak mengubah Draft employee lain. P08 tidak menyediakan DELETE document.
+
+### P09 — Private File Upload
+
+`POST /documents/:documentId/files/upload` menerima `multipart/form-data` dengan tepat satu field binary `file` dan `fileRole` opsional (`MAIN`, default, atau `ATTACHMENT`). Maksimum 4 MiB. Filename harus aman dan paling banyak 255 byte UTF-8. Format yang diizinkan: PDF, DOCX, DOC, XLSX, XLS; ekstensi, MIME browser, dan signature/struktur container diperiksa di backend. Server menghitung SHA-256 dari byte yang tersimpan. Hanya creator dengan `Document.Create` dapat mengunggah ke Draft miliknya. P09 membuat `document_versions.version_no = 1` saat upload pertama; satu versi hanya boleh memiliki satu `MAIN`. Setiap upload sukses menaikkan `documents.revision`.
+
+Response `201` memuat `id`, `documentVersionId`, `fileRole`, `originalFilename`, `detectedMime`, `sizeBytes`, `sha256`, `processingStatus = UPLOADED`, `reviewStatus = PENDING`, dan `createdAt`. Response tidak memuat pathname, URL, atau token storage. `GET /documents/:documentId/files` mengembalikan metadata file sesuai visibility dokumen. File tidak terlihat menghasilkan `404`.
+
+`GET /documents/:documentId/files/:fileId/download` mengirim byte sebagai attachment melalui API setelah autentikasi, download permission check, dan RLS download-purpose check. Backend memeriksa ulang ukuran dan SHA-256 sebelum merespons. Header `Cache-Control: private, no-store` dan `X-Content-Type-Options: nosniff` diterapkan. `GET /documents/:documentId/files/:fileId/preview` merupakan jalur preview terautentikasi, tetapi hanya mengirim PDF setelah status `PREVIEW_READY`; pada P09 file baru masih `UPLOADED` sehingga hasilnya `409 FILE_PREVIEW_NOT_READY`. Scan malware, worker processing, review, dan pembuatan versi berikutnya merupakan phase setelah P09.
+
+Storage backend menggunakan Vercel **private** Blob di production dan adapter private lokal hanya untuk development/test. Blob token/OIDC tetap di backend. Browser tidak menerima direct Blob URL.
+
 | Method | Endpoint                              | Fungsi                         |
 |--------|---------------------------------------|--------------------------------|
 | GET    | `/document-types`                     | Jenis dokumen                  |
@@ -401,13 +483,27 @@ Endpoint ini diagnostic P07, bukan business-domain endpoint. Probe table tidak d
 | GET    | `/documents/:id`                      | Detail dokumen                 |
 | PATCH  | `/documents/:id`                      | Update draft                   |
 | POST   | `/documents/:id/versions`             | Membuat versi draft baru       |
-| POST   | `/documents/:id/files/upload`         | Upload satu file               |
+| GET | `/documents/:id/files` | Daftar file pada dokumen yang visible |
+| POST | `/documents/:id/files/upload` | Upload satu file privat; membutuhkan `Document.Create` |
+| GET | `/documents/:id/files/:fileId/download` | Download file; membutuhkan `Document.Download` atau `Document.DownloadAll` |
+| GET | `/documents/:id/files/:fileId/preview` | Preview file yang visible dan sudah `PREVIEW_READY` |
 | GET    | `/documents/:id/files/:fileId/processing` | Status validasi/ekstraksi/konversi |
 | POST   | `/documents/:id/files/:fileId/retry-processing` | Retry job gagal sesuai izin dan batas retry |
 | POST   | `/documents/:id/files/:fileId/review` | Review/konfirmasi file         |
 | DELETE | `/documents/:id/files/:fileId`        | Hapus file draft sesuai aturan |
 | POST   | `/documents/:id/participants`         | Atur Knowing dan Approver      |
 | POST   | `/documents/:id/submit`               | Atomic Creator Sign + Lock + Submit; request membawa metode/proof signature dan idempotency key |
+
+### Document file authorization
+
+Hak melihat dan mengunduh file merupakan capability terpisah.
+
+- `Document.ViewAll` tidak memberikan hak download.
+- `Document.Download` mengizinkan download hanya terhadap dokumen pada normal visibility scope employee.
+- `Document.DownloadAll` mengizinkan download seluruh dokumen company tetapi tidak memberikan kemampuan metadata/list `Document.ViewAll`.
+- Anonymous request menerima 401.
+- Authenticated employee tanpa download permission menerima 403.
+- Employee dengan `Document.Download` tetapi resource di luar visibility scope menerima 404 untuk mencegah enumeration.
 
 ### Submit request (konseptual)
 

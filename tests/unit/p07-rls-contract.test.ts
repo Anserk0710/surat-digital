@@ -26,7 +26,7 @@ describe('P07 Prisma RLS runtime contract', () => {
     const source = read('apps/api/src/rls/rls-context.service.ts');
 
     expect(source).toContain('this.prisma.$transaction');
-    expect(source).toContain('return operation(tx, context)');
+    expect(source).toMatch(/return\s+operation\(\s*tx,\s*context,?\s*\)/);
 
     for (const [setting, value] of [
       ['request.jwt.claim.sub', 'authUserId'],
@@ -34,9 +34,14 @@ describe('P07 Prisma RLS runtime contract', () => {
       ['app.company_id', 'companyId'],
       ['app.office_id', 'officeId'],
     ] as const) {
+      const contextValue =
+        value === 'officeId'
+          ? `\\$\\{context\\.${value}\\s*\\?\\?\\s*''\\}`
+          : `\\$\\{context\\.${value}\\}`;
+
       expect(source).toMatch(
         new RegExp(
-          `set_config\\(\\s*'${setting.replaceAll('.', '\\.')}\\s*'\\s*,\\s*\\$\\{context\\.${value}\\}\\s*,\\s*true\\s*\\)`,
+          `set_config\\(\\s*'${setting.replaceAll('.', '\\.')}\\s*'\\s*,\\s*${contextValue}\\s*,\\s*true\\s*\\)`,
         ),
       );
     }

@@ -1,3 +1,4 @@
+import { phaseTestRecords } from './phase-evidence.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -92,6 +93,12 @@ const result = {
     'P06-T03': integrationPassed ? 'PASS' : 'NOT_FULLY_VERIFIED',
     'P06-T04': integrationPassed ? 'PASS' : 'NOT_RUN',
   },
+  verification: phaseTestRecords('P06', [
+    {
+      testIds: ['P06-T01', 'P06-T02', 'P06-T03', 'P06-T04'],
+      step: evidence.find((item) => item.id === 'P06-T01-T04-INTEGRATION'),
+    },
+  ]),
   evidence,
 };
 

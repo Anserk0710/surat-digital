@@ -65,7 +65,14 @@ export const ModelName = {
   AuthSession: 'AuthSession',
   AuthRateLimitBucket: 'AuthRateLimitBucket',
   GroupPolicyAudit: 'GroupPolicyAudit',
-  RlsPocResource: 'RlsPocResource'
+  OrganizationChange: 'OrganizationChange',
+  RlsPocResource: 'RlsPocResource',
+  DocumentType: 'DocumentType',
+  DocumentSubtype: 'DocumentSubtype',
+  Document: 'Document',
+  DocumentVersion: 'DocumentVersion',
+  StorageObject: 'StorageObject',
+  DocumentFile: 'DocumentFile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -159,6 +166,7 @@ export const EmployeeScalarFieldEnum = {
   emailNormalized: 'emailNormalized',
   fullName: 'fullName',
   status: 'status',
+  isPlatformAdmin: 'isPlatformAdmin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -277,6 +285,21 @@ export const GroupPolicyAuditScalarFieldEnum = {
 export type GroupPolicyAuditScalarFieldEnum = (typeof GroupPolicyAuditScalarFieldEnum)[keyof typeof GroupPolicyAuditScalarFieldEnum]
 
 
+export const OrganizationChangeScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  actorEmployeeId: 'actorEmployeeId',
+  action: 'action',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  before: 'before',
+  after: 'after',
+  occurredAt: 'occurredAt'
+} as const
+
+export type OrganizationChangeScalarFieldEnum = (typeof OrganizationChangeScalarFieldEnum)[keyof typeof OrganizationChangeScalarFieldEnum]
+
+
 export const RlsPocResourceScalarFieldEnum = {
   id: 'id',
   ownerEmployeeId: 'ownerEmployeeId',
@@ -288,12 +311,120 @@ export const RlsPocResourceScalarFieldEnum = {
 export type RlsPocResourceScalarFieldEnum = (typeof RlsPocResourceScalarFieldEnum)[keyof typeof RlsPocResourceScalarFieldEnum]
 
 
+export const DocumentTypeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentTypeScalarFieldEnum = (typeof DocumentTypeScalarFieldEnum)[keyof typeof DocumentTypeScalarFieldEnum]
+
+
+export const DocumentSubtypeScalarFieldEnum = {
+  id: 'id',
+  documentTypeId: 'documentTypeId',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentSubtypeScalarFieldEnum = (typeof DocumentSubtypeScalarFieldEnum)[keyof typeof DocumentSubtypeScalarFieldEnum]
+
+
+export const DocumentScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  documentTypeId: 'documentTypeId',
+  documentSubtypeId: 'documentSubtypeId',
+  creatorEmployeeId: 'creatorEmployeeId',
+  issuerDivisionId: 'issuerDivisionId',
+  issuerOfficeId: 'issuerOfficeId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  revision: 'revision',
+  submittedAt: 'submittedAt',
+  issuedAt: 'issuedAt',
+  rejectedAt: 'rejectedAt',
+  cancelledAt: 'cancelledAt',
+  archivedAt: 'archivedAt',
+  rejectionReason: 'rejectionReason',
+  withdrawReason: 'withdrawReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const DocumentVersionScalarFieldEnum = {
+  id: 'id',
+  documentId: 'documentId',
+  versionNo: 'versionNo',
+  sourceMethod: 'sourceMethod',
+  createdByEmployeeId: 'createdByEmployeeId',
+  isLocked: 'isLocked',
+  createdAt: 'createdAt'
+} as const
+
+export type DocumentVersionScalarFieldEnum = (typeof DocumentVersionScalarFieldEnum)[keyof typeof DocumentVersionScalarFieldEnum]
+
+
+export const StorageObjectScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  uploadedByEmployeeId: 'uploadedByEmployeeId',
+  provider: 'provider',
+  pathname: 'pathname',
+  contentType: 'contentType',
+  sizeBytes: 'sizeBytes',
+  sha256: 'sha256',
+  accessMode: 'accessMode',
+  createdAt: 'createdAt'
+} as const
+
+export type StorageObjectScalarFieldEnum = (typeof StorageObjectScalarFieldEnum)[keyof typeof StorageObjectScalarFieldEnum]
+
+
+export const DocumentFileScalarFieldEnum = {
+  id: 'id',
+  documentVersionId: 'documentVersionId',
+  storageObjectId: 'storageObjectId',
+  uploadedByEmployeeId: 'uploadedByEmployeeId',
+  fileRole: 'fileRole',
+  originalFilename: 'originalFilename',
+  detectedMime: 'detectedMime',
+  sizeBytes: 'sizeBytes',
+  sha256: 'sha256',
+  processingStatus: 'processingStatus',
+  reviewStatus: 'reviewStatus',
+  createdAt: 'createdAt'
+} as const
+
+export type DocumentFileScalarFieldEnum = (typeof DocumentFileScalarFieldEnum)[keyof typeof DocumentFileScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -310,4 +441,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

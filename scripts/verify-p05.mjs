@@ -1,3 +1,4 @@
+import { phaseTestRecords } from './phase-evidence.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -104,9 +105,16 @@ fs.writeFileSync(
   `${JSON.stringify(
     {
       phaseId: 'P05',
-      date: new Date().toISOString(),
+      executedAt: new Date().toISOString(),
       integrationExecuted: integration,
       overallStatus: failure ? 'FAIL' : 'PASS',
+      verification: phaseTestRecords('P05', [
+        {
+          testIds: ['P05-T01', 'P05-T02', 'P05-T03', 'P05-T04'],
+          step: evidence.find((item) => item.id === 'P05-T01-T04'),
+        },
+        { testIds: ['P05-T05'], step: evidence.find((item) => item.id === 'P05-T05') },
+      ]),
       evidence,
     },
     null,

@@ -423,6 +423,38 @@
         "tags": ["Group Policy"]
       }
     },
+    "/api/v1/group-policy/groups/{groupId}/member-candidates": {
+      "get": {
+        "operationId": "groupPolicySearchMemberCandidates",
+        "parameters": [
+          {
+            "name": "q",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GroupMemberCandidateResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
     "/api/v1/group-policy/groups/{groupId}/members/{employeeId}": {
       "delete": {
         "operationId": "groupPolicyRemoveMember",
@@ -494,6 +526,39 @@
         "tags": ["Group Policy"]
       }
     },
+    "/api/v1/group-policy/groups/{groupId}/permissions/batch": {
+      "post": {
+        "operationId": "groupPolicySetPermissionsBatch",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetGroupPermissionsBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GroupPermissionResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Group Policy"]
+      }
+    },
     "/api/v1/group-policy/groups/{groupId}/permissions/{permissionCode}": {
       "delete": {
         "operationId": "groupPolicyRemovePermission",
@@ -514,6 +579,18 @@
         "tags": ["Group Policy"]
       }
     },
+    "/api/v1/organization/changes/{type}/{id}": {
+      "get": {
+        "operationId": "OrganizationController_listChanges",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["Organization"]
+      }
+    },
     "/api/v1/organization/companies": {
       "get": {
         "operationId": "organizationListCompanies",
@@ -528,6 +605,34 @@
                   "items": {
                     "$ref": "#/components/schemas/CompanyResponseDto"
                   }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Organization"]
+      },
+      "post": {
+        "operationId": "organizationCreateCompany",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCompanyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyResponseDto"
                 }
               }
             }
@@ -586,7 +691,24 @@
       },
       "delete": {
         "operationId": "organizationDeactivateCompany",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "force",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "permanent",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -700,6 +822,14 @@
       "delete": {
         "operationId": "OrganizationController_deactivateOffice",
         "parameters": [
+          {
+            "name": "force",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
           {
             "name": "permanent",
             "required": false,
@@ -822,6 +952,14 @@
         "operationId": "OrganizationController_deactivateDivision",
         "parameters": [
           {
+            "name": "force",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "permanent",
             "required": false,
             "in": "query",
@@ -943,6 +1081,14 @@
         "operationId": "OrganizationController_deactivateJobTitle",
         "parameters": [
           {
+            "name": "force",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "permanent",
             "required": false,
             "in": "query",
@@ -1041,7 +1187,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateActiveDto"
+                "$ref": "#/components/schemas/UpdateOfficeDivisionDto"
               }
             }
           }
@@ -1063,6 +1209,14 @@
       "delete": {
         "operationId": "OrganizationController_deactivateOfficeDivision",
         "parameters": [
+          {
+            "name": "force",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
           {
             "name": "permanent",
             "required": false,
@@ -1401,6 +1555,278 @@
         "summary": "P07 diagnostic read through transaction-local RLS context",
         "tags": ["RLS POC"]
       }
+    },
+    "/api/v1/document-types": {
+      "get": {
+        "operationId": "listDocumentTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentTypeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "List active document types",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/document-subtypes": {
+      "get": {
+        "operationId": "listDocumentSubtypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentSubtypeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "List active document subtypes",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents/issuer-scopes": {
+      "get": {
+        "operationId": "listDocumentIssuerScopes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentIssuerScopeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "List active office/division scopes available to current creator",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents": {
+      "post": {
+        "operationId": "createDocumentDraft",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDocumentDraftDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create document draft",
+        "tags": ["Documents"]
+      },
+      "get": {
+        "operationId": "listDocuments",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentListResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "List documents visible to current employee",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents/{documentId}": {
+      "get": {
+        "operationId": "getDocument",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Read visible document",
+        "tags": ["Documents"]
+      },
+      "patch": {
+        "operationId": "updateDocumentDraft",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDocumentDraftDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update own document while it is still Draft",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents/{documentId}/files": {
+      "get": {
+        "operationId": "listDocumentFiles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentFileResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents/{documentId}/files/upload": {
+      "post": {
+        "operationId": "uploadDocumentFile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "fileRole": {
+                    "type": "string",
+                    "enum": ["MAIN", "ATTACHMENT"],
+                    "default": "MAIN"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentFileResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Upload one file to a private document version",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents/{documentId}/files/{fileId}/download": {
+      "get": {
+        "operationId": "downloadDocumentFile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Authenticated and authorized binary file",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Documents"]
+      }
+    },
+    "/api/v1/documents/{documentId}/files/{fileId}/preview": {
+      "get": {
+        "operationId": "previewDocumentFile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Authenticated PDF preview after processing",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Documents"]
+      }
     }
   },
   "info": {
@@ -1480,11 +1906,23 @@
             "type": "string",
             "enum": ["ACTIVE"]
           },
+          "isPlatformAdmin": {
+            "type": "boolean"
+          },
           "company": {
             "$ref": "#/components/schemas/AuthCompanyDto"
           }
         },
-        "required": ["id", "employeeNumber", "username", "email", "fullName", "status", "company"]
+        "required": [
+          "id",
+          "employeeNumber",
+          "username",
+          "email",
+          "fullName",
+          "status",
+          "isPlatformAdmin",
+          "company"
+        ]
       },
       "AuthLoginResponseDto": {
         "type": "object",
@@ -1666,6 +2104,22 @@
         },
         "required": ["id", "employeeId", "groupId", "active"]
       },
+      "GroupMemberCandidateResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "employeeNumber": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "fullName", "employeeNumber"]
+      },
       "AddGroupMemberDto": {
         "type": "object",
         "properties": {
@@ -1715,6 +2169,23 @@
         },
         "required": ["permissionCode", "effect"]
       },
+      "SetGroupPermissionsBatchDto": {
+        "type": "object",
+        "properties": {
+          "permissionCodes": {
+            "example": ["Document.Create", "Document.ViewAll"],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "effect": {
+            "type": "string",
+            "enum": ["ALLOW", "DENY"]
+          }
+        },
+        "required": ["permissionCodes", "effect"]
+      },
       "CompanyResponseDto": {
         "type": "object",
         "properties": {
@@ -1742,9 +2213,33 @@
         },
         "required": ["id", "code", "name", "active", "createdAt", "updatedAt"]
       },
+      "CreateCompanyDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "HRD"
+          },
+          "name": {
+            "type": "string",
+            "example": "Human Resource Development"
+          },
+          "adminEmail": {
+            "type": "string",
+            "format": "email"
+          },
+          "adminName": {
+            "type": "string"
+          }
+        },
+        "required": ["code", "name", "adminEmail", "adminName"]
+      },
       "UpdateCompanyDto": {
         "type": "object",
         "properties": {
+          "code": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -1970,14 +2465,21 @@
         },
         "required": ["officeId", "divisionId"]
       },
-      "UpdateActiveDto": {
+      "UpdateOfficeDivisionDto": {
         "type": "object",
         "properties": {
+          "officeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "divisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "active": {
             "type": "boolean"
           }
-        },
-        "required": ["active"]
+        }
       },
       "EmployeeAssignmentResponseDto": {
         "type": "object",
@@ -2071,6 +2573,14 @@
       "UpdateAssignmentDto": {
         "type": "object",
         "properties": {
+          "employeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "officeDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
           "jobTitleId": {
             "type": "string",
             "format": "uuid",
@@ -2164,6 +2674,365 @@
           }
         },
         "required": ["id", "ownerEmployeeId", "officeId", "label"]
+      },
+      "DocumentTypeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": ["id", "code", "name"]
+      },
+      "DocumentSubtypeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": ["id", "documentTypeId", "code", "name"]
+      },
+      "DocumentIssuerOfficeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "code", "name", "timezone"]
+      },
+      "DocumentIssuerDivisionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "code", "name"]
+      },
+      "DocumentIssuerScopeResponseDto": {
+        "type": "object",
+        "properties": {
+          "officeDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "office": {
+            "$ref": "#/components/schemas/DocumentIssuerOfficeDto"
+          },
+          "division": {
+            "$ref": "#/components/schemas/DocumentIssuerDivisionDto"
+          }
+        },
+        "required": ["officeDivisionId", "isPrimary", "office", "division"]
+      },
+      "CreateDocumentDraftDto": {
+        "type": "object",
+        "properties": {
+          "documentTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentSubtypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issuerOfficeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issuerDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5000
+          }
+        },
+        "required": [
+          "documentTypeId",
+          "documentSubtypeId",
+          "issuerOfficeId",
+          "issuerDivisionId",
+          "title"
+        ]
+      },
+      "DocumentCreatorResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "employeeNumber": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "fullName", "employeeNumber"]
+      },
+      "DocumentResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Document ID sekaligus Tracking ID."
+          },
+          "companyId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentSubtypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "creatorEmployeeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issuerOfficeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issuerDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PENDING_ACKNOWLEDGMENT",
+              "PENDING_APPROVAL",
+              "IN_PROGRESS",
+              "FINALIZING",
+              "REJECTED",
+              "CANCELLED",
+              "ISSUED",
+              "ARCHIVED"
+            ]
+          },
+          "revision": {
+            "type": "number",
+            "minimum": 1
+          },
+          "documentType": {
+            "$ref": "#/components/schemas/DocumentTypeResponseDto"
+          },
+          "documentSubtype": {
+            "$ref": "#/components/schemas/DocumentSubtypeResponseDto"
+          },
+          "issuerOffice": {
+            "$ref": "#/components/schemas/DocumentIssuerOfficeDto"
+          },
+          "issuerDivision": {
+            "$ref": "#/components/schemas/DocumentIssuerDivisionDto"
+          },
+          "creator": {
+            "$ref": "#/components/schemas/DocumentCreatorResponseDto"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "companyId",
+          "documentTypeId",
+          "documentSubtypeId",
+          "creatorEmployeeId",
+          "issuerOfficeId",
+          "issuerDivisionId",
+          "title",
+          "status",
+          "revision",
+          "documentType",
+          "documentSubtype",
+          "issuerOffice",
+          "issuerDivision",
+          "creator",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "DocumentListResponseDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentResponseDto"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "required": ["items"]
+      },
+      "UpdateDocumentDraftDto": {
+        "type": "object",
+        "properties": {
+          "documentTypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentSubtypeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issuerOfficeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issuerDivisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5000
+          },
+          "expectedRevision": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Revision terakhir yang dibaca browser untuk optimistic concurrency."
+          }
+        },
+        "required": ["expectedRevision"]
+      },
+      "DocumentFileResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentVersionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fileRole": {
+            "type": "string",
+            "enum": ["MAIN", "ATTACHMENT"]
+          },
+          "originalFilename": {
+            "type": "string"
+          },
+          "detectedMime": {
+            "type": "string"
+          },
+          "sizeBytes": {
+            "type": "number"
+          },
+          "sha256": {
+            "type": "string",
+            "description": "Lowercase hexadecimal SHA-256."
+          },
+          "processingStatus": {
+            "type": "string",
+            "enum": ["UPLOADED"]
+          },
+          "reviewStatus": {
+            "type": "string",
+            "enum": ["PENDING"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "documentVersionId",
+          "fileRole",
+          "originalFilename",
+          "detectedMime",
+          "sizeBytes",
+          "sha256",
+          "processingStatus",
+          "reviewStatus",
+          "createdAt"
+        ]
       }
     }
   }

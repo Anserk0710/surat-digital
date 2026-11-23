@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 config({ path: 'apps/api/.env' });
 import assert from 'node:assert/strict';
-import { randomBytes } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createServer } from 'vite';
@@ -31,11 +31,14 @@ const { createApplication } = await import('../apps/api/src/bootstrap.js');
 const { PrismaService } = await import('../apps/api/src/database/prisma.service.js');
 const { createPrismaClient } = await import('../apps/api/src/database/prisma-client.js');
 const { AuthSessionService } = await import('../apps/api/src/auth/auth-session.service.js');
+const { PrivateFileStorage } = await import('../apps/api/src/documents/private-file-storage.js');
 const prismaApp = await createApplication();
 const fixturePrisma = createPrismaClient(process.env.DIRECT_URL);
 let vite: Awaited<ReturnType<typeof createServer>> | undefined;
 let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
 let companyId: string | undefined;
+let p08DocumentTypeId: string | undefined;
+let p08DocumentId: string | undefined;
 let registeredAuthId: string | undefined;
 let adminAuthId: string | undefined;
 let adminEmployeeId: string | undefined;
@@ -173,6 +176,8 @@ try {
       'User.Manage',
       'Group.View',
       'Group.Manage',
+      'Document.Create',
+      'Document.Download',
     ]) {
       const permission = await prisma.permission.findUniqueOrThrow({ where: { code } });
       await prisma.groupPermission.create({
@@ -231,7 +236,7 @@ try {
       .fill('Asia/Jakarta');
     const officeResponse = page.waitForResponse(
       (response) =>
-        response.url().endsWith('/api/v1/organization/offices') &&
+        new URL(response.url()).pathname === '/api/v1/organization/offices' &&
         response.request().method() === 'POST',
       { timeout: 15_000 },
     );
@@ -321,6 +326,18 @@ try {
     })
   ).id;
 
+  const p08DocumentType = await fixturePrisma.documentType.create({
+    data: { code: `WEB_DOC_${suffix}`, name: 'Browser Document Type' },
+  });
+  p08DocumentTypeId = p08DocumentType.id;
+  const p08DocumentSubtype = await fixturePrisma.documentSubtype.create({
+    data: {
+      documentTypeId: p08DocumentType.id,
+      code: `WEB_SUB_${suffix}`,
+      name: 'Browser Document Subtype',
+    },
+  });
+
   await record('P06', async () => {
     await page.getByRole('link', { name: 'Group Policy' }).click();
     await page.getByRole('heading', { name: 'Group Policy' }).waitFor();
@@ -333,13 +350,23 @@ try {
       has: page.getByRole('heading', { name: /Browser Group/ }),
     });
     await detail.waitFor();
-    await detail.getByPlaceholder('ID karyawan').fill(adminEmployeeId!);
-    await detail.getByRole('button', { name: 'Tambah' }).click();
-    await detail.getByText(adminEmployeeId!).waitFor();
-    await detail.locator('select[name=permissionCode]').selectOption('User.View');
-    await detail.locator('select[name=effect]').selectOption('DENY');
-    await detail.getByRole('button', { name: 'Simpan izin' }).click();
+    await detail.getByLabel('Cari karyawan berdasarkan nama atau NIP').fill(`ADMIN${suffix}`);
+    try {
+      await detail.getByRole('button', { name: /NIP ADMIN/ }).click({ timeout: 10_000 });
+    } catch (error) {
+      throw new Error(
+        `P06 member search result missing: ${(await detail.innerText()).slice(0, 1200)}`,
+        { cause: error },
+      );
+    }
+    await detail.getByRole('button', { name: 'Tambah anggota' }).click();
+    await detail.getByText(`NIP ADMIN${suffix}`).waitFor();
+    await detail.getByRole('checkbox', { name: /User.View/ }).check();
+    await detail.getByRole('checkbox', { name: /Group.View/ }).check();
+    await detail.getByRole('radio', { name: 'Deny' }).check();
+    await detail.getByRole('button', { name: 'Simpan 2 izin' }).click();
     await page.getByText('User.View: DENY').waitFor();
+    await page.getByText('Group.View: DENY').waitFor();
     await page.getByText('User.Manage: ALLOW').waitFor();
   });
 
@@ -398,6 +425,197 @@ try {
     }
   });
 
+  await record('P08', async () => {
+    await page.goto('/documents/new');
+    await page.getByRole('heading', { name: 'Buat Dokumen' }).waitFor();
+    await page.getByLabel('Jenis dokumen', { exact: true }).waitFor();
+    await page.getByLabel('Jenis dokumen', { exact: true }).selectOption(p08DocumentType.id);
+    await page.getByLabel('Subjenis dokumen', { exact: true }).selectOption(p08DocumentSubtype.id);
+    const issuer = page.getByLabel('Kantor dan divisi penerbit');
+    assert.ok((await issuer.locator('option').count()) > 1, 'P08 creator needs an issuer scope.');
+    await issuer.selectOption({ index: 1 });
+    await page.getByLabel('Judul dokumen').fill('Browser P08 Draft');
+    await page
+      .getByLabel('Deskripsi dokumen')
+      .fill('Draft dibuat melalui browser integration test.');
+
+    const createResponse = page.waitForResponse(
+      (response) =>
+        response.url().endsWith('/api/v1/documents') && response.request().method() === 'POST',
+    );
+    await page.getByRole('button', { name: 'Buat Draft' }).click();
+    const created = await createResponse;
+    assert.equal(created.status(), 201, await created.text());
+    const createdBody = (await created.json()) as { id: string; revision: number; status: string };
+    p08DocumentId = createdBody.id;
+    assert.equal(createdBody.status, 'DRAFT');
+    assert.equal(createdBody.revision, 1);
+    await page.getByRole('heading', { name: 'Edit Draft' }).waitFor();
+    await page.getByLabel('Judul dokumen').fill('Browser P08 Draft Updated');
+
+    const updateResponse = page.waitForResponse(
+      (response) =>
+        response.url().endsWith(`/api/v1/documents/${createdBody.id}`) &&
+        response.request().method() === 'PATCH',
+    );
+    await page.getByRole('button', { name: 'Simpan perubahan' }).click();
+    const updated = await updateResponse;
+    assert.equal(updated.status(), 200, await updated.text());
+    const updatedBody = (await updated.json()) as { title: string; revision: number };
+    assert.equal(updatedBody.title, 'Browser P08 Draft Updated');
+    assert.equal(updatedBody.revision, 2);
+
+    await page.goto('/documents');
+    await page.getByRole('heading', { name: 'Dokumen Saya' }).waitFor();
+    await page.getByText('Browser P08 Draft Updated').waitFor();
+    await page.getByText(createdBody.id).waitFor();
+    console.log('P08-FE-T01 create/read/update Draft via browser: PASS');
+  });
+
+  await record('P09', async () => {
+    assert.ok(p08DocumentId);
+    const bytes = Buffer.from('%PDF-1.4\n1 0 obj\n<<>>\nendobj\n%%EOF\n');
+    const sha256 = createHash('sha256').update(bytes).digest('hex');
+    await page.goto(`/documents/${p08DocumentId}/edit`);
+    await page.getByLabel('Pilih satu file').setInputFiles({
+      name: 'browser-p09.pdf',
+      mimeType: 'application/pdf',
+      buffer: bytes,
+    });
+    const uploadResponse = page.waitForResponse(
+      (response) =>
+        response.url().endsWith(`/api/v1/documents/${p08DocumentId}/files/upload`) &&
+        response.request().method() === 'POST',
+    );
+    await page.getByRole('button', { name: 'Unggah file' }).click();
+    const uploaded = await uploadResponse;
+    assert.equal(uploaded.status(), 201, await uploaded.text());
+    const metadata = (await uploaded.json()) as {
+      id: string;
+      sha256: string;
+      processingStatus: string;
+    };
+    assert.equal(metadata.sha256, sha256);
+    assert.equal(metadata.processingStatus, 'UPLOADED');
+    assert.doesNotMatch(JSON.stringify(metadata), /pathname|blob\.vercel-storage\.com/i);
+    await page.getByText('browser-p09.pdf').waitFor();
+    await page.getByText(`SHA-256: ${sha256}`).waitFor();
+
+    const stored = await fixturePrisma.documentFile.findUniqueOrThrow({
+      where: { id: metadata.id },
+      include: { storageObject: true, version: true },
+    });
+    assert.equal(stored.version.documentId, p08DocumentId);
+    assert.equal(stored.storageObject.sha256, sha256);
+    assert.equal(stored.storageObject.accessMode, 'PRIVATE');
+
+    await page.getByLabel('Pilih satu file').setInputFiles({
+      name: 'lampiran-p09.pdf',
+      mimeType: 'application/pdf',
+      buffer: bytes,
+    });
+    const attachmentResponse = page.waitForResponse(
+      (response) =>
+        response.url().endsWith(`/api/v1/documents/${p08DocumentId}/files/upload`) &&
+        response.request().method() === 'POST',
+    );
+    await page.getByRole('button', { name: 'Unggah file' }).click();
+    const attachment = await attachmentResponse;
+    assert.equal(attachment.status(), 201, await attachment.text());
+    const attachmentBody = (await attachment.json()) as {
+      id: string;
+      fileRole: string;
+      documentVersionId: string;
+    };
+    assert.equal(attachmentBody.fileRole, 'ATTACHMENT');
+    assert.equal(attachmentBody.documentVersionId, stored.documentVersionId);
+    assert.notEqual(attachmentBody.id, metadata.id);
+    await page.getByText('lampiran-p09.pdf').waitFor();
+    await page.getByLabel('Judul dokumen').fill('Browser P09 Draft with Files');
+    const updateAfterUpload = page.waitForResponse(
+      (response) =>
+        response.url().endsWith(`/api/v1/documents/${p08DocumentId}`) &&
+        response.request().method() === 'PATCH',
+    );
+    await page.getByRole('button', { name: 'Simpan perubahan' }).click();
+    const updatedAfterUpload = await updateAfterUpload;
+    assert.equal(updatedAfterUpload.status(), 200, await updatedAfterUpload.text());
+    assert.equal(((await updatedAfterUpload.json()) as { revision: number }).revision, 5);
+
+    const downloadPath = `/api/v1/documents/${p08DocumentId}/files/${metadata.id}/download`;
+    const probe = await page.evaluate(async (path) => {
+      const authorized = await fetch(path, { credentials: 'include', cache: 'no-store' });
+      const data = await authorized.arrayBuffer();
+      const digest = await crypto.subtle.digest('SHA-256', data);
+      const hash = Array.from(new Uint8Array(digest), (byte) =>
+        byte.toString(16).padStart(2, '0'),
+      ).join('');
+      const unauthorized = await fetch(path, { credentials: 'omit', cache: 'no-store' });
+      return { status: authorized.status, hash, unauthorizedStatus: unauthorized.status };
+    }, downloadPath);
+    assert.equal(probe.status, 200);
+    assert.equal(probe.hash, sha256);
+    assert.ok([401, 403, 404].includes(probe.unauthorizedStatus));
+    const rejected = await page.evaluate(async (documentId) => {
+      const csrfResponse = await fetch('/api/v1/auth/csrf', { credentials: 'include' });
+      const { csrfToken } = (await csrfResponse.json()) as { csrfToken: string };
+      const cases = [
+        { name: 'wrong.exe', mime: 'application/pdf', bytes: '%PDF-1.4\n%%EOF' },
+        { name: 'wrong.pdf', mime: 'application/msword', bytes: '%PDF-1.4\n%%EOF' },
+        { name: 'wrong.pdf', mime: 'application/pdf', bytes: 'not really a pdf' },
+      ];
+      return Promise.all(
+        cases.map(async ({ name, mime, bytes }) => {
+          const form = new FormData();
+          form.append('file', new File([bytes], name, { type: mime }));
+          form.append('fileRole', 'ATTACHMENT');
+          const response = await fetch(`/api/v1/documents/${documentId}/files/upload`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'X-CSRF-Token': csrfToken },
+            body: form,
+          });
+          const body = (await response.json()) as { code?: string };
+          return { status: response.status, code: body.code };
+        }),
+      );
+    }, p08DocumentId);
+    assert.deepEqual(
+      rejected.map(({ status, code }) => ({ status, code })),
+      [
+        { status: 400, code: 'FILE_EXTENSION_UNSUPPORTED' },
+        { status: 400, code: 'FILE_MIME_MISMATCH' },
+        { status: 400, code: 'FILE_SIGNATURE_MISMATCH' },
+      ],
+    );
+
+    const otherContext = await browser!.newContext({ baseURL: process.env.FRONTEND_ORIGIN });
+    try {
+      const otherPage = await otherContext.newPage();
+      await otherPage.goto('/login');
+      await otherPage.getByLabel('Email, username, atau NIP').fill(username);
+      await otherPage.getByLabel('Kata sandi').fill(password);
+      await otherPage.getByRole('button', { name: 'Masuk' }).click();
+      await otherPage.getByRole('heading', { name: /Selamat datang, Browser User/ }).waitFor();
+      const crossUser = await otherPage.evaluate(
+        async (path) => (await fetch(path, { credentials: 'include', cache: 'no-store' })).status,
+        downloadPath,
+      );
+      assert.ok(
+        [403, 404].includes(crossUser),
+        `Expected unauthorized download to return 403/404, received ${crossUser}`,
+      );
+    } finally {
+      await otherContext.close();
+    }
+    const preview = await page.evaluate(
+      async (path) => (await fetch(path, { credentials: 'include' })).status,
+      `/api/v1/documents/${p08DocumentId}/files/${metadata.id}/preview`,
+    );
+    assert.equal(preview, 409);
+    console.log('P09-FE-T01 private upload, metadata, hash, and unauthorized access: PASS');
+  });
+
   await record('P04', async () => {
     const noCsrf = await page.evaluate(async () => {
       const response = await fetch('/api/v1/auth/logout', {
@@ -453,6 +671,20 @@ try {
   try {
     if (companyId) {
       const prisma = prismaApp.get(PrismaService);
+      const storage = prismaApp.get(PrivateFileStorage);
+      const objects = await fixturePrisma.storageObject.findMany({
+        where: { companyId },
+        select: { id: true, provider: true, pathname: true },
+      });
+      await fixturePrisma.documentFile.deleteMany({
+        where: { version: { document: { companyId } } },
+      });
+      await fixturePrisma.documentVersion.deleteMany({ where: { document: { companyId } } });
+      await fixturePrisma.storageObject.deleteMany({ where: { companyId } });
+      for (const object of objects) {
+        await storage.remove(object);
+      }
+      await fixturePrisma.document.deleteMany({ where: { companyId } });
       if (p07OwnResourceId || p07CrossUserResourceId || p07CrossOfficeResourceId) {
         await fixturePrisma.rlsPocResource.deleteMany({
           where: {
@@ -476,6 +708,12 @@ try {
       await prisma.employee.deleteMany({ where: { companyId } });
       await prisma.company.delete({ where: { id: companyId } });
     }
+    if (p08DocumentTypeId) {
+      await fixturePrisma.documentSubtype.deleteMany({
+        where: { documentTypeId: p08DocumentTypeId },
+      });
+      await fixturePrisma.documentType.delete({ where: { id: p08DocumentTypeId } });
+    }
     if (registeredAuthId || adminAuthId) {
       const auth = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
         auth: { persistSession: false, autoRefreshToken: false },
@@ -492,16 +730,25 @@ try {
     await vite?.close();
     await prismaApp.close();
     await fixturePrisma.$disconnect();
-    for (const phase of ['P01', 'P03', 'P04', 'P05', 'P06', 'P07']) {
+    for (const phase of ['P01', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09']) {
+      const status = statuses[phase] === 'PASS' ? 'PASS' : 'FAIL';
+      const artifactPath = `docs/evidence/${phase}/frontend.json`;
       await mkdir(`docs/evidence/${phase}`, { recursive: true });
       await writeFile(
         `docs/evidence/${phase}/frontend.json`,
         JSON.stringify(
           {
-            test: `${phase}-FE-T01`,
-            status: statuses[phase] ?? 'FAIL',
+            phaseId: phase,
+            testId: `${phase}-FE-T01`,
+            status,
+            command: 'npm run web:verify:browser',
+            result:
+              status === 'PASS'
+                ? 'Chromium browser verification against actual NestJS API passed.'
+                : 'Browser verification failed.',
+            artifactPath,
             kind: 'Chromium browser + actual NestJS API + non-production database',
-            timestamp: new Date().toISOString(),
+            executedAt: new Date().toISOString(),
           },
           null,
           2,

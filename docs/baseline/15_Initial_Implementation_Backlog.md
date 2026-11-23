@@ -197,7 +197,7 @@ Acceptance:
 - P2: advanced search, reports, UX refinements.
 
 - P2: OCR bulk/backfill for historical archive, advanced extraction/indexing.
-- P3: PSrE integration, SSO, mobile app, multi-company.
+- P3: PSrE integration, SSO, mobile app, dan struktur holding/perpindahan pengguna antarperusahaan. Pembuatan perusahaan oleh admin platform ditarik ke cakupan master organisasi.
 
 ## 4. Backlog refinement checklist
 

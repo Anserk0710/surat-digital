@@ -25,7 +25,11 @@ import {
 } from '@nestjs/swagger';
 import { CurrentOrganizationActor } from '../organization/current-organization-actor.decorator.js';
 import type { PolicyActor } from '../policy/effective-permission.service.js';
-import { RequireAuthenticatedPolicy, RequirePolicyAny } from '../policy/policy.decorators.js';
+import {
+  RequireAuthenticatedPolicy,
+  RequirePlatformOrPolicyAny,
+  RequirePolicyAny,
+} from '../policy/policy.decorators.js';
 import { PolicyGuard } from '../policy/policy.guard.js';
 import { AuthRateLimitGuard } from '../security/auth-rate-limit.guard.js';
 import {
@@ -58,7 +62,7 @@ export class UsersController {
   constructor(@Inject(UsersService) private readonly service: UsersService) {}
 
   @Get()
-  @RequirePolicyAny('User.View', 'User.Manage')
+  @RequirePlatformOrPolicyAny('User.View', 'User.Manage')
   @ApiOperation({ operationId: 'usersList' })
   @ApiOkResponse({ type: UserResponseDto, isArray: true })
   list(@CurrentOrganizationActor() actor: PolicyActor) {

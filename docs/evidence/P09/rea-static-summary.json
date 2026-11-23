@@ -1,0 +1,41 @@
+{
+  "evidence_id": "ev_b3602dcbb28ac301270e9b0ebcd32012f35fdda1802dc73f3c8472db25f60dc7",
+  "operation": "analyze_javascript_application",
+  "confidence": "derived",
+  "authority": "shipped-artifact",
+  "limitations": [
+    "Caller-selected source analysis leaves 186 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ],
+  "executedAt": "2026-11-21T09:09:27.691561+00:00",
+  "artifactPath": "docs/evidence/P09/rea-static.json.gz",
+  "uncompressedSha256": "07c957847d061c31bb9ae98653ddb85e998cc31a56c121f3ce7eb7285420203d",
+  "statistics": {
+    "relevant_files": 190,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 49284,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 4,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 5380,
+    "findings": 95,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "sourceSelection": {
+    "requested_paths": [
+      "documents/document.controller.js",
+      "documents/document.service.js",
+      "rls/rls-context.service.js",
+      "policy/policy.guard.js"
+    ],
+    "unselected_files": 186
+  },
+  "rootArtifactSha256": "533ce781658cbae8f0f33f6dcee8e20acaf4bb5447091d1b9dce15bdeb98746d",
+  "result": "Static parsing of four compiled authorization/RLS files completed without parse failures. This does not prove runtime behavior."
+}

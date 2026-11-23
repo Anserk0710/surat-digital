@@ -1,6 +1,6 @@
 {
   "phaseId": "P07",
-  "generatedAt": "2026-11-18T14:45:35.229Z",
+  "generatedAt": "2026-11-21T10:06:05.112Z",
   "database": "postgres",
   "runtimeRole": "surat_runtime",
   "methodology": {
@@ -11,19 +11,19 @@
   },
   "authzOnly": {
     "iterations": 100,
-    "meanMs": 130.043,
-    "p50Ms": 102.586,
-    "p95Ms": 205.045
+    "meanMs": 142.859,
+    "p50Ms": 102.456,
+    "p95Ms": 331.621
   },
   "authzPlusRls": {
     "iterations": 100,
-    "meanMs": 882.685,
-    "p50Ms": 921.102,
-    "p95Ms": 1126.551
+    "meanMs": 866.296,
+    "p50Ms": 862.58,
+    "p95Ms": 1024.267
   },
   "delta": {
-    "p95Ms": 921.506,
-    "p95Ratio": 5.494
+    "p95Ms": 692.646,
+    "p95Ratio": 3.089
   },
   "complexityTradeoff": [
     "Backend authorization remains mandatory and is not replaced by RLS.",

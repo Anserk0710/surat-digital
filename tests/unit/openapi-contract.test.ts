@@ -25,6 +25,32 @@ function readSpecification(): Specification {
 }
 
 describe('I01 OpenAPI generated contract', () => {
+  it('documents searchable group members and atomic permission batches', () => {
+    const document = readSpecification();
+    expect(
+      document.paths['/api/v1/group-policy/groups/{groupId}/member-candidates']?.get,
+    ).toBeDefined();
+    expect(
+      document.paths['/api/v1/group-policy/groups/{groupId}/permissions/batch']?.post,
+    ).toBeDefined();
+    expect(document.components.schemas.SetGroupPermissionsBatchDto).toBeDefined();
+  });
+
+  it('documents the P08 document draft API', () => {
+    const document = readSpecification();
+    for (const [route, method] of [
+      ['/api/v1/document-types', 'get'],
+      ['/api/v1/document-subtypes', 'get'],
+      ['/api/v1/documents/issuer-scopes', 'get'],
+      ['/api/v1/documents', 'post'],
+      ['/api/v1/documents', 'get'],
+      ['/api/v1/documents/{documentId}', 'get'],
+      ['/api/v1/documents/{documentId}', 'patch'],
+    ] as const) {
+      expect(document.paths[route]?.[method]).toBeDefined();
+    }
+  });
+
   it('generates an OpenAPI 3 specification', () => {
     const document = readSpecification();
 

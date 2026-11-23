@@ -6,6 +6,8 @@ Phase: P07
 Related decision: D-064  
 Related open item: O-015
 
+P02/P09 reconciliation: [runtime role, pinned driver, dan download-purpose context](ADR-0003-runtime-database-rls.md) melengkapi keputusan ini. Bukti dan benchmark P07 di bawah tetap berlaku.
+
 ## Context
 
 Surat Digital menggunakan NestJS dan Prisma sebagai satu-satunya application data-access boundary untuk browser. Backend authorization melalui application session dan Group Policy tetap menjadi enforcement utama. PostgreSQL RLS dievaluasi sebagai defense-in-depth untuk resource dengan row-level ownership atau organizational scope.

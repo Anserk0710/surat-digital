@@ -267,6 +267,7 @@ export class AuthService {
         id: employeeId,
         authUserId,
         status: 'ACTIVE',
+        company: { active: true },
       },
 
       select: {
@@ -281,6 +282,7 @@ export class AuthService {
         fullName: true,
 
         status: true,
+        isPlatformAdmin: true,
 
         company: {
           select: {

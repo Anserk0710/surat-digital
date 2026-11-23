@@ -1,14 +1,12 @@
 import { useState, type FormEvent } from 'react';
-import {
-  FileUp,
-  PowerOff,
-  RotateCcw,
-  Search,
-  Trash2,
-  UserCheck,
-  UserRound,
-  UserX,
-} from 'lucide-react';
+import { UploadSimpleIcon as FileUp } from '@phosphor-icons/react/dist/csr/UploadSimple';
+import { PowerIcon as PowerOff } from '@phosphor-icons/react/dist/csr/Power';
+import { ArrowCounterClockwiseIcon as RotateCcw } from '@phosphor-icons/react/dist/csr/ArrowCounterClockwise';
+import { MagnifyingGlassIcon as Search } from '@phosphor-icons/react/dist/csr/MagnifyingGlass';
+import { TrashIcon as Trash2 } from '@phosphor-icons/react/dist/csr/Trash';
+import { UserCheckIcon as UserCheck } from '@phosphor-icons/react/dist/csr/UserCheck';
+import { UserIcon as UserRound } from '@phosphor-icons/react/dist/csr/User';
+import { UserMinusIcon as UserX } from '@phosphor-icons/react/dist/csr/UserMinus';
 import { request } from '../api.js';
 import { useAuth } from '../hooks/useAuth.js';
 import { useList } from '../hooks/useList.js';

@@ -1,0 +1,125 @@
+{
+  "phaseId": "P09",
+  "executedAt": "2026-11-21T10:15:43.072Z",
+  "integrationExecuted": true,
+  "overallStatus": "PASS",
+  "verification": [
+    {
+      "phaseId": "P09",
+      "testId": "P09-T01",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:15:43.071Z",
+      "command": "npm run --workspace=@surat-digital/api p09:verify:integration",
+      "result": "Backend P09 integration verification passed.",
+      "artifactPath": "docs/evidence/P09/verification.json"
+    },
+    {
+      "phaseId": "P09",
+      "testId": "P09-T02",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:15:43.071Z",
+      "command": "npm run --workspace=@surat-digital/api p09:verify:integration",
+      "result": "Backend P09 integration verification passed.",
+      "artifactPath": "docs/evidence/P09/verification.json"
+    },
+    {
+      "phaseId": "P09",
+      "testId": "P09-T03",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:15:43.071Z",
+      "command": "npm run --workspace=@surat-digital/api p09:verify:integration",
+      "result": "Backend P09 integration verification passed.",
+      "artifactPath": "docs/evidence/P09/verification.json"
+    },
+    {
+      "phaseId": "P09",
+      "testId": "P09-T04",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:15:43.071Z",
+      "command": "npm run --workspace=@surat-digital/api p09:verify:integration",
+      "result": "Backend P09 integration verification passed.",
+      "artifactPath": "docs/evidence/P09/verification.json"
+    },
+    {
+      "phaseId": "P09",
+      "testId": "P09-FE-T01",
+      "status": "PASS",
+      "executedAt": "2026-11-21T10:15:43.071Z",
+      "command": "npm run web:verify:browser",
+      "result": "Browser P09 integration verification passed.",
+      "artifactPath": "docs/evidence/P09/verification.json"
+    }
+  ],
+  "execution": [
+    {
+      "id": "P09-SCHEMA",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api prisma:validate",
+      "executedAt": "2026-11-21T10:11:59.690Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-PRISMA-GENERATE",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api prisma:generate",
+      "executedAt": "2026-11-21T10:12:03.236Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-UNIT",
+      "status": "PASS",
+      "command": "npm exec -- vitest run tests/unit/p09-file-validation.test.ts tests/unit/p09-download-authorization.test.ts",
+      "executedAt": "2026-11-21T10:12:06.299Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-CONTRACT",
+      "status": "PASS",
+      "command": "npm run api:contract",
+      "executedAt": "2026-11-21T10:12:22.536Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-LINT",
+      "status": "PASS",
+      "command": "npm run lint",
+      "executedAt": "2026-11-21T10:12:30.730Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-TYPECHECK",
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "executedAt": "2026-11-21T10:12:51.769Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-ALL-TESTS",
+      "status": "PASS",
+      "command": "npm run test",
+      "executedAt": "2026-11-21T10:12:59.019Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-BUILD",
+      "status": "PASS",
+      "command": "npm run build",
+      "executedAt": "2026-11-21T10:13:17.468Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-T01-T04-INTEGRATION",
+      "status": "PASS",
+      "command": "npm run --workspace=@surat-digital/api p09:verify:integration",
+      "executedAt": "2026-11-21T10:13:59.500Z",
+      "exitCode": 0
+    },
+    {
+      "id": "P09-FE-T01-BROWSER",
+      "status": "PASS",
+      "command": "npm run web:verify:browser",
+      "executedAt": "2026-11-21T10:15:43.071Z",
+      "exitCode": 0
+    }
+  ]
+}

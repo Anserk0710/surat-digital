@@ -195,6 +195,8 @@ export type CompanyWhereInput = {
   jobTitles?: Prisma.JobTitleListRelationFilter
   employees?: Prisma.EmployeeListRelationFilter
   groups?: Prisma.GroupListRelationFilter
+  documents?: Prisma.DocumentListRelationFilter
+  storageObjects?: Prisma.StorageObjectListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -209,6 +211,8 @@ export type CompanyOrderByWithRelationInput = {
   jobTitles?: Prisma.JobTitleOrderByRelationAggregateInput
   employees?: Prisma.EmployeeOrderByRelationAggregateInput
   groups?: Prisma.GroupOrderByRelationAggregateInput
+  documents?: Prisma.DocumentOrderByRelationAggregateInput
+  storageObjects?: Prisma.StorageObjectOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -226,6 +230,8 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   jobTitles?: Prisma.JobTitleListRelationFilter
   employees?: Prisma.EmployeeListRelationFilter
   groups?: Prisma.GroupListRelationFilter
+  documents?: Prisma.DocumentListRelationFilter
+  storageObjects?: Prisma.StorageObjectListRelationFilter
 }, "id" | "code">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -264,6 +270,8 @@ export type CompanyCreateInput = {
   jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -278,6 +286,8 @@ export type CompanyUncheckedCreateInput = {
   jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -292,6 +302,8 @@ export type CompanyUpdateInput = {
   jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -306,6 +318,8 @@ export type CompanyUncheckedUpdateInput = {
   jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -449,6 +463,34 @@ export type CompanyUpdateOneRequiredWithoutGroupsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutGroupsInput, Prisma.CompanyUpdateWithoutGroupsInput>, Prisma.CompanyUncheckedUpdateWithoutGroupsInput>
 }
 
+export type CompanyCreateNestedOneWithoutDocumentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentsInput, Prisma.CompanyUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDocumentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentsInput, Prisma.CompanyUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutDocumentsInput
+  upsert?: Prisma.CompanyUpsertWithoutDocumentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutDocumentsInput, Prisma.CompanyUpdateWithoutDocumentsInput>, Prisma.CompanyUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type CompanyCreateNestedOneWithoutStorageObjectsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutStorageObjectsInput, Prisma.CompanyUncheckedCreateWithoutStorageObjectsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutStorageObjectsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutStorageObjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutStorageObjectsInput, Prisma.CompanyUncheckedCreateWithoutStorageObjectsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutStorageObjectsInput
+  upsert?: Prisma.CompanyUpsertWithoutStorageObjectsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutStorageObjectsInput, Prisma.CompanyUpdateWithoutStorageObjectsInput>, Prisma.CompanyUncheckedUpdateWithoutStorageObjectsInput>
+}
+
 export type CompanyCreateWithoutOfficesInput = {
   id?: string
   code: string
@@ -460,6 +502,8 @@ export type CompanyCreateWithoutOfficesInput = {
   jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOfficesInput = {
@@ -473,6 +517,8 @@ export type CompanyUncheckedCreateWithoutOfficesInput = {
   jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOfficesInput = {
@@ -502,6 +548,8 @@ export type CompanyUpdateWithoutOfficesInput = {
   jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOfficesInput = {
@@ -515,6 +563,8 @@ export type CompanyUncheckedUpdateWithoutOfficesInput = {
   jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDivisionsInput = {
@@ -528,6 +578,8 @@ export type CompanyCreateWithoutDivisionsInput = {
   jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDivisionsInput = {
@@ -541,6 +593,8 @@ export type CompanyUncheckedCreateWithoutDivisionsInput = {
   jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDivisionsInput = {
@@ -570,6 +624,8 @@ export type CompanyUpdateWithoutDivisionsInput = {
   jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDivisionsInput = {
@@ -583,6 +639,8 @@ export type CompanyUncheckedUpdateWithoutDivisionsInput = {
   jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutJobTitlesInput = {
@@ -596,6 +654,8 @@ export type CompanyCreateWithoutJobTitlesInput = {
   divisions?: Prisma.DivisionCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutJobTitlesInput = {
@@ -609,6 +669,8 @@ export type CompanyUncheckedCreateWithoutJobTitlesInput = {
   divisions?: Prisma.DivisionUncheckedCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutJobTitlesInput = {
@@ -638,6 +700,8 @@ export type CompanyUpdateWithoutJobTitlesInput = {
   divisions?: Prisma.DivisionUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutJobTitlesInput = {
@@ -651,6 +715,8 @@ export type CompanyUncheckedUpdateWithoutJobTitlesInput = {
   divisions?: Prisma.DivisionUncheckedUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutEmployeesInput = {
@@ -664,6 +730,8 @@ export type CompanyCreateWithoutEmployeesInput = {
   divisions?: Prisma.DivisionCreateNestedManyWithoutCompanyInput
   jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutEmployeesInput = {
@@ -677,6 +745,8 @@ export type CompanyUncheckedCreateWithoutEmployeesInput = {
   divisions?: Prisma.DivisionUncheckedCreateNestedManyWithoutCompanyInput
   jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutEmployeesInput = {
@@ -706,6 +776,8 @@ export type CompanyUpdateWithoutEmployeesInput = {
   divisions?: Prisma.DivisionUpdateManyWithoutCompanyNestedInput
   jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutEmployeesInput = {
@@ -719,6 +791,8 @@ export type CompanyUncheckedUpdateWithoutEmployeesInput = {
   divisions?: Prisma.DivisionUncheckedUpdateManyWithoutCompanyNestedInput
   jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutGroupsInput = {
@@ -732,6 +806,8 @@ export type CompanyCreateWithoutGroupsInput = {
   divisions?: Prisma.DivisionCreateNestedManyWithoutCompanyInput
   jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutGroupsInput = {
@@ -745,6 +821,8 @@ export type CompanyUncheckedCreateWithoutGroupsInput = {
   divisions?: Prisma.DivisionUncheckedCreateNestedManyWithoutCompanyInput
   jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutGroupsInput = {
@@ -774,6 +852,8 @@ export type CompanyUpdateWithoutGroupsInput = {
   divisions?: Prisma.DivisionUpdateManyWithoutCompanyNestedInput
   jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutGroupsInput = {
@@ -787,6 +867,160 @@ export type CompanyUncheckedUpdateWithoutGroupsInput = {
   divisions?: Prisma.DivisionUncheckedUpdateManyWithoutCompanyNestedInput
   jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutDocumentsInput = {
+  id?: string
+  code: string
+  name: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  offices?: Prisma.OfficeCreateNestedManyWithoutCompanyInput
+  divisions?: Prisma.DivisionCreateNestedManyWithoutCompanyInput
+  jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutDocumentsInput = {
+  id?: string
+  code: string
+  name: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  offices?: Prisma.OfficeUncheckedCreateNestedManyWithoutCompanyInput
+  divisions?: Prisma.DivisionUncheckedCreateNestedManyWithoutCompanyInput
+  jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  storageObjects?: Prisma.StorageObjectUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutDocumentsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentsInput, Prisma.CompanyUncheckedCreateWithoutDocumentsInput>
+}
+
+export type CompanyUpsertWithoutDocumentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutDocumentsInput, Prisma.CompanyUncheckedUpdateWithoutDocumentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutDocumentsInput, Prisma.CompanyUncheckedCreateWithoutDocumentsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutDocumentsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutDocumentsInput, Prisma.CompanyUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type CompanyUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  offices?: Prisma.OfficeUpdateManyWithoutCompanyNestedInput
+  divisions?: Prisma.DivisionUpdateManyWithoutCompanyNestedInput
+  jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  offices?: Prisma.OfficeUncheckedUpdateManyWithoutCompanyNestedInput
+  divisions?: Prisma.DivisionUncheckedUpdateManyWithoutCompanyNestedInput
+  jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  storageObjects?: Prisma.StorageObjectUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutStorageObjectsInput = {
+  id?: string
+  code: string
+  name: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  offices?: Prisma.OfficeCreateNestedManyWithoutCompanyInput
+  divisions?: Prisma.DivisionCreateNestedManyWithoutCompanyInput
+  jobTitles?: Prisma.JobTitleCreateNestedManyWithoutCompanyInput
+  employees?: Prisma.EmployeeCreateNestedManyWithoutCompanyInput
+  groups?: Prisma.GroupCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutStorageObjectsInput = {
+  id?: string
+  code: string
+  name: string
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  offices?: Prisma.OfficeUncheckedCreateNestedManyWithoutCompanyInput
+  divisions?: Prisma.DivisionUncheckedCreateNestedManyWithoutCompanyInput
+  jobTitles?: Prisma.JobTitleUncheckedCreateNestedManyWithoutCompanyInput
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutCompanyInput
+  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutStorageObjectsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutStorageObjectsInput, Prisma.CompanyUncheckedCreateWithoutStorageObjectsInput>
+}
+
+export type CompanyUpsertWithoutStorageObjectsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutStorageObjectsInput, Prisma.CompanyUncheckedUpdateWithoutStorageObjectsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutStorageObjectsInput, Prisma.CompanyUncheckedCreateWithoutStorageObjectsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutStorageObjectsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutStorageObjectsInput, Prisma.CompanyUncheckedUpdateWithoutStorageObjectsInput>
+}
+
+export type CompanyUpdateWithoutStorageObjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  offices?: Prisma.OfficeUpdateManyWithoutCompanyNestedInput
+  divisions?: Prisma.DivisionUpdateManyWithoutCompanyNestedInput
+  jobTitles?: Prisma.JobTitleUpdateManyWithoutCompanyNestedInput
+  employees?: Prisma.EmployeeUpdateManyWithoutCompanyNestedInput
+  groups?: Prisma.GroupUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutStorageObjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  offices?: Prisma.OfficeUncheckedUpdateManyWithoutCompanyNestedInput
+  divisions?: Prisma.DivisionUncheckedUpdateManyWithoutCompanyNestedInput
+  jobTitles?: Prisma.JobTitleUncheckedUpdateManyWithoutCompanyNestedInput
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutCompanyNestedInput
+  groups?: Prisma.GroupUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 
@@ -800,6 +1034,8 @@ export type CompanyCountOutputType = {
   jobTitles: number
   employees: number
   groups: number
+  documents: number
+  storageObjects: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -808,6 +1044,8 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   jobTitles?: boolean | CompanyCountOutputTypeCountJobTitlesArgs
   employees?: boolean | CompanyCountOutputTypeCountEmployeesArgs
   groups?: boolean | CompanyCountOutputTypeCountGroupsArgs
+  documents?: boolean | CompanyCountOutputTypeCountDocumentsArgs
+  storageObjects?: boolean | CompanyCountOutputTypeCountStorageObjectsArgs
 }
 
 /**
@@ -855,6 +1093,20 @@ export type CompanyCountOutputTypeCountGroupsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.GroupWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountStorageObjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StorageObjectWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -868,6 +1120,8 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   jobTitles?: boolean | Prisma.Company$jobTitlesArgs<ExtArgs>
   employees?: boolean | Prisma.Company$employeesArgs<ExtArgs>
   groups?: boolean | Prisma.Company$groupsArgs<ExtArgs>
+  documents?: boolean | Prisma.Company$documentsArgs<ExtArgs>
+  storageObjects?: boolean | Prisma.Company$storageObjectsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -905,6 +1159,8 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   jobTitles?: boolean | Prisma.Company$jobTitlesArgs<ExtArgs>
   employees?: boolean | Prisma.Company$employeesArgs<ExtArgs>
   groups?: boolean | Prisma.Company$groupsArgs<ExtArgs>
+  documents?: boolean | Prisma.Company$documentsArgs<ExtArgs>
+  storageObjects?: boolean | Prisma.Company$storageObjectsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -918,6 +1174,8 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     jobTitles: Prisma.$JobTitlePayload<ExtArgs>[]
     employees: Prisma.$EmployeePayload<ExtArgs>[]
     groups: Prisma.$GroupPayload<ExtArgs>[]
+    documents: Prisma.$DocumentPayload<ExtArgs>[]
+    storageObjects: Prisma.$StorageObjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1325,6 +1583,8 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   jobTitles<T extends Prisma.Company$jobTitlesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$jobTitlesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobTitlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   employees<T extends Prisma.Company$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   groups<T extends Prisma.Company$groupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documents<T extends Prisma.Company$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  storageObjects<T extends Prisma.Company$storageObjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$storageObjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StorageObjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1870,6 +2130,54 @@ export type Company$groupsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.GroupScalarFieldEnum | Prisma.GroupScalarFieldEnum[]
+}
+
+/**
+ * Company.documents
+ */
+export type Company$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Document
+   */
+  select?: Prisma.DocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Document
+   */
+  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentInclude<ExtArgs> | null
+  where?: Prisma.DocumentWhereInput
+  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
+}
+
+/**
+ * Company.storageObjects
+ */
+export type Company$storageObjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StorageObject
+   */
+  select?: Prisma.StorageObjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StorageObject
+   */
+  omit?: Prisma.StorageObjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StorageObjectInclude<ExtArgs> | null
+  where?: Prisma.StorageObjectWhereInput
+  orderBy?: Prisma.StorageObjectOrderByWithRelationInput | Prisma.StorageObjectOrderByWithRelationInput[]
+  cursor?: Prisma.StorageObjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StorageObjectScalarFieldEnum | Prisma.StorageObjectScalarFieldEnum[]
 }
 
 /**

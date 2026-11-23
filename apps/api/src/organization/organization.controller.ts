@@ -6,7 +6,6 @@ import {
   HttpCode,
   HttpStatus,
   Inject,
-  NotFoundException,
   Param,
   ParseUUIDPipe,
   Patch,
@@ -25,16 +24,18 @@ import {
 import { CurrentOrganizationActor } from './current-organization-actor.decorator.js';
 import {
   CreateAssignmentDto,
+  CreateCompanyDto,
   CreateMasterDto,
   CreateOfficeDivisionDto,
   CreateOfficeDto,
-  UpdateActiveDto,
+  UpdateOfficeDivisionDto,
   UpdateAssignmentDto,
   UpdateCompanyDto,
   UpdateMasterDto,
   UpdateOfficeDto,
 } from './organization.dto.js';
 import { OrganizationAccessGuard, type OrganizationActor } from './organization-access.guard.js';
+import { RequirePlatformAdmin, RequirePlatformOrPolicyAny } from '../policy/policy.decorators.js';
 import { RequireOrganizationPermissions as Permissions } from './organization-permissions.js';
 import {
   CompanyResponseDto,
@@ -57,35 +58,53 @@ export class OrganizationController {
     private readonly service: OrganizationService,
   ) {}
 
+  @Get('changes/:type/:id')
+  @RequirePlatformOrPolicyAny('System.Configure', 'User.View')
+  async listChanges(
+    @CurrentOrganizationActor() actor: OrganizationActor,
+    @Param('type') type: string,
+    @Param('id', idParam) id: string,
+  ) {
+    return this.service.listChanges(actor, type, id);
+  }
+
   // ---------------------------------------------------------
   // Company
   // ---------------------------------------------------------
 
   @Get('companies')
-  @Permissions('System.Configure', 'User.View')
+  @RequirePlatformOrPolicyAny('System.Configure', 'User.View')
   @ApiOkResponse({ type: CompanyResponseDto, isArray: true })
   @ApiOperation({ operationId: 'organizationListCompanies' })
   async listCompanies(@CurrentOrganizationActor() actor: OrganizationActor) {
-    return [await this.service.getCompany(actor)];
+    return this.service.listCompanies(actor);
+  }
+
+  @Post('companies')
+  @RequirePlatformAdmin()
+  @ApiBody({ type: CreateCompanyDto })
+  @ApiCreatedResponse({ type: CompanyResponseDto })
+  @ApiOperation({ operationId: 'organizationCreateCompany' })
+  async createCompany(
+    @CurrentOrganizationActor() actor: OrganizationActor,
+    @Body() input: CreateCompanyDto,
+  ) {
+    return this.service.createCompany(actor, input);
   }
 
   @Get('companies/:id')
-  @Permissions('System.Configure', 'User.View')
+  @RequirePlatformOrPolicyAny('System.Configure', 'User.View')
   @ApiOkResponse({ type: CompanyResponseDto })
   @ApiOperation({ operationId: 'organizationGetCompany' })
   async getCompany(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
   ) {
-    if (id !== actor.companyId) {
-      throw new NotFoundException('Company not found.');
-    }
-
-    return this.service.getCompany(actor);
+    return this.service.getCompany(actor, id);
   }
 
   @Patch('companies/:id')
-  @Permissions('System.Configure')
+  @RequirePlatformOrPolicyAny('System.Configure')
   @ApiBody({ type: UpdateCompanyDto })
   @ApiOkResponse({ type: CompanyResponseDto })
   @ApiOperation({ operationId: 'organizationUpdateCompany' })
@@ -94,27 +113,26 @@ export class OrganizationController {
     @Param('id', idParam) id: string,
     @Body() input: UpdateCompanyDto,
   ) {
-    if (id !== actor.companyId) {
-      throw new NotFoundException('Company not found.');
-    }
-
-    return this.service.updateCompany(actor, input);
+    return this.service.updateCompany(actor, id, input);
   }
 
   @Delete('companies/:id')
   @HttpCode(HttpStatus.OK)
-  @Permissions('System.Configure')
+  @RequirePlatformAdmin()
+  @ApiQuery({ name: 'permanent', required: false, type: Boolean })
+  @ApiQuery({ name: 'force', required: false, type: Boolean })
   @ApiOkResponse({ type: CompanyResponseDto })
   @ApiOperation({ operationId: 'organizationDeactivateCompany' })
   async deactivateCompany(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
+    @Query('permanent') permanent?: string,
+    @Query('force') force?: string,
   ) {
-    if (id !== actor.companyId) {
-      throw new NotFoundException('Company not found.');
+    if (permanent === 'true') {
+      return this.service.deleteCompanyPermanently(actor, id, force === 'true');
     }
-
-    return this.service.deactivateCompany(actor);
+    return this.service.deactivateCompany(actor, id, force === 'true');
   }
 
   // ---------------------------------------------------------
@@ -165,16 +183,18 @@ export class OrganizationController {
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
   @ApiQuery({ name: 'permanent', required: false, type: Boolean })
+  @ApiQuery({ name: 'force', required: false, type: Boolean })
   @ApiOkResponse({ type: OfficeResponseDto })
   async deactivateOffice(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
     @Query('permanent') permanent?: string,
+    @Query('force') force?: string,
   ) {
     if (permanent === 'true') {
       return this.service.deleteMasterPermanently(actor, 'office', id);
     }
-    return this.service.deactivateMaster(actor, 'office', id);
+    return this.service.deactivateMaster(actor, 'office', id, force === 'true');
   }
 
   // ---------------------------------------------------------
@@ -225,16 +245,18 @@ export class OrganizationController {
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
   @ApiQuery({ name: 'permanent', required: false, type: Boolean })
+  @ApiQuery({ name: 'force', required: false, type: Boolean })
   @ApiOkResponse({ type: DivisionResponseDto })
   async deactivateDivision(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
     @Query('permanent') permanent?: string,
+    @Query('force') force?: string,
   ) {
     if (permanent === 'true') {
       return this.service.deleteMasterPermanently(actor, 'division', id);
     }
-    return this.service.deactivateMaster(actor, 'division', id);
+    return this.service.deactivateMaster(actor, 'division', id, force === 'true');
   }
 
   // ---------------------------------------------------------
@@ -285,16 +307,18 @@ export class OrganizationController {
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
   @ApiQuery({ name: 'permanent', required: false, type: Boolean })
+  @ApiQuery({ name: 'force', required: false, type: Boolean })
   @ApiOkResponse({ type: JobTitleResponseDto })
   async deactivateJobTitle(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
     @Query('permanent') permanent?: string,
+    @Query('force') force?: string,
   ) {
     if (permanent === 'true') {
       return this.service.deleteMasterPermanently(actor, 'jobTitle', id);
     }
-    return this.service.deactivateMaster(actor, 'jobTitle', id);
+    return this.service.deactivateMaster(actor, 'jobTitle', id, force === 'true');
   }
 
   // ---------------------------------------------------------
@@ -331,30 +355,32 @@ export class OrganizationController {
 
   @Patch('office-divisions/:id')
   @Permissions('System.Configure')
-  @ApiBody({ type: UpdateActiveDto })
+  @ApiBody({ type: UpdateOfficeDivisionDto })
   @ApiOkResponse({ type: OfficeDivisionResponseDto })
   async updateOfficeDivision(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
-    @Body() input: UpdateActiveDto,
+    @Body() input: UpdateOfficeDivisionDto,
   ) {
-    return this.service.updateOfficeDivision(actor, id, input.active);
+    return this.service.updateOfficeDivision(actor, id, input);
   }
 
   @Delete('office-divisions/:id')
   @HttpCode(HttpStatus.OK)
   @Permissions('System.Configure')
   @ApiQuery({ name: 'permanent', required: false, type: Boolean })
+  @ApiQuery({ name: 'force', required: false, type: Boolean })
   @ApiOkResponse({ type: OfficeDivisionResponseDto })
   async deactivateOfficeDivision(
     @CurrentOrganizationActor() actor: OrganizationActor,
     @Param('id', idParam) id: string,
     @Query('permanent') permanent?: string,
+    @Query('force') force?: string,
   ) {
     if (permanent === 'true') {
       return this.service.deleteOfficeDivisionPermanently(actor, id);
     }
-    return this.service.updateOfficeDivision(actor, id, false);
+    return this.service.updateOfficeDivision(actor, id, { active: false }, force === 'true');
   }
 
   // ---------------------------------------------------------

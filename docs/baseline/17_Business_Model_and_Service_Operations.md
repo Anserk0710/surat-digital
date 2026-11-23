@@ -10,7 +10,7 @@ Model yang dipilih adalah **subscription per perusahaan/workspace dengan Documen
 
 Pemilik produk mempertahankan kepemilikan produk dan source code. Perusahaan pelanggan memperoleh hak penggunaan aplikasi sesuai perjanjian dan memiliki data/dokumen yang diproses melalui sistem.
 
-Keputusan v1.3 **tidak mengubah** keputusan implementasi satu perusahaan/deployment yang telah disepakati sebelumnya. Pembahasan multi-tenant/shared SaaS architecture tetap di luar scope perubahan ini.
+Keputusan v1.3 semula mengasumsikan satu perusahaan/deployment. Keputusan D-093 memperluas implementasi master organisasi: admin platform dapat membuat beberapa perusahaan dalam satu deployment, sedangkan admin perusahaan dibatasi pada datanya sendiri. Struktur holding dan perpindahan pengguna antarperusahaan tetap di luar cakupan ini.
 
 ## 2. Product offer awal
 

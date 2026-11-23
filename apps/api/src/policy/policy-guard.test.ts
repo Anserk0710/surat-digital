@@ -18,6 +18,7 @@ function createContext(): ExecutionContext {
         cookies: {},
         method: 'GET',
         path: '/api/v1/test',
+        query: {},
       }),
       getResponse: () => ({}),
     }),
@@ -36,5 +37,30 @@ describe('P06 PolicyGuard security defaults', () => {
     );
 
     await expect(guard.canActivate(createContext())).rejects.toBeInstanceOf(ForbiddenException);
+  });
+
+  it('allows only a platform administrator through platform-only routes', async () => {
+    const reflector = {
+      getAllAndOverride: vi.fn((key: string) =>
+        key === 'group-policy:requirement' ? { platformAdminOnly: true } : undefined,
+      ),
+    };
+    const cookies = { read: vi.fn().mockReturnValue('session') };
+    const sessions = {
+      findActive: vi.fn().mockResolvedValue({ employeeId: 'employee', supabaseUserId: 'auth' }),
+    };
+    const employee = { id: 'employee', companyId: 'company', isPlatformAdmin: false };
+    const prisma = { employee: { findFirst: vi.fn().mockImplementation(async () => employee) } };
+    const guard = new PolicyGuard(
+      reflector as unknown as Reflector,
+      cookies as unknown as AuthCookieService,
+      sessions as unknown as AuthSessionService,
+      prisma as unknown as PrismaService,
+      {} as EffectivePermissionService,
+    );
+
+    await expect(guard.canActivate(createContext())).rejects.toBeInstanceOf(ForbiddenException);
+    employee.isPlatformAdmin = true;
+    await expect(guard.canActivate(createContext())).resolves.toBe(true);
   });
 });

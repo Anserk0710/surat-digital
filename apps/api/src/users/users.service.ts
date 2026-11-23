@@ -122,10 +122,13 @@ export class UsersService {
   async setStatus(actor: PolicyActor, id: string, status: 'ACTIVE' | 'SUSPENDED' | 'INACTIVE') {
     const employee = await this.prisma.employee.findFirst({
       where: { id, companyId: actor.companyId },
-      select: { id: true, authUserId: true, email: true },
+      select: { id: true, authUserId: true, email: true, isPlatformAdmin: true },
     });
     if (!employee) {
       throw new NotFoundException('User not found.');
+    }
+    if (employee.isPlatformAdmin && status !== 'ACTIVE') {
+      throw new BadRequestException('Platform administrators cannot be disabled here.');
     }
     let authUserId = employee.authUserId;
     if (status === 'ACTIVE' && !authUserId) {
@@ -154,10 +157,13 @@ export class UsersService {
   async deletePermanently(actor: PolicyActor, id: string) {
     const employee = await this.prisma.employee.findFirst({
       where: { id, companyId: actor.companyId },
-      select: { id: true, authUserId: true },
+      select: { id: true, authUserId: true, isPlatformAdmin: true },
     });
     if (!employee) {
       throw new NotFoundException('User not found.');
+    }
+    if (employee.isPlatformAdmin) {
+      throw new BadRequestException('Platform administrators cannot be deleted here.');
     }
     if (employee.id === actor.employeeId) {
       throw new BadRequestException('Cannot delete your own account.');

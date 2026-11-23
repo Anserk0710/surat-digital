@@ -20,6 +20,18 @@ enum PermissionEffect {
   DENY
 }
 
+enum DocumentStatus {
+  DRAFT
+  PENDING_ACKNOWLEDGMENT
+  PENDING_APPROVAL
+  IN_PROGRESS
+  FINALIZING
+  REJECTED
+  CANCELLED
+  ISSUED
+  ARCHIVED
+}
+
 model Company {
   id        String   @id @default(uuid()) @db.Uuid
   code      String   @unique(map: "companies_code_key") @db.VarChar(50)
@@ -28,11 +40,13 @@ model Company {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
-  offices   Office[]
-  divisions Division[]
-  jobTitles JobTitle[]
-  employees Employee[]
-  groups    Group[]
+  offices        Office[]
+  divisions      Division[]
+  jobTitles      JobTitle[]
+  employees      Employee[]
+  groups         Group[]
+  documents      Document[]
+  storageObjects StorageObject[]
 
   @@map("companies")
 }
@@ -51,6 +65,7 @@ model Office {
 
   officeDivisions OfficeDivision[]
   rlsPocResources RlsPocResource[]
+  issuedDocuments Document[]       @relation("DocumentIssuerOffice")
 
   @@unique([companyId, code], map: "offices_company_id_code_key")
   @@index([companyId], map: "offices_company_id_idx")
@@ -69,6 +84,7 @@ model Division {
   company Company @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "divisions_company_id_fkey")
 
   officeDivisions OfficeDivision[]
+  issuedDocuments Document[]       @relation("DocumentIssuerDivision")
 
   @@unique([companyId, code], map: "divisions_company_id_code_key")
   @@index([companyId], map: "divisions_company_id_idx")
@@ -87,6 +103,7 @@ model OfficeDivision {
   division Division @relation(fields: [divisionId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "office_divisions_division_id_fkey")
 
   employeeAssignments EmployeeAssignment[]
+  issuedDocuments     Document[]           @relation("DocumentIssuerScope")
 
   @@unique([officeId, divisionId], map: "office_divisions_office_id_division_id_key")
   @@index([divisionId], map: "office_divisions_division_id_idx")
@@ -132,7 +149,11 @@ model Employee {
   employeeGroups EmployeeGroup[]
   authSessions   AuthSession[]
 
-  rlsPocResources RlsPocResource[] @relation("RlsPocResourceOwner")
+  rlsPocResources         RlsPocResource[]  @relation("RlsPocResourceOwner")
+  createdDocuments        Document[]        @relation("DocumentCreator")
+  createdDocumentVersions DocumentVersion[] @relation("DocumentVersionCreator")
+  uploadedDocumentFiles   DocumentFile[]    @relation("DocumentFileUploader")
+  uploadedStorageObjects  StorageObject[]   @relation("StorageObjectUploader")
 
   @@unique([companyId, employeeNumber], map: "employees_company_id_employee_number_key")
   @@unique([companyId, usernameNormalized], map: "employees_company_id_username_normalized_key")
@@ -278,6 +299,21 @@ model GroupPolicyAudit {
   @@map("group_policy_audit")
 }
 
+model OrganizationChange {
+  id              String   @id @default(uuid()) @db.Uuid
+  companyId       String   @map("company_id") @db.Uuid
+  actorEmployeeId String   @map("actor_employee_id") @db.Uuid
+  action          String   @db.VarChar(20)
+  targetType      String   @map("target_type") @db.VarChar(40)
+  targetId        String   @map("target_id") @db.Uuid
+  before          Json?
+  after           Json?
+  occurredAt      DateTime @default(now()) @map("occurred_at") @db.Timestamptz(6)
+
+  @@index([companyId, targetType, targetId, occurredAt], map: "organization_changes_target_time_idx")
+  @@map("organization_changes")
+}
+
 model RlsPocResource {
   id              String   @id @default(uuid()) @db.Uuid
   ownerEmployeeId String   @map("owner_employee_id") @db.Uuid
@@ -291,4 +327,148 @@ model RlsPocResource {
   @@index([ownerEmployeeId], map: "rls_poc_resources_owner_employee_id_idx")
   @@index([officeId], map: "rls_poc_resources_office_id_idx")
   @@map("rls_poc_resources")
+}
+
+model DocumentType {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique(map: "document_types_code_key") @db.VarChar(50)
+  name        String   @db.VarChar(200)
+  description String?  @db.Text
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  subtypes  DocumentSubtype[]
+  documents Document[]        @relation("DocumentType")
+
+  @@map("document_types")
+}
+
+model DocumentSubtype {
+  id             String   @id @default(uuid()) @db.Uuid
+  documentTypeId String   @map("document_type_id") @db.Uuid
+  code           String   @db.VarChar(50)
+  name           String   @db.VarChar(200)
+  description    String?  @db.Text
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  documentType DocumentType @relation(fields: [documentTypeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "document_subtypes_document_type_id_fkey")
+
+  documents Document[] @relation("DocumentSubtype")
+
+  @@unique([documentTypeId, code], map: "document_subtypes_document_type_id_code_key")
+  // Diperlukan untuk composite FK pada documents agar kombinasi
+  // type/subtype juga dijaga database, bukan hanya service.
+  @@unique([id, documentTypeId], map: "document_subtypes_id_document_type_id_key")
+  @@index([documentTypeId], map: "document_subtypes_document_type_id_idx")
+  @@map("document_subtypes")
+}
+
+model Document {
+  id                String         @id @default(uuid()) @db.Uuid
+  companyId         String         @map("company_id") @db.Uuid
+  documentTypeId    String         @map("document_type_id") @db.Uuid
+  documentSubtypeId String         @map("document_subtype_id") @db.Uuid
+  creatorEmployeeId String         @map("creator_employee_id") @db.Uuid
+  issuerDivisionId  String         @map("issuer_division_id") @db.Uuid
+  issuerOfficeId    String         @map("issuer_office_id") @db.Uuid
+  title             String         @db.VarChar(300)
+  description       String?        @db.Text
+  status            DocumentStatus @default(DRAFT)
+
+  // Optimistic concurrency untuk metadata row.
+  // Ini BUKAN document_versions.version_no.
+  revision Int @default(1)
+
+  submittedAt DateTime? @map("submitted_at") @db.Timestamptz(6)
+  issuedAt    DateTime? @map("issued_at") @db.Timestamptz(6)
+  rejectedAt  DateTime? @map("rejected_at") @db.Timestamptz(6)
+  cancelledAt DateTime? @map("cancelled_at") @db.Timestamptz(6)
+  archivedAt  DateTime? @map("archived_at") @db.Timestamptz(6)
+
+  rejectionReason String? @map("rejection_reason") @db.Text
+  withdrawReason  String? @map("withdraw_reason") @db.Text
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  company         Company           @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "documents_company_id_fkey")
+  documentType    DocumentType      @relation("DocumentType", fields: [documentTypeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "documents_document_type_id_fkey")
+  // Composite relation ini memastikan subtype benar-benar
+  // berasal dari type yang dipilih.
+  documentSubtype DocumentSubtype   @relation("DocumentSubtype", fields: [documentSubtypeId, documentTypeId], references: [id, documentTypeId], onDelete: Restrict, onUpdate: Cascade, map: "documents_document_subtype_type_fkey")
+  creator         Employee          @relation("DocumentCreator", fields: [creatorEmployeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "documents_creator_employee_id_fkey")
+  issuerOffice    Office            @relation("DocumentIssuerOffice", fields: [issuerOfficeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "documents_issuer_office_id_fkey")
+  issuerDivision  Division          @relation("DocumentIssuerDivision", fields: [issuerDivisionId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "documents_issuer_division_id_fkey")
+  // Memastikan Office + Division memang pasangan OfficeDivision valid.
+  issuerScope     OfficeDivision    @relation("DocumentIssuerScope", fields: [issuerOfficeId, issuerDivisionId], references: [officeId, divisionId], onDelete: Restrict, onUpdate: Cascade, map: "documents_issuer_scope_fkey")
+  versions        DocumentVersion[]
+
+  @@index([companyId, status, createdAt], map: "documents_company_id_status_created_at_idx")
+  @@index([creatorEmployeeId, status, createdAt], map: "documents_creator_status_created_at_idx")
+  @@index([documentTypeId, documentSubtypeId], map: "documents_type_subtype_idx")
+  @@index([issuerOfficeId, issuerDivisionId], map: "documents_issuer_scope_idx")
+  @@map("documents")
+}
+
+model DocumentVersion {
+  id                  String   @id @default(uuid()) @db.Uuid
+  documentId          String   @map("document_id") @db.Uuid
+  versionNo           Int      @map("version_no")
+  sourceMethod        String   @default("UPLOAD") @map("source_method") @db.VarChar(20)
+  createdByEmployeeId String   @map("created_by_employee_id") @db.Uuid
+  isLocked            Boolean  @default(false) @map("is_locked")
+  createdAt           DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  document Document       @relation(fields: [documentId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "document_versions_document_id_fkey")
+  creator  Employee       @relation("DocumentVersionCreator", fields: [createdByEmployeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "document_versions_created_by_employee_id_fkey")
+  files    DocumentFile[]
+
+  @@unique([documentId, versionNo], map: "document_versions_document_id_version_no_key")
+  @@index([documentId], map: "document_versions_document_id_idx")
+  @@map("document_versions")
+}
+
+model StorageObject {
+  id                   String   @id @default(uuid()) @db.Uuid
+  companyId            String   @map("company_id") @db.Uuid
+  uploadedByEmployeeId String   @map("uploaded_by_employee_id") @db.Uuid
+  provider             String   @db.VarChar(20)
+  pathname             String   @unique(map: "storage_objects_pathname_key") @db.VarChar(500)
+  contentType          String   @map("content_type") @db.VarChar(150)
+  sizeBytes            Int      @map("size_bytes")
+  sha256               String   @db.Char(64)
+  accessMode           String   @default("PRIVATE") @map("access_mode") @db.VarChar(20)
+  createdAt            DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  files    DocumentFile[]
+  company  Company        @relation(fields: [companyId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  uploader Employee       @relation("StorageObjectUploader", fields: [uploadedByEmployeeId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  @@map("storage_objects")
+}
+
+model DocumentFile {
+  id                   String   @id @default(uuid()) @db.Uuid
+  documentVersionId    String   @map("document_version_id") @db.Uuid
+  storageObjectId      String   @map("storage_object_id") @db.Uuid
+  uploadedByEmployeeId String   @map("uploaded_by_employee_id") @db.Uuid
+  fileRole             String   @map("file_role") @db.VarChar(20)
+  originalFilename     String   @map("original_filename") @db.VarChar(255)
+  detectedMime         String   @map("detected_mime") @db.VarChar(150)
+  sizeBytes            Int      @map("size_bytes")
+  sha256               String   @db.Char(64)
+  processingStatus     String   @default("UPLOADED") @map("processing_status") @db.VarChar(30)
+  reviewStatus         String   @default("PENDING") @map("review_status") @db.VarChar(20)
+  createdAt            DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  version       DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "document_files_document_version_id_fkey")
+  storageObject StorageObject   @relation(fields: [storageObjectId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "document_files_storage_object_id_fkey")
+  uploader      Employee        @relation("DocumentFileUploader", fields: [uploadedByEmployeeId], references: [id], onDelete: Restrict, onUpdate: Cascade, map: "document_files_uploaded_by_employee_id_fkey")
+
+  @@unique([storageObjectId], map: "document_files_storage_object_id_key")
+  @@index([documentVersionId, createdAt], map: "document_files_version_created_at_idx")
+  @@map("document_files")
 }

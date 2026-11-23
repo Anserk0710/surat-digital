@@ -1,6 +1,10 @@
 {
-  "test": "P07-FE-T01",
+  "phaseId": "P07",
+  "testId": "P07-FE-T01",
   "status": "PASS",
+  "command": "npm run web:verify:browser",
+  "result": "Chromium browser verification against actual NestJS API passed.",
+  "artifactPath": "docs/evidence/P07/frontend.json",
   "kind": "Chromium browser + actual NestJS API + non-production database",
-  "timestamp": "2026-11-18T14:46:41.949Z"
+  "executedAt": "2026-11-21T10:15:42.836Z"
 }

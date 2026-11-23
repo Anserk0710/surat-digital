@@ -339,6 +339,7 @@ Setiap phase memiliki estimasi **1 hari penuh**. Angka ini perlu divalidasi dari
 - Tambahkan offices.timezone menggunakan IANA timezone.
 - Buat CRUD API dan validation untuk relasi organisasi.
 - Tambahkan seed organisasi development.
+- Sediakan pembuatan perusahaan khusus admin platform dengan undangan admin pertama, pencarian, filter, pagination, validasi relasi, dan riwayat perubahan sesuai D-093.
 - Lengkapi API registrasi/aktivasi/import/profil pengguna sesuai FR-USER-001–006 dan OpenAPI; jika scope belum selesai dalam sehari, phase tetap terbuka.
 
 **Frontend:**
@@ -548,13 +549,13 @@ Setiap phase memiliki estimasi **1 hari penuh**. Angka ini perlu divalidasi dari
 **Test / Verification**
 
 **Backend:**
-- [ ] P09-T01 — File valid tersimpan beserta hash dan metadata.
-- [ ] P09-T02 — Extension/MIME/signature mismatch ditolak.
-- [ ] P09-T03 — Unauthorized user tidak dapat mengakses file lewat URL/API.
-- [ ] P09-T04 — Hash hasil download sama dengan metadata yang disimpan.
+- [x] P09-T01 — File valid tersimpan beserta hash dan metadata.
+- [x] P09-T02 — Extension/MIME/signature mismatch ditolak.
+- [x] P09-T03 — Unauthorized user tidak dapat mengakses file lewat URL/API.
+- [x] P09-T04 — Hash hasil download sama dengan metadata yang disimpan.
 
 **Frontend:**
-- [ ] P09-FE-T01: upload dan akses privat/unauthorized diuji di browser
+- [x] P09-FE-T01: upload dan akses privat/unauthorized diuji di browser
 
 **Exit Criteria (Backend & Frontend)**  
 **Backend:** Unauthorized file access gagal.

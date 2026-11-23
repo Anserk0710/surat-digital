@@ -1,4 +1,4 @@
-import { ShieldAlert } from 'lucide-react';
+import { ShieldWarningIcon as ShieldAlert } from '@phosphor-icons/react/dist/csr/ShieldWarning';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button.js';
 import { Card } from '../ui/card.js';

@@ -220,7 +220,7 @@ pilot agar penghematan dapat dibuktikan.
 
 - Surat eksternal sebagai **tipe dokumen bisnis terpisah** (berbeda dari External Signing terhadap dokumen yang dibuat internal).
 
-- Multi-company/holding sebagai fitur operasional.
+- Struktur holding dan perpindahan pengguna antarperusahaan sebagai fitur operasional. Pembuatan perusahaan oleh admin platform dan pengelolaan masing-masing perusahaan tetap tersedia.
 
 - Integrasi ERP, HRIS, Microsoft 365, Google Workspace, atau SSO.
 

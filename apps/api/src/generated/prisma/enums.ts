@@ -25,3 +25,18 @@ export const PermissionEffect = {
 } as const
 
 export type PermissionEffect = (typeof PermissionEffect)[keyof typeof PermissionEffect]
+
+
+export const DocumentStatus = {
+  DRAFT: 'DRAFT',
+  PENDING_ACKNOWLEDGMENT: 'PENDING_ACKNOWLEDGMENT',
+  PENDING_APPROVAL: 'PENDING_APPROVAL',
+  IN_PROGRESS: 'IN_PROGRESS',
+  FINALIZING: 'FINALIZING',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED',
+  ISSUED: 'ISSUED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type DocumentStatus = (typeof DocumentStatus)[keyof typeof DocumentStatus]

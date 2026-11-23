@@ -10,6 +10,8 @@ import { UsersPage } from './pages/UsersPage.js';
 import { GroupsPage } from './pages/GroupsPage.js';
 import { ProfilePage } from './pages/ProfilePage.js';
 import { ForbiddenPage } from './pages/ForbiddenPage.js';
+import { DocumentDraftPage } from './pages/DocumentDraftPage.js';
+import { DocumentsPage } from './pages/DocumentsPage.js';
 
 export function App() {
   const { user, loading } = useAuth();
@@ -40,6 +42,23 @@ export function App() {
     <Shell>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
+        <Route path="/documents" element={<DocumentsPage />} />
+        <Route
+          path="/documents/new"
+          element={
+            <ProtectedRoute requiredPermission="Document.Create">
+              <DocumentDraftPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/documents/:documentId/edit"
+          element={
+            <ProtectedRoute requiredPermission="Document.Create">
+              <DocumentDraftPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/organization"
           element={

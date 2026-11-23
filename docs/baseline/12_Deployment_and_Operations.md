@@ -70,6 +70,8 @@ terpisah.
 
 - File metadata disimpan di PostgreSQL.
 
+P09: Production memerlukan Vercel Blob store dengan access **Private**. SDK memakai `BLOB_STORE_ID` + `VERCEL_OIDC_TOKEN` pada deployment Vercel, atau `BLOB_READ_WRITE_TOKEN` server-side bila OIDC tidak tersedia. Set `FILE_STORAGE_DRIVER=vercel` di production. Development dapat memakai `FILE_STORAGE_DRIVER=local`; file disimpan di `.tmp/private-files` dan tidak dihidangkan sebagai static asset. Batas upload awal 4 MiB.
+
 ### Document Worker
 
 Worker harus berjalan pada lingkungan yang cocok untuk:
@@ -84,7 +86,7 @@ Worker harus berjalan pada lingkungan yang cocok untuk:
 
 - Timeout lebih panjang dibanding request API biasa.
 
-Worker tidak disarankan berjalan sebagai request panjang pada Vercel Functions. Deploy sebagai container/VM atau platform worker yang mendukung Docker, LibreOffice headless, Tesseract.js/OCR dependency, temporary filesystem, CPU/RAM yang memadai, dan proses background berkelanjutan. Provider final dipilih setelah proof-of-concept.
+Worker tidak disarankan berjalan sebagai request panjang pada Vercel Functions. Deploy sebagai container/VM atau platform worker yang mendukung Docker, LibreOffice headless, Tesseract.js/OCR dependency, temporary filesystem, CPU/RAM yang memadai, dan proses background berkelanjutan. Provider final: Render Background Worker berbasis Docker Linux di region Singapore, sesuai [ADR-0004](../decisions/ADR-0004-document-limits-worker-hosting.md). Sizing awal minimum 1 CPU/2 GiB RAM dan satu job berat per instance harus divalidasi saat implementasi/deployment; deployment belum dilakukan.
 
 Queue direkomendasikan menggunakan Redis + BullMQ atau layanan queue yang setara. Queue hanya membawa job ID dan metadata minimum, bukan isi dokumen.
 
